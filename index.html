@@ -3532,7 +3532,7 @@ function cardHTML(ch){
   var logo;
   var freeBadge = isRadio ? '' : '<span class="free-badge">FREE</span>';
   if(ch.logo){
-    logo = '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(ch.en)) + '</span>\'">" + freeBadge + '</span>" + freeBadge + '</span>';
+    logo = '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy">' + freeBadge + '</span>';
   } else {
     logo = '<span class="clogo dark"><span class="mono">' + esc(initials(ch.en)) + '</span>' + freeBadge + '</span>';
   }
