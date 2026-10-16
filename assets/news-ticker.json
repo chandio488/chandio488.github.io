@@ -1,1 +1,733 @@
-ewogInVwZGF0ZWQiOiAiMjAyNi0xMC0xNlQxNDozODoxMy42ODU3OTcrMDA6MDAiLAogImNvdW50IjogMSwKICJ0aWNrZXIiOiBbCiAgewogICAidGl0bGUiOiAiU2FkYSBQb3J0YWwgTmV3cyBUaWNrZXIgLSDYrtmI2K/aqdin2LEg2K7YqNix24zauiDYrNmE2K8g2LTYsdmI2Lkg24HZiNq6INqv24wiLAogICAidXJsIjogImh0dHBzOi8vd3d3LmdkZWx0cHJvamVjdC5vcmcvIiwKICAgImRvbWFpbiI6ICJHREVMVCBQcm9qZWN0IiwKICAgImxhbmd1YWdlIjogIlVyZHUiLAogICAiY291bnRyeSI6ICIiLAogICAiZGF0ZSI6ICIyMDI2MTAxNlQxNDM4MDBaIgogIH0KIF0sCiAiY2F0ZWdvcmllcyI6IHsKICAid29ybGQiOiBbXSwKICAicGFraXN0YW4iOiBbXSwKICAidXJkdSI6IFtdCiB9Cn0=
+{
+ "updated": "2026-10-16T14:44:40.855388+00:00",
+ "categories": {
+  "world": [],
+  "pakistan": [
+   {
+    "title": "Foreign Ministers from 18 Muslim Countries Condemn Opening of Colombian Embassy in Jerusalem",
+    "url": "https://themedialine.org/headlines/foreign-ministers-from-18-muslim-countries-condemn-opening-of-colombian-embassy-in-jerusalem/",
+    "domain": "themedialine.org",
+    "language": "English",
+    "country": "Israel",
+    "date": "20261016T141500Z"
+   },
+   {
+    "title": "Pakistan warns India of forceful response over defence minister  provocative  remarks",
+    "url": "https://www.geo.tv/latest/686828-pakistan-warns-india-of-forceful-response-over-ministers-provocative-remarks",
+    "domain": "geo.tv",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T141500Z"
+   },
+   {
+    "title": "PM aide links lifting of KP emergency measures to PTI  fulfilling constitutional duties  ",
+    "url": "https://www.geo.tv/latest/686801-pms-aide-links-lifting-of-kp-emergency-measures-to-pti-fulfilling-constitutional-duties",
+    "domain": "geo.tv",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T141500Z"
+   },
+   {
+    "title": "Israel Blocks Flights Carrying Pakistani Pilots and Cabin Crew over its Airspace",
+    "url": "https://idrw.org/israel-blocks-flights-carrying-pakistani-pilots-and-cabin-crew-over-its-airspace/",
+    "domain": "idrw.org",
+    "language": "English",
+    "country": "India",
+    "date": "20261016T140000Z"
+   },
+   {
+    "title": "Pakistan textile exports struggle as rising costs , regional conflicts threaten growth",
+    "url": "http://www.azerbaijannews.net/news/279378476/pakistan-textile-exports-struggle-as-rising-costs-regional-conflicts-threaten-growth",
+    "domain": "azerbaijannews.net",
+    "language": "English",
+    "country": "Azerbaijan",
+    "date": "20261016T140000Z"
+   },
+   {
+    "title": "US Urges Pakistan to Uphold Law Amid Emergency in Khyber Pakhtunkhwa",
+    "url": "https://www.sentinelassam.com/more-news/international/us-urges-pakistan-to-uphold-law-amid-emergency-in-khyber-pakhtunkhwa",
+    "domain": "sentinelassam.com",
+    "language": "English",
+    "country": "India",
+    "date": "20261016T140000Z"
+   },
+   {
+    "title": "Pakistan orders school inspections as relatives say they warned of risks before deadly collapse",
+    "url": "https://www.asiaone.com:443/asia/pakistan-orders-school-inspections-relatives-say-they-warned-risks-deadly-collapse",
+    "domain": "asiaone.com",
+    "language": "English",
+    "country": "Singapore",
+    "date": "20261016T140000Z"
+   },
+   {
+    "title": "  اسٹرکچرل اصلاحات کے نام پر ایف بی آر میں مزید اکھاڑ پچھاڑ کے بجائے اصلاحات کو مستحکم کیا جائے  ",
+    "url": "https://www.express.pk/story/2838571/instead-of-further-upheaval-within-the-fbr-in-the-name-of-structural-reforms-the-existing-reforms-should-be-consolidated-2838571",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T140000Z"
+   },
+   {
+    "title": "چار کروڑ لوگوں کی حکومت کو گرا کر خیبرپختونخوا کے ساتھ ظلم کیا گیا ، محمود اچکزئی – Daily Pakistan",
+    "url": "https://dailypakistan.pk/%DA%86%D8%A7%D8%B1-%DA%A9%D8%B1%D9%88%DA%91-%D9%84%D9%88%DA%AF%D9%88%DA%BA-%DA%A9%DB%8C-%D8%AD%DA%A9%D9%88%D9%85%D8%AA-%DA%A9%D9%88-%DA%AF%D8%B1%D8%A7-%DA%A9%D8%B1-%D8%AE%DB%8C%D8%A8%D8%B1%D9%BE%D8%AE/",
+    "domain": "dailypakistan.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T134500Z"
+   },
+   {
+    "title": "فیفا کا فٹبال کی ترقی کیلئے اربوں ڈالر سرمایہ کاری کا منصوبہ ، پاکستان کو کتنی رقم ملے گی ؟ – Daily Pakistan",
+    "url": "https://dailypakistan.pk/%D9%81%DB%8C%D9%81%D8%A7-%DA%A9%D8%A7-%D9%81%D9%B9%D8%A8%D8%A7%D9%84-%DA%A9%DB%8C-%D8%AA%D8%B1%D9%82%DB%8C-%DA%A9%DB%8C%D9%84%D8%A6%DB%92-%D8%A7%D8%B1%D8%A8%D9%88%DA%BA-%DA%88%D8%A7%D9%84%D8%B1-%D8%B3/",
+    "domain": "dailypakistan.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T134500Z"
+   },
+   {
+    "title": "وزیراعظم شہباز شریف کا بیان : سعودی عرب کے ساتھ دفاعی معاہدہ اور مکہ اتحاد دوطرفہ تعلقات میں تاریخی سنگِ میل قرار",
+    "url": "https://dailyaaj.com.pk/news/162444",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "FPSC Jobs 2026 : Apply Online for Federal Public Service Commission",
+    "url": "https://jobsnama.com/fpsc-jobs-2026/",
+    "domain": "jobsnama.com",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "jobsnama . com - Page 3 of 3 - ",
+    "url": "https://jobsnama.com/page/3/",
+    "domain": "jobsnama.com",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "Fast - flying Shahed drones spur new class of interceptors",
+    "url": "https://www.defenseone.com/business/2026/10/fast-flying-shahed-drones-spur-new-class-interceptors/416643/",
+    "domain": "defenseone.com",
+    "language": "English",
+    "country": "United States",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "سعودی عرب کی سلامتی و خودمختاری کیلئے شانہ بشانہ کھڑے ہیں : وزیراعظم",
+    "url": "https://dailyaaj.com.pk/news/162467",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "Meezan Bank Jobs 2026 – Apply Online Now",
+    "url": "https://jobsnama.com/meezan-bank-jobs-2026/",
+    "domain": "jobsnama.com",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "6 killed in road accident in NW Pakistan - Xinhua",
+    "url": "https://english.news.cn/20261016/7628dead9bb94023b7c2a0352c75c65d/c.html",
+    "domain": "english.news.cn",
+    "language": "English",
+    "country": "",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "ملک بھر میں آٹے کی قیمتوں میں بڑا اضافہ",
+    "url": "https://dailyaaj.com.pk/news/162464",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "Local Government Jobs 2026 – Apply Now",
+    "url": "https://jobsnama.com/local-government-jobs-2026/",
+    "domain": "jobsnama.com",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "State Bank of Pakistan Jobs 2026 – Latest Openings",
+    "url": "https://jobsnama.com/state-bank-of-pakistan-jobs-2026/",
+    "domain": "jobsnama.com",
+    "language": "English",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   }
+  ],
+  "urdu": [
+   {
+    "title": "جرابوں اور شیمپو کی بوتلوں میں چھپائے گئے 90 زہریلے سانپ اور چھپکلیوں کی سمگلنگ کی کوشش ناکام",
+    "url": "https://www.bbc.com/urdu/articles/cw62y83e145po",
+    "domain": "bbc.com",
+    "language": "Urdu",
+    "country": "United Kingdom",
+    "date": "20261016T141500Z"
+   },
+   {
+    "title": "The entire software has hung Dhruv Rathee takes a dig at Arnab Goswami",
+    "url": "https://www.express.pk/story/2838578/the-entire-software-has-hung-dhruv-rathee-takes-a-dig-at-arnab-goswami-2838578",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T140000Z"
+   },
+   {
+    "title": "ایک طرف دہشت گردی کے خلاف جنگ جاری ہے ، دوسری طرف یہ بچوں کے قاتل ہیں ، گورنر کے پی کے – Daily Pakistan",
+    "url": "https://dailypakistan.pk/%D8%A7%DB%8C%DA%A9-%D8%B7%D8%B1%D9%81-%D8%AF%DB%81%D8%B4%D8%AA-%DA%AF%D8%B1%D8%AF%DB%8C-%DA%A9%DB%92-%D8%AE%D9%84%D8%A7%D9%81-%D8%AC%D9%86%DA%AF-%D8%AC%D8%A7%D8%B1%DB%8C-%DB%81%DB%92%D8%8C-%D8%AF/",
+    "domain": "dailypakistan.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T134500Z"
+   },
+   {
+    "title": "ٹیسلا نے اُڑنے والی گاڑی متعارف کرادی ، ریلیزنگ 2028 میں متوقع – Daily Pakistan",
+    "url": "https://dailypakistan.pk/%D9%B9%DB%8C%D8%B3%D9%84%D8%A7-%D9%86%DB%92-%D8%A7%D9%8F%DA%91%D9%86%DB%92-%D9%88%D8%A7%D9%84%DB%8C-%DA%AF%D8%A7%DA%91%DB%8C-%D9%85%D8%AA%D8%B9%D8%A7%D8%B1%D9%81-%DA%A9%D8%B1%D8%A7%D8%AF%DB%8C%D8%8C/",
+    "domain": "dailypakistan.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T134500Z"
+   },
+   {
+    "title": "بالی ووڈ اداکارہ سوناکشی سنہا کا انکشاف : ",
+    "url": "https://dailyaaj.com.pk/news/162449",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "بالی ووڈ اداکار سلمان خان کا انکشاف : ",
+    "url": "https://dailyaaj.com.pk/news/162451",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "مسئلہ فلسطین اس صدی کی سب سے بڑی تاریخی ناانصافی ہے ، اسرائیل یہودی بستیوں کی تعمیر روکے : چینی وزیرِ خارجہ وانگ یی",
+    "url": "https://dailyaaj.com.pk/news/162457",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "امریکہ کو ایران کے خلاف مظالم کی سزا ملنی چاہیے ، یکطرفہ مطالبات کا دور ختم ہوچکا : ایرانی پارلیمانی اسپیکر محمد باقر قالیباف",
+    "url": "https://dailyaaj.com.pk/news/162456",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "گورنر خیبرپختونخوا فیصل کریم کنڈی کا پولیس شہدا کے پیکج اور تنخواہوں میں نمایاں اضافے کا اعلان",
+    "url": "https://dailyaaj.com.pk/news/162442",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "بالی ووڈ جوڑی کرینہ کپور اور سیف علی خان نے شادی کی 14ویں سالگرہ منا لی ، اداکارہ کا محبت بھرا پیغام",
+    "url": "https://dailyaaj.com.pk/news/162459",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "امریکی صدر ڈونلڈ ٹرمپ کا سابق فوجی نضال حسن کی پھانسی براہِ راست دکھانے کا فیصلہ واپس ، سزائے موت شیڈول پر برقرار",
+    "url": "https://dailyaaj.com.pk/news/162453",
+    "domain": "dailyaaj.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T133000Z"
+   },
+   {
+    "title": "شاور پر جمے سفید دھبوں اور میل سے پریشان ہیں ؟ سرکہ کام آسکتا ہے",
+    "url": "https://www.express.pk/story/2838567/troubled-by-white-spots-and-grime-buildup-on-your-shower-vinegar-might-help-2838567",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T131500Z"
+   },
+   {
+    "title": "لکی مروت : فورسز کا مشترکہ آپریشن ، کوہاٹ پولیس لائنز حملے کا ماسٹر مائنڈ خارجی دہشت گرد ہلاک",
+    "url": "https://www.express.pk/story/2838573/lakki-marwat-joint-operation-by-security-forces-mastermind-behind-the-kohat-police-lines-attacka-foreign-terroristkilled-2838573",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T131500Z"
+   },
+   {
+    "title": "What is double diabetes How does insulin resistance increase the risk of complications",
+    "url": "https://www.express.pk/story/2838355/what-is-double-diabetes-how-does-insulin-resistance-increase-the-risk-of-complications-2838355",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T131500Z"
+   },
+   {
+    "title": "gold and silver prices increase - ایکسپریس اردو",
+    "url": "https://www.express.pk/story/2838572/gold-and-silver-prices-increase-2838572",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T131500Z"
+   },
+   {
+    "title": "Karachi : Two Killed After Being Hit by Trailer and Train , Including a Woman",
+    "url": "https://www.express.pk/story/2838569/karachi-two-killed-after-being-hit-by-trailer-and-train-including-a-woman-2838569",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T131500Z"
+   },
+   {
+    "title": "دھرمیندر سے پہلی نظر میں محبت ہو گئی تھی : ہیما مالنی",
+    "url": "https://jang.com.pk/news/1624931",
+    "domain": "jang.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T111500Z"
+   },
+   {
+    "title": "وزیرِاعظم شہباز شریف نے اپوزیشن کو مذاکرات کی دعوت دی ہے : وفاقی وزیر پارلیمانی امور",
+    "url": "https://jang.com.pk/news/1624934",
+    "domain": "jang.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T111500Z"
+   },
+   {
+    "title": "محمد عباس کی کمنٹیٹر کی گاڑی کے ٹائر میں ہوا بھرواتے ویڈیو وائرل",
+    "url": "https://jang.com.pk/news/1624930",
+    "domain": "jang.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T111500Z"
+   },
+   {
+    "title": "اسلام آباد : رواں سال اغواء کے 491 ، جنسی زیادتی کے 177 ، قتل کے 74 مقدمات درج",
+    "url": "https://jang.com.pk/news/1624923",
+    "domain": "jang.com.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T111500Z"
+   },
+   {
+    "title": "خیبرپختونخوا میں گورنر راج اور ایمرجنسی کے خلاف درخواستیں سماعت کے لیے مقرر - Pakistan",
+    "url": "https://www.aaj.tv/news/30521617/",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "  شادی میں جیب کترے مہمان بن کر آگئے ، تحائف میں قیمتی چیزوں کے بجائے پتھر اور چپلیں دے گئے ، نیتو کپور - Life & Style",
+    "url": "https://www.aaj.tv/news/30521620/pickpockets-came-as-wedding-guests-gave-stones-and-slippers-instead-of-valuable-gifts-neetu-kapoor-reveals",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "حنا جاوید قتل کیس : نامزد تینوں ملزمان کا ڈی این اے میچ کرگیا - Crime",
+    "url": "https://www.aaj.tv/news/30521590/hina-javed-murder-case-dna-matches-all-three-accused",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "پاکستان مکہ معاہدے کے تحت سعودی عرب کے ساتھ کھڑا ہے : ترجمان دفتر خارجہ - Pakistan",
+    "url": "https://www.aaj.tv/news/30521641/",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "ٹیسلا نے اسپیس ایکس راکٹ کی طرح لینڈ کرنے والی کار متعارف کرا دی - Technology",
+    "url": "https://www.aaj.tv/news/30521627/tesla-has-introduced-a-car-that-lands-like-a-spacex-rocket",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "ویلکم اسٹار لنک : امبانی کے ریلائنس گروپ کا ایلون مسک کے الزامات پر رد عمل - Technology",
+    "url": "https://www.aaj.tv/news/30521593/welcome-starlink-ambanis-reliance-group-responds-to-elon-musks-allegations",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "  اب تک 70 رشتے آچکے ہیں ، اسرا عائشہ کا انکشاف - Life & Style",
+    "url": "https://www.aaj.tv/news/30521599/received-70-marriage-proposals-so-far-esra-ayesha-reveals",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "بولی ووڈ اسٹارز اپنے گھروں میں خود سبزیاں کیوں اگا رہے ہیں ؟ - Life & Style",
+    "url": "https://www.aaj.tv/news/30521595/why-are-bollywood-stars-growing-their-own-vegetables-at-home",
+    "domain": "aaj.tv",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T103000Z"
+   },
+   {
+    "title": "کرینہ کپور نے سیف علی خان کے ساتھ شادی کی 14ویں سالگرہ پر محبت بھرا پیغام شیئر کر دیا",
+    "url": "https://www.express.pk/story/2838518/14th-wedding-anniversary-kareena-kapoor-shares-a-loving-message-for-saif-ali-khan-2838518",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T101500Z"
+   },
+   {
+    "title": "سفیرِ پاکستان کا فرانسسکو میں پاکستان پویلین کا دورہ ، جدید ٹیکنالوجی کے شعبے سے متعلق بریفنگ",
+    "url": "https://www.express.pk/story/2838521/pakistan-in-tech-crunch-2026-2838521",
+    "domain": "express.pk",
+    "language": "Urdu",
+    "country": "Pakistan",
+    "date": "20261016T101500Z"
+   }
+  ]
+ },
+ "ticker": [
+  {
+   "title": "Foreign Ministers from 18 Muslim Countries Condemn Opening of Colombian Embassy in Jerusalem",
+   "url": "https://themedialine.org/headlines/foreign-ministers-from-18-muslim-countries-condemn-opening-of-colombian-embassy-in-jerusalem/",
+   "domain": "themedialine.org",
+   "language": "English",
+   "country": "Israel",
+   "date": "20261016T141500Z"
+  },
+  {
+   "title": "Pakistan warns India of forceful response over defence minister  provocative  remarks",
+   "url": "https://www.geo.tv/latest/686828-pakistan-warns-india-of-forceful-response-over-ministers-provocative-remarks",
+   "domain": "geo.tv",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T141500Z"
+  },
+  {
+   "title": "PM aide links lifting of KP emergency measures to PTI  fulfilling constitutional duties  ",
+   "url": "https://www.geo.tv/latest/686801-pms-aide-links-lifting-of-kp-emergency-measures-to-pti-fulfilling-constitutional-duties",
+   "domain": "geo.tv",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T141500Z"
+  },
+  {
+   "title": "Israel Blocks Flights Carrying Pakistani Pilots and Cabin Crew over its Airspace",
+   "url": "https://idrw.org/israel-blocks-flights-carrying-pakistani-pilots-and-cabin-crew-over-its-airspace/",
+   "domain": "idrw.org",
+   "language": "English",
+   "country": "India",
+   "date": "20261016T140000Z"
+  },
+  {
+   "title": "Pakistan textile exports struggle as rising costs , regional conflicts threaten growth",
+   "url": "http://www.azerbaijannews.net/news/279378476/pakistan-textile-exports-struggle-as-rising-costs-regional-conflicts-threaten-growth",
+   "domain": "azerbaijannews.net",
+   "language": "English",
+   "country": "Azerbaijan",
+   "date": "20261016T140000Z"
+  },
+  {
+   "title": "US Urges Pakistan to Uphold Law Amid Emergency in Khyber Pakhtunkhwa",
+   "url": "https://www.sentinelassam.com/more-news/international/us-urges-pakistan-to-uphold-law-amid-emergency-in-khyber-pakhtunkhwa",
+   "domain": "sentinelassam.com",
+   "language": "English",
+   "country": "India",
+   "date": "20261016T140000Z"
+  },
+  {
+   "title": "Pakistan orders school inspections as relatives say they warned of risks before deadly collapse",
+   "url": "https://www.asiaone.com:443/asia/pakistan-orders-school-inspections-relatives-say-they-warned-risks-deadly-collapse",
+   "domain": "asiaone.com",
+   "language": "English",
+   "country": "Singapore",
+   "date": "20261016T140000Z"
+  },
+  {
+   "title": "  اسٹرکچرل اصلاحات کے نام پر ایف بی آر میں مزید اکھاڑ پچھاڑ کے بجائے اصلاحات کو مستحکم کیا جائے  ",
+   "url": "https://www.express.pk/story/2838571/instead-of-further-upheaval-within-the-fbr-in-the-name-of-structural-reforms-the-existing-reforms-should-be-consolidated-2838571",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T140000Z"
+  },
+  {
+   "title": "چار کروڑ لوگوں کی حکومت کو گرا کر خیبرپختونخوا کے ساتھ ظلم کیا گیا ، محمود اچکزئی – Daily Pakistan",
+   "url": "https://dailypakistan.pk/%DA%86%D8%A7%D8%B1-%DA%A9%D8%B1%D9%88%DA%91-%D9%84%D9%88%DA%AF%D9%88%DA%BA-%DA%A9%DB%8C-%D8%AD%DA%A9%D9%88%D9%85%D8%AA-%DA%A9%D9%88-%DA%AF%D8%B1%D8%A7-%DA%A9%D8%B1-%D8%AE%DB%8C%D8%A8%D8%B1%D9%BE%D8%AE/",
+   "domain": "dailypakistan.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T134500Z"
+  },
+  {
+   "title": "فیفا کا فٹبال کی ترقی کیلئے اربوں ڈالر سرمایہ کاری کا منصوبہ ، پاکستان کو کتنی رقم ملے گی ؟ – Daily Pakistan",
+   "url": "https://dailypakistan.pk/%D9%81%DB%8C%D9%81%D8%A7-%DA%A9%D8%A7-%D9%81%D9%B9%D8%A8%D8%A7%D9%84-%DA%A9%DB%8C-%D8%AA%D8%B1%D9%82%DB%8C-%DA%A9%DB%8C%D9%84%D8%A6%DB%92-%D8%A7%D8%B1%D8%A8%D9%88%DA%BA-%DA%88%D8%A7%D9%84%D8%B1-%D8%B3/",
+   "domain": "dailypakistan.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T134500Z"
+  },
+  {
+   "title": "وزیراعظم شہباز شریف کا بیان : سعودی عرب کے ساتھ دفاعی معاہدہ اور مکہ اتحاد دوطرفہ تعلقات میں تاریخی سنگِ میل قرار",
+   "url": "https://dailyaaj.com.pk/news/162444",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "FPSC Jobs 2026 : Apply Online for Federal Public Service Commission",
+   "url": "https://jobsnama.com/fpsc-jobs-2026/",
+   "domain": "jobsnama.com",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "jobsnama . com - Page 3 of 3 - ",
+   "url": "https://jobsnama.com/page/3/",
+   "domain": "jobsnama.com",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "Fast - flying Shahed drones spur new class of interceptors",
+   "url": "https://www.defenseone.com/business/2026/10/fast-flying-shahed-drones-spur-new-class-interceptors/416643/",
+   "domain": "defenseone.com",
+   "language": "English",
+   "country": "United States",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "سعودی عرب کی سلامتی و خودمختاری کیلئے شانہ بشانہ کھڑے ہیں : وزیراعظم",
+   "url": "https://dailyaaj.com.pk/news/162467",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "Meezan Bank Jobs 2026 – Apply Online Now",
+   "url": "https://jobsnama.com/meezan-bank-jobs-2026/",
+   "domain": "jobsnama.com",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "6 killed in road accident in NW Pakistan - Xinhua",
+   "url": "https://english.news.cn/20261016/7628dead9bb94023b7c2a0352c75c65d/c.html",
+   "domain": "english.news.cn",
+   "language": "English",
+   "country": "",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "ملک بھر میں آٹے کی قیمتوں میں بڑا اضافہ",
+   "url": "https://dailyaaj.com.pk/news/162464",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "Local Government Jobs 2026 – Apply Now",
+   "url": "https://jobsnama.com/local-government-jobs-2026/",
+   "domain": "jobsnama.com",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "State Bank of Pakistan Jobs 2026 – Latest Openings",
+   "url": "https://jobsnama.com/state-bank-of-pakistan-jobs-2026/",
+   "domain": "jobsnama.com",
+   "language": "English",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "جرابوں اور شیمپو کی بوتلوں میں چھپائے گئے 90 زہریلے سانپ اور چھپکلیوں کی سمگلنگ کی کوشش ناکام",
+   "url": "https://www.bbc.com/urdu/articles/cw62y83e145po",
+   "domain": "bbc.com",
+   "language": "Urdu",
+   "country": "United Kingdom",
+   "date": "20261016T141500Z"
+  },
+  {
+   "title": "The entire software has hung Dhruv Rathee takes a dig at Arnab Goswami",
+   "url": "https://www.express.pk/story/2838578/the-entire-software-has-hung-dhruv-rathee-takes-a-dig-at-arnab-goswami-2838578",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T140000Z"
+  },
+  {
+   "title": "ایک طرف دہشت گردی کے خلاف جنگ جاری ہے ، دوسری طرف یہ بچوں کے قاتل ہیں ، گورنر کے پی کے – Daily Pakistan",
+   "url": "https://dailypakistan.pk/%D8%A7%DB%8C%DA%A9-%D8%B7%D8%B1%D9%81-%D8%AF%DB%81%D8%B4%D8%AA-%DA%AF%D8%B1%D8%AF%DB%8C-%DA%A9%DB%92-%D8%AE%D9%84%D8%A7%D9%81-%D8%AC%D9%86%DA%AF-%D8%AC%D8%A7%D8%B1%DB%8C-%DB%81%DB%92%D8%8C-%D8%AF/",
+   "domain": "dailypakistan.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T134500Z"
+  },
+  {
+   "title": "ٹیسلا نے اُڑنے والی گاڑی متعارف کرادی ، ریلیزنگ 2028 میں متوقع – Daily Pakistan",
+   "url": "https://dailypakistan.pk/%D9%B9%DB%8C%D8%B3%D9%84%D8%A7-%D9%86%DB%92-%D8%A7%D9%8F%DA%91%D9%86%DB%92-%D9%88%D8%A7%D9%84%DB%8C-%DA%AF%D8%A7%DA%91%DB%8C-%D9%85%D8%AA%D8%B9%D8%A7%D8%B1%D9%81-%DA%A9%D8%B1%D8%A7%D8%AF%DB%8C%D8%8C/",
+   "domain": "dailypakistan.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T134500Z"
+  },
+  {
+   "title": "بالی ووڈ اداکارہ سوناکشی سنہا کا انکشاف : ",
+   "url": "https://dailyaaj.com.pk/news/162449",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "بالی ووڈ اداکار سلمان خان کا انکشاف : ",
+   "url": "https://dailyaaj.com.pk/news/162451",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "مسئلہ فلسطین اس صدی کی سب سے بڑی تاریخی ناانصافی ہے ، اسرائیل یہودی بستیوں کی تعمیر روکے : چینی وزیرِ خارجہ وانگ یی",
+   "url": "https://dailyaaj.com.pk/news/162457",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "امریکہ کو ایران کے خلاف مظالم کی سزا ملنی چاہیے ، یکطرفہ مطالبات کا دور ختم ہوچکا : ایرانی پارلیمانی اسپیکر محمد باقر قالیباف",
+   "url": "https://dailyaaj.com.pk/news/162456",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "گورنر خیبرپختونخوا فیصل کریم کنڈی کا پولیس شہدا کے پیکج اور تنخواہوں میں نمایاں اضافے کا اعلان",
+   "url": "https://dailyaaj.com.pk/news/162442",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "بالی ووڈ جوڑی کرینہ کپور اور سیف علی خان نے شادی کی 14ویں سالگرہ منا لی ، اداکارہ کا محبت بھرا پیغام",
+   "url": "https://dailyaaj.com.pk/news/162459",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "امریکی صدر ڈونلڈ ٹرمپ کا سابق فوجی نضال حسن کی پھانسی براہِ راست دکھانے کا فیصلہ واپس ، سزائے موت شیڈول پر برقرار",
+   "url": "https://dailyaaj.com.pk/news/162453",
+   "domain": "dailyaaj.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T133000Z"
+  },
+  {
+   "title": "شاور پر جمے سفید دھبوں اور میل سے پریشان ہیں ؟ سرکہ کام آسکتا ہے",
+   "url": "https://www.express.pk/story/2838567/troubled-by-white-spots-and-grime-buildup-on-your-shower-vinegar-might-help-2838567",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T131500Z"
+  },
+  {
+   "title": "لکی مروت : فورسز کا مشترکہ آپریشن ، کوہاٹ پولیس لائنز حملے کا ماسٹر مائنڈ خارجی دہشت گرد ہلاک",
+   "url": "https://www.express.pk/story/2838573/lakki-marwat-joint-operation-by-security-forces-mastermind-behind-the-kohat-police-lines-attacka-foreign-terroristkilled-2838573",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T131500Z"
+  },
+  {
+   "title": "What is double diabetes How does insulin resistance increase the risk of complications",
+   "url": "https://www.express.pk/story/2838355/what-is-double-diabetes-how-does-insulin-resistance-increase-the-risk-of-complications-2838355",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T131500Z"
+  },
+  {
+   "title": "gold and silver prices increase - ایکسپریس اردو",
+   "url": "https://www.express.pk/story/2838572/gold-and-silver-prices-increase-2838572",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T131500Z"
+  },
+  {
+   "title": "Karachi : Two Killed After Being Hit by Trailer and Train , Including a Woman",
+   "url": "https://www.express.pk/story/2838569/karachi-two-killed-after-being-hit-by-trailer-and-train-including-a-woman-2838569",
+   "domain": "express.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T131500Z"
+  },
+  {
+   "title": "دھرمیندر سے پہلی نظر میں محبت ہو گئی تھی : ہیما مالنی",
+   "url": "https://jang.com.pk/news/1624931",
+   "domain": "jang.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T111500Z"
+  },
+  {
+   "title": "وزیرِاعظم شہباز شریف نے اپوزیشن کو مذاکرات کی دعوت دی ہے : وفاقی وزیر پارلیمانی امور",
+   "url": "https://jang.com.pk/news/1624934",
+   "domain": "jang.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T111500Z"
+  },
+  {
+   "title": "محمد عباس کی کمنٹیٹر کی گاڑی کے ٹائر میں ہوا بھرواتے ویڈیو وائرل",
+   "url": "https://jang.com.pk/news/1624930",
+   "domain": "jang.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T111500Z"
+  },
+  {
+   "title": "اسلام آباد : رواں سال اغواء کے 491 ، جنسی زیادتی کے 177 ، قتل کے 74 مقدمات درج",
+   "url": "https://jang.com.pk/news/1624923",
+   "domain": "jang.com.pk",
+   "language": "Urdu",
+   "country": "Pakistan",
+   "date": "20261016T111500Z"
+  }
+ ],
+ "count": 40
+}
