@@ -1641,6 +1641,8 @@ input,select,textarea{line-height:1.5}
   border:2px solid #0a0a0a !important;
 }
 #tvGrid .chcard.minimal{background:transparent !important}
+
+.ptv-grid{display:grid !important;grid-template-columns:repeat(4,1fr) !important;gap:10px !important}
 </style>
 </head>
 <body>
@@ -2146,33 +2148,15 @@ input,select,textarea{line-height:1.5}
     <div class="ptv-block" aria-label="PTV — Pakistan Television">
       <div class="ptv-head">
         <h3 lang="en">PTV — Pakistan Television</h3>
-        <span class="live-pill"><span class="live-dot"></span><span lang="en">OFFICIAL LIVE</span></span>
-        <span class="md-dl-status locked">🔒 Streaming Only</span>
       </div>
       <div class="ptv-grid">
-        <article class="ptv-card">
-          <h4><span lang="en">PTV Home</span> <span class="ptv-ur" lang="ur" dir="rtl">پی ٹی وی ہوم</span></h4>
-          <span class="ptv-badges"><span class="mode-badge external" lang="en">Official Live</span><span class="md-dl-status locked">🔒 Streaming Only</span><span class="mode-badge" lang="en">Category: PTV Home</span></span>
-          <div class="ptv-actions">
-            <button type="button" class="btn pri" data-play="ptvhome" data-kind="tv">▶ Play Inside Website</button>
-            <button type="button" class="btn" data-copy="https://home.ptv.com.pk">🔗 Copy Link</button>
-          </div>
+        <article class="chcard minimal" tabindex="0" role="link" data-href="#watch/ptvhome">
+          <span class="clogo"><img src="assets/logos/ptv.png" alt="PTV Home" loading="lazy" onerror="this.parentNode.className='clogo dark';this.parentNode.innerHTML='<span class=mono>PTV</span>'"><span class="free-badge">FREE</span></span>
+          <span class="cbody-min"><h3 lang="en">PTV Home</h3></span>
         </article>
-        <article class="ptv-card">
-          <h4><span lang="en">PTV News</span> <span class="ptv-ur" lang="ur" dir="rtl">پی ٹی وی نیوز</span></h4>
-          <span class="ptv-badges"><span class="mode-badge external" lang="en">Official Live</span><span class="md-dl-status locked">🔒 Streaming Only</span><span class="mode-badge" lang="en">Category: PTV News</span></span>
-          <div class="ptv-actions">
-            <button type="button" class="btn pri" data-play="ptvnews" data-kind="tv">▶ Play Inside Website</button>
-            <button type="button" class="btn" data-copy="https://news.ptv.com.pk/">🔗 Copy Link</button>
-          </div>
-        </article>
-        <article class="ptv-card">
-          <h4><span lang="en">PTV Morning Quran Recitation — Official Schedule/Live Source</span> <span class="ptv-ur" lang="ur" dir="rtl">تلاوتِ قرآن</span></h4>
-          <span class="ptv-badges"><span class="mode-badge external" lang="en">Within Official Live Stream</span><span class="md-dl-status locked">🔒 Streaming Only</span><span class="mode-badge" lang="en">Category: Quran / Tilawat</span></span>
-          <div class="ptv-actions">
-            <button type="button" class="btn pri" data-play="ptvhome" data-kind="tv">▶ Play Inside Website</button>
-            <button type="button" class="btn" data-copy="https://home.ptv.com.pk">🔗 Copy Link</button>
-          </div>
+        <article class="chcard minimal" tabindex="0" role="link" data-href="#watch/ptvnews">
+          <span class="clogo"><img src="assets/logos/ptv-news.png" alt="PTV News" loading="lazy" onerror="this.parentNode.className='clogo dark';this.parentNode.innerHTML='<span class=mono>PTV</span>'"><span class="free-badge">FREE</span></span>
+          <span class="cbody-min"><h3 lang="en">PTV News</h3></span>
         </article>
       </div>
     </div>
