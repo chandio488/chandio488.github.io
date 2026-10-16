@@ -1604,6 +1604,27 @@ input,select,textarea{line-height:1.5}
   display:flex;align-items:center;justify-content:center;
   font-size:10px;color:#fff;font-weight:bold;
 }
+
+/* VRadio-style minimal cards: logo + name only */
+.chcard.minimal{background:#1c1c1e !important;border:none !important;border-radius:12px !important;
+  padding:12px 8px !important;display:flex !important;flex-direction:column !important;
+  align-items:center !important;text-align:center !important;cursor:pointer !important}
+.chcard.minimal .clogo{width:72px !important;height:72px !important;border-radius:12px !important;
+  display:flex !important;align-items:center !important;justify-content:center !important;
+  background:#fff !important;overflow:hidden !important;margin-bottom:8px !important}
+.chcard.minimal .clogo img{width:100% !important;height:100% !important;object-fit:contain !important}
+.chcard.minimal .clogo.dark{background:#2b3a55 !important}
+.chcard.minimal .cbody-min h3{color:#fff !important;font-size:13px !important;font-weight:600 !important;
+  margin:0 !important;line-height:1.3 !important}
+.chcard.minimal .now-badge{background:#e53935;color:#fff;font-size:10px;padding:2px 8px;
+  border-radius:10px;margin-top:6px;display:inline-block}
+
+/* VRadio-style minimal music rows */
+.md-song-row.minimal{background:#1c1c1e !important;border:none !important;border-radius:10px !important;
+  padding:10px 12px !important;margin-bottom:8px !important;display:flex !important;align-items:center !important}
+.md-song-row.minimal .md-song-title{color:#fff !important;font-size:14px !important;margin:0 !important}
+.md-song-row.minimal .md-song-sub{color:#999 !important;font-size:12px !important;margin:2px 0 0 0 !important}
+.md-song-row.minimal.playing{border:1px solid #e53935 !important}
 </style>
 </head>
 <body>
@@ -3489,46 +3510,20 @@ function initials(name){
   return (w[0].charAt(0) + (w[1] ? w[1].charAt(0) : '')).toUpperCase();
 }
 function cardHTML(ch){
+  // VRadio style: logo + name only. Full info shows on player page when playing.
   var isRadio = ch.cat === 'radio';
-  var lpPill = isPlayableHere(ch) ? '<span class="lp" lang="en"><i></i>LIVE</span>' : '';
-  var fav = '<button class="favbtn' + (isFav(ch) ? ' on' : '') + '" data-fav="' + favKey(ch) + '" type="button" aria-label="' + (isFav(ch) ? 'Remove ' + esc(ch.en) + ' from favorites' : 'Add ' + esc(ch.en) + ' to favorites') + '">' + (isFav(ch) ? '♥' : '♡') + '</button>';
+  var href = isRadio ? '#listen/' + ch.id : '#watch/' + ch.id;
   var logo;
   if(ch.logo){
-    logo = '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(ch.en)) + '</span>\'">' + lpPill + fav + '</span>';
-  } else if(ch.gicon){
-    logo = '<span class="clogo dark"><span class="gico">' + CAT_ICONS.radio + '</span>' + lpPill + fav + '</span>';
+    logo = '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(ch.en)) + '</span>\'"></span>';
   } else {
-    logo = '<span class="clogo dark"><span class="mono">' + esc(initials(ch.en)) + '</span>' + lpPill + fav + '</span>';
+    logo = '<span class="clogo dark"><span class="mono">' + esc(initials(ch.en)) + '</span></span>';
   }
-  var btn = isRadio ? t('listen_live') : t('watch_live');
-  var href = isRadio ? '#listen/' + ch.id : '#watch/' + ch.id;
-  var note = (!isRadio && ch.note) ? '<span class="cnote" lang="en">' + esc(ch.note) + '</span>' : '';
-  var playable = isPlayableHere(ch);
-  var btnInner = playable
-    ? '▶ ' + (isRadio ? btn : '<span lang="en">Watch Inside Website</span>')
-    : (isRadio ? (ch.disc ? '<span lang="en">Service discontinued</span>' : (ch.httpOnly ? '<span lang="en">Streaming Unavailable</span>' : (ch.unavail ? '<span lang="en">Station Info</span>' : btn))) : (ch.embedTryId ? '<span lang="en">▶ Try Watching Here</span>' : '<span lang="en">Streaming Unavailable</span>'));
-  var btnCls = playable ? '' : ' extb';
-  var offBadge = '';
-  if(isRadio){
-    if(ch.offair) offBadge = '<span class="offline-badge" lang="en">⏸ Offline — Ceased transmission</span>';
-    else if(ch.disc) offBadge = '<span class="offline-badge" lang="en">⏸ Offline — Service discontinued</span>';
-  }
-  var acts = cardActionsHTML(ch, isRadio, playable);
-  return '<article class="chcard" tabindex="0" role="link" aria-label="' + esc(ch.en) + '" data-href="' + href + '">'
+  return '<article class="chcard minimal" tabindex="0" role="link" aria-label="' + esc(ch.en) + '" data-href="' + href + '">'
     + logo
-    + '<span class="cbody"><h3 lang="en">' + esc(ch.en) + '</h3>'
-    + '<span class="urn" dir="auto" lang="ur">' + esc(ch.ur) + '</span>'
-    + '<span class="cmeta" lang="en">' + countryFlag(ch.cc) + ' ' + esc(countryName(ch.cc)) + '</span>'
-    + '<span class="cmeta-lang"><span class="tag" lang="en">' + esc(ch.lang || '') + '</span><span class="tag" lang="en">' + esc(countryName(ch.cc)) + '</span></span>'
-    + '<span class="ccat" lang="en">' + esc(catLabel(ch.cat)) + '</span>'
-    + note
-    + (offBadge ? '<span style="margin-top:6px">' + offBadge + '</span>' : '')
-    + ((isRadio && ch.rights === 'pending') ? '<span style="margin-top:6px"><span class="mode-badge external" lang="en">\u26a0 Rights Pending</span></span>' : '')
-    + '<span style="margin-top:6px">' + (!isRadio ? playerModeBadge(ch) : (ch.offair ? '<span class="mode-badge external" lang="en">Off Air — ceased transmission</span>' : (ch.disc ? '<span class="mode-badge external" lang="en">Service discontinued</span>' : playable ? '<span class="mode-badge native" lang="en">🟢 LIVE</span>' : (ch.httpOnly ? '<span class="mode-badge external" lang="en">↗ Official Site</span>' : '<span class="mode-badge external" lang="en">Stream unavailable</span>')))) + '</span>'
-    + '<span class="playbtn"><span class="' + btnCls.trim() + '">' + btnInner + '</span></span>'
-    + acts
-    + '</span></article>';
+    + '<span class="cbody-min"><h3 lang="en">' + esc(ch.en) + '</h3></span></article>';
 }
+
 function officialUrlFor(item){
   if(!item) return '';
   if(item.link) return item.link;
@@ -4017,41 +4012,16 @@ function stationStatusText(st){
   return '🟢 LIVE · Schedule not published';
 }
 function radioCardHTML(st){
-  var fav = '<button class="favbtn' + (isFav(st) ? ' on' : '') + '" data-fav="' + favKey(st) + '" type="button" aria-label="' + (isFav(st) ? 'Remove ' + esc(st.en) + ' from favorites' : 'Add ' + esc(st.en) + ' to favorites') + '">' + (isFav(st) ? '♥' : '♡') + '</button>';
-  var pill = st.playable ? '<span class="lp" lang="en"><i></i>LIVE</span>' : '';
-  var place = st.grp === 'pk' ? st.prov : countryName(st.cc);
-  var btnInner, btnCls = '';
-  if(st.playable) btnInner = '▶ ' + t('listen_live');
-  else if(st.httpOnly){ btnInner = '<span lang="en">Streaming Unavailable</span>'; btnCls = ' extb'; }
-  else if(st.unavailText){ btnInner = '<span lang="en">' + esc(st.unavailText) + '</span>'; btnCls = ' extb'; }
-  else { btnInner = '<span lang="en">Station Info</span>'; btnCls = ' extb'; }
-  var offBadge = '';
-  if(st.offair) offBadge = '<span class="offline-badge" lang="en">⏸ Offline — Ceased transmission</span>';
-  else if(st.disc) offBadge = '<span class="offline-badge" lang="en">⏸ Offline — Service discontinued</span>';
-  var cardCity = (typeof rdCityLabel === 'function') ? rdCityLabel(st) : place;
-  var cardPlaceLine = (cardCity && cardCity !== countryName(st.cc)) ? (esc(cardCity) + ' · ' + esc(countryName(st.cc))) : esc(countryName(st.cc));
-  var isNowCard = (typeof curStn !== 'undefined' && curStn && curStn.id === st.id && typeof isPlaying !== 'undefined' && isPlaying);
-  var acts = cardActionsHTML(st, true, !!st.playable);
+  // VRadio style: logo + name only. Full info shows on player page when playing.
   var logoBox;
-  if(st.logo) logoBox = '<span class="clogo"><img src="assets/logos/' + esc(st.logo) + '" alt="' + esc(st.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(st.en)) + '</span>\'">' + pill + fav + '</span>';
-  else if(st.gicon) logoBox = '<span class="clogo dark"><span class="gico">' + CAT_ICONS.radio + '</span>' + pill + fav + '</span>';
-  else logoBox = '<span class="clogo dark"><span class="mono">' + esc(initials(st.en)) + '</span>' + pill + fav + '</span>';
-  return '<article class="chcard" tabindex="0" role="link" aria-label="' + esc(st.en) + '" data-href="#listen/' + st.id + '">'
+  if(st.logo) logoBox = '<span class="clogo"><img src="assets/logos/' + esc(st.logo) + '" alt="' + esc(st.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(st.en)) + '</span>\'"></span>';
+  else logoBox = '<span class="clogo dark"><span class="mono">' + esc(initials(st.en)) + '</span></span>';
+  var nowBadge = (typeof curStn !== 'undefined' && curStn && curStn.id === st.id && typeof isPlaying !== 'undefined' && isPlaying) ? '<span class="now-badge">\u25B6 NOW</span>' : '';
+  return '<article class="chcard minimal" tabindex="0" role="link" aria-label="' + esc(st.en) + '" data-href="#listen/' + st.id + '">'
     + logoBox
-    + '<span class="cbody"><h3 lang="en">' + esc(st.en) + '</h3>'
-    + '<span class="urn" dir="rtl" lang="ur">' + esc(st.ur) + '</span>'
-    + (st.freq ? '<span class="cfreq" lang="en">' + esc(st.freq) + '</span>' : '')
-    + '<span class="cmeta" lang="en">' + countryFlag(st.cc) + ' ' + cardPlaceLine + '</span>'
-    + '<span class="cmeta-lang"><span class="tag" lang="en">' + esc(st.lang || '') + '</span><span class="tag" lang="en">' + esc(countryName(st.cc)) + '</span>' + (cardCity && cardCity !== countryName(st.cc) ? '<span class="tag" lang="en">' + esc(cardCity) + '</span>' : '') + (st.genres && st.genres.length ? st.genres.map(function(g){ return '<span class="tag" lang="en">' + esc(g) + '</span>'; }).join('') : '') + (isNowCard ? '<span class="tag" lang="en">▶ Now Playing</span>' : '') + '</span>'
-    + (st.contact ? '<span class="cmeta" lang="en">Official contact · ' + esc(st.contact) + '</span>' : '')
-    + '<span class="cstatus" lang="en">' + esc(stationStatusText(st)) + '</span>'
-    + (st.rights === 'pending' ? '<span style="margin-top:4px"><span class="mode-badge external" lang="en">\u26a0 Rights Pending</span></span>' : '')
-    + (offBadge ? '<span style="margin-top:4px">' + offBadge + '</span>' : '')
-    + (typeof healthChipHTML === 'function' ? healthChipHTML(st) : '')
-    + '<span class="playbtn"><span class="' + btnCls.trim() + '">' + btnInner + '</span></span>'
-    + acts
-    + '</span></article>';
+    + '<span class="cbody-min"><h3 lang="en">' + esc(st.en) + '</h3>' + nowBadge + '</span></article>';
 }
+
 var NET_INFO = {
   'suno': { icon:'ic-net', kicker:'Regional Radio · Sindh', title:'Suno FM Network', ur:'سنو ایف ایم نیٹ ورک', note:'Suno Pakistan 89.4 FM city stations in Sindh. The broadcaster\u2019s official online streams are per-language (Urdu, Pashto, Balochi, Balti, Shina, Saraiki, Kashmiri) \u2014 no per-city internet stream is published, so these cards show no play button until one is officially verified.' },
   'sba': { icon:'ic-svc', kicker:'Saudi Arabia · External Service', title:'Saudi International Radio', ur:'سعودی انٹرنیشنل ریڈیو', note:'SBA\u2019s external service is shortwave-based. Its official internet platform Saudi Radio+ carries only 8 domestic channels \u2014 no foreign-language internet stream exists, so these cards show no play button. SBA publishes 8 foreign languages (incl. Turkestan); extra services not confirmed by SBA are omitted rather than invented.' },
@@ -6846,35 +6816,17 @@ function mdSongMenuHTML(s, info){
     + '</span></span>';
 }
 function mdSongCard(s, qi){
+  // VRadio style: title + artist only. Full info shows on player when playing.
   var playing = (MD.idx === qi && qi > -1);
-  var albumPart = s.album ? s.album : 'Single';
-  var catPart = (s.genres && s.genres.length) ? s.genres.join(' · ') : '';
-  var subParts = [];
-  if(catPart) subParts.push(catPart);
-  else if(albumPart) subParts.push(albumPart);
-  if(albumPart && catPart) subParts = [albumPart + ' · ' + catPart];
-  var subLine = (subParts.join('') || albumPart) + ' – ' + (s.artist || '');
-  if(s.artist_native) subLine += ' · ' + s.artist_native;
-  var info = null;
-  try{ info = mdDownloadInfo(s); }catch(e){}
-  var h = '<article class="md-song-row' + (playing ? ' playing' : '') + '">';
-  if(s.folk_heritage) h += mdFolkArtHTML(s);
+  var h = '<article class="md-song-row minimal' + (playing ? ' playing' : '') + '">';
   h += '<button type="button" class="md-play-circ" data-mdplay="' + qi + '" aria-label="Play ' + esc(s.title) + '">'
     + '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>';
   h += '<div class="md-song-main"><h3 class="md-song-title" title="' + esc(s.title) + '">' + esc(s.title) + '</h3>'
-    + '<p class="md-song-sub" title="' + esc(subLine) + '">' + esc(subLine) + '</p>'
-    + '<div class="md-song-meta2"><span class="md-verified">✓ ' + esc(s.source_name || 'Verified') + '</span>'
-    + '<span class="md-lang-chip">' + esc(mdLangLabel(mdLangOfSong(s))) + '</span>'
-    + (s.album ? '<span class="md-lang-chip">Album: ' + esc(s.album) + '</span>' : '')
-    + (info ? mdDlBadgeHTML(info) : '')
-    + '</div>' + mdPlatformButtonsHTML(s) + '</div>';
-  h += '<div class="md-row-actions">' + mdSongRowDlHTML(s)
-    + '<button type="button" class="md-share-btn" data-mdcopy="' + esc(s.id) + '" aria-label="Copy link for ' + esc(s.title) + '" title="Copy Link">🔗</button>'
-    + '<button type="button" class="md-share-btn" data-mdshare="' + esc(s.id) + '" aria-label="Share ' + esc(s.title) + '" title="Share">↗</button>'
-    + mdSongMenuHTML(s, info) + '</div>';
+    + '<p class="md-song-sub">' + esc(s.artist || '') + '</p></div>';
   h += '</article>';
   return h;
 }
+
 function mdRenderLibraryStats(){
   var el = document.getElementById('mdLibStats'); if(!el || !window.MUSIC_DIRECTORY) return;
   var d = window.MUSIC_DIRECTORY;
