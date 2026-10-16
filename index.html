@@ -1525,6 +1525,38 @@ input,select,textarea{line-height:1.5}
   #newsTicker .tick-wrap{overflow-x:auto}
 }
 @media(max-width:600px){#newsTicker .tick-label{font-size:12px;padding:6px 10px}.tick-item{font-size:13px;margin:0 25px}#newsTicker .tick-btn{padding:6px 10px;font-size:12px}}
+
+/* Country Flags Grid (reference app style) */
+.flags-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:12px}
+.flag-card{display:flex;flex-direction:column;align-items:center;background:var(--card,#1a1a2e);border-radius:12px;padding:16px 8px;cursor:pointer;border:1px solid rgba(255,255,255,.08);transition:transform .15s}
+.flag-card:hover{transform:scale(1.03)}
+.flag-card .flag-emoji{font-size:44px;line-height:1}
+.flag-card .flag-name{margin-top:8px;font-size:13px;font-weight:600;text-align:center;color:#fff}
+.flag-card .flag-count{font-size:11px;color:#888;margin-top:2px}
+@media(max-width:600px){.flags-grid{grid-template-columns:repeat(4,1fr);gap:8px;padding:8px}.flag-card .flag-emoji{font-size:36px}.flag-card .flag-name{font-size:11px}}
+/* Sticky mini player */
+.sticky-player{position:sticky;top:0;z-index:90;background:#0d1830;border-bottom:2px solid var(--red,#c00);padding:8px 12px;display:none;align-items:center;gap:10px}
+.sticky-player.active{display:flex}
+.sticky-player img{width:44px;height:44px;border-radius:8px;object-fit:cover}
+.sticky-player .sp-info{flex:1;min-width:0}
+.sticky-player .sp-name{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky-player .sp-status{font-size:11px;color:#4ade80}
+.sticky-player .sp-btn{background:var(--red,#c00);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:16px;cursor:pointer}
+
+/* Reference app style: 4-column flag/station grids */
+#radioFolders{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}
+#radioFolders .fcard.rfolder{background:#1a1a2e;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 6px;display:flex;flex-direction:column;align-items:center;text-align:center}
+#radioFolders .rfolder-flag{font-size:42px;line-height:1.2}
+#radioFolders .ftitle{color:#fff;font-size:12px;font-weight:600;margin-top:6px}
+#radioFolders .fcount{color:#888;font-size:10px}
+/* Station cards in grid */
+#radioGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}
+/* TV same */
+#tvFolders{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px}
+@media(max-width:600px){
+  #radioFolders,#radioGrid,#tvFolders{grid-template-columns:repeat(4,1fr);gap:8px;padding:8px}
+  #radioFolders .rfolder-flag{font-size:34px}
+}
 </style>
 </head>
 <body>
