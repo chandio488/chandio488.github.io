@@ -1968,7 +1968,7 @@ input,select,textarea{line-height:1.5}
 <!-- ================= LIVE TV ================= -->
 <div class="view" id="view-tv">
   <section class="blk">
-    <div class="sec-h"><img class="seclogo" src="assets/logo-tv.webp" alt="Live TV logo"><h2 lang="en" data-i18n="nav_tv">LIVE TV</h2><p id="tvCount" lang="en"></p></div>
+    <div class="sec-h"><img class="seclogo" src="assets/logo-tv.webp" alt="Live TV logo"><h2 lang="en" data-i18n="nav_tv">LIVE TV</h2></div>
     <button type="button" class="qfolder-card" id="tvFolderToggle" aria-expanded="false" aria-controls="tvFolderBody">
       <span class="qfolder-ic" aria-hidden="true">📺</span>
       <span class="qfolder-txt"><b><span lang="en">TV</span></b></span>
@@ -3703,7 +3703,6 @@ function renderTv(){
     emptyEl.style.display = 'none';
     foldersEl.style.display = ''; foldersEl.innerHTML = html; bindTp(foldersEl);
     crumb.innerHTML = crumbHTML(items); bindTp(crumb);
-    document.getElementById('tvCount').textContent = countText;
   }
   function showChannels(list, items){
     var shown = list.filter(function(ch){
@@ -3713,7 +3712,6 @@ function renderTv(){
     shown = applyFilters(shown, tvFilter);
     foldersEl.style.display = 'none'; foldersEl.innerHTML = '';
     grid.style.display = '';
-    document.getElementById('tvCount').textContent = shown.length + ' / ' + TV.length + ' ' + t('channels');
     renderGrid(grid, shown); bindCards(grid);
     emptyEl.style.display = shown.length ? 'none' : 'block';
     crumb.innerHTML = crumbHTML(items); bindTp(crumb);
