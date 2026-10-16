@@ -1498,6 +1498,13 @@ input,select,textarea{line-height:1.5}
 .vl-toggle button.on{background:var(--gold);color:#000}
 .view-list .ptv-grid,.view-list .grid.g-chans{grid-template-columns:1fr!important}
 .view-list .tcard,.view-list .rcard{display:flex;align-items:center;gap:12px;text-align:left}
+
+/* Shared player lists */
+.tcard.current, .rcard.current{border:2px solid var(--gold);opacity:0.9}
+.now-badge{background:var(--gold);color:#000;font-size:11px;font-weight:800;padding:2px 8px;border-radius:10px;margin-left:8px}
+#watchChannelList.view-list{grid-template-columns:1fr!important}
+#watchChannelList.view-list .tcard{display:flex;align-items:center;gap:12px;text-align:left}
+#listenStationList.view-list{grid-template-columns:1fr!important}
 </style>
 </head>
 <body>
@@ -2140,6 +2147,14 @@ input,select,textarea{line-height:1.5}
     <div class="pactions" id="watchActions"></div>
     <div id="watchSources"></div>
     <p class="note" id="watchNote" lang="en"></p>
+    <div class="blk" id="watchListBlk" style="margin-top:16px">
+      <h3 id="watchListTitle"></h3>
+      <div class="vl-toggle" data-sec="watchlist" style="margin-bottom:8px">
+        <button type="button" data-v="grid" aria-label="Grid view">▦ Grid</button>
+        <button type="button" data-v="list" aria-label="List view">☰ List</button>
+      </div>
+      <div class="ptv-grid" id="watchChannelList"></div>
+    </div>
   </section>
 </div>
 
@@ -2154,6 +2169,10 @@ input,select,textarea{line-height:1.5}
     <div class="meta-table" id="listenMeta"></div>
     <div class="pactions" id="listenActions"></div>
     <div id="listenSources"></div>
+      <div class="blk" id="listenListBlk" style="margin-top:16px">
+      <h3 id="listenListTitle"></h3>
+      <div class="ptv-grid" id="listenStationList"></div>
+    </div>
   </section>
 </div>
 
@@ -10576,5 +10595,108 @@ function addViewToggle(filterBarId, sec){
   bar.appendChild(div);
   applyViewMode(sec);
 }
-</script></body>
+</script>
+<script>
+/* Shared Player Channel/Station Lists (test-branch) */
+function renderWatchChannelList(currentId){
+  var listEl = document.getElementById('watchChannelList');
+  var titleEl = document.getElementById('watchListTitle');
+  if(!listEl) return;
+  var current = findTv(currentId);
+  if(!current){ listEl.innerHTML = ''; return; }
+  // Get channels from same country, or same category if country has few
+  var sameCountry = TV.filter(function(c){ return c.cc === current.cc && c.id !== current.id; });
+  var list = sameCountry.length >= 5 ? sameCountry : TV.filter(function(c){ return c.cat === current.cat && c.id !== current.id; }).slice(0, 20);
+  // Include current at top
+  var all = [current].concat(list);
+  if(titleEl) titleEl.innerHTML = countryFlag(current.cc) + ' ' + esc(countryName(current.cc)) + ' — ' + all.length + ' channels';
+  listEl.innerHTML = all.map(function(c){
+    var isCur = c.id === currentId;
+    return '<button type="button" class="tcard' + (isCur ? ' current' : '') + '" data-watch="' + esc(c.id) + '"' + (isCur ? ' disabled' : '') + '>'
+      + '<span class="tname" lang="en">' + esc(c.en) + '</span>'
+      + '<span class="tmeta">' + countryFlag(c.cc) + ' ' + esc(catLabel(c.cat)) + '</span>'
+      + (isCur ? '<span class="now-badge">▶ NOW</span>' : '')
+      + '</button>';
+  }).join('');
+  // Wire clicks (event delegation)
+  listEl.querySelectorAll('[data-watch]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var nid = btn.getAttribute('data-watch');
+      if(nid && nid !== currentId){
+        location.hash = '#watch/' + nid;
+      }
+    });
+  });
+  // Wire Grid/List toggle for watch list
+  var toggle = document.querySelector('.vl-toggle[data-sec="watchlist"]');
+  if(toggle){
+    toggle.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        var mode = b.getAttribute('data-v');
+        listEl.classList.toggle('view-list', mode === 'list');
+        toggle.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); });
+      });
+    });
+    // Set default
+    var gridBtn = toggle.querySelector('[data-v="grid"]');
+    if(gridBtn) gridBtn.classList.add('on');
+  }
+}
+
+function renderListenStationList(currentId){
+  var listEl = document.getElementById('listenStationList');
+  var titleEl = document.getElementById('listenListTitle');
+  if(!listEl) return;
+  var current = RADIO.find(function(s){ return s.id === currentId; });
+  if(!current){ listEl.innerHTML = ''; return; }
+  var sameCountry = RADIO.filter(function(s){ return s.cc === current.cc && s.id !== current.id; }).slice(0, 30);
+  var all = [current].concat(sameCountry);
+  if(titleEl) titleEl.innerHTML = countryFlag(current.cc) + ' ' + esc(countryName(current.cc)) + ' — ' + all.length + ' stations';
+  listEl.innerHTML = all.map(function(s){
+    var isCur = s.id === currentId;
+    return '<button type="button" class="rcard' + (isCur ? ' current' : '') + '" data-listen="' + esc(s.id) + '"' + (isCur ? ' disabled' : '') + '>'
+      + '<span class="rname" lang="en">' + esc(s.en) + '</span>'
+      + '<span class="rmeta">' + countryFlag(s.cc) + ' ' + esc(s.lang || '') + '</span>'
+      + (isCur ? '<span class="now-badge">▶ NOW</span>' : '')
+      + '</button>';
+  }).join('');
+  listEl.querySelectorAll('[data-listen]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var nid = btn.getAttribute('data-listen');
+      if(nid && nid !== currentId){
+        location.hash = '#listen/' + nid;
+      }
+    });
+  });
+}
+
+// Hook into renderWatch and renderListen
+(function(){
+  var origRenderWatch = window.renderWatch;
+  // renderWatch is called via route, we hook by wrapping the global
+  var checkInterval2 = setInterval(function(){
+    if(typeof renderListen === 'function' && !renderListen._hooked){
+      var origL = renderListen;
+      renderListen = function(id){
+        origL(id);
+        setTimeout(function(){ renderListenStationList(id); }, 100);
+      };
+      renderListen._hooked = true;
+      clearInterval(checkInterval2);
+    }
+  }, 500);
+  var checkInterval = setInterval(function(){
+    if(typeof renderWatch === 'function' && !renderWatch._hooked){
+      var orig = renderWatch;
+      renderWatch = function(id){
+        orig(id);
+        setTimeout(function(){ renderWatchChannelList(id); }, 100);
+      };
+      renderWatch._hooked = true;
+      clearInterval(checkInterval);
+    }
+  }, 500);
+})();
+</script>
+</body>
 </html>
