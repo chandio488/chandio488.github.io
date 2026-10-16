@@ -1506,19 +1506,25 @@ input,select,textarea{line-height:1.5}
 #watchChannelList.view-list .tcard{display:flex;align-items:center;gap:12px;text-align:left}
 #listenStationList.view-list{grid-template-columns:1fr!important}
 
-/* Breaking News Ticker */
-#newsTicker{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#7a0c0c,#a01010);color:#fff;overflow:hidden;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-#newsTicker .tick-label{display:inline-block;background:#5a0808;color:#ffd700;font-weight:800;padding:8px 16px;font-size:14px;vertical-align:middle}
-#newsTicker .tick-wrap{display:inline-block;vertical-align:middle;overflow:hidden;width:calc(100% - 140px)}
-#newsTicker .tick-scroll{display:inline-block;animation:tickmove 60s linear infinite;padding:8px 0}
-#newsTicker .tick-scroll:hover{animation-play-state:paused}
+/* Breaking News Ticker - comfortable readable speed */
+#newsTicker{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#7a0c0c,#a01010);color:#fff;overflow:hidden;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center}
+#newsTicker .tick-label{display:inline-block;background:#5a0808;color:#ffd700;font-weight:800;padding:8px 16px;font-size:14px;flex-shrink:0}
+#newsTicker .tick-wrap{flex:1;overflow:hidden;min-width:0}
+#newsTicker .tick-scroll{display:inline-block;animation:tickmove 180s linear infinite;padding:8px 0;will-change:transform}
+#newsTicker.paused .tick-scroll{animation-play-state:paused}
+#newsTicker .tick-btn{background:#5a0808;color:#ffd700;border:none;padding:8px 12px;font-size:14px;cursor:pointer;flex-shrink:0}
+#newsTicker .tick-btn:hover{background:#4a0606}
 @keyframes tickmove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.tick-item{display:inline-block;margin:0 30px;font-size:14px}
+.tick-item{display:inline-block;margin:0 40px;font-size:14px}
 .tick-item a{color:#fff;text-decoration:none}
 .tick-item a:hover{text-decoration:underline;color:#ffd700}
 .tick-src{color:#ffd700;font-size:12px;margin-left:8px}
 .tick-time{color:#ccc;font-size:11px;margin-left:4px}
-@media(max-width:600px){#newsTicker .tick-label{font-size:12px;padding:6px 10px}#newsTicker .tick-wrap{width:calc(100% - 110px)}.tick-item{font-size:12px;margin:0 20px}}
+@media (prefers-reduced-motion: reduce){
+  #newsTicker .tick-scroll{animation:none}
+  #newsTicker .tick-wrap{overflow-x:auto}
+}
+@media(max-width:600px){#newsTicker .tick-label{font-size:12px;padding:6px 10px}.tick-item{font-size:13px;margin:0 25px}#newsTicker .tick-btn{padding:6px 10px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -1527,6 +1533,7 @@ input,select,textarea{line-height:1.5}
   <span class="tick-wrap"><span class="tick-scroll" id="tickScroll">
     <span class="tick-item">خبریں لوڈ ہو رہی ہیں...</span>
   </span></span>
+  <button class="tick-btn" id="tickPauseBtn" aria-label="Pause news ticker" title="روکیں/چلائیں">⏸</button>
 </div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -3772,19 +3779,26 @@ function renderTv(){
     showChannels(TV, [['TV',''],['Search results','']]);
     return;
   }
-  var pkList = TV.filter(function(c){ return c.cc === 'PK'; });
-  var inList = TV.filter(function(c){ return c.cc === 'IN'; });
-  var intlList = TV.filter(function(c){ return c.cc !== 'PK' && c.cc !== 'IN'; });
+  // Apply category filter to folder lists (fix: filter now updates folders)
+  function tvBase(){ 
+    return TV.filter(function(c){ 
+      return tvFilter.cat === 'all' || c.cat === tvFilter.cat; 
+    }); 
+  }
+  var tvFiltered = tvBase();
+  var pkList = tvFiltered.filter(function(c){ return c.cc === 'PK'; });
+  var inList = tvFiltered.filter(function(c){ return c.cc === 'IN'; });
+  var intlList = tvFiltered.filter(function(c){ return c.cc !== 'PK' && c.cc !== 'IN'; });
   if(tvPath.length === 0){
     var catHtml = TV_CAT_DEFS.map(function(d){
-        var n = TV.filter(d.filter).length;
+        var n = tvFiltered.filter(d.filter).length;
         return tvFolderCard('cat/' + d.key, d.icon, '', d.title, d.ur, n);
       }).join('')
       + tvFolderCard('pk','ic-f-pk','','PAKISTAN','پاکستان', pkList.length)
       + tvFolderCard('in','ic-f-in','','INDIA','بھارت', inList.length)
       + tvFolderCard('intl','ic-globe','','INTERNATIONAL — BY COUNTRY','بین الاقوامی', intlList.length);
     showFolders(catHtml,
-      [['TV','']], TV.length + ' ' + t('channels'));
+      [['TV','']], tvFiltered.length + ' ' + t('channels'));
     return;
   }
   if(tvPath[0] === 'cat' && tvPath.length === 2){
@@ -10786,6 +10800,37 @@ function renderListenStationList(currentId){
     loadTicker();
   }
   setInterval(loadTicker, REFRESH_MS);
+  
+  // Pause on hover/touch, button toggle, respect reduce-motion
+  (function(){
+    var ticker = document.getElementById('newsTicker');
+    var btn = document.getElementById('tickPauseBtn');
+    if(!ticker) return;
+    
+    function setPaused(p){
+      ticker.classList.toggle('paused', p);
+      if(btn){ btn.textContent = p ? '▶' : '⏸'; btn.setAttribute('aria-label', p ? 'Play news ticker' : 'Pause news ticker'); }
+    }
+    
+    // Hover pause (desktop)
+    ticker.addEventListener('mouseenter', function(){ setPaused(true); });
+    ticker.addEventListener('mouseleave', function(){ setPaused(false); });
+    
+    // Touch pause (mobile)
+    ticker.addEventListener('touchstart', function(){ setPaused(true); }, {passive:true});
+    ticker.addEventListener('touchend', function(){ setTimeout(function(){ setPaused(false); }, 3000); }, {passive:true});
+    
+    // Button toggle
+    if(btn) btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      setPaused(!ticker.classList.contains('paused'));
+    });
+    
+    // Respect reduce motion
+    if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      setPaused(true);
+    }
+  })();
 })();
 </script>
 </body>
