@@ -1625,6 +1625,22 @@ input,select,textarea{line-height:1.5}
 .md-song-row.minimal .md-song-title{color:#fff !important;font-size:14px !important;margin:0 !important}
 .md-song-row.minimal .md-song-sub{color:#999 !important;font-size:12px !important;margin:2px 0 0 0 !important}
 .md-song-row.minimal.playing{border:1px solid #e53935 !important}
+
+/* TV: circular logos with FREE badge (Tamasha Pro style) */
+#tvGrid .chcard.minimal .clogo{
+  width:80px !important;height:80px !important;border-radius:50% !important;
+  border:3px solid #2a2a2e !important;position:relative !important;
+  background:#fff !important;overflow:visible !important;
+}
+#tvGrid .chcard.minimal .clogo img{border-radius:50% !important}
+#tvGrid .chcard.minimal .clogo.dark{background:#2b3a55 !important}
+#tvGrid .chcard.minimal .free-badge{
+  position:absolute !important;bottom:-4px !important;right:-4px !important;
+  background:#2196F3 !important;color:#fff !important;font-size:9px !important;
+  font-weight:700 !important;padding:3px 8px !important;border-radius:8px !important;
+  border:2px solid #0a0a0a !important;
+}
+#tvGrid .chcard.minimal{background:transparent !important}
 </style>
 </head>
 <body>
@@ -3514,10 +3530,11 @@ function cardHTML(ch){
   var isRadio = ch.cat === 'radio';
   var href = isRadio ? '#listen/' + ch.id : '#watch/' + ch.id;
   var logo;
+  var freeBadge = isRadio ? '' : '<span class="free-badge">FREE</span>';
   if(ch.logo){
-    logo = '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(ch.en)) + '</span>\'"></span>';
+    logo = '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy" onerror="this.parentNode.className=\'clogo dark\';this.parentNode.innerHTML=\'<span class=&quot;mono&quot;>' + esc(initials(ch.en)) + '</span>\'">" + freeBadge + '</span>" + freeBadge + '</span>';
   } else {
-    logo = '<span class="clogo dark"><span class="mono">' + esc(initials(ch.en)) + '</span></span>';
+    logo = '<span class="clogo dark"><span class="mono">' + esc(initials(ch.en)) + '</span>' + freeBadge + '</span>';
   }
   return '<article class="chcard minimal" tabindex="0" role="link" aria-label="' + esc(ch.en) + '" data-href="' + href + '">'
     + logo
