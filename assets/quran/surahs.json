@@ -1,0 +1,2531 @@
+[
+  {
+    "number": 1,
+    "name_ar": "الفاتحة",
+    "name_ur": "سورۃ الفاتحہ",
+    "name_sd": "سورت الفاتحه",
+    "makki_madani": "makki",
+    "disputed": true,
+    "dispute_note": "جمہور علماء کے نزدیک مکی ہے (پہلی مکمل نازل ہونے والی سورت)؛ ابن عباس، مجاہد اور قتادہ سے منقول بعض روایات میں مدنی بھی کہا گیا ہے۔",
+    "ayahs": 7,
+    "rukus": 1,
+    "juz": [
+      1
+    ],
+    "intro_ur": "یہ قرآن کی پہلی سورت ہے جو ہر نماز میں پڑھی جاتی ہے۔ اس میں اللہ کی حمد، اس کی ربوبیت اور سیدھے راستے کی دعا ہے۔",
+    "intro_sd": "هي قرآن جي پهرين سورت آهي جيڪا هر نماز ۾ پڙهي ويندي آهي۔ هن ۾ الله جي حمد، سندس ربوبيت ۽ سڌي رستي جي دعا آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 2,
+    "name_ar": "البقرة",
+    "name_ur": "سورۃ البقرہ",
+    "name_sd": "سورت البقره",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 286,
+    "rukus": 40,
+    "juz": [
+      1,
+      2,
+      3
+    ],
+    "intro_ur": "یہ قرآن کی سب سے لمبی سورت ہے جو مدینہ میں نازل ہوئی۔ اس میں ایمان، عبادات، معاشرتی قوانین اور بنی اسرائیل کے واقعات کا بیان ہے۔",
+    "intro_sd": "هي قرآن جي سڀ کان ڊگهي سورت آهي جيڪا مديني ۾ نازل ٿي۔ هن ۾ ايمان، عبادتون، سماجي قانون ۽ بني اسرائيل جا واقعا بيان ٿيل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 3,
+    "name_ar": "آل عمران",
+    "name_ur": "سورۃ آل عمران",
+    "name_sd": "سورت آل عمران",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 200,
+    "rukus": 20,
+    "juz": [
+      3,
+      4
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی اور اس میں غزوہ احد کے واقعات شامل ہیں۔ اس میں توحید، اہل کتاب سے مکالمہ اور صبر و استقامت کی تلقین ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي ۽ هن ۾ غزوه احد جا واقعا شامل آهن۔ هن ۾ توحيد، اهل ڪتاب سان مڪالمو ۽ صبر ۽ استقامت جي تلقين آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 4,
+    "name_ar": "النساء",
+    "name_ur": "سورۃ النساء",
+    "name_sd": "سورت النساء",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 176,
+    "rukus": 24,
+    "juz": [
+      4,
+      5,
+      6
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں عورتوں کے حقوق، وراثت، نکاح اور معاشرتی انصاف کے احکام بیان ہوئے ہیں۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ عورتن جا حق، وراثت، نڪاح ۽ سماجي انصاف جا حڪم بيان ٿيل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 5,
+    "name_ar": "المائدة",
+    "name_ur": "سورۃ المائدہ",
+    "name_sd": "سورت المائده",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 120,
+    "rukus": 16,
+    "juz": [
+      6,
+      7
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہونے والی آخری سورتوں میں سے ایک ہے۔ اس میں حلال و حرام، عہد کی پابندی اور عیسیٰ علیہ السلام کے واقعات ہیں۔",
+    "intro_sd": "هي مديني ۾ نازل ٿيندڙ آخري سورتن مان هڪ آهي۔ هن ۾ حلال و حرام، عهد جي پابندي ۽ عيسيٰ عليه السلام جا واقعا آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 6,
+    "name_ar": "الأنعام",
+    "name_ur": "سورۃ الانعام",
+    "name_sd": "سورت الانعام",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 165,
+    "rukus": 20,
+    "juz": [
+      7,
+      8
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں توحید کے دلائل، شرک کا رد اور انبیاء کے قصے بیان ہوئے ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ توحيد جا دليل، شرڪ جو رد ۽ نبين جا قصا بيان ٿيل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 7,
+    "name_ar": "الأعراف",
+    "name_ur": "سورۃ الاعراف",
+    "name_sd": "سورت الاعراف",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 206,
+    "rukus": 24,
+    "juz": [
+      8,
+      9
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت آدم کا قصہ، انبیاء کی دعوت اور اعراف والوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت آدم جو قصو، نبين جي دعوت ۽ اعراف وارن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 8,
+    "name_ar": "الأنفال",
+    "name_ur": "سورۃ الانفال",
+    "name_sd": "سورت الانفال",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 75,
+    "rukus": 10,
+    "juz": [
+      9,
+      10
+    ],
+    "intro_ur": "یہ غزوہ بدر کے بعد مدینہ میں نازل ہوئی۔ اس میں مال غنیمت کے احکام اور بدر میں الٰہی مدد کا بیان ہے۔",
+    "intro_sd": "هي غزوه بدر کان پوءِ مديني ۾ نازل ٿي۔ هن ۾ مال غنيمت جا حڪم ۽ بدر ۾ الاهي مدد جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 9,
+    "name_ar": "التوبة",
+    "name_ur": "سورۃ التوبہ",
+    "name_sd": "سورت التوبه",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 129,
+    "rukus": 16,
+    "juz": [
+      10,
+      11
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی اور بسم اللہ کے بغیر شروع ہوتی ہے۔ اس میں جہاد، منافقین کا ذکر اور توبہ کی قبولیت کا بیان ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي ۽ بسم الله کان سواءِ شروع ٿئي ٿي۔ هن ۾ جهاد، منافقن جو ذڪر ۽ توبه جي قبوليت جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 10,
+    "name_ar": "يونس",
+    "name_ur": "سورۃ یونس",
+    "name_sd": "سورت يونس",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 109,
+    "rukus": 11,
+    "juz": [
+      11
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت یونس کا قصہ، قرآن کی حقانیت اور قیامت کے دلائل ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت يونس جو قصو، قرآن جي حقانيت ۽ قيامت جا دليل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 11,
+    "name_ar": "هود",
+    "name_ur": "سورۃ ہود",
+    "name_sd": "سورت هود",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 123,
+    "rukus": 10,
+    "juz": [
+      11,
+      12
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت ہود سمیت کئی انبیاء کے قصے اور قوموں کے انجام کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت هود سميت ڪيترن ئي نبين جا قصا ۽ قومن جي انجام جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 12,
+    "name_ar": "يوسف",
+    "name_ur": "سورۃ یوسف",
+    "name_sd": "سورت يوسف",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 111,
+    "rukus": 12,
+    "juz": [
+      12,
+      13
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت یوسف کا مکمل قصہ نہایت دلکش انداز میں بیان ہوا ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت يوسف جو مڪمل قصو نهايت دلڪش انداز ۾ بيان ٿيو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 13,
+    "name_ar": "الرعد",
+    "name_ur": "سورۃ الرعد",
+    "name_sd": "سورت الرعد",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "جمہور اور اکثر مصاحف میں مدنی شمار ہوتی ہے؛ بعض مفسرین اسے مکی کہتے ہیں (بعض آیات کے استثنا کے ساتھ)۔",
+    "ayahs": 43,
+    "rukus": 6,
+    "juz": [
+      13
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض علماء اسے مکی کہتے ہیں۔ اس میں اللہ کی قدرت کی نشانیاں، گرج اور بجلی کا ذکر ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن عالم ان کي مڪي چوندا آهن۔ هن ۾ الله جي قدرت جون نشانيون، گرج ۽ بجلي جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 14,
+    "name_ar": "إبراهيم",
+    "name_ur": "سورۃ ابراہیم",
+    "name_sd": "سورت ابراهيم",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 52,
+    "rukus": 7,
+    "juz": [
+      13
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت ابراہیم کی دعائیں اور شکر و ناشکری کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت ابراهيم جون دعائون ۽ شڪر و ناشڪري جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 15,
+    "name_ar": "الحجر",
+    "name_ur": "سورۃ الحجر",
+    "name_sd": "سورت الحجر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 99,
+    "rukus": 6,
+    "juz": [
+      14
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قرآن کی حفاظت کے وعدے اور گزشتہ قوموں کے قصے ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قرآن جي حفاظت جي واعدي ۽ گذريل قومن جا قصا آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 16,
+    "name_ar": "النحل",
+    "name_ur": "سورۃ النحل",
+    "name_sd": "سورت النحل",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 128,
+    "rukus": 16,
+    "juz": [
+      14
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اللہ کی نعمتیں، شہد کی مکھی کا ذکر اور عدل کا حکم ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ الله جون نعمتون، ماکي جي مک جو ذڪر ۽ عدل جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 17,
+    "name_ar": "الإسراء",
+    "name_ur": "سورۃ بنی اسرائیل",
+    "name_sd": "سورت بني اسرائيل",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 111,
+    "rukus": 12,
+    "juz": [
+      15
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں معراج کا ذکر، بنی اسرائیل کے واقعات اور والدین کے حقوق بیان ہوئے ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ معراج جو ذڪر، بني اسرائيل جا واقعا ۽ والدين جا حق بيان ٿيل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 18,
+    "name_ar": "الكهف",
+    "name_ur": "سورۃ الکہف",
+    "name_sd": "سورت الڪهف",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 110,
+    "rukus": 12,
+    "juz": [
+      15,
+      16
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اصحاب کہف، حضرت موسیٰ و خضر اور ذوالقرنین کے قصے ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ اصحاب ڪهف، حضرت موسيٰ ۽ خضر ۽ ذوالقرنين جا قصا آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 19,
+    "name_ar": "مريم",
+    "name_ur": "سورۃ مریم",
+    "name_sd": "سورت مريم",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 98,
+    "rukus": 6,
+    "juz": [
+      16
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت مریم اور حضرت عیسیٰ کی ولادت کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت مريم ۽ حضرت عيسيٰ جي ولادت جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 20,
+    "name_ar": "طه",
+    "name_ur": "سورۃ طہ",
+    "name_sd": "سورت طه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 135,
+    "rukus": 8,
+    "juz": [
+      16
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت موسیٰ کا قصہ ہے اور قرآن کو نصیحت قرار دیا گیا ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت موسيٰ جو قصو آهي ۽ قرآن کي نصيحت قرار ڏنو ويو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 21,
+    "name_ar": "الأنبياء",
+    "name_ur": "سورۃ الانبیاء",
+    "name_sd": "سورت الانبياء",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 112,
+    "rukus": 7,
+    "juz": [
+      17
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں کئی انبیاء کے قصے اور قیامت کی ہولناکیوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ ڪيترن ئي نبين جا قصا ۽ قيامت جي دهشت جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 22,
+    "name_ar": "الحج",
+    "name_ur": "سورۃ الحج",
+    "name_sd": "سورت الحج",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "اکثر علماء کے نزدیک مدنی ہے؛ بعض کے نزدیک اس میں مکی اور مدنی آیات دونوں شامل ہیں۔",
+    "ayahs": 78,
+    "rukus": 10,
+    "juz": [
+      17
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض آیات مکی بھی کہی گئی ہیں۔ اس میں حج کے احکام اور قربانی کا بیان ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن آيتون مڪي به چيون ويون آهن۔ هن ۾ حج جا حڪم ۽ قرباني جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 23,
+    "name_ar": "المؤمنون",
+    "name_ur": "سورۃ المومنون",
+    "name_sd": "سورت المومنون",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 118,
+    "rukus": 6,
+    "juz": [
+      18
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں مومنوں کی صفات اور کامیابی کے اوصاف بیان ہوئے ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ مومنن جون صفتون ۽ ڪاميابي جا اوصاف بيان ٿيل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 24,
+    "name_ar": "النور",
+    "name_ur": "سورۃ النور",
+    "name_sd": "سورت النور",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 64,
+    "rukus": 9,
+    "juz": [
+      18
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں پردے کے احکام، افک کے واقعے اور نور الٰہی کی مثال ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ پردي جا حڪم، افڪ جي واقعي ۽ نور الاهي جو مثال آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 25,
+    "name_ar": "الفرقان",
+    "name_ur": "سورۃ الفرقان",
+    "name_sd": "سورت الفرقان",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 77,
+    "rukus": 6,
+    "juz": [
+      18,
+      19
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قرآن کو فرقان کہا گیا اور عباد الرحمٰن کی صفات بیان ہوئیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قرآن کي فرقان چيو ويو ۽ عباد الرحمان جون صفتون بيان ٿيون۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 26,
+    "name_ar": "الشعراء",
+    "name_ur": "سورۃ الشعراء",
+    "name_sd": "سورت الشعراء",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 227,
+    "rukus": 11,
+    "juz": [
+      19
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں کئی انبیاء کے قصے اور شعراء کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ ڪيترن ئي نبين جا قصا ۽ شاعرن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 27,
+    "name_ar": "النمل",
+    "name_ur": "سورۃ النمل",
+    "name_sd": "سورت النمل",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 93,
+    "rukus": 7,
+    "juz": [
+      19,
+      20
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت سلیمان، چیونٹی اور ملکہ سبا کا قصہ ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت سليمان، ماڪوڙي ۽ ملڪه سبا جو قصو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 28,
+    "name_ar": "القصص",
+    "name_ur": "سورۃ القصص",
+    "name_sd": "سورت القصص",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 88,
+    "rukus": 9,
+    "juz": [
+      20
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت موسیٰ کا تفصیلی قصہ بیان ہوا ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت موسيٰ جو تفصيلي قصو بيان ٿيو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 29,
+    "name_ar": "العنكبوت",
+    "name_ur": "سورۃ العنکبوت",
+    "name_sd": "سورت العنڪبوت",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 69,
+    "rukus": 7,
+    "juz": [
+      20,
+      21
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں آزمائش، صبر اور مکڑی کے جالے کی مثال ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ آزمائش، صبر ۽ ماڪوڙي جي ڄار جو مثال آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 30,
+    "name_ar": "الروم",
+    "name_ur": "سورۃ الروم",
+    "name_sd": "سورت الروم",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 60,
+    "rukus": 6,
+    "juz": [
+      21
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں رومیوں کے بارے میں پیشگوئی اور اللہ کی نشانیوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ رومين بابت پيشگوئي ۽ الله جي نشانين جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 31,
+    "name_ar": "لقمان",
+    "name_ur": "سورۃ لقمان",
+    "name_sd": "سورت لقمان",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 34,
+    "rukus": 4,
+    "juz": [
+      21
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت لقمان کی اپنے بیٹے کو نصیحتیں بیان ہوئی ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت لقمان جون پنهنجي پٽ کي نصيحتون بيان ٿيل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 32,
+    "name_ar": "السجدة",
+    "name_ur": "سورۃ السجدہ",
+    "name_sd": "سورت السجده",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 30,
+    "rukus": 3,
+    "juz": [
+      21
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں تخلیق، قیامت اور سجدے کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ تخليق، قيامت ۽ سجدي جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 33,
+    "name_ar": "الأحزاب",
+    "name_ur": "سورۃ الاحزاب",
+    "name_sd": "سورت الاحزاب",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 73,
+    "rukus": 9,
+    "juz": [
+      21,
+      22
+    ],
+    "intro_ur": "یہ غزوہ احزاب کے موقع پر مدینہ میں نازل ہوئی۔ اس میں نبی کی ازواج اور پردے کے احکام ہیں۔",
+    "intro_sd": "هي غزوه احزاب جي موقعي تي مديني ۾ نازل ٿي۔ هن ۾ نبي جون ازواج ۽ پردي جا حڪم آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 34,
+    "name_ar": "سبأ",
+    "name_ur": "سورۃ سبا",
+    "name_sd": "سورت سبا",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 54,
+    "rukus": 6,
+    "juz": [
+      22
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت داؤد و سلیمان اور قوم سبا کا قصہ ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت دائود ۽ سليمان ۽ قوم سبا جو قصو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 35,
+    "name_ar": "فاطر",
+    "name_ur": "سورۃ فاطر",
+    "name_sd": "سورت فاطر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 45,
+    "rukus": 5,
+    "juz": [
+      22
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اللہ کی تخلیق کی قدرت اور فرشتوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ الله جي تخليق جي قدرت ۽ فرشتن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 36,
+    "name_ar": "يس",
+    "name_ur": "سورۃ یاسین",
+    "name_sd": "سورت ياسين",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 83,
+    "rukus": 5,
+    "juz": [
+      22,
+      23
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی اور قرآن کا دل کہلاتی ہے۔ اس میں توحید، رسالت اور قیامت کے مضامین ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي ۽ قرآن جي دل سڏبي آهي۔ هن ۾ توحيد، رسالت ۽ قيامت جا مضمون آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 37,
+    "name_ar": "الصافات",
+    "name_ur": "سورۃ الصافات",
+    "name_sd": "سورت الصافات",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 182,
+    "rukus": 5,
+    "juz": [
+      23
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت ابراہیم و اسماعیل کا قصہ اور فرشتوں کی صفوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت ابراهيم ۽ اسماعيل جو قصو ۽ فرشتن جي صفن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 38,
+    "name_ar": "ص",
+    "name_ur": "سورۃ ص",
+    "name_sd": "سورت ص",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 88,
+    "rukus": 5,
+    "juz": [
+      23
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت داؤد کا قصہ اور قرآن کی عظمت کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت دائود جو قصو ۽ قرآن جي عظمت جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 39,
+    "name_ar": "الزمر",
+    "name_ur": "سورۃ الزمر",
+    "name_sd": "سورت الزمر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 75,
+    "rukus": 8,
+    "juz": [
+      23,
+      24
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اخلاص، توبہ اور قیامت کے گروہوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ اخلاص، توبه ۽ قيامت جي گروهن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 40,
+    "name_ar": "غافر",
+    "name_ur": "سورۃ المومن",
+    "name_sd": "سورت المومن",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 85,
+    "rukus": 9,
+    "juz": [
+      24
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں فرعون کے دربار کے مومن اور حضرت موسیٰ کا قصہ ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ فرعون جي درٻار جي مومن ۽ حضرت موسيٰ جو قصو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 41,
+    "name_ar": "فصلت",
+    "name_ur": "سورۃ حم السجدہ",
+    "name_sd": "سورت حم السجده",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 54,
+    "rukus": 6,
+    "juz": [
+      24,
+      25
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قرآن کی تفصیل، تخلیق کے مراحل اور سجدے کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قرآن جي تفصيل، تخليق جا مرحلا ۽ سجدي جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 42,
+    "name_ar": "الشورى",
+    "name_ur": "سورۃ الشوری",
+    "name_sd": "سورت الشوري",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 53,
+    "rukus": 5,
+    "juz": [
+      25
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں مشورے کی اہمیت اور اللہ کی صفات کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ مشوري جي اهميت ۽ الله جي صفتن جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 43,
+    "name_ar": "الزخرف",
+    "name_ur": "سورۃ الزخرف",
+    "name_sd": "سورت الزخرف",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 89,
+    "rukus": 7,
+    "juz": [
+      25
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں دنیوی زینت کی حقیقت اور حضرت عیسیٰ کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ دنيوي زينت جي حقيقت ۽ حضرت عيسيٰ جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 44,
+    "name_ar": "الدخان",
+    "name_ur": "سورۃ الدخان",
+    "name_sd": "سورت الدخان",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 59,
+    "rukus": 3,
+    "juz": [
+      25
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں دھوئیں کی نشانی اور شب قدر کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ دونهين جي نشاني ۽ شب قدر جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 45,
+    "name_ar": "الجاثية",
+    "name_ur": "سورۃ الجاثیہ",
+    "name_sd": "سورت الجاثيه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 37,
+    "rukus": 4,
+    "juz": [
+      25
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کے دن لوگوں کے گھٹنوں کے بل گرنے کا منظر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي ڏينهن ماڻهن جي گوڏن ڀر ڪرڻ جو منظر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 46,
+    "name_ar": "الأحقاف",
+    "name_ur": "سورۃ الاحقاف",
+    "name_sd": "سورت الاحقاف",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 35,
+    "rukus": 4,
+    "juz": [
+      26
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قوم عاد، جنوں کا قرآن سننا اور والدین کے حقوق کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قوم عاد، جنن جو قرآن ٻڌڻ ۽ والدين جي حقن جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 47,
+    "name_ar": "محمد",
+    "name_ur": "سورۃ محمد",
+    "name_sd": "سورت محمد",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 38,
+    "rukus": 4,
+    "juz": [
+      26
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں جہاد کے احکام اور نبی کی اطاعت کی تاکید ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ جهاد جا حڪم ۽ نبي جي اطاعت جي تاڪيد آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 48,
+    "name_ar": "الفتح",
+    "name_ur": "سورۃ الفتح",
+    "name_sd": "سورت الفتح",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 29,
+    "rukus": 4,
+    "juz": [
+      26
+    ],
+    "intro_ur": "یہ صلح حدیبیہ کے بعد نازل ہوئی۔ اس میں فتح مکہ کی بشارت دی گئی ہے۔",
+    "intro_sd": "هي صلح حديبيه کان پوءِ نازل ٿي۔ هن ۾ فتح مڪه جي بشارت ڏني وئي آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 49,
+    "name_ar": "الحجرات",
+    "name_ur": "سورۃ الحجرات",
+    "name_sd": "سورت الحجرات",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 18,
+    "rukus": 2,
+    "juz": [
+      26
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں ادب، غیبت سے بچنے اور بھائی چارے کے احکام ہیں۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ ادب، غيبت کان بچڻ ۽ ڀائپي جا حڪم آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 50,
+    "name_ar": "ق",
+    "name_ur": "سورۃ ق",
+    "name_sd": "سورت ق",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 45,
+    "rukus": 3,
+    "juz": [
+      26
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت، حساب اور جنت و جہنم کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت، حساب ۽ جنت و جهنم جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 51,
+    "name_ar": "الذاريات",
+    "name_ur": "سورۃ الذاریات",
+    "name_sd": "سورت الذاريات",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 60,
+    "rukus": 3,
+    "juz": [
+      26,
+      27
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں ہواؤں کی قسم اور رزق کے بیان کے ساتھ قیامت کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ هوائن جو قسم ۽ رزق جي بيان سان گڏ قيامت جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 52,
+    "name_ar": "الطور",
+    "name_ur": "سورۃ الطور",
+    "name_sd": "سورت الطور",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 49,
+    "rukus": 2,
+    "juz": [
+      27
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں طور پہاڑ کی قسم اور قیامت کے دن کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ طور جبل جو قسم ۽ قيامت جي ڏينهن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 53,
+    "name_ar": "النجم",
+    "name_ur": "سورۃ النجم",
+    "name_sd": "سورت النجم",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 62,
+    "rukus": 3,
+    "juz": [
+      27
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں معراج کا ذکر اور ستارے کی قسم ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ معراج جو ذڪر ۽ تاري جو قسم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 54,
+    "name_ar": "القمر",
+    "name_ur": "سورۃ القمر",
+    "name_sd": "سورت القمر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 55,
+    "rukus": 3,
+    "juz": [
+      27
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں چاند کے پھٹنے کے معجزے اور قرآن کی آسانی کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ چنڊ جي ڦاٽڻ جي معجزي ۽ قرآن جي آساني جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 55,
+    "name_ar": "الرحمن",
+    "name_ur": "سورۃ الرحمن",
+    "name_sd": "سورت الرحمن",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "جمہور مفسرین کے نزدیک مکی ہے؛ بعض روایات میں مدنی بھی کہا گیا ہے۔",
+    "ayahs": 78,
+    "rukus": 3,
+    "juz": [
+      27
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ جمہور اسے مکی کہتے ہیں۔ اس میں اللہ کی نعمتوں کا تذکرہ اور فبای آلاء ربکما تکذبان کی تکرار ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ جمهور ان کي مڪي چوندا آهن۔ هن ۾ الله جي نعمتن جو ذڪر ۽ فباي آلاء ربڪما تڪذبان جي تڪرار آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 56,
+    "name_ar": "الواقعة",
+    "name_ur": "سورۃ الواقعہ",
+    "name_sd": "سورت الواقعه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 96,
+    "rukus": 3,
+    "juz": [
+      27
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کے واقع ہونے اور لوگوں کے تین گروہوں کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي واقع ٿيڻ ۽ ماڻهن جي ٽن گروهن جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 57,
+    "name_ar": "الحديد",
+    "name_ur": "سورۃ الحدید",
+    "name_sd": "سورت الحديد",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 29,
+    "rukus": 4,
+    "juz": [
+      27
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں اللہ کے ناموں، انفاق اور لوہے کی طاقت کا ذکر ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ الله جي نالن، انفاق ۽ لوهه جي طاقت جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 58,
+    "name_ar": "المجادلة",
+    "name_ur": "سورۃ المجادلہ",
+    "name_sd": "سورت المجادله",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 22,
+    "rukus": 3,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں ظہار کے مسئلے پر مجادلہ کرنے والی عورت کا واقعہ ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ ظهار جي مسئلي تي مڪالمو ڪندڙ عورت جو واقعو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 59,
+    "name_ar": "الحشر",
+    "name_ur": "سورۃ الحشر",
+    "name_sd": "سورت الحشر",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 24,
+    "rukus": 3,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں بنو نضیر کے اخراج اور اللہ کے ناموں کا بیان ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ بنو نضير جي نيڪالي ۽ الله جي نالن جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 60,
+    "name_ar": "الممتحنة",
+    "name_ur": "سورۃ الممتحنہ",
+    "name_sd": "سورت الممتحنه",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 13,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں ہجرت کرنے والی عورتوں کے امتحان کا حکم ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ هجرت ڪندڙ عورتن جي امتحان جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 61,
+    "name_ar": "الصف",
+    "name_ur": "سورۃ الصف",
+    "name_sd": "سورت الصف",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مدنی ہے؛ بعض علماء اسے مکی کہتے ہیں۔",
+    "ayahs": 14,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض اسے مکی کہتے ہیں۔ اس میں اللہ کی راہ میں صف بستہ جہاد کی ترغیب ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مڪي چوندا آهن۔ هن ۾ الله جي راهه ۾ صف بسته جهاد جي ترغيب آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 62,
+    "name_ar": "الجمعة",
+    "name_ur": "سورۃ الجمعہ",
+    "name_sd": "سورت الجمعه",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 11,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں جمعہ کی نماز اور اس وقت تجارت چھوڑنے کا حکم ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ جمعه جي نماز ۽ ان وقت واپار ڇڏڻ جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 63,
+    "name_ar": "المنافقون",
+    "name_ur": "سورۃ المنافقون",
+    "name_sd": "سورت المنافقون",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 11,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں منافقین کی علامات بیان کر کے ان سے خبردار کیا گیا ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ منافقن جون علامتون بيان ڪري انهن کان خبردار ڪيو ويو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 64,
+    "name_ar": "التغابن",
+    "name_ur": "سورۃ التغابن",
+    "name_sd": "سورت التغابن",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "اکثر کے نزدیک مدنی ہے؛ بعض کے نزدیک مکی ہے۔",
+    "ayahs": 18,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض اسے مکی کہتے ہیں۔ اس میں ہار جیت کے دن اور تقویٰ کی تاکید ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مڪي چوندا آهن۔ هن ۾ هار جيت جي ڏينهن ۽ تقوي جي تاڪيد آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 65,
+    "name_ar": "الطلاق",
+    "name_ur": "سورۃ الطلاق",
+    "name_sd": "سورت الطلاق",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 12,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں طلاق کے احکام اور عدت کا بیان ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ طلاق جا حڪم ۽ عدت جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 66,
+    "name_ar": "التحريم",
+    "name_ur": "سورۃ التحریم",
+    "name_sd": "سورت التحريم",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 12,
+    "rukus": 2,
+    "juz": [
+      28
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی۔ اس میں نبی کے ایک گھریلو واقعے پر تحریم کا ذکر ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي۔ هن ۾ نبي جي هڪ گهريلو واقعي تي تحريم جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 67,
+    "name_ar": "الملك",
+    "name_ur": "سورۃ الملک",
+    "name_sd": "سورت الملڪ",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 30,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اللہ کی بادشاہت اور کائنات کی نشانیوں کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ الله جي بادشاهت ۽ ڪائنات جي نشانين جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 68,
+    "name_ar": "القلم",
+    "name_ur": "سورۃ القلم",
+    "name_sd": "سورت القلم",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 52,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں نبی کے اخلاق عظیمہ کی تعریف اور باغ والوں کا قصہ ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ نبي جي اخلاق عظيمه جي تعريف ۽ باغ وارن جو قصو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 69,
+    "name_ar": "الحاقة",
+    "name_ur": "سورۃ الحاقہ",
+    "name_sd": "سورت الحاقه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 52,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کی ہولناکی اور گزشتہ قوموں کے انجام کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي دهشت ۽ گذريل قومن جي انجام جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 70,
+    "name_ar": "المعارج",
+    "name_ur": "سورۃ المعارج",
+    "name_sd": "سورت المعارج",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 44,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں آسمان کی سیڑھیوں اور قیامت کے دن کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ آسمان جي ڏاڪڻ ۽ قيامت جي ڏينهن جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 71,
+    "name_ar": "نوح",
+    "name_ur": "سورۃ نوح",
+    "name_sd": "سورت نوح",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 28,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں حضرت نوح کی طویل دعوت اور ان کی قوم کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ حضرت نوح جي ڊگهي دعوت ۽ سندس قوم جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 72,
+    "name_ar": "الجن",
+    "name_ur": "سورۃ الجن",
+    "name_sd": "سورت الجن",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 28,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں جنوں کا قرآن سن کر ایمان لانے کا واقعہ ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ جنن جو قرآن ٻڌي ايمان آڻڻ جو واقعو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 73,
+    "name_ar": "المزمل",
+    "name_ur": "سورۃ المزمل",
+    "name_sd": "سورت المزمل",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 20,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ ابتدائی مکی سورتوں میں سے ہے۔ اس میں رات کی عبادت اور قرآن کو ٹھہر ٹھہر کر پڑھنے کا حکم ہے۔",
+    "intro_sd": "هي شروعاتي مڪي سورتن مان آهي۔ هن ۾ رات جي عبادت ۽ قرآن کي ترتيل سان پڙهڻ جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 74,
+    "name_ar": "المدثر",
+    "name_ur": "سورۃ المدثر",
+    "name_sd": "سورت المدثر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 56,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ ابتدائی مکی سورتوں میں سے ہے۔ اس میں دعوت کے آغاز اور کپڑے پاک رکھنے کا حکم ہے۔",
+    "intro_sd": "هي شروعاتي مڪي سورتن مان آهي۔ هن ۾ دعوت جي آغاز ۽ ڪپڙا پاڪ رکڻ جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 75,
+    "name_ar": "القيامة",
+    "name_ur": "سورۃ القیامہ",
+    "name_sd": "سورت القيامه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 40,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کے دن اور انسان کی تخلیق کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي ڏينهن ۽ انسان جي تخليق جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 76,
+    "name_ar": "الإنسان",
+    "name_ur": "سورۃ الدہر",
+    "name_sd": "سورت الدهر",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مدنی ہے؛ بعض مفسرین اسے مکی کہتے ہیں۔",
+    "ayahs": 31,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض اسے مکی کہتے ہیں۔ اس میں انسان کی تخلیق اور نیکوں کے انعام کا ذکر ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مڪي چوندا آهن۔ هن ۾ انسان جي تخليق ۽ نيڪن جي انعام جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 77,
+    "name_ar": "المرسلات",
+    "name_ur": "سورۃ المرسلات",
+    "name_sd": "سورت المرسلات",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 50,
+    "rukus": 2,
+    "juz": [
+      29
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں ہواؤں کی قسم اور قیامت کے دلائل ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ هوائن جو قسم ۽ قيامت جا دليل آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 78,
+    "name_ar": "النبأ",
+    "name_ur": "سورۃ النباء",
+    "name_sd": "سورت النباء",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 40,
+    "rukus": 2,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کی بڑی خبر اور جنت و جہنم کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي وڏي خبر ۽ جنت و جهنم جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 79,
+    "name_ar": "النازعات",
+    "name_ur": "سورۃ النازعات",
+    "name_sd": "سورت النازعات",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 46,
+    "rukus": 2,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں فرشتوں کی قسم اور حضرت موسیٰ و فرعون کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ فرشتن جو قسم ۽ حضرت موسيٰ ۽ فرعون جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 80,
+    "name_ar": "عبس",
+    "name_ur": "سورۃ عبس",
+    "name_sd": "سورت عبس",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 42,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں ایک نابینا صحابی کے واقعے پر تنبیہ اور قیامت کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ هڪ نابين صحابي جي واقعي تي تنبيهه ۽ قيامت جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 81,
+    "name_ar": "التكوير",
+    "name_ur": "سورۃ التکویر",
+    "name_sd": "سورت التڪوير",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 29,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کے دن سورج کے لپیٹے جانے کا منظر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي ڏينهن سج جي ويڙهجي وڃڻ جو منظر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 82,
+    "name_ar": "الانفطار",
+    "name_ur": "سورۃ الانفطار",
+    "name_sd": "سورت الانفطار",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 19,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں آسمان کے پھٹنے اور اعمال کے حساب کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ آسمان جي ڦاٽڻ ۽ عملن جي حساب جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 83,
+    "name_ar": "المطففين",
+    "name_ur": "سورۃ المطففین",
+    "name_sd": "سورت المطففين",
+    "makki_madani": "makki",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مکی ہے؛ بعض روایات میں اسے مدینہ میں نازل ہونے والی ابتدائی سورتوں میں شمار کیا گیا ہے۔",
+    "ayahs": 36,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی، اگرچہ بعض اسے مدنی کہتے ہیں۔ اس میں ناپ تول میں کمی کرنے والوں کی مذمت ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مدني چوندا آهن۔ هن ۾ ماپ تور ۾ گهٽتائي ڪندڙن جي مذمت آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 84,
+    "name_ar": "الانشقاق",
+    "name_ur": "سورۃ الانشقاق",
+    "name_sd": "سورت الانشقاق",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 25,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں آسمان کے پھٹنے اور انسان کی محنت کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ آسمان جي ڦاٽڻ ۽ انسان جي محنت جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 85,
+    "name_ar": "البروج",
+    "name_ur": "سورۃ البروج",
+    "name_sd": "سورت البروج",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 22,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اصحاب اخدود کے ظلم اور ایمان والوں کے صبر کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ اصحاب اخدود جي ظلم ۽ ايمان وارن جي صبر جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 86,
+    "name_ar": "الطارق",
+    "name_ur": "سورۃ الطارق",
+    "name_sd": "سورت الطارق",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 17,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں رات کو آنے والے تارے کی قسم اور انسان کی تخلیق کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ رات جو ايندڙ تاري جو قسم ۽ انسان جي تخليق جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 87,
+    "name_ar": "الأعلى",
+    "name_ur": "سورۃ الاعلی",
+    "name_sd": "سورت الاعلي",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 19,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں اللہ کی تسبیح اور کامیاب ہونے والوں کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ الله جي تسبيح ۽ ڪامياب ٿيندڙن جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 88,
+    "name_ar": "الغاشية",
+    "name_ur": "سورۃ الغاشیہ",
+    "name_sd": "سورت الغاشيه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 26,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قیامت کے چھا جانے والے دن کا منظر بیان ہوا ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قيامت جي ڇانئجي ويندڙ ڏينهن جو منظر بيان ٿيو آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 89,
+    "name_ar": "الفجر",
+    "name_ur": "سورۃ الفجر",
+    "name_sd": "سورت الفجر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 30,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں فجر کی قسم اور قوموں کے انجام کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ فجر جو قسم ۽ قومن جي انجام جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 90,
+    "name_ar": "البلد",
+    "name_ur": "سورۃ البلد",
+    "name_sd": "سورت البلد",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 20,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں شہر مکہ کی قسم اور نیکی کے راستے کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ مڪي شهر جو قسم ۽ نيڪي جي رستي جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 91,
+    "name_ar": "الشمس",
+    "name_ur": "سورۃ الشمس",
+    "name_sd": "سورت الشمس",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 15,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں سورج کی قسم اور نفس کی پاکیزگی کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ سج جو قسم ۽ نفس جي پاڪيزگي جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 92,
+    "name_ar": "الليل",
+    "name_ur": "سورۃ اللیل",
+    "name_sd": "سورت الليل",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 21,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں رات کی قسم اور خرچ کرنے والوں کی تعریف ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ رات جو قسم ۽ خرچ ڪندڙن جي تعريف آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 93,
+    "name_ar": "الضحى",
+    "name_ur": "سورۃ الضحی",
+    "name_sd": "سورت الضحي",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 11,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں نبی کو تسلی دی گئی اور یتیموں سے حسن سلوک کی تاکید ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ نبي کي تسلي ڏني وئي ۽ يتيمن سان حسن سلوڪ جي تاڪيد آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 94,
+    "name_ar": "الشرح",
+    "name_ur": "سورۃ الم نشرح",
+    "name_sd": "سورت الم نشرح",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 8,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں نبی کے سینے کے کھولے جانے اور ہر مشکل کے ساتھ آسانی کی بشارت ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ نبي جي سيني جي کولجڻ ۽ هر مشڪل سان گڏ آساني جي بشارت آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 95,
+    "name_ar": "التين",
+    "name_ur": "سورۃ التین",
+    "name_sd": "سورت التين",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 8,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں انجیر و زیتون کی قسم اور انسان کی بہترین تخلیق کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ انجير ۽ زيتون جو قسم ۽ انسان جي بهترين تخليق جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 96,
+    "name_ar": "العلق",
+    "name_ur": "سورۃ العلق",
+    "name_sd": "سورت العلق",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 19,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "اس سورت کی ابتدائی آیات سب سے پہلی وحی ہیں۔ اس میں علم اور قلم کی فضیلت بیان ہوئی ہے۔",
+    "intro_sd": "هن سورت جون شروعاتي آيتون سڀ کان پهرين وحي آهن۔ هن ۾ علم ۽ قلم جي فضيلت بيان ٿي آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 97,
+    "name_ar": "القدر",
+    "name_ur": "سورۃ القدر",
+    "name_sd": "سورت القدر",
+    "makki_madani": "makki",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مکی ہے؛ بعض علماء اسے مدنی کہتے ہیں۔",
+    "ayahs": 5,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی، اگرچہ بعض اسے مدنی کہتے ہیں۔ اس میں شب قدر کی فضیلت بیان ہوئی ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مدني چوندا آهن۔ هن ۾ شب قدر جي فضيلت بيان ٿي آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 98,
+    "name_ar": "البينة",
+    "name_ur": "سورۃ البینہ",
+    "name_sd": "سورت البينه",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مدنی ہے؛ بعض مفسرین اسے مکی کہتے ہیں۔",
+    "ayahs": 8,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض اسے مکی کہتے ہیں۔ اس میں واضح دلیل اور اخلاص کے ساتھ عبادت کا حکم ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مڪي چوندا آهن۔ هن ۾ واضح دليل ۽ اخلاص سان عبادت جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 99,
+    "name_ar": "الزلزلة",
+    "name_ur": "سورۃ الزلزال",
+    "name_sd": "سورت الزلزال",
+    "makki_madani": "madani",
+    "disputed": true,
+    "dispute_note": "اکثر مصاحف و مفسرین میں مدنی شمار ہوتی ہے؛ بہت سے مفسرین اسے مکی کہتے ہیں۔",
+    "ayahs": 8,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہوئی، اگرچہ بعض اسے مکی کہتے ہیں۔ اس میں قیامت کے زلزلے اور ذرہ برابر عمل کے حساب کا بیان ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مڪي چوندا آهن۔ هن ۾ قيامت جي زلزلي ۽ ذري برابر عمل جي حساب جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 100,
+    "name_ar": "العاديات",
+    "name_ur": "سورۃ العادیات",
+    "name_sd": "سورت العاديات",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 11,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں دوڑتے گھوڑوں کی قسم اور انسان کی ناشکری کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ ڊوڙندڙ گهوڙن جو قسم ۽ انسان جي ناشڪري جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 101,
+    "name_ar": "القارعة",
+    "name_ur": "سورۃ القارعہ",
+    "name_sd": "سورت القارعه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 11,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں کھٹکھٹانے والی قیامت اور اعمال کے تولے جانے کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ کڙڪائڻ واري قيامت ۽ عملن جي تورجڻ جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 102,
+    "name_ar": "التكاثر",
+    "name_ur": "سورۃ التکاثر",
+    "name_sd": "سورت التڪاثر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 8,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں مال کی کثرت کی ہوس اور قبر کی یاد کا بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ مال جي ڪثرت جي هوس ۽ قبر جي ياد جو بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 103,
+    "name_ar": "العصر",
+    "name_ur": "سورۃ العصر",
+    "name_sd": "سورت العصر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 3,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں زمانے کی قسم اور نجات کے چار اصول بیان ہوئے ہیں۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ زماني جو قسم ۽ نجات جا چار اصول بيان ٿيا آهن۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 104,
+    "name_ar": "الهمزة",
+    "name_ur": "سورۃ الہمزہ",
+    "name_sd": "سورت الهمزه",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 9,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں طعنہ دینے والوں اور مال جمع کرنے والوں کی مذمت ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ طعنو ڏيندڙن ۽ مال گڏ ڪندڙن جي مذمت آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 105,
+    "name_ar": "الفيل",
+    "name_ur": "سورۃ الفیل",
+    "name_sd": "سورت الفيل",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 5,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں ہاتھی والوں کے لشکر کی تباہی کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ هاٿي وارن جي لشڪر جي تباهي جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 106,
+    "name_ar": "قريش",
+    "name_ur": "سورۃ قریش",
+    "name_sd": "سورت قريش",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 4,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں قریش پر اللہ کے احسان اور کعبہ کی خدمت کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ قريش تي الله جي احسان ۽ ڪعبي جي خدمت جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 107,
+    "name_ar": "الماعون",
+    "name_ur": "سورۃ الماعون",
+    "name_sd": "سورت الماعون",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 7,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں نماز میں غفلت اور دکھاوے کی مذمت ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ نماز ۾ غفلت ۽ ڏيکاءُ جي مذمت آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 108,
+    "name_ar": "الكوثر",
+    "name_ur": "سورۃ الکوثر",
+    "name_sd": "سورت الڪوثر",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 3,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ قرآن کی چھوٹی سورتوں میں سے ایک ہے۔ اس میں نبی کو کوثر کی بشارت اور قربانی کا حکم ہے۔",
+    "intro_sd": "هي قرآن جي ننڍين سورتن مان هڪ آهي۔ هن ۾ نبي کي ڪوثر جي بشارت ۽ قرباني جو حڪم آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 109,
+    "name_ar": "الكافرون",
+    "name_ur": "سورۃ الکافرون",
+    "name_sd": "سورت الڪافرون",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 6,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں کافروں سے دین کے معاملے میں سمجھوتے سے انکار ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ ڪافرن سان دين جي معاملي ۾ سمجهوتي کان انڪار آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 110,
+    "name_ar": "النصر",
+    "name_ur": "سورۃ النصر",
+    "name_sd": "سورت النصر",
+    "makki_madani": "madani",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 3,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مدینہ میں نازل ہونے والی آخری سورتوں میں سے ہے۔ اس میں اللہ کی مدد اور فتح کی بشارت ہے۔",
+    "intro_sd": "هي مديني ۾ نازل ٿيندڙ آخري سورتن مان آهي۔ هن ۾ الله جي مدد ۽ فتح جي بشارت آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 111,
+    "name_ar": "المسد",
+    "name_ur": "سورۃ اللہب",
+    "name_sd": "سورت اللهب",
+    "makki_madani": "makki",
+    "disputed": false,
+    "dispute_note": "",
+    "ayahs": 5,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی۔ اس میں ابولہب اور اس کی بیوی کے انجام کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي۔ هن ۾ ابولهب ۽ سندس زال جي انجام جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 112,
+    "name_ar": "الإخلاص",
+    "name_ur": "سورۃ الاخلاص",
+    "name_sd": "سورت الاخلاص",
+    "makki_madani": "makki",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مکی ہے؛ بعض روایات میں مدنی بھی کہا گیا ہے۔",
+    "ayahs": 4,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی، اگرچہ بعض اسے مدنی کہتے ہیں۔ اس میں اللہ کی وحدانیت کا مکمل بیان ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مدني چوندا آهن۔ هن ۾ الله جي وحدانيت جو مڪمل بيان آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 113,
+    "name_ar": "الفلق",
+    "name_ur": "سورۃ الفلق",
+    "name_sd": "سورت الفلق",
+    "makki_madani": "makki",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مکی ہے؛ بعض روایات میں مدنی بھی کہا گیا ہے۔",
+    "ayahs": 5,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی، اگرچہ بعض اسے مدنی کہتے ہیں۔ اس میں ہر شر سے اللہ کی پناہ مانگی گئی ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مدني چوندا آهن۔ هن ۾ هر شر کان الله جي پناهه گهري وئي آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  },
+  {
+    "number": 114,
+    "name_ar": "الناس",
+    "name_ur": "سورۃ الناس",
+    "name_sd": "سورت الناس",
+    "makki_madani": "makki",
+    "disputed": true,
+    "dispute_note": "جمہور کے نزدیک مکی ہے؛ بعض روایات میں مدنی بھی کہا گیا ہے۔",
+    "ayahs": 6,
+    "rukus": 1,
+    "juz": [
+      30
+    ],
+    "intro_ur": "یہ مکہ میں نازل ہوئی، اگرچہ بعض اسے مدنی کہتے ہیں۔ اس میں وسوسہ ڈالنے والے شیطان سے پناہ کا ذکر ہے۔",
+    "intro_sd": "هي مڪي ۾ نازل ٿي، جيتوڻيڪ ڪن ان کي مدني چوندا آهن۔ هن ۾ وسوسو وجهندڙ شيطان کان پناهه جو ذڪر آهي۔",
+    "sources": [
+      "Quran.com API v4 /chapters (revelation_place, verses_count, name_arabic) — fetched 2026-10-04",
+      "Tanzil.net — Uthmani text, Kufi ayah numbering (Hafs 'an 'Asim)",
+      "As-Suyuti, Al-Itqan fi Ulum al-Quran — Makki/Madani classification disputes",
+      "Az-Zarkashi, Al-Burhan fi Ulum al-Quran — ayah-counting schools"
+    ]
+  }
+]
