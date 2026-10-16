@@ -10724,7 +10724,7 @@ function renderListenStationList(currentId){
 /* Breaking News Ticker - GDELT powered */
 (function(){
   var TICKER_URL = 'assets/news-ticker.json';
-  var REFRESH_MS = 15 * 60 * 1000; // 15 minutes (GDELT cycle)
+  var REFRESH_MS = 2 * 60 * 1000; // 2 minutes (checks for new news ASAP)
   
   function timeAgo(dateStr){
     try{
