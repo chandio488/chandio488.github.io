@@ -1505,9 +1505,30 @@ input,select,textarea{line-height:1.5}
 #watchChannelList.view-list{grid-template-columns:1fr!important}
 #watchChannelList.view-list .tcard{display:flex;align-items:center;gap:12px;text-align:left}
 #listenStationList.view-list{grid-template-columns:1fr!important}
+
+/* Breaking News Ticker */
+#newsTicker{position:sticky;top:0;z-index:100;background:linear-gradient(90deg,#7a0c0c,#a01010);color:#fff;overflow:hidden;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+#newsTicker .tick-label{display:inline-block;background:#5a0808;color:#ffd700;font-weight:800;padding:8px 16px;font-size:14px;vertical-align:middle}
+#newsTicker .tick-wrap{display:inline-block;vertical-align:middle;overflow:hidden;width:calc(100% - 140px)}
+#newsTicker .tick-scroll{display:inline-block;animation:tickmove 60s linear infinite;padding:8px 0}
+#newsTicker .tick-scroll:hover{animation-play-state:paused}
+@keyframes tickmove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tick-item{display:inline-block;margin:0 30px;font-size:14px}
+.tick-item a{color:#fff;text-decoration:none}
+.tick-item a:hover{text-decoration:underline;color:#ffd700}
+.tick-src{color:#ffd700;font-size:12px;margin-left:8px}
+.tick-time{color:#ccc;font-size:11px;margin-left:4px}
+@media(max-width:600px){#newsTicker .tick-label{font-size:12px;padding:6px 10px}#newsTicker .tick-wrap{width:calc(100% - 110px)}.tick-item{font-size:12px;margin:0 20px}}
 </style>
 </head>
 <body>
+<div id="newsTicker" role="marquee" aria-label="Breaking News">
+  <span class="tick-label">🔴 بریکنگ نیوز</span>
+  <span class="tick-wrap"><span class="tick-scroll" id="tickScroll">
+    <span class="tick-item">خبریں لوڈ ہو رہی ہیں...</span>
+  </span></span>
+</div>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
 <clipPath id="fclip"><rect width="24" height="24" rx="5"/></clipPath>
 <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 4.1 5.6 4.1 9s-1.3 6.4-4.1 9c-2.8-2.6-4.1-5.6-4.1-9S9.2 5.6 12 3z"/></symbol>
@@ -10696,6 +10717,75 @@ function renderListenStationList(currentId){
       clearInterval(checkInterval);
     }
   }, 500);
+})();
+</script>
+
+<script>
+/* Breaking News Ticker - GDELT powered */
+(function(){
+  var TICKER_URL = 'assets/news-ticker.json';
+  var REFRESH_MS = 15 * 60 * 1000; // 15 minutes (GDELT cycle)
+  
+  function timeAgo(dateStr){
+    try{
+      // GDELT format: 20261016T143000Z
+      var y = dateStr.substr(0,4), mo = dateStr.substr(4,2), d = dateStr.substr(6,2);
+      var h = dateStr.substr(9,2), mi = dateStr.substr(11,2);
+      var dt = new Date(Date.UTC(y, mo-1, d, h, mi));
+      var diff = Math.floor((Date.now() - dt.getTime()) / 60000);
+      if(diff < 1) return 'ابھی';
+      if(diff < 60) return diff + ' منٹ قبل';
+      var hrs = Math.floor(diff / 60);
+      if(hrs < 24) return hrs + ' گھنٹے قبل';
+      return Math.floor(hrs / 24) + ' دن قبل';
+    }catch(e){ return ''; }
+  }
+  
+  function esc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  
+  function renderTicker(items){
+    var el = document.getElementById('tickScroll');
+    if(!el || !items || !items.length){
+      if(el) el.innerHTML = '<span class="tick-item">فی الحال خبریں دستیاب نہیں</span>';
+      return;
+    }
+    // Duplicate for seamless loop
+    var html = items.map(function(a){
+      return '<span class="tick-item">'
+        + '<a href="' + esc(a.url) + '" target="_blank" rel="noopener">'
+        + esc(a.title)
+        + '</a>'
+        + '<span class="tick-src">' + esc(a.domain) + '</span>'
+        + '<span class="tick-time">' + timeAgo(a.date) + '</span>'
+        + '</span>';
+    }).join('');
+    el.innerHTML = html + html; // Double for seamless scroll
+  }
+  
+  function loadTicker(){
+    fetch(TICKER_URL + '?t=' + Date.now())
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(data){
+        if(data && data.ticker && data.ticker.length){
+          renderTicker(data.ticker);
+        }
+      })
+      .catch(function(e){
+        // Graceful: keep old content or show fallback
+        var el = document.getElementById('tickScroll');
+        if(el && el.textContent.indexOf('لوڈ') > -1){
+          el.innerHTML = '<span class="tick-item">خبریں جلد دستیاب ہوں گی</span>';
+        }
+      });
+  }
+  
+  // Initial load + auto-refresh
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', loadTicker);
+  } else {
+    loadTicker();
+  }
+  setInterval(loadTicker, REFRESH_MS);
 })();
 </script>
 </body>
