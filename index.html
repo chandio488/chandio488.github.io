@@ -2249,192 +2249,281 @@ section[data-radio-section] {
 
 /* ===== Radio HD Player Page ===== */
 .rhd-player {
-  background: #0a0a0f;
+  background: #050507;
   color: #fff;
   min-height: 100vh;
   padding: 0;
+  padding-bottom: 40px;
 }
-/* Top bar: back | heart | LED display | power */
+/* === 1. TOP CONTROL BAR === */
 .rhd-ptop {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 12px;
-  background: #111118;
+  background: #000;
+  border-bottom: 1px solid #1a1a1a;
 }
 .rhd-ptop .rhd-pbtn {
   width: 44px; height: 44px;
   border-radius: 50%;
-  background: #1e1e28;
+  background: #1a1a20;
   border: 1px solid #333;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  transition: transform .1s;
 }
-.rhd-ptop .rhd-pbtn:active { background: #2a2a38; }
+.rhd-ptop .rhd-pbtn:active { transform: scale(.92); }
 .rhd-ptop .rhd-pbtn.rhd-power {
-  background: #cc0000 !important;
-  border-color: #ff4444 !important;
+  background: radial-gradient(circle at 35% 30%, #ff4444, #cc0000 60%, #990000) !important;
+  border: 2px solid #ff6666 !important;
+  box-shadow: 0 0 12px rgba(255,0,0,.5), inset 0 2px 4px rgba(255,255,255,.3) !important;
   color: #fff !important;
   font-size: 24px;
-  width: 48px; height: 48px;
+  width: 50px; height: 50px;
 }
-.rhd-ptop .rhd-pbtn.rhd-power:active { background: #aa0000; }
 .rhd-ptop .rhd-pbtn.rhd-back {
-  background: #2a4a6b;
-  border-color: #4a8acb;
-  font-size: 26px;
+  background: #1e3a5f;
+  border: 2px solid #4a8acb;
+  box-shadow: 0 0 8px rgba(74,138,203,.4);
+  font-size: 28px;
   font-weight: bold;
+}
+.rhd-ptop .rhd-pbtn.rhd-fav {
+  background: #1a1a20;
+  border: 1px solid #444;
+}
+.rhd-ptop .rhd-pbtn.rhd-fav.on {
+  color: #ff3366;
+  border-color: #ff3366;
+  box-shadow: 0 0 8px rgba(255,51,102,.4);
 }
 .rhd-led {
   flex: 1;
   background: #000;
-  border: 2px solid #222;
-  border-radius: 8px;
-  padding: 8px 12px;
+  border: 2px solid #1a2a3a;
+  border-radius: 10px;
+  padding: 10px 12px;
   font-family: 'Courier New', monospace;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: #00e5ff;
   text-align: center;
   letter-spacing: 1px;
-  text-shadow: 0 0 8px rgba(0,229,255,.6);
+  text-shadow: 0 0 10px rgba(0,229,255,.7);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,.8);
 }
-/* Tuning dial */
-.rhd-dial {
-  background: linear-gradient(180deg, #1a1a22, #0d0d12);
+/* === 2. ANALOG TUNER SCALE === */
+.rhd-tuner {
+  background: linear-gradient(180deg, #15151c 0%, #0a0a0e 50%, #15151c 100%);
   border-top: 1px solid #222;
   border-bottom: 1px solid #222;
-  padding: 10px 8px;
+  padding: 14px 10px 10px;
   position: relative;
   overflow: hidden;
 }
-.rhd-dial-scale {
-  position: relative;
-  height: 44px;
-  margin-bottom: 6px;
-  overflow: hidden;
+.rhd-tuner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,229,255,.06), transparent 60%);
+  pointer-events: none;
 }
-.rhd-dial-fm, .rhd-dial-am {
+.rhd-scale {
+  position: relative;
+  height: 52px;
+  margin-bottom: 4px;
+}
+.rhd-scale-row {
   display: flex;
   justify-content: space-between;
   font-size: 10px;
-  color: #888;
-  font-family: monospace;
-  padding: 0 2px;
+  color: #999;
+  font-family: 'Courier New', monospace;
+  padding: 0 4px;
   white-space: nowrap;
+  position: relative;
 }
-.rhd-dial-fm span.hl { color: #00e5ff; font-weight: 700; }
-.rhd-dial-needle {
+.rhd-scale-row .tick { color: #555; font-size: 8px; }
+.rhd-scale-row span.cur { color: #00e5ff; font-weight: 700; text-shadow: 0 0 6px rgba(0,229,255,.6); }
+.rhd-scale-label {
+  font-size: 9px; color: #666;
+  display: flex; justify-content: space-between;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+.rhd-needle {
   position: absolute;
-  top: 0; bottom: 0;
+  top: -4px; bottom: -4px;
   width: 3px;
-  background: #ff2222;
-  box-shadow: 0 0 6px rgba(255,34,34,.8);
+  background: linear-gradient(180deg, #ff4444, #cc0000);
+  box-shadow: 0 0 10px rgba(255,34,34,.9), 0 0 20px rgba(255,34,34,.4);
   left: 50%;
   transform: translateX(-50%);
+  transition: left .4s ease;
+  z-index: 2;
 }
-.rhd-dial-label {
-  font-size: 10px; color: #666;
-  display: flex; justify-content: space-between;
+.rhd-needle::after {
+  content: '';
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #ff2222;
 }
-/* Station info */
-.rhd-pinfo {
-  padding: 16px;
+/* === 3. STATION NAME + STATUS MARQUEE === */
+.rhd-station {
+  padding: 14px 16px 8px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
-.rhd-pinfo .rhd-pflag { font-size: 28px; }
-.rhd-pinfo .rhd-pname {
-  font-size: 20px; font-weight: 700; flex: 1;
+.rhd-station .rhd-sflag { font-size: 26px; flex-shrink: 0; }
+.rhd-station .rhd-sname {
+  font-size: 19px; font-weight: 700; flex: 1;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
 }
-.rhd-pinfo .rhd-pstatus {
-  font-size: 14px; color: #ff9800;
-  display: flex; align-items: center; gap: 6px;
+.rhd-status-screen {
+  margin: 8px 16px;
+  background: #000;
+  border: 2px solid #1a1a1a;
+  border-radius: 10px;
+  padding: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,.9);
 }
-.rhd-pinfo .rhd-pstatus .dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #ff9800;
-  animation: blink 1.2s infinite;
+.rhd-status-marquee {
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff3333;
+  text-shadow: 0 0 8px rgba(255,51,51,.7);
+  white-space: nowrap;
+  display: inline-block;
+  animation: rhdMarquee 8s linear infinite;
 }
-/* Big flag display */
+@keyframes rhdMarquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.rhd-status-marquee.static { animation: none; transform: none; }
+/* === 4. BIG FLAG === */
 .rhd-bigflag {
-  background: #fff;
-  margin: 0 16px;
-  border-radius: 24px;
-  min-height: 220px;
+  background: #111;
+  margin: 12px 16px;
+  border-radius: 20px;
+  min-height: 180px;
+  max-height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 120px;
+  font-size: 110px;
   overflow: hidden;
+  border: 1px solid #222;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
 }
-/* Volume */
+.rhd-bigflag img { max-width: 80%; max-height: 180px; object-fit: contain; }
+/* === 5. VOLUME === */
 .rhd-vol {
-  margin: 16px;
-  background: #1a1a22;
-  border-radius: 12px;
-  padding: 12px 16px;
+  margin: 12px 16px;
+  background: #14141a;
+  border: 1px solid #222;
+  border-radius: 14px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
+.rhd-vol-ic { font-size: 22px; flex-shrink: 0; }
 .rhd-vol input[type=range] {
   flex: 1;
   -webkit-appearance: none;
-  height: 6px;
-  background: #333;
-  border-radius: 3px;
+  appearance: none;
+  height: 8px;
+  background: linear-gradient(90deg, #00e5ff var(--volfill,80%), #333 var(--volfill,80%));
+  border-radius: 4px;
   outline: none;
+  cursor: pointer;
 }
 .rhd-vol input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 22px; height: 22px;
+  width: 26px; height: 26px;
   border-radius: 50%;
-  background: #fff;
-  border: 2px solid #666;
+  background: radial-gradient(circle at 35% 35%, #fff, #ccc);
+  border: 2px solid #00e5ff;
+  box-shadow: 0 0 10px rgba(0,229,255,.5);
   cursor: pointer;
 }
-/* Control buttons */
+.rhd-vol input[type=range]::-moz-range-thumb {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #00e5ff;
+  cursor: pointer;
+}
+.rhd-vol-pct {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #00e5ff;
+  min-width: 42px;
+  text-align: right;
+}
+/* === 6. THREE 3D CONTROL BUTTONS === */
 .rhd-controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 16px;
-  padding-bottom: 100px;
+  gap: 20px;
+  padding: 20px 16px 30px;
 }
-.rhd-controls .rhd-cbtn {
-  width: 80px; height: 80px;
+.rhd-cbtn {
+  width: 72px; height: 72px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #3a3a4a, #1a1a22);
-  border: 2px solid #333;
+  background: radial-gradient(circle at 35% 30%, #3a3f4d, #1c1e26 60%, #101218);
+  border: 2px solid #2a6db5;
+  box-shadow: 0 0 15px rgba(42,109,181,.4), inset 0 2px 6px rgba(255,255,255,.15), inset 0 -3px 8px rgba(0,0,0,.5);
   color: #fff;
-  font-size: 28px;
+  font-size: 26px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
+  transition: transform .1s, box-shadow .2s;
+  flex-shrink: 0;
 }
-.rhd-controls .rhd-cbtn.main {
-  width: 100px; height: 100px;
-  font-size: 36px;
+.rhd-cbtn:active {
+  transform: scale(.93);
+  box-shadow: 0 0 8px rgba(42,109,181,.3), inset 0 3px 10px rgba(0,0,0,.6);
 }
-.rhd-controls .rhd-cbtn.main .stop-icon {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: #1E5AA8;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
+.rhd-cbtn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  box-shadow: none;
 }
-.rhd-controls .rhd-cbtn:active { transform: scale(.95); }
-
+.rhd-cbtn.main {
+  width: 96px; height: 96px;
+  font-size: 38px;
+  border-width: 3px;
+  border-color: #3a9bdc;
+  box-shadow: 0 0 25px rgba(58,155,220,.5), inset 0 2px 8px rgba(255,255,255,.2), inset 0 -4px 10px rgba(0,0,0,.5);
+}
+.rhd-cbtn.main.playing {
+  border-color: #ff4444;
+  box-shadow: 0 0 25px rgba(255,68,68,.5), inset 0 2px 8px rgba(255,255,255,.2);
+}
+@media(max-width:380px){
+  .rhd-cbtn { width: 64px; height: 64px; font-size: 22px; }
+  .rhd-cbtn.main { width: 84px; height: 84px; font-size: 32px; }
+  .rhd-controls { gap: 14px; }
+  .rhd-led { font-size: 14px; }
+}
 </style>
 </head>
 <body>
@@ -6166,6 +6255,18 @@ function syncRadioUI(){
     else if(radioPlaybackState === 'unavailable' || radioPlaybackState === 'offline'){ rdLive.classList.add('unavail'); if(dot) dot.textContent = radioPlaybackState === 'offline' ? 'OFFLINE' : 'UNAVAILABLE'; }
     else if(dot) dot.textContent = radioPlaybackState === 'paused' ? 'PAUSED' : 'READY';
   }
+  /* Redesigned player: sync status marquee + play button with real state */
+  try {
+    if(typeof window.__rhdSetStatus === 'function' && curStn && currentView === 'listen' && currentParam === curStn.id){
+      if(radioPlaybackState === 'playing' && isPlaying) window.__rhdSetStatus('Now Playing — ' + curStn.en, true);
+      else if(radioPlaybackState === 'buffering') window.__rhdSetStatus('Connecting...', false);
+      else if(radioPlaybackState === 'unavailable') window.__rhdSetStatus('Playback failed. Please try another station.', true);
+      else if(radioPlaybackState === 'offline') window.__rhdSetStatus('The station is currently off-air.', true);
+    }
+    if(typeof window.__rhdSyncPlayBtn === 'function' && curStn && currentView === 'listen' && currentParam === curStn.id){
+      window.__rhdSyncPlayBtn();
+    }
+  } catch(e){}
   var muteBtn = document.getElementById('rdMute');
   if(muteBtn){
     var on = !!(audio && audio.muted);
@@ -6527,31 +6628,63 @@ function renderListen(id){
   var cityCountryLbl = rdCityCountryLabel(st);
   var langHeroLbl = isSindhiSt ? 'Sindhi' : rdPrimaryLang(st);
   var logoBigHTML = logoHTML.replace('class="rd-mono"', 'class="rd-mono"').replace('class="rd-gico"', 'class="rd-gico"');
-  // Radio HD player chrome: LED display + dial + big flag (injected at top)
+  // Radio HD player chrome: LED display + tuner + status marquee + big flag (redesigned 2026-10-19)
   var rhdFlag = (typeof ccFlag === 'function' && st.cc) ? ccFlag(st.cc) : '\uD83D\uDCFB';
   var rhdCountry = (typeof ccName === 'function' && st.cc) ? ccName(st.cc) : '';
   var rhdFreq = st.freq || '';
+  /* LED display: real frequency + country, never a fake number */
+  var ledText;
+  if(bandInfo.verified && bandInfo.num != null){
+    ledText = bandInfo.parsed.numText + (bandInfo.band === 'FM' ? ' FM' : ' kHz');
+  } else if(rhdFreq && rhdFreq !== 'N/A — Online' && rhdFreq !== 'لائیو'){
+    ledText = rhdFreq;
+  } else {
+    ledText = st.en;
+  }
+  if(rhdCountry) ledText += ' • ' + rhdCountry;
+  /* Needle position: real frequency only, else centered without false precision */
+  var needlePos = 50, needleTitle = '';
+  if(bandInfo.verified && bandInfo.num != null){
+    var n = bandInfo.num;
+    if(bandInfo.band === 'FM' && n >= 88 && n <= 108){ needlePos = ((n - 88) / 20) * 100; needleTitle = n + ' MHz'; }
+    else if((bandInfo.band === 'AM' || bandInfo.band === 'MW') && n >= 530 && n <= 1700){ needlePos = ((n - 530) / 1170) * 100; needleTitle = n + ' kHz'; }
+  }
+  var favOn = (typeof isFav === 'function') ? isFav(st) : false;
   var rhdChrome =
     '<div class="rhd-player">'
+    /* 1. Top bar */
     + '<div class="rhd-ptop">'
     + '<button class="rhd-pbtn rhd-back" onclick="location.hash=\'#radio\'" aria-label="Back">\u2039</button>'
-    + '<button class="rhd-pbtn" onclick="(function(b){var i=(typeof itemByKey===\'function\')?itemByKey(\'' + st.id + '\'):null;if(i&&typeof toggleFav===\'function\'){toggleFav(i);b.textContent=(typeof isFav===\'function\'&&isFav(i))?\'\u2665\':\'\u2661\';}})(this)" aria-label="Favorite">\u2661</button>'
-    + '<div class="rhd-led">' + esc(rhdFreq) + ' \u2022 ' + esc(rhdCountry) + '</div>'
-    + '<button class="rhd-pbtn rhd-power" onclick="if(typeof stopRadio===\'function\')stopRadio();location.hash=\'#radio\';" aria-label="Power">\u23FB</button>'
+    + '<button class="rhd-pbtn rhd-fav' + (favOn ? ' on' : '') + '" id="rhdFavBtn" aria-label="Favorite">' + (favOn ? '\u2665' : '\u2661') + '</button>'
+    + '<div class="rhd-led" id="rhdLed">' + esc(ledText) + '</div>'
+    + '<button class="rhd-pbtn rhd-power" id="rhdPowerBtn" aria-label="Power">\u23FB</button>'
     + '</div>'
-    + '<div class="rhd-dial">'
-    + '<div class="rhd-dial-scale"><div class="rhd-dial-needle"></div></div>'
-    + '<div class="rhd-dial-fm"><span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span></div>'
-    + '<div class="rhd-dial-label"><span>FM</span><span>MHz</span></div>'
-    + '<div class="rhd-dial-fm"><span>530</span><span>800</span><span>1000</span><span>1300</span><span>1700</span></div>'
-    + '<div class="rhd-dial-label"><span>AM</span><span>kHz</span></div>'
+    /* 2. Analog tuner */
+    + '<div class="rhd-tuner">'
+    + '<div class="rhd-scale"><div class="rhd-needle" id="rhdNeedle" style="left:' + needlePos + '%"' + (needleTitle ? ' title="' + esc(needleTitle) + '"' : '') + '></div></div>'
+    + '<div class="rhd-scale-row"><span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span></div>'
+    + '<div class="rhd-scale-label"><span>FM</span><span>MHz</span></div>'
+    + '<div class="rhd-scale-row"><span>530</span><span>800</span><span>1000</span><span>1300</span><span>1700</span></div>'
+    + '<div class="rhd-scale-label"><span>AM</span><span>kHz</span></div>'
     + '</div>'
-    + '<div class="rhd-pinfo">'
-    + '<span class="rhd-pflag">' + rhdFlag + '</span>'
-    + '<span class="rhd-pname">' + esc(st.en) + '</span>'
+    /* 3. Station name + status marquee */
+    + '<div class="rhd-station">'
+    + '<span class="rhd-sflag">' + rhdFlag + '</span>'
+    + '<span class="rhd-sname">' + esc(st.en) + '</span>'
     + '</div>'
-    + '<div class="rhd-bigflag">' + rhdFlag + '</div>'
-    + '<div class="rhd-vol"><span class="rhd-vol-ic">🔈</span><input type="range" class="rhd-vol-slider" id="rhdVolSlider" min="0" max="100" value="80" aria-label="Volume"><span class="rhd-vol-ic">🔊</span></div>'
+    + '<div class="rhd-status-screen"><span class="rhd-status-marquee" id="rhdStatusMsg" role="status" aria-live="polite">Tuning...</span></div>'
+    /* 4. Big flag */
+    + '<div class="rhd-bigflag" id="rhdBigFlag">' + rhdFlag + '</div>'
+    /* 5. Volume */
+    + '<div class="rhd-vol"><span class="rhd-vol-ic">\uD83D\uDD08</span>'
+    + '<input type="range" id="rhdVolSlider" min="0" max="100" value="80" aria-label="Volume">'
+    + '<span class="rhd-vol-ic">\uD83D\uDD0A</span><span class="rhd-vol-pct" id="rhdVolPct">80%</span></div>'
+    /* 6. Three 3D buttons */
+    + '<div class="rhd-controls">'
+    + '<button class="rhd-cbtn" id="rhdPrevBtn" aria-label="Previous station"' + (hasPlayer ? '' : ' disabled') + '>\u23EE</button>'
+    + '<button class="rhd-cbtn main" id="rhdPlayBtn" aria-label="Play or stop"' + (hasPlayer ? '' : ' disabled') + '>\u25B6</button>'
+    + '<button class="rhd-cbtn" id="rhdNextBtn" aria-label="Next station"' + (hasPlayer ? '' : ' disabled') + '>\u23ED</button>'
+    + '</div>'
     + '</div>';
   var receiverHTML = rhdChrome +
     '<div class="rd-wrap" id="rdReceiver" style="display:none">'
@@ -6596,9 +6729,100 @@ function renderListen(id){
   box.innerHTML = receiverHTML;
   box.classList.remove('rstage');
   box.removeAttribute('style');
+  // === REDESIGNED PLAYER WIRING (2026-10-19) ===
+  var rhdSt = st;
+  // Status marquee updater
+  function rhdSetStatus(msg, isStatic){
+    var el = document.getElementById('rhdStatusMsg');
+    if(!el) return;
+    el.textContent = msg;
+    el.classList.toggle('static', !!isStatic);
+  }
+  window.__rhdSetStatus = rhdSetStatus;
+  // Initial status based on station state
+  if(isOff) rhdSetStatus('The station is currently off-air.', true);
+  else if(isUnavailNoStream || isHttpOnly) rhdSetStatus('Playback failed. Please try another station.', true);
+  else rhdSetStatus('Tuning...', false);
+  // Favorite button
+  var rhdFav = document.getElementById('rhdFavBtn');
+  if(rhdFav) rhdFav.addEventListener('click', function(){
+    if(typeof toggleFav === 'function'){ toggleFav(rhdSt); }
+    var on = (typeof isFav === 'function') ? isFav(rhdSt) : !rhdFav.classList.contains('on');
+    rhdFav.classList.toggle('on', on);
+    rhdFav.textContent = on ? '♥' : '♡';
+  });
+  // Power button: stop playback + go to radio list
+  var rhdPower = document.getElementById('rhdPowerBtn');
+  if(rhdPower) rhdPower.addEventListener('click', function(){
+    try {
+      if(typeof stopRadio === 'function') stopRadio();
+      var aud = document.querySelector('audio'); if(aud){ aud.pause(); }
+    } catch(e){}
+    rhdSetStatus('Tuning...', false);
+    location.hash = '#radio';
+  });
+  // Prev/Next: navigate the RADIO array
+  function rhdGoStation(dir){
+    try {
+      var arr = (typeof RADIO !== 'undefined') ? RADIO : [];
+      if(!arr.length) return;
+      var idx = -1;
+      for(var i = 0; i < arr.length; i++){ if(arr[i].id === rhdSt.id){ idx = i; break; } }
+      if(idx < 0) return;
+      var next = arr[(idx + dir + arr.length) % arr.length];
+      if(next && next.id) location.hash = '#listen/' + next.id;
+    } catch(e){}
+  }
+  var rhdPrev = document.getElementById('rhdPrevBtn');
+  if(rhdPrev) rhdPrev.addEventListener('click', function(){ rhdGoStation(-1); });
+  var rhdNext = document.getElementById('rhdNextBtn');
+  if(rhdNext) rhdNext.addEventListener('click', function(){ rhdGoStation(1); });
+  // Play/Stop main button
+  var rhdPlay = document.getElementById('rhdPlayBtn');
+  if(rhdPlay) rhdPlay.addEventListener('click', function(){
+    try {
+      if(isPlaying && curStn && curStn.id === rhdSt.id){
+        if(typeof stopRadio === 'function') stopRadio();
+        var aud2 = document.querySelector('audio'); if(aud2){ aud2.pause(); }
+        rhdPlay.innerHTML = '▶'; rhdPlay.classList.remove('playing');
+        rhdSetStatus('Tuning...', false);
+      } else {
+        rhdSetStatus('Connecting...', false);
+        if(typeof playStation === 'function') playStation(rhdSt);
+        else { var p = document.getElementById('rdPlay'); if(p) p.click(); }
+      }
+    } catch(e){}
+  });
+  // Sync play button visual state
+  function rhdSyncPlayBtn(){
+    var pb = document.getElementById('rhdPlayBtn');
+    if(!pb) return;
+    var playing = isPlaying && curStn && curStn.id === rhdSt.id;
+    pb.innerHTML = playing ? '⏹' : '▶';
+    pb.classList.toggle('playing', !!playing);
+    if(playing) rhdSetStatus('Now Playing — ' + rhdSt.en, true);
+  }
+  window.__rhdSyncPlayBtn = rhdSyncPlayBtn;
+  setTimeout(rhdSyncPlayBtn, 600);
   // Volume slider control
   var volSlider = document.getElementById('rhdVolSlider');
   if(volSlider){
+    var volPct = document.getElementById('rhdVolPct');
+    var savedVol = 80;
+    try { var sv = localStorage.getItem('rhdVol'); if(sv !== null){ savedVol = parseInt(sv, 10); if(isNaN(savedVol)) savedVol = 80; } } catch(e){}
+    volSlider.value = savedVol;
+    function applyVolUI(){
+      var v = parseInt(volSlider.value, 10);
+      if(volPct) volPct.textContent = v + '%';
+      volSlider.style.setProperty('--volfill', v + '%');
+    }
+    applyVolUI();
+    // apply saved volume to audio elements
+    try {
+      var initAud = document.querySelector('audio');
+      if(initAud) initAud.volume = savedVol / 100;
+      if(typeof radioAudio !== 'undefined' && radioAudio) radioAudio.volume = savedVol / 100;
+    } catch(e){}
     volSlider.addEventListener('input', function(){
       try {
         var vol = parseInt(this.value, 10) / 100;
@@ -6606,6 +6830,8 @@ function renderListen(id){
         if(audio) audio.volume = vol;
         // Also try global radio audio
         if(typeof radioAudio !== 'undefined' && radioAudio) radioAudio.volume = vol;
+        try { localStorage.setItem('rhdVol', this.value); } catch(e){}
+        applyVolUI();
       } catch(e){}
     });
   }
