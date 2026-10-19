@@ -6195,6 +6195,7 @@ function streamFailed(st){
   mpState.textContent = 'Stream currently unavailable';
   if(st && st.site) showMpSite(st); else hideMpSite();
   if(st && typeof setStationHealth === 'function') setStationHealth(st.id, 'offline');
+  if(typeof showStationOffline === 'function') showStationOffline();
   syncRadioUI();
 }
 function playStation(st){
@@ -12960,6 +12961,35 @@ function rhdNeedlePos(freq){
   var origHash = window.addEventListener;
   window.addEventListener('hashchange', function(){ setTimeout(rhdEnhancePlayer, 500); });
   setTimeout(rhdEnhancePlayer, 1000);
+})();
+</script>
+<!-- Station Offline Dialog (Radio HD style) -->
+<div class="rhd-offline-modal" id="rhdOfflineModal" hidden>
+  <div class="rhd-offline-box">
+    <div class="rhd-offline-icon">📡<span class="rhd-offline-x">✕</span></div>
+    <h3>Station Offline</h3>
+    <p>The station is currently off-air.<br>Please try again later.</p>
+    <button class="rhd-offline-ok" id="rhdOfflineOk">OK</button>
+  </div>
+</div>
+<style>
+.rhd-offline-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.rhd-offline-modal[hidden]{display:none}
+.rhd-offline-box{background:#fff;border-radius:24px;padding:32px 24px;text-align:center;max-width:320px;width:100%}
+.rhd-offline-icon{font-size:64px;position:relative;display:inline-block;margin-bottom:16px}
+.rhd-offline-x{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:50%;color:#e53935;font-size:28px;font-weight:bold;width:36px;height:36px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.rhd-offline-box h3{font-size:24px;margin:0 0 12px;color:#111}
+.rhd-offline-box p{color:#666;font-size:15px;line-height:1.6;margin:0 0 24px}
+.rhd-offline-ok{background:#1a73e8;color:#fff;border:none;border-radius:28px;padding:14px 0;width:100%;font-size:18px;font-weight:600;cursor:pointer}
+.rhd-offline-ok:active{background:#1557b0}
+</style>
+<script>
+(function(){
+  var modal = document.getElementById('rhdOfflineModal');
+  var okBtn = document.getElementById('rhdOfflineOk');
+  if(okBtn) okBtn.addEventListener('click', function(){ modal.hidden = true; });
+  if(modal) modal.addEventListener('click', function(e){ if(e.target === modal) modal.hidden = true; });
+  window.showStationOffline = function(){ if(modal) modal.hidden = false; };
 })();
 </script>
 </body>
