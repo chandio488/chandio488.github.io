@@ -1742,6 +1742,13 @@ button,.btn,.mp-btn,.sap-btn{min-height:44px;min-width:44px}
 .ds-sec-h{margin:26px 0 14px;text-align:center}
 .ds-sec-title{font:800 24px/1.4 var(--font-en);color:var(--txt);letter-spacing:.2px}
 .ds-sec-title .ur{font-family:var(--font-urdu);color:var(--gold)}
+/* Radio section title - centered logo above Urdu name (2 style options) */
+.radio-title-wrap{text-align:center;padding:8px 0 4px}
+.radio-title-logo{font-size:48px;line-height:1;display:block;margin-bottom:8px}
+/* Option 1: Golden elegant */
+.radio-title-opt1 .radio-title-ur{font-family:var(--font-urdu);font-size:32px;font-weight:800;color:var(--gold);text-shadow:0 2px 8px rgba(0,0,0,.3);letter-spacing:1px}
+/* Option 2: Bold white with gold underline */
+.radio-title-opt2 .radio-title-ur{font-family:var(--font-urdu);font-size:34px;font-weight:800;color:#fff;border-bottom:3px solid var(--gold);display:inline-block;padding-bottom:6px}
 .ds-sec-sub{color:var(--mut);font-size:14px;margin-top:6px}
 .ds-nav-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
 .ds-navcard{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:44px;padding:18px 12px;background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--r);color:var(--txt);text-decoration:none;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}
@@ -2131,13 +2138,13 @@ section[data-radio-section] {
   color: #9ca3af;
 }
 .rhd-nowplaying .rhd-np-btn {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #1E5AA8;
   color: #fff;
-  border: none;
-  font-size: 18px;
+  border: 2px solid #4a9ae8;
+  font-size: 24px;
   cursor: pointer;
   flex-shrink: 0;
   display: flex;
@@ -2260,6 +2267,12 @@ section[data-radio-section] {
   color: #fff;
 }
 .rhd-ptop .rhd-pbtn.rhd-power:active { background: #aa0000; }
+.rhd-ptop .rhd-pbtn.rhd-back {
+  background: #2a4a6b;
+  border-color: #4a8acb;
+  font-size: 26px;
+  font-weight: bold;
+}
 .rhd-led {
   flex: 1;
   background: #000;
@@ -3346,7 +3359,10 @@ section[data-radio-section] {
 <!-- ================= RADIO ================= -->
 <div class="view" id="view-radio">
   <section class="blk ds-sec">
-    <div class="ds-sec-h"><h2 class="ds-sec-title"><span class="ur" lang="ur" dir="rtl">ریڈیو</span> <span lang="en">RADIO</span></h2></div>
+    <div class="radio-title-wrap radio-title-opt1">
+      <span class="radio-title-logo" aria-hidden="true">📻</span>
+      <h2 class="radio-title-ur" lang="ur" dir="rtl">ریڈیو</h2>
+    </div>
     <button type="button" class="qfolder-card" id="radioFolderToggle" aria-expanded="false" aria-controls="radioFolderBody">
       <span class="qfolder-ic" aria-hidden="true">📻</span>
       <span class="qfolder-txt"><b><span lang="en">Radio</span></b></span>
@@ -6507,7 +6523,7 @@ function renderListen(id){
   var rhdChrome =
     '<div class="rhd-player">'
     + '<div class="rhd-ptop">'
-    + '<button class="rhd-pbtn" onclick="history.back()" aria-label="Back">\u2039</button>'
+    + '<button class="rhd-pbtn rhd-back" onclick="location.hash=\'#radio\'" aria-label="Back">\u2039</button>'
     + '<button class=\"rhd-pbtn\" data-rhdfavtop=\"1\" aria-label=\"Favorite\">\u2661</button>'
     + '<div class="rhd-led">' + esc(rhdFreq) + ' \u2022 ' + esc(rhdCountry) + '</div>'
     + '<button class="rhd-pbtn rhd-power" data-rhdpower="1" aria-label="Power">\u23FB</button>'
