@@ -2359,6 +2359,22 @@ section[data-radio-section] {
   letter-spacing: 2px;
   margin-top: 2px;
 }
+/* Central country flag inside tuner (Section F - mandatory) */
+.rhd-tuner-flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 84px;
+  line-height: 1;
+  padding: 10px 0;
+  margin: 6px 0;
+  min-height: 100px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.04), transparent 70%);
+  border-top: 1px solid #1e1e28;
+  border-bottom: 1px solid #1e1e28;
+  overflow: hidden;
+}
+.rhd-tuner-flag img { max-height: 90px; max-width: 70%; object-fit: contain; }
 .rhd-needle {
   position: absolute;
   top: -4px; bottom: -4px;
@@ -6283,6 +6299,23 @@ function syncRadioUI(){
 }
 var radioHls = null;
 function destroyRadioHls(){ if(radioHls){ try{ radioHls.destroy(); }catch(e){} radioHls = null; } }
+/* CRITICAL FIX (2026-10-19): stopRadio was called but never defined — Stop/Power did nothing.
+   This actually stops the audio element AND destroys the HLS instance. */
+function stopRadio(){
+  try {
+    audio.pause();
+    destroyRadioHls();
+    audio.removeAttribute('src');
+    audio.load();
+  } catch(e){}
+  isPlaying = false;
+  radioPlaybackState = 'idle';
+  try { hideMpSite(); } catch(e){}
+  try { if(typeof mpState !== 'undefined' && mpState) mpState.textContent = 'Stopped'; } catch(e){}
+  try { syncRadioUI(); } catch(e){}
+  try { if(typeof window.__rhdSetStatus === 'function') window.__rhdSetStatus('Tuning...', false); } catch(e){}
+  try { if(typeof window.__rhdSyncPlayBtn === 'function') window.__rhdSyncPlayBtn(); } catch(e){}
+}
 var mpSite = document.getElementById('mpSite');
 function hideMpSite(){ mpSite.style.display = 'none'; }
 function showMpSite(st){ hideMpSite(); }
@@ -6303,6 +6336,11 @@ function streamFailed(st){
   syncRadioUI();
 }
 function playStation(st){
+  /* Stop any previous playback completely before starting new station */
+  try { audio.pause(); } catch(e){}
+  destroyRadioHls();
+  try { audio.removeAttribute('src'); audio.load(); } catch(e){}
+  isPlaying = false;
   curStn = st;
   if(st) st._fbTried = 0;
   mp.classList.add('show'); mpName.textContent = st.en;
@@ -6659,11 +6697,12 @@ function renderListen(id){
     + '<div class="rhd-led" id="rhdLed">' + esc(ledText) + '</div>'
     + '<button class="rhd-pbtn rhd-power" id="rhdPowerBtn" aria-label="Power">\u23FB</button>'
     + '</div>'
-    /* 2. Analog tuner */
+    /* 2. Analog tuner with CENTRAL FLAG between FM and AM scales (Section F) */
     + '<div class="rhd-tuner">'
     + '<div class="rhd-scale"><div class="rhd-needle" id="rhdNeedle" style="left:' + needlePos + '%"' + (needleTitle ? ' title="' + esc(needleTitle) + '"' : '') + '></div></div>'
     + '<div class="rhd-scale-row"><span>88</span><span>92</span><span>96</span><span>100</span><span>104</span><span>108</span></div>'
     + '<div class="rhd-scale-label"><span>FM</span><span>MHz</span></div>'
+    + '<div class="rhd-tuner-flag" id="rhdTunerFlag">' + rhdFlag + '</div>'
     + '<div class="rhd-scale-row"><span>530</span><span>800</span><span>1000</span><span>1300</span><span>1700</span></div>'
     + '<div class="rhd-scale-label"><span>AM</span><span>kHz</span></div>'
     + '</div>'
@@ -6673,8 +6712,6 @@ function renderListen(id){
     + '<span class="rhd-sname">' + esc(st.en) + '</span>'
     + '</div>'
     + '<div class="rhd-status-screen"><span class="rhd-status-marquee" id="rhdStatusMsg" role="status" aria-live="polite">Tuning...</span></div>'
-    /* 4. Big flag */
-    + '<div class="rhd-bigflag" id="rhdBigFlag">' + rhdFlag + '</div>'
     /* 5. Volume */
     + '<div class="rhd-vol"><span class="rhd-vol-ic">\uD83D\uDD08</span>'
     + '<input type="range" id="rhdVolSlider" min="0" max="100" value="80" aria-label="Volume">'
