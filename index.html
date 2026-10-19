@@ -2275,9 +2275,9 @@ section[data-radio-section] {
 }
 .rhd-ptop .rhd-pbtn:active { background: #2a2a38; }
 .rhd-ptop .rhd-pbtn.rhd-power {
-  background: #cc0000;
-  border-color: #ff4444;
-  color: #fff;
+  background: #cc0000 !important;
+  border-color: #ff4444 !important;
+  color: #fff !important;
   font-size: 24px;
   width: 48px; height: 48px;
 }
@@ -2311,21 +2311,24 @@ section[data-radio-section] {
   background: linear-gradient(180deg, #1a1a22, #0d0d12);
   border-top: 1px solid #222;
   border-bottom: 1px solid #222;
-  padding: 10px 16px;
+  padding: 10px 8px;
   position: relative;
+  overflow: hidden;
 }
 .rhd-dial-scale {
   position: relative;
   height: 44px;
   margin-bottom: 6px;
+  overflow: hidden;
 }
 .rhd-dial-fm, .rhd-dial-am {
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 10px;
   color: #888;
   font-family: monospace;
-  padding: 0 4px;
+  padding: 0 2px;
+  white-space: nowrap;
 }
 .rhd-dial-fm span.hl { color: #00e5ff; font-weight: 700; }
 .rhd-dial-needle {
