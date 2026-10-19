@@ -1742,13 +1742,6 @@ button,.btn,.mp-btn,.sap-btn{min-height:44px;min-width:44px}
 .ds-sec-h{margin:26px 0 14px;text-align:center}
 .ds-sec-title{font:800 24px/1.4 var(--font-en);color:var(--txt);letter-spacing:.2px}
 .ds-sec-title .ur{font-family:var(--font-urdu);color:var(--gold)}
-/* Radio section title - centered logo above Urdu name (2 style options) */
-.radio-title-wrap{text-align:center;padding:8px 0 4px}
-.radio-title-logo{font-size:48px;line-height:1;display:block;margin-bottom:8px}
-/* Option 1: Golden elegant */
-.radio-title-opt1 .radio-title-ur{font-family:var(--font-urdu);font-size:32px;font-weight:800;color:var(--gold);text-shadow:0 2px 8px rgba(0,0,0,.3);letter-spacing:1px}
-/* Option 2: Bold white with gold underline */
-.radio-title-opt2 .radio-title-ur{font-family:var(--font-urdu);font-size:34px;font-weight:800;color:#fff;border-bottom:3px solid var(--gold);display:inline-block;padding-bottom:6px}
 .ds-sec-sub{color:var(--mut);font-size:14px;margin-top:6px}
 .ds-nav-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
 .ds-navcard{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:44px;padding:18px 12px;background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--r);color:var(--txt);text-decoration:none;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}
@@ -2138,13 +2131,13 @@ section[data-radio-section] {
   color: #9ca3af;
 }
 .rhd-nowplaying .rhd-np-btn {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #1E5AA8;
   color: #fff;
-  border: 2px solid #4a9ae8;
-  font-size: 24px;
+  border: none;
+  font-size: 18px;
   cursor: pointer;
   flex-shrink: 0;
   display: flex;
@@ -2267,12 +2260,6 @@ section[data-radio-section] {
   color: #fff;
 }
 .rhd-ptop .rhd-pbtn.rhd-power:active { background: #aa0000; }
-.rhd-ptop .rhd-pbtn.rhd-back {
-  background: #2a4a6b;
-  border-color: #4a8acb;
-  font-size: 26px;
-  font-weight: bold;
-}
 .rhd-led {
   flex: 1;
   background: #000;
@@ -3216,7 +3203,6 @@ section[data-radio-section] {
           </div>
         </article>
       </div>
-    </div>
   </section>
 
   <!-- KIDS & CARTOONS SECTION (Research Preview - Official Links Only) -->
@@ -3235,7 +3221,7 @@ section[data-radio-section] {
           <span class="cbody-min"><h3 lang="en">Cartoon Network India 🇮🇳</h3><p class="ch-meta" lang="en">Kids · Hindi/English</p></span>
           <div class="ch-actions">
             <button type="button" class="ds-btn" data-yt-live="UCA6Vx_EMNsKeTdeZsLEUpjA" data-ch="Cartoon Network India 🇮🇳">▶️ Official YouTube</button>
-          </div><div class="yt-embed-wrap" hidden></div></div>
+          </div><div class="yt-embed-wrap" hidden></div>
         </article>
         <article class="chcard" tabindex="0">
           <span class="clogo dark"><span class="mono">Pogo</span></span>
@@ -3249,7 +3235,7 @@ section[data-radio-section] {
           <span class="cbody-min"><h3 lang="en">Sony YAY! 🇮🇳</h3><p class="ch-meta" lang="en">Kids · Hindi/Tamil/Telugu</p></span>
           <div class="ch-actions">
             <button type="button" class="ds-btn" data-yt-live="UCdIoazuusB0qK-Pi7Hxfcjw" data-ch="Sony YAY! 🇮🇳">▶️ Official YouTube</button>
-          </div><div class="yt-embed-wrap" hidden></div></div>
+          </div><div class="yt-embed-wrap" hidden></div>
         </article>
         <article class="chcard" tabindex="0">
           <span class="clogo dark"><span class="mono">DK</span></span>
@@ -3266,7 +3252,6 @@ section[data-radio-section] {
           </div>
         </article>
       </div>
-    </div>
   </section>
 
   <!-- SPORTS CHANNELS SECTION (Research Preview - Official Links Only) -->
@@ -3310,7 +3295,6 @@ section[data-radio-section] {
           </div>
         </article>
       </div>
-    </div>
   </section>
   <!-- ISLAMIC CHANNELS SECTION (Official Links Only) -->
   <section class="blk ds-sec" id="islamicTvSec">
@@ -3356,17 +3340,13 @@ section[data-radio-section] {
           </div><div class="yt-embed-wrap" hidden></div></div>
         </article>
       </div>
-    </div>
   </section>
 </div>
 
 <!-- ================= RADIO ================= -->
 <div class="view" id="view-radio">
   <section class="blk ds-sec">
-    <div class="radio-title-wrap radio-title-opt1">
-      <span class="radio-title-logo" aria-hidden="true">📻</span>
-      <h2 class="radio-title-ur" lang="ur" dir="rtl">ریڈیو</h2>
-    </div>
+    <div class="ds-sec-h"><h2 class="ds-sec-title"><span class="ur" lang="ur" dir="rtl">ریڈیو</span> <span lang="en">RADIO</span></h2></div>
     <button type="button" class="qfolder-card" id="radioFolderToggle" aria-expanded="false" aria-controls="radioFolderBody">
       <span class="qfolder-ic" aria-hidden="true">📻</span>
       <span class="qfolder-txt"><b><span lang="en">Radio</span></b></span>
@@ -4865,6 +4845,7 @@ function bindCards(scope){
         // Update button state immediately
         var isNowFav = isFav(item);
         b.classList.toggle('fav-on', isNowFav);
+        b.textContent = isNowFav ? '♥' : '♡';
         b.setAttribute('aria-pressed', isNowFav ? 'true' : 'false');
       }
     });
@@ -5293,8 +5274,8 @@ function radioCardHTML(st){
   var country = '<span class="rcountry">' + esc(ccName(st.cc)) + '</span>';
   var liveDot = (st.stream && st.status !== 'unavailable') ? '<span class="rlive" aria-label="Live">●</span>' : '';
   var nowBadge = (typeof curStn !== 'undefined' && curStn && curStn.id === st.id && typeof isPlaying !== 'undefined' && isPlaying) ? '<span class="now-badge">\u25B6 NOW</span>' : '';
-  var favState = (typeof isFav !== 'undefined' && isFav(st.id)) ? ' fav-on' : '';
-  var heartBtn = '<button type="button" class="rheart' + favState + '" data-fav="' + esc(st.id) + '" aria-label="Favorite ' + esc(st.en) + '" aria-pressed="' + (favState ? 'true' : 'false') + '">♡</button>';
+  var favState = (typeof isFav !== 'undefined' && isFav(st)) ? ' fav-on' : '';
+  var heartBtn = '<button type="button" class="rheart' + favState + '" data-fav="' + esc(favKey(st)) + '" aria-label="Favorite ' + esc(st.en) + '" aria-pressed="' + (favState ? 'true' : 'false') + '">♡</button>';
   return '<article class="chcard radiohd" tabindex="0" role="link" aria-label="' + esc(st.en) + '" data-href="#listen/' + st.id + '">'
     + flag
     + '<span class="rbody"><span class="rname" lang="en">' + liveDot + esc(st.en) + nowBadge + '</span>'
@@ -6218,6 +6199,20 @@ function playStation(st){
   }
   syncRadioUI();
 }
+/* Radio HD power button: toggles play/stop for the given station.
+   (The old inline handler called stopRadio(), which never existed.) */
+function toggleRadioPower(st){
+  if(!st || typeof playStation !== 'function') return;
+  if(curStn && curStn.id === st.id && isPlaying){
+    try{ audio.pause(); }catch(e){}
+    if(typeof destroyRadioHls === 'function') destroyRadioHls();
+    try{ audio.removeAttribute('src'); audio.load(); }catch(e){}
+    isPlaying = false; radioPlaybackState = 'idle';
+    if(typeof syncRadioUI === 'function') syncRadioUI();
+  } else {
+    playStation(st);
+  }
+}
 document.getElementById('mpPlay').addEventListener('click', function(){
   if(!curStn) return;
   if(isPlaying){ audio.pause(); isPlaying = false; radioPlaybackState = 'paused'; mpState.textContent = t('paused'); }
@@ -6512,10 +6507,10 @@ function renderListen(id){
   var rhdChrome =
     '<div class="rhd-player">'
     + '<div class="rhd-ptop">'
-    + '<button class="rhd-pbtn rhd-back" onclick="location.hash=\'#radio\'" aria-label="Back">\u2039</button>'
-    + '<button class="rhd-pbtn" onclick="(function(b){var i=(typeof itemByKey===\'function\')?itemByKey(\'' + st.id + '\'):null;if(i&&typeof toggleFav===\'function\'){toggleFav(i);b.textContent=(typeof isFav===\'function\'&&isFav(i))?\'\u2665\':\'\u2661\';}})(this)" aria-label="Favorite">\u2661</button>'
+    + '<button class="rhd-pbtn" onclick="history.back()" aria-label="Back">\u2039</button>'
+    + '<button class=\"rhd-pbtn\" data-rhdfavtop=\"1\" aria-label=\"Favorite\">\u2661</button>'
     + '<div class="rhd-led">' + esc(rhdFreq) + ' \u2022 ' + esc(rhdCountry) + '</div>'
-    + '<button class="rhd-pbtn rhd-power" onclick="if(typeof stopRadio===\'function\')stopRadio();location.hash=\'#radio\';" aria-label="Power">\u23FB</button>'
+    + '<button class="rhd-pbtn rhd-power" data-rhdpower="1" aria-label="Power">\u23FB</button>'
     + '</div>'
     + '<div class="rhd-dial">'
     + '<div class="rhd-dial-scale"><div class="rhd-dial-needle"></div></div>'
@@ -6529,7 +6524,6 @@ function renderListen(id){
     + '<span class="rhd-pname">' + esc(st.en) + '</span>'
     + '</div>'
     + '<div class="rhd-bigflag">' + rhdFlag + '</div>'
-    + '<div class="rhd-vol"><span class="rhd-vol-ic">🔈</span><input type="range" class="rhd-vol-slider" id="rhdVolSlider" min="0" max="100" value="80" aria-label="Volume"><span class="rhd-vol-ic">🔊</span></div>'
     + '</div>';
   var receiverHTML = rhdChrome +
     '<div class="rd-wrap" id="rdReceiver" style="display:none">'
@@ -6572,19 +6566,18 @@ function renderListen(id){
   box.innerHTML = receiverHTML;
   box.classList.remove('rstage');
   box.removeAttribute('style');
-  // Volume slider control
-  var volSlider = document.getElementById('rhdVolSlider');
-  if(volSlider){
-    volSlider.addEventListener('input', function(){
-      try {
-        var vol = parseInt(this.value, 10) / 100;
-        var audio = document.querySelector('audio');
-        if(audio) audio.volume = vol;
-        // Also try global radio audio
-        if(typeof radioAudio !== 'undefined' && radioAudio) radioAudio.volume = vol;
-      } catch(e){}
-    });
-  }
+  /* Radio HD chrome wiring: power toggles play/stop, heart toggles favorite */
+  (function(){
+    var pwr = box.querySelector('[data-rhdpower]');
+    if(pwr){ pwr.addEventListener('click', function(){ if(typeof toggleRadioPower === 'function') toggleRadioPower(st); }); }
+    var rhf = box.querySelector('[data-rhdfavtop]');
+    if(rhf){
+      if(typeof isFav === 'function'){ try{ if(isFav(st)) rhf.textContent = '♥'; }catch(e){} }
+      rhf.addEventListener('click', function(){
+        if(typeof toggleFav === 'function'){ toggleFav(st); rhf.textContent = (typeof isFav === 'function' && isFav(st)) ? '♥' : '♡'; }
+      });
+    }
+  })();
   var metaRows = [
     [t('m_country'), countryFlag(st.cc) + ' <span lang="en">' + esc(placeLabel) + '</span>', null, 'html'],
     [t('m_language'), '<span lang="en">' + esc(st.lang) + '</span>', null, 'html']
@@ -12853,7 +12846,7 @@ if(!location.hash){
 function rhdEnhancePlayer(){
   try {
     var box = document.getElementById('listenStage');
-    if(!box || box.querySelector('.rhd-player-top')) return;
+    if(!box || box.querySelector('.rhd-player')) return;
     // Get current station from URL hash
     var h = location.hash || '';
     var m = h.match(/#listen\/([^\/]+)/);
@@ -12872,7 +12865,7 @@ function rhdEnhancePlayer(){
       + '<button class="rhd-pbtn" onclick="history.back()" aria-label="Back">‹</button>'
       + '<button class="rhd-pbtn rhd-pfav" data-rhdfav="' + st.id + '" aria-label="Favorite">♡</button>'
       + '<div class="rhd-led">' + esc(freq) + ' · ' + esc(country) + '</div>'
-      + '<button class="rhd-pbtn" onclick="if(typeof stopRadio===\'function\')stopRadio()" aria-label="Power">⏻</button>'
+      + '<button class="rhd-pbtn" data-rhdpower="1" aria-label="Power">⏻</button>'
       + '</div>'
       + '<div class="rhd-dial">'
       + '<div class="rhd-dial-scale"><div class="rhd-dial-needle" style="left:' + rhdNeedlePos(freq) + '%"></div></div>'
@@ -12893,15 +12886,22 @@ function rhdEnhancePlayer(){
     if(favBtn){
       favBtn.addEventListener('click', function(e){
         e.stopPropagation();
-        var item = (typeof itemByKey === 'function') ? itemByKey(st.id) : null;
+        var item = (typeof itemByKey === 'function') ? itemByKey('r:' + st.id) : null;
         if(item && typeof toggleFav === 'function'){
           toggleFav(item);
           favBtn.textContent = (typeof isFav === 'function' && isFav(item)) ? '♥' : '♡';
         }
       });
       if(typeof isFav === 'function'){
-        try { if(isFav(st.id)) favBtn.textContent = '♥'; } catch(e){}
+        try { if(isFav(st)) favBtn.textContent = '♥'; } catch(e){}
       }
+    }
+    // Wire power button: toggle play/stop (was wired to non-existent stopRadio)
+    var pwrBtn = top.querySelector('[data-rhdpower]');
+    if(pwrBtn){
+      pwrBtn.addEventListener('click', function(){
+        if(typeof toggleRadioPower === 'function') toggleRadioPower(st);
+      });
     }
   } catch(e){}
 }
