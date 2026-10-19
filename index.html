@@ -13167,6 +13167,9 @@ if(!location.hash){
 <script>
 // Radio HD: enhance player page with app-style chrome
 function rhdEnhancePlayer(){
+  /* DISABLED 2026-10-19: renderListen now builds the complete redesigned player.
+     This old injector created duplicate/conflicting chrome with stale classes. */
+  return;
   try {
     var box = document.getElementById('listenStage');
     if(!box || box.querySelector('.rhd-player-top')) return;
