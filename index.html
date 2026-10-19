@@ -2158,6 +2158,56 @@ section[data-radio-section] {
   cursor: pointer;
   line-height: 1;
 }
+/* Mini dial in now playing bar (Radio HD app style) */
+.rhd-nowplaying .rhd-np-dial {
+  margin-top: 6px;
+  background: #0a0a0a;
+  border-radius: 4px;
+  padding: 4px 8px;
+  position: relative;
+  height: 28px;
+  overflow: hidden;
+}
+.rhd-nowplaying .rhd-np-dial-scale {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(to right, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 2px;
+}
+.rhd-nowplaying .rhd-np-dial-scale::before {
+  content: 'FM 88 92 96 100 104 108 MHz';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  right: 4px;
+  font-size: 7px;
+  color: #888;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.rhd-nowplaying .rhd-np-dial-scale::after {
+  content: 'AM 530 800 1000 1300 1700 kHz';
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  right: 4px;
+  font-size: 7px;
+  color: #666;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.rhd-nowplaying .rhd-np-dial-needle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #ff0000;
+  left: 50%;
+  z-index: 2;
+  box-shadow: 0 0 4px #ff0000;
+}
 /* Add bottom padding to radio sections for tab bar */
 #radio, #myradio, #intlradio { padding-bottom: 140px !important; }
 /* Desktop: tab bar becomes top tabs */
@@ -2204,6 +2254,12 @@ section[data-radio-section] {
   flex-shrink: 0;
 }
 .rhd-ptop .rhd-pbtn:active { background: #2a2a38; }
+.rhd-ptop .rhd-pbtn.rhd-power {
+  background: #cc0000;
+  border-color: #ff4444;
+  color: #fff;
+}
+.rhd-ptop .rhd-pbtn.rhd-power:active { background: #aa0000; }
 .rhd-led {
   flex: 1;
   background: #000;
@@ -6443,7 +6499,7 @@ function renderListen(id){
     + '<button class="rhd-pbtn" onclick="history.back()" aria-label="Back">\u2039</button>'
     + '<button class="rhd-pbtn" onclick="(function(b){var i=(typeof itemByKey===\'function\')?itemByKey(\'' + st.id + '\'):null;if(i&&typeof toggleFav===\'function\'){toggleFav(i);b.textContent=(typeof isFav===\'function\'&&isFav(i))?\'\u2665\':\'\u2661\';}})(this)" aria-label="Favorite">\u2661</button>'
     + '<div class="rhd-led">' + esc(rhdFreq) + ' \u2022 ' + esc(rhdCountry) + '</div>'
-    + '<button class="rhd-pbtn" aria-label="Power">\u23FB</button>'
+    + '<button class="rhd-pbtn rhd-power" onclick="if(typeof stopRadio===\'function\')stopRadio()" aria-label="Power">\u23FB</button>'
     + '</div>'
     + '<div class="rhd-dial">'
     + '<div class="rhd-dial-scale"><div class="rhd-dial-needle"></div></div>'
@@ -12679,6 +12735,7 @@ if(!location.hash){
     <div class="rhd-np-label">NOW PLAYING</div>
     <div class="rhd-np-name" id="rhdNpName">—</div>
     <div class="rhd-np-meta" id="rhdNpMeta">—</div>
+    <div class="rhd-np-dial"><div class="rhd-np-dial-scale"><div class="rhd-np-dial-needle" id="rhdNpNeedle"></div></div></div>
   </div>
   <button class="rhd-np-btn" id="rhdNpPlayPause" aria-label="Play/Pause">⏸</button>
 </div>
@@ -12721,6 +12778,11 @@ if(!location.hash){
         if(curStn.cc && typeof ccName !== 'undefined') meta.push(ccName(curStn.cc));
         npMeta.textContent = '● Live · ' + meta.join(' · ');
         npBtn.textContent = '⏸';
+        // Position needle on mini dial based on frequency
+        var needle = document.getElementById('rhdNpNeedle');
+        if(needle && curStn.freq && typeof rhdNeedlePos === 'function'){
+          try { needle.style.left = rhdNeedlePos(curStn.freq) + '%'; } catch(e){}
+        }
         np.classList.add('visible');
       } else if(typeof curStn !== 'undefined' && curStn){
         npBtn.textContent = '▶';
