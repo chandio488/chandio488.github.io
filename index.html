@@ -2278,6 +2278,8 @@ section[data-radio-section] {
   background: #cc0000;
   border-color: #ff4444;
   color: #fff;
+  font-size: 24px;
+  width: 48px; height: 48px;
 }
 .rhd-ptop .rhd-pbtn.rhd-power:active { background: #aa0000; }
 .rhd-ptop .rhd-pbtn.rhd-back {
@@ -2293,14 +2295,16 @@ section[data-radio-section] {
   border-radius: 8px;
   padding: 8px 12px;
   font-family: 'Courier New', monospace;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #00e5ff;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-shadow: 0 0 8px rgba(0,229,255,.6);
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 /* Tuning dial */
 .rhd-dial {
@@ -2347,6 +2351,7 @@ section[data-radio-section] {
 .rhd-pinfo .rhd-pflag { font-size: 28px; }
 .rhd-pinfo .rhd-pname {
   font-size: 20px; font-weight: 700; flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
 }
 .rhd-pinfo .rhd-pstatus {
   font-size: 14px; color: #ff9800;
