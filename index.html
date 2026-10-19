@@ -2417,22 +2417,22 @@ section[data-radio-section] {
   align-self: flex-end;
   margin-bottom: 1px;
 }
-/* Central country flag inside tuner (Section F - mandatory) */
-.rhd-tuner-flag {
+/* Big flag BELOW tuner in large rounded box (reference style) */
+.rhd-flagbox {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 72px;
+  font-size: 120px;
   line-height: 1;
-  padding: 12px 0;
-  margin: 8px 0;
-  min-height: 96px;
-  background: #f5f5f5;
-  border-radius: 24px;
+  padding: 24px 0;
+  margin: 12px 16px;
+  min-height: 180px;
+  background: #0d2b4e;
+  border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,.4);
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
 }
-.rhd-tuner-flag img { max-height: 80px; max-width: 70%; object-fit: contain; }
+.rhd-flagbox img { max-height: 140px; max-width: 75%; object-fit: contain; }
 .rhd-needle {
   position: absolute;
   top: -4px; bottom: -4px;
@@ -6755,18 +6755,19 @@ function renderListen(id){
     + '<div class="rhd-led" id="rhdLed">' + esc(ledText) + '</div>'
     + '<button class="rhd-pbtn rhd-power" id="rhdPowerBtn" aria-label="Power">\u23FB</button>'
     + '</div>'
-    /* 2. Analog tuner with CENTRAL FLAG between FM and AM scales (Section F) */
+    /* 2. Analog tuner - FM/AM scales only (no flag inside) */
     /* Tick marks like the reference app */
     + '<div class="rhd-tuner">'
     + '<div class="rhd-scale"><div class="rhd-needle" id="rhdNeedle" style="left:' + needlePos + '%"' + (needleTitle ? ' title="' + esc(needleTitle) + '"' : '') + '></div></div>'
     + '<div class="rhd-band-row"><span class="rhd-band-tag">FM</span>'
     + '<div class="rhd-scale-ticks"><span>88</span><i></i><span>92</span><i></i><span>96</span><i></i><span>100</span><i></i><span>104</span><i></i><span>108</span></div>'
     + '<span class="rhd-band-unit">MHz</span></div>'
-    + '<div class="rhd-tuner-flag" id="rhdTunerFlag">' + rhdFlag + '</div>'
     + '<div class="rhd-band-row"><span class="rhd-band-tag">AM</span>'
     + '<div class="rhd-scale-ticks"><span>530</span><i></i><span>800</span><i></i><span>1000</span><i></i><span>1300</span><i></i><span>1700</span></div>'
     + '<span class="rhd-band-unit">kHz</span></div>'
     + '</div>'
+    /* Big flag BELOW tuner in large rounded box (reference style) */
+    + '<div class="rhd-flagbox" id="rhdFlagBox">' + rhdFlag + '</div>'
     /* 3. Station name + status marquee */
     + '<div class="rhd-station">'
     + '<span class="rhd-sflag">' + rhdFlag + '</span>'
