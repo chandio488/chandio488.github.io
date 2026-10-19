@@ -2138,13 +2138,13 @@ section[data-radio-section] {
   color: #9ca3af;
 }
 .rhd-nowplaying .rhd-np-btn {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: #1E5AA8;
   color: #fff;
-  border: none;
-  font-size: 18px;
+  border: 2px solid #4a9ae8;
+  font-size: 24px;
   cursor: pointer;
   flex-shrink: 0;
   display: flex;
@@ -2267,6 +2267,12 @@ section[data-radio-section] {
   color: #fff;
 }
 .rhd-ptop .rhd-pbtn.rhd-power:active { background: #aa0000; }
+.rhd-ptop .rhd-pbtn.rhd-back {
+  background: #2a4a6b;
+  border-color: #4a8acb;
+  font-size: 26px;
+  font-weight: bold;
+}
 .rhd-led {
   flex: 1;
   background: #000;
@@ -6506,10 +6512,10 @@ function renderListen(id){
   var rhdChrome =
     '<div class="rhd-player">'
     + '<div class="rhd-ptop">'
-    + '<button class="rhd-pbtn" onclick="history.back()" aria-label="Back">\u2039</button>'
+    + '<button class="rhd-pbtn rhd-back" onclick="location.hash=\'#radio\'" aria-label="Back">\u2039</button>'
     + '<button class="rhd-pbtn" onclick="(function(b){var i=(typeof itemByKey===\'function\')?itemByKey(\'' + st.id + '\'):null;if(i&&typeof toggleFav===\'function\'){toggleFav(i);b.textContent=(typeof isFav===\'function\'&&isFav(i))?\'\u2665\':\'\u2661\';}})(this)" aria-label="Favorite">\u2661</button>'
     + '<div class="rhd-led">' + esc(rhdFreq) + ' \u2022 ' + esc(rhdCountry) + '</div>'
-    + '<button class="rhd-pbtn rhd-power" onclick="if(typeof stopRadio===\'function\')stopRadio()" aria-label="Power">\u23FB</button>'
+    + '<button class="rhd-pbtn rhd-power" onclick="if(typeof stopRadio===\'function\')stopRadio();location.hash=\'#radio\';" aria-label="Power">\u23FB</button>'
     + '</div>'
     + '<div class="rhd-dial">'
     + '<div class="rhd-dial-scale"><div class="rhd-dial-needle"></div></div>'
