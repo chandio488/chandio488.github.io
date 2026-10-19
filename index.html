@@ -2343,13 +2343,22 @@ section[data-radio-section] {
 .rhd-scale-row {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
-  color: #999;
+  align-items: flex-end;
+  font-size: 11px;
+  color: #aaa;
   font-family: 'Courier New', monospace;
-  padding: 0 4px;
+  padding: 0 6px;
   white-space: nowrap;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
+.rhd-scale-row span {
+  flex: 1;
+  text-align: center;
+}
+.rhd-scale-row span:first-child { text-align: left; }
+.rhd-scale-row span:last-child { text-align: right; }
 .rhd-scale-row .tick { color: #555; font-size: 8px; }
 .rhd-scale-row span.cur { color: #00e5ff; font-weight: 700; text-shadow: 0 0 6px rgba(0,229,255,.6); }
 .rhd-scale-label {
