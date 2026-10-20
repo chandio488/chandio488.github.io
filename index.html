@@ -11278,13 +11278,18 @@ if(window.speechSynthesis&&speechSynthesis.onvoiceschanged!==undefined){ speechS
     if(fhHijriEl) fhHijriEl.textContent=str;
     if(hijri2El) hijri2El.textContent='Hijri: '+str;
   }
+  // Correct Hijri month names, hardcoded — never trust a network string or a
+  // browser locale table for these (a wrong month name once showed up as "May").
+  var HIJRI_MONTHS_EN=['Muharram','Safar','Rabi al-Awwal','Rabi al-Thani','Jumada al-Ula','Jumada al-Akhirah','Rajab','Shaban','Ramadan','Shawwal','Dhul-Qadah','Dhul-Hijjah'];
+  function hijriMonthName(num){ num=parseInt(num,10); return (num>=1&&num<=12)?HIJRI_MONTHS_EN[num-1]:''; }
   // Instant on-device Hijri date (Islamic calendar built into the browser),
   // so the date shows even before — or entirely without — a network reply.
   try{
-    var hp=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).formatToParts(new Date());
+    var hp=new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'numeric',year:'numeric'}).formatToParts(new Date());
     var hd='',hm='',hy='';
     hp.forEach(function(p){ if(p.type==='day') hd=p.value; else if(p.type==='month') hm=p.value; else if(p.type==='year') hy=String(p.value).replace(/\s*AH\s*/i,''); });
-    if(hd&&hm&&hy) setHijri(hd+' '+hm+' '+hy+' AH');
+    var hmn=hijriMonthName(hm);
+    if(hd&&hmn&&hy) setHijri(hd+' '+hmn+' '+hy+' AH');
   }catch(e){}
   function cleanTime(s){ var m=/(\d{1,2}):(\d{2})/.exec(String(s||'')); return m? (parseInt(m[1],10)*60+parseInt(m[2],10)) : null; }
   function showNext(t){
@@ -11331,7 +11336,12 @@ if(window.speechSynthesis&&speechSynthesis.onvoiceschanged!==undefined){ speechS
   function applyAladhan(j){
     var d=j&&j.data; if(!d||!d.timings) throw new Error('bad data');
     var hj=d.date&&d.date.hijri;
-    if(hj) setHijri(hj.day+' '+((hj.month&&hj.month.en)||'')+' '+hj.year+' AH');
+    if(hj){
+      var mName=hijriMonthName(hj.month&&hj.month.number);
+      if(!mName && hj.month && hj.month.en && /[a-z]/i.test(hj.month.en) && !/^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i.test(hj.month.en)) mName=hj.month.en;
+      if(!mName) mName='';
+      setHijri((hj.day+' '+mName+' '+hj.year+' AH').replace(/ {2,}/g,' '));
+    }
     var t={}; ['Fajr','Dhuhr','Asr','Maghrib','Isha'].forEach(function(n){ t[n]=cleanTime(d.timings[n]); });
     showNext(t);
   }
