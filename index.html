@@ -6386,6 +6386,11 @@ function streamFailed(st){
     var bak = authorizedBackupUrl(st);
     if(bak){ st._fbTried = 1; tryBackupStream(st, bak); return; }
   }
+  /* One failed attempt can signal twice (the play() promise rejection AND the
+     audio element's error event). Count distinct attempts only: a repeat signal
+     for the same attempt within 2.5s is ignored, so the offline dialog requires
+     two real, separate tries. */
+  if(st){ var failNow = Date.now(); if(st._failAt && (failNow - st._failAt) < 2500) return; st._failAt = failNow; }
   isPlaying = false;
   radioPlaybackState = 'unavailable';
   mpState.textContent = 'Stream currently unavailable';
@@ -6489,7 +6494,7 @@ audio.addEventListener('error', function(){
   if(curStn && !radioHls) streamFailed(curStn);
 });
 audio.addEventListener('waiting', function(){ if(curStn && isPlaying !== false){ radioPlaybackState = 'buffering'; if(mpState) mpState.textContent = 'Buffering…'; syncRadioUI(); } });
-audio.addEventListener('playing', function(){ if(curStn){ curStn._failCount = 0; radioPlaybackState = 'playing'; isPlaying = true; if(mpState) mpState.textContent = '🔴 LIVE — ' + curStn.en; if(typeof setStationHealth === 'function') setStationHealth(curStn.id, 'live'); syncRadioUI(); } });
+audio.addEventListener('playing', function(){ if(curStn){ curStn._failCount = 0; curStn._failAt = 0; radioPlaybackState = 'playing'; isPlaying = true; if(mpState) mpState.textContent = '🔴 LIVE — ' + curStn.en; if(typeof setStationHealth === 'function') setStationHealth(curStn.id, 'live'); syncRadioUI(); } });
 
 /* ---- background playback: the shared `audio` element above is created
    once and never recreated; views come and go around it. The listeners
