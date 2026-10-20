@@ -2599,6 +2599,36 @@ section[data-radio-section] {
   .rhd-led { font-size: 14px; }
 }
 </style>
+
+<style id="lnt-theme">
+#view-tv #tvFilters, #view-tv #tvCrumb, #view-tv .md-filter-btn{display:none!important}
+#view-tv .ds-sec-h{background:linear-gradient(120deg,#7f0000,#c62828 45%,#8e0e00);border-radius:10px;padding:10px 14px}
+#view-tv .ds-sec-title{color:#fff!important}
+#view-tv #tvFolderBody{background:#101013;border-radius:12px;padding:10px}
+#view-tv .md-search-field{background:#1e1e23!important;border:1px solid #3a3a41!important;border-radius:10px}
+#view-tv .md-search-field input{color:#f5f5f5!important}
+#view-tv .md-search-field input::placeholder{color:#9e9ea7!important}
+.lnt-tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 4px;scrollbar-width:none}
+.lnt-tabs::-webkit-scrollbar{display:none}
+.lnt-tab{flex:0 0 auto;background:#26262c;color:#f1f1f1;border:1px solid #3d3d45;border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:700;letter-spacing:.4px;cursor:pointer;text-transform:uppercase}
+.lnt-tab.on{background:#43a047;border-color:#43a047;color:#fff}
+.lnt-tab .heart{color:#ff5252;margin-inline-end:5px}
+.lnt-tab.on .heart{color:#fff}
+.lnt-cc{display:flex;justify-content:space-between;align-items:center;margin:16px 0 9px;background:#1b1b20;color:#fff;padding:8px 12px;font-weight:800;font-size:14px;letter-spacing:.5px;border-inline-start:4px solid #d32f2f;border-radius:6px}
+.lnt-cc .lnt-n{color:#9e9ea7;font-size:12px;font-weight:600}
+#view-tv .lnt-gridwrap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(min-width:900px){#view-tv .lnt-gridwrap{grid-template-columns:repeat(5,1fr)}}
+#view-tv .chcard.lnt-card{background:#fdfdfd;border:1.5px solid #d32f2f;border-radius:12px;color:#141414;overflow:hidden}
+#view-tv .lnt-card .clogo{height:84px;background:#fff;position:relative}
+#view-tv .lnt-card .clogo.dark{background:linear-gradient(135deg,#eceff1,#cfd8dc)}
+#view-tv .lnt-card .clogo .mono{color:#546e7a}
+#view-tv .lnt-card .cbody-min{padding:7px 5px 9px;text-align:center;display:block}
+#view-tv .lnt-card .cbody-min h3{font-family:Georgia,'Times New Roman',serif;font-size:13.5px;font-weight:700;color:#161616;text-align:center;margin:0;line-height:1.25}
+#view-tv .lnt-card .curdu{display:block;font-size:11px;color:#777;margin-top:2px}
+#view-tv .lnt-card .favbtn{position:absolute;top:4px;inset-inline-end:4px;z-index:3;background:rgba(255,255,255,.88);border:none;border-radius:50%;width:26px;height:26px;font-size:15px;line-height:1;color:#b0bec5;cursor:pointer;padding:0}
+#view-tv .lnt-card .favbtn.on{color:#e53935}
+#view-tv .lnt-card .free-badge{font-size:8.5px;padding:1px 5px}
+</style>
 </head>
 <body>
 <div id="newsTicker" role="marquee" aria-label="Breaking News">
@@ -5217,6 +5247,7 @@ function renderCategoryPage(cat){
 /* ================= TV / radio browse ================= */
 var tvFilter = { country: 'all', cat: 'all', lang: 'all', live: false };
 var tvPath = [];
+var lntTab = 'ent';
 var TV_PROVS = [
   ['Sindh','Sindh','ic-p-sindh','ajrak','سندھ'],
   ['Punjab','Punjab','ic-p-punjab','phulkari','پنجاب'],
@@ -5264,120 +5295,90 @@ function bindTp(scope){
   });
 }
 function renderTv(){
-  renderCatFilterBar('tvFilters', tvFilter, renderTv);
-  addViewToggle('tvFilters', 'tv');
-  var fbar = document.getElementById('tvFilters');
-  var catSel = document.createElement('select');
-  catSel.className = 'sel sm'; catSel.setAttribute('aria-label', t('f_category'));
-  catSel.innerHTML = '<option value="all">' + t('f_category') + ': ' + t('f_all') + '</option>' + CATS.filter(function(c){ return c !== 'radio'; }).map(function(c){
-    var n = TV.filter(function(ch){ return ch.cat === c; }).length;
-    return n ? '<option value="' + c + '"' + (tvFilter.cat === c ? ' selected' : '') + '>' + catLabel(c) + ' (' + n + ')</option>' : '';
-  }).join('');
-  catSel.addEventListener('change', function(){ tvFilter.cat = catSel.value; renderTv(); });
-  fbar.insertBefore(catSel, fbar.children[1] || null);
   var foldersEl = document.getElementById('tvFolders');
   var grid = document.getElementById('tvGrid');
   var crumb = document.getElementById('tvCrumb');
   var emptyEl = document.getElementById('tvEmpty');
-  function crumbHTML(items){
-    return items.map(function(it, i){
-      return (i ? '<span class="csep" aria-hidden="true">›</span>' : '')
-        + '<button type="button" class="fbtn' + (i === items.length - 1 ? ' on' : '') + '" data-tp="' + it[1] + '">' + it[0] + '</button>';
-    }).join('');
-  }
-  function showFolders(html, items, countText){
-    grid.style.display = 'none'; grid.innerHTML = '';
-    emptyEl.style.display = 'none';
-    foldersEl.style.display = ''; foldersEl.innerHTML = html; bindTp(foldersEl);
-    crumb.innerHTML = crumbHTML(items); bindTp(crumb);
-  }
-  function showChannels(list, items){
-    var shown = list.filter(function(ch){
-      if(tvFilter.cat !== 'all' && ch.cat !== tvFilter.cat) return false;
-      return true;
-    });
-    shown = applyFilters(shown, tvFilter);
-    foldersEl.style.display = 'none'; foldersEl.innerHTML = '';
-    grid.style.display = '';
-    renderGrid(grid, shown); bindCards(grid);
-    emptyEl.style.display = shown.length ? 'none' : 'block';
-    crumb.innerHTML = crumbHTML(items); bindTp(crumb);
+  var fbar = document.getElementById('tvFilters');
+  if(fbar) fbar.style.display = 'none';
+  if(crumb) crumb.style.display = 'none';
+  if(foldersEl){ foldersEl.style.display = 'none'; foldersEl.innerHTML = ''; }
+  if(tvPath && tvPath.length){
+    if(tvPath[0] === 'cat' && tvPath[1]) lntTab = tvPath[1];
+    else if(tvPath[0] === 'pk') lntTab = tvPath[1] ? 'pk:' + tvPath[1] : 'pk';
+    else if(tvPath[0] === 'in') lntTab = 'in';
+    else if(tvPath[0] === 'intl') lntTab = tvPath[1] ? 'cc:' + tvPath[1] : 'intlcat';
+    tvPath = [];
   }
   var searchEl = document.getElementById('tvSearchUni');
-  var searching = !!(searchEl && searchEl.value.trim());
+  var q = searchEl && searchEl.value ? searchEl.value.trim().toLowerCase() : '';
+  var searching = !!q;
+  var tabsEl = document.getElementById('lntTabs');
+  if(!tabsEl){
+    tabsEl = document.createElement('div'); tabsEl.id = 'lntTabs'; tabsEl.className = 'lnt-tabs';
+    grid.parentNode.insertBefore(tabsEl, grid);
+  }
+  var TABORDER = ['ent','news','sports','movies','urdu','sindhi','arabic','farsi','intlcat'];
+  tabsEl.innerHTML = '<button type="button" class="lnt-tab favtab' + (lntTab === 'fav' && !searching ? ' on' : '') + '" data-ltab="fav"><span class="heart">♥</span>Favorites</button>'
+    + TABORDER.map(function(k2){ var d = tvCatDef(k2); return d ? '<button type="button" class="lnt-tab' + (lntTab === k2 && !searching ? ' on' : '') + '" data-ltab="' + k2 + '">' + d.title + '</button>' : ''; }).join('');
+  tabsEl.querySelectorAll('[data-ltab]').forEach(function(b){
+    b.addEventListener('click', function(){ lntTab = b.getAttribute('data-ltab'); if(searchEl) searchEl.value = ''; renderTv(); });
+  });
+  var list;
   if(searching){
-    showChannels(TV, [['TV',''],['Search results','']]);
-    return;
+    list = TV.filter(function(ch){ return (ch.en + ' ' + (ch.ur || '') + ' ' + countryName(ch.cc) + ' ' + ch.cc + ' ' + ch.lang + ' ' + ch.cat).toLowerCase().indexOf(q) >= 0; });
+  } else if(lntTab === 'fav'){
+    list = TV.filter(function(ch){ return isFav(ch); });
+  } else if(lntTab === 'pk'){
+    list = TV.filter(function(ch){ return ch.cc === 'PK'; });
+  } else if(lntTab.indexOf('pk:') === 0){
+    var prov = lntTab.slice(3);
+    list = TV.filter(function(ch){ return ch.cc === 'PK' && tvProvOf(ch) === prov; });
+  } else if(lntTab === 'in'){
+    list = TV.filter(function(ch){ return ch.cc === 'IN'; });
+  } else if(lntTab.indexOf('cc:') === 0){
+    var ccw = lntTab.slice(3);
+    list = TV.filter(function(ch){ return ch.cc === ccw; });
+  } else {
+    var def = tvCatDef(lntTab) || tvCatDef('ent');
+    list = TV.filter(def.filter);
   }
-  // Apply category filter to folder lists (fix: filter now updates folders)
-  function tvBase(){ 
-    return TV.filter(function(c){ 
-      return tvFilter.cat === 'all' || c.cat === tvFilter.cat; 
-    }); 
+  function lntCard(ch){
+    var fav = isFav(ch);
+    var favBtn = '<button type="button" class="favbtn' + (fav ? ' on' : '') + '" data-fav="' + favKey(ch) + '" aria-label="' + (fav ? 'Remove ' : 'Add ') + esc(ch.en) + ' to favorites">' + (fav ? '♥' : '♡') + '</button>';
+    var logo = ch.logo
+      ? '<span class="clogo"><img src="assets/logos/' + esc(ch.logo) + '" alt="' + esc(ch.en) + ' logo" loading="lazy"><span class="free-badge">FREE</span>' + favBtn + '</span>'
+      : '<span class="clogo dark"><span class="mono">' + esc(initials(ch.en)) + '</span><span class="free-badge">FREE</span>' + favBtn + '</span>';
+    return '<article class="chcard lnt-card" tabindex="0" role="link" aria-label="' + esc(ch.en) + '" data-href="#watch/' + ch.id + '">'
+      + logo
+      + '<span class="cbody-min"><h3 lang="en">' + esc(ch.en) + '</h3>'
+      + (ch.ur && ch.ur !== ch.en ? '<span class="curdu" lang="ur" dir="rtl">' + esc(ch.ur) + '</span>' : '')
+      + '</span></article>';
   }
-  var tvFiltered = tvBase();
-  var pkList = tvFiltered.filter(function(c){ return c.cc === 'PK'; });
-  var inList = tvFiltered.filter(function(c){ return c.cc === 'IN'; });
-  var intlList = tvFiltered.filter(function(c){ return c.cc !== 'PK' && c.cc !== 'IN'; });
-  if(tvPath.length === 0){
-    var catHtml = TV_CAT_DEFS.map(function(d){
-        var n = tvFiltered.filter(d.filter).length;
-        return tvFolderCard('cat/' + d.key, d.icon, '', d.title, d.ur, n);
-      }).join('')
-      + tvFolderCard('pk','ic-f-pk','','PAKISTAN','پاکستان', pkList.length)
-      + tvFolderCard('in','ic-f-in','','INDIA','بھارت', inList.length)
-      + tvFolderCard('intl','ic-globe','','INTERNATIONAL — BY COUNTRY','بین الاقوامی', intlList.length);
-    showFolders(catHtml,
-      [['TV','']], tvFiltered.length + ' ' + t('channels'));
-    return;
-  }
-  if(tvPath[0] === 'cat' && tvPath.length === 2){
-    var def = tvCatDef(tvPath[1]);
-    if(def){
-      var listC = TV.filter(def.filter);
-      showChannels(listC, [['TV',''],[def.title, 'cat/' + def.key]]);
-      return;
-    }
-  }
-  if(tvPath[0] === 'pk' && tvPath.length === 1){
-    var htmlPk = TV_PROVS.map(function(p){
-      var n = pkList.filter(function(ch){ return tvProvOf(ch) === p[0]; }).length;
-      return tvFolderCard('pk/' + p[0], p[2], p[3], p[1].toUpperCase(), p[4], n);
-    }).join('');
-    showFolders(htmlPk, [['TV',''],['Pakistan','pk']], pkList.length + ' ' + t('channels'));
-    return;
-  }
-  if(tvPath[0] === 'pk' && tvPath.length === 2){
-    var pd = null;
-    TV_PROVS.forEach(function(p){ if(p[0] === tvPath[1]) pd = p; });
-    var listP = pkList.filter(function(ch){ return tvProvOf(ch) === tvPath[1]; });
-    showChannels(listP, [['TV',''],['Pakistan','pk'],[(pd ? pd[1] : tvPath[1]), 'pk/' + tvPath[1]]]);
-    return;
-  }
-  if(tvPath[0] === 'in'){
-    showChannels(inList, [['TV',''],['India','in']]);
-    return;
-  }
-  if(tvPath[0] === 'intl' && tvPath.length === 1){
-    var ccs = [];
-    intlList.forEach(function(c){ if(ccs.indexOf(c.cc) < 0) ccs.push(c.cc); });
-    ccs.sort(function(a, b){
-      return intlList.filter(function(c){ return c.cc === b; }).length - intlList.filter(function(c){ return c.cc === a; }).length;
+  var groups = {}, order = [];
+  list.forEach(function(ch){ if(!groups[ch.cc]){ groups[ch.cc] = []; order.push(ch.cc); } groups[ch.cc].push(ch); });
+  order.sort(function(a, b){
+    var pa = a === 'PK' ? 0 : a === 'IN' ? 1 : 2, pb = b === 'PK' ? 0 : b === 'IN' ? 1 : 2;
+    if(pa !== pb) return pa - pb;
+    return groups[b].length - groups[a].length || countryName(a).localeCompare(countryName(b));
+  });
+  var html = '';
+  if(searching){
+    html += '<div class="lnt-cc"><span>SEARCH RESULTS</span><span class="lnt-n">' + list.length + '</span></div><div class="lnt-gridwrap">' + list.map(lntCard).join('') + '</div>';
+  } else {
+    order.forEach(function(cc){
+      html += '<div class="lnt-cc"><span>' + (countryFlag(cc) ? countryFlag(cc) + ' ' : '') + esc(countryName(cc).toUpperCase()) + '</span><span class="lnt-n">' + groups[cc].length + ' channels</span></div>'
+        + '<div class="lnt-gridwrap">' + groups[cc].map(lntCard).join('') + '</div>';
     });
-    var htmlC = ccs.map(function(cc){
-      var n = intlList.filter(function(c){ return c.cc === cc; }).length;
-      return tvFolderCard('intl/' + cc, COUNTRY_ICONS[cc] || 'ic-globe', '', (countryFlag(cc) ? countryFlag(cc) + ' ' : '') + countryName(cc).toUpperCase(), '', n);
-    }).join('');
-    showFolders(htmlC, [['TV',''],['International','intl']], intlList.length + ' ' + t('channels'));
-    return;
   }
-  if(tvPath[0] === 'intl' && tvPath.length === 2){
-    var listI = intlList.filter(function(c){ return c.cc === tvPath[1]; });
-    showChannels(listI, [['TV',''],['International','intl'],[countryName(tvPath[1]), 'intl/' + tvPath[1]]]);
-    return;
-  }
-  tvPath = [];
-  renderTv();
+  grid.className = 'grid g-chans lnt-host';
+  grid.style.display = '';
+  grid.innerHTML = html;
+  bindCards(grid);
+  grid.querySelectorAll('.favbtn').forEach(function(b){
+    b.addEventListener('click', function(){ if(lntTab === 'fav' && !searching) setTimeout(renderTv, 60); });
+  });
+  if(emptyEl) emptyEl.style.display = list.length ? 'none' : 'block';
 }
 /* TV / Radio main-folder toggles + TV search opens the folder */
 (function(){
