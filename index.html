@@ -6421,7 +6421,6 @@ function playStation(st){
   function beginPlay(){
     audio.play().then(function(){
       isPlaying = true; radioPlaybackState = 'playing'; mpState.textContent = '🔴 LIVE — ' + st.en;
-      if(typeof setStationHealth === 'function') setStationHealth(st.id, 'live');
       syncRadioUI();
     }).catch(function(){ streamFailed(st); });
     syncRadioUI();
@@ -12291,9 +12290,9 @@ function probeStream(st, done){
   var a = new Audio();
   a.preload = 'auto'; a.muted = true;
   var hls = null, finished = false;
-  var timer = setTimeout(function(){ finish(false); }, 12000);
+  var timer = null;
   function cleanup(){
-    clearTimeout(timer);
+    if(timer) clearTimeout(timer);
     try{ a.pause(); }catch(e){}
     if(hls){ try{ hls.destroy(); }catch(e){} hls = null; }
     a.removeAttribute('src');
@@ -12306,21 +12305,38 @@ function probeStream(st, done){
   var url = st.stream;
   var isHlsStream = st.kind === 'hls' || /\.m3u8(\?|$)/i.test(url);
   var nativeHls = !!(a.canPlayType && a.canPlayType('application/vnd.apple.mpegurl'));
-  if(isHlsStream && !nativeHls && window.Hls && Hls.isSupported()){
-    hls = new Hls({ enableWorker:true });
-    hls.loadSource(url);
-    hls.attachMedia(a);
-    hls.on(Hls.Events.ERROR, function(_, d){ if(d && d.fatal) finish(false); });
-  } else {
-    a.src = url;
+  function startProbe(){
+    if(finished) return;
+    timer = setTimeout(function(){ finish(false); }, 12000);
+    if(isHlsStream && !nativeHls && window.Hls && Hls.isSupported()){
+      hls = new Hls({ enableWorker:true });
+      hls.loadSource(url);
+      hls.attachMedia(a);
+      hls.on(Hls.Events.ERROR, function(_, d){ if(d && d.fatal) finish(false); });
+    } else {
+      a.src = url;
+    }
+    var p = null;
+    try{ p = a.play(); }catch(e){}
+    if(p && p.catch) p.catch(function(){});
   }
-  var p = null;
-  try{ p = a.play(); }catch(e){}
-  if(p && p.catch) p.catch(function(){});
+  if(isHlsStream && !nativeHls && !(window.Hls && Hls.isSupported())){
+    /* HLS library not loaded yet: wait for it rather than stamping a false OFFLINE.
+       If it never arrives the result is INCONCLUSIVE (null), never a fake verdict. */
+    var waited = 0;
+    var iv = setInterval(function(){
+      if(finished){ clearInterval(iv); return; }
+      waited += 300;
+      if(window.Hls && Hls.isSupported()){ clearInterval(iv); startProbe(); }
+      else if(waited >= 6000){ clearInterval(iv); finish(null); }
+    }, 300);
+  } else {
+    startProbe();
+  }
 }
 function checkStationHealth(st, force){
   if(!st || !st.playable || !st.stream) return;
-  if(curStn && curStn.id === st.id && isPlaying){ setStationHealth(st.id, 'live'); return; }
+  if(curStn && curStn.id === st.id && typeof radioPlaybackState !== 'undefined' && radioPlaybackState === 'playing' && typeof audio !== 'undefined' && audio && !audio.paused && audio.readyState >= 3){ setStationHealth(st.id, 'live'); return; }
   if(location.protocol === 'https:' && st.stream.indexOf('http://') === 0){ setStationHealth(st.id, 'offline'); return; }
   if(healthChecking[st.id]) return;
   if(stationHealth[st.id] && !force){ renderListenHealth(); return; }
@@ -12328,6 +12344,7 @@ function checkStationHealth(st, force){
   renderListenHealth();
   probeStream(st, function(ok){
     delete healthChecking[st.id];
+    if(ok === null){ renderListenHealth(); return; }
     setStationHealth(st.id, ok ? 'live' : 'offline');
   });
 }
