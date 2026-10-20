@@ -2608,6 +2608,8 @@ section[data-radio-section] {
 #view-tv .md-search-field{background:#1e1e23!important;border:1px solid #3a3a41!important;border-radius:10px}
 #view-tv .md-search-field input{color:#f5f5f5!important}
 #view-tv .md-search-field input::placeholder{color:#9e9ea7!important}
+#view-tv #tvGrid.lnt-host{display:block!important;grid-template-columns:none!important}
+#view-tv .lnt-gridwrap{width:100%}
 .lnt-tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 4px;scrollbar-width:none}
 .lnt-tabs::-webkit-scrollbar{display:none}
 .lnt-tab{flex:0 0 auto;background:#26262c;color:#f1f1f1;border:1px solid #3d3d45;border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:700;letter-spacing:.4px;cursor:pointer;text-transform:uppercase}
@@ -5371,8 +5373,8 @@ function renderTv(){
         + '<div class="lnt-gridwrap">' + groups[cc].map(lntCard).join('') + '</div>';
     });
   }
-  grid.className = 'grid g-chans lnt-host';
-  grid.style.display = '';
+  grid.className = 'lnt-host';
+  grid.style.display = 'block';
   grid.innerHTML = html;
   bindCards(grid);
   grid.querySelectorAll('.favbtn').forEach(function(b){
