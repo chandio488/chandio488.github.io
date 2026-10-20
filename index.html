@@ -5462,7 +5462,7 @@ function stationStatusText(st){
   if(st.httpOnly) return 'HTTP-only official stream — opens on the broadcaster’s official site';
   if(st.schedule === '24/7') return '🟢 LIVE · 24×7';
   if(st.schedule && st.schedule !== 'not-published') return '🟢 LIVE · Broadcast Time: ' + st.schedule;
-  return '🟢 LIVE · Schedule not published';
+  return 'Schedule not published';
 }
 
 // Radio HD: country code to flag emoji
@@ -6391,7 +6391,11 @@ function streamFailed(st){
   mpState.textContent = 'Stream currently unavailable';
   if(st && st.site) showMpSite(st); else hideMpSite();
   if(st && typeof setStationHealth === 'function') setStationHealth(st.id, 'offline');
-  if(typeof showStationOffline === 'function') showStationOffline();
+  /* The offline dialog appears only when a repeat attempt also fails; a single
+     transient first failure must not declare the station off-air. The inline
+     unavailable state still shows immediately. */
+  if(st){ st._failCount = (st._failCount || 0) + 1; if(st._failCount >= 2 && typeof showStationOffline === 'function') showStationOffline(); }
+  else if(typeof showStationOffline === 'function') showStationOffline();
   syncRadioUI();
 }
 function playStation(st){
@@ -6425,12 +6429,24 @@ function playStation(st){
     }).catch(function(){ streamFailed(st); });
     syncRadioUI();
   }
-  if(isHlsStream && !nativeHls && window.Hls && Hls.isSupported()){
+  function startHlsPlay(){
     radioHls = new Hls({ enableWorker: true });
     radioHls.loadSource(srcUrl);
     radioHls.attachMedia(audio);
     radioHls.on(Hls.Events.MANIFEST_PARSED, function(){ beginPlay(); });
     radioHls.on(Hls.Events.ERROR, function(_, data){ if(data && data.fatal) streamFailed(st); });
+  }
+  if(isHlsStream && !nativeHls && window.Hls && Hls.isSupported()){
+    startHlsPlay();
+  } else if(isHlsStream && !nativeHls){
+    /* HLS library still loading: wait for it instead of failing the first attempt. */
+    var hlsWaited = 0;
+    var hlsIv = setInterval(function(){
+      if(curStn !== st){ clearInterval(hlsIv); return; }
+      hlsWaited += 300;
+      if(window.Hls && Hls.isSupported()){ clearInterval(hlsIv); startHlsPlay(); }
+      else if(hlsWaited >= 6000){ clearInterval(hlsIv); audio.src = srcUrl; beginPlay(); }
+    }, 300);
   } else {
     audio.src = srcUrl;
     beginPlay();
@@ -6473,7 +6489,7 @@ audio.addEventListener('error', function(){
   if(curStn && !radioHls) streamFailed(curStn);
 });
 audio.addEventListener('waiting', function(){ if(curStn && isPlaying !== false){ radioPlaybackState = 'buffering'; if(mpState) mpState.textContent = 'Buffering…'; syncRadioUI(); } });
-audio.addEventListener('playing', function(){ if(curStn){ radioPlaybackState = 'playing'; isPlaying = true; if(mpState) mpState.textContent = '🔴 LIVE — ' + curStn.en; if(typeof setStationHealth === 'function') setStationHealth(curStn.id, 'live'); syncRadioUI(); } });
+audio.addEventListener('playing', function(){ if(curStn){ curStn._failCount = 0; radioPlaybackState = 'playing'; isPlaying = true; if(mpState) mpState.textContent = '🔴 LIVE — ' + curStn.en; if(typeof setStationHealth === 'function') setStationHealth(curStn.id, 'live'); syncRadioUI(); } });
 
 /* ---- background playback: the shared `audio` element above is created
    once and never recreated; views come and go around it. The listeners
