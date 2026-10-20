@@ -3545,6 +3545,11 @@ section[data-radio-section] {
 </div>
 
 <!-- ================= RADIO ================= -->
+<style>
+.band-cc-h{font-size:19px;margin:20px 0 4px;color:var(--tx)}
+.band-lang-h{font-size:15px;margin:14px 0 6px;color:var(--mut)}
+.band-n{color:var(--mut);font-size:13px;font-weight:600}
+</style>
 <div class="view" id="view-radio">
   <section class="blk ds-sec">
     <div class="radio-title-wrap radio-title-opt1">
@@ -4414,15 +4419,9 @@ section[data-radio-section] {
 /* Radio band filter: 'all' | 'am' | 'fm' — set by tab bar (#radio/band/am, #radio/band/fm) */
 var radioBandFilter = 'all';
 /* Check if a station is AM band (kHz frequency or AM in freq string) */
-function isAMStation(s){
-  var f = (s.freq || '').toLowerCase();
-  return f.indexOf('khz') > -1 || f.indexOf(' am') > -1 || f.indexOf('am ') === 0;
-}
+function isAMStation(s){ return stationBandSet(s).indexOf('AM') > -1; }
 /* Check if a station is FM band (FM in freq string) */
-function isFMStation(s){
-  var f = (s.freq || '').toLowerCase();
-  return f.indexOf('fm') > -1;
-}
+function isFMStation(s){ return stationBandSet(s).indexOf('FM') > -1; }
 /* Language priority for sorting: Urdu first, then Hindi, then Punjabi, then others */
 function langPriority(lang){
   var l = (lang || '').toLowerCase();
@@ -5593,6 +5592,15 @@ function renderRadio(){
     crumb.innerHTML = crumbHTML(crumbItems); bindRp(crumb);
     if(countEl) countEl.textContent = countText;
   }
+  function showBandList(list, html, crumbItems, countText){
+    foldersEl.style.display = 'none'; foldersEl.innerHTML = '';
+    grid.style.display = '';
+    grid.innerHTML = html;
+    bindCards(grid);
+    emptyEl.style.display = list.length ? 'none' : 'block';
+    crumb.innerHTML = crumbHTML(crumbItems); bindRp(crumb);
+    if(countEl) countEl.textContent = countText;
+  }
   function showFolders(html, crumbItems, countText){
     grid.style.display = 'none'; grid.innerHTML = '';
     emptyEl.style.display = 'none';
@@ -5603,6 +5611,27 @@ function renderRadio(){
     if(countEl) countEl.textContent = countText;
   }
   var rfOn = (typeof radioFiltersActive === 'function') && radioFiltersActive();
+  /* MUNA restructure: Local / International band views. Search and the filter
+     bar intersect INSIDE the band view instead of replacing it. */
+  var pathBand = null, pathCc = null;
+  if(radioPath[0] === 'local' && radioPath.length === 3){ pathCc = radioPath[1]; pathBand = radioPath[2]; }
+  else if(radioPath[0] === 'intl' && radioPath.length === 2){ pathBand = radioPath[1]; }
+  else if(radioPath.length === 0 && typeof radioBandFilter !== 'undefined' && (radioBandFilter === 'am' || radioBandFilter === 'fm')){ pathBand = radioBandFilter; }
+  if(pathBand){
+    var bandList = bandStationsFor(pathBand, pathCc);
+    if(q || rfOn){
+      var okIds = {};
+      radioFilteredList(q).forEach(function(s){ okIds[s.id] = 1; });
+      bandList = bandList.filter(function(s){ return !!okIds[s.id]; });
+    }
+    var bandName = pathBand === 'am' ? 'AM Band' : (pathBand === 'fm' ? 'FM Band' : 'Other bands / Online');
+    var bandCrumbs = pathCc
+      ? [['Radio', ''], ['Local Radio', 'local'], [countryName(pathCc), 'local/' + pathCc], [bandName, '']]
+      : (radioPath[0] === 'intl' ? [['Radio', ''], ['International Radio', 'intl'], [bandName, '']] : [['Radio', ''], [bandName, '']]);
+    showBandList(bandList, bandListHTML(bandList, !pathCc), bandCrumbs,
+      bandList.length + ' station' + (bandList.length === 1 ? '' : 's'));
+    return;
+  }
   if(q || rfOn){
     var shown = (typeof radioFilteredList === 'function')
       ? radioFilteredList(q)
@@ -5615,35 +5644,6 @@ function renderRadio(){
     return;
   }
   if(radioPath.length === 0){
-    // Band filter: AM or FM tab — show filtered stations directly, sorted per user spec
-    if(typeof radioBandFilter !== 'undefined' && (radioBandFilter === 'am' || radioBandFilter === 'fm')){
-      var bandStations = RADIO.filter(function(s){
-        return radioBandFilter === 'am' ? isAMStation(s) : isFMStation(s);
-      });
-      if(radioBandFilter === 'am'){
-        // AM: group by country (PK → IN → US → others), then by language (Urdu → Hindi → others)
-        bandStations.sort(function(a, b){
-          var ca = countryPriorityAM(a.cc), cb = countryPriorityAM(b.cc);
-          if(ca !== cb) return ca - cb;
-          var la = langPriority(a.lang), lb = langPriority(b.lang);
-          if(la !== lb) return la - lb;
-          return (a.en || '').localeCompare(b.en || '');
-        });
-      } else {
-        // FM: sort by language (Urdu → Hindi → Punjabi → others)
-        bandStations.sort(function(a, b){
-          var la = langPriority(a.lang), lb = langPriority(b.lang);
-          if(la !== lb) return la - lb;
-          var ca = countryPriorityAM(a.cc), cb = countryPriorityAM(b.cc);
-          if(ca !== cb) return ca - cb;
-          return (a.en || '').localeCompare(b.en || '');
-        });
-      }
-      var bandLabel = radioBandFilter === 'am' ? 'AM Band' : 'FM Band';
-      showStations(bandStations, [['Radio', ''], [bandLabel, '']],
-        bandStations.length + ' station' + (bandStations.length === 1 ? '' : 's'), true);
-      return;
-    }
     var ccs = [];
     RADIO.forEach(function(s){ if(s.cc && ccs.indexOf(s.cc) < 0) ccs.push(s.cc); });
     ccs.sort(function(a, b){
@@ -5656,7 +5656,40 @@ function renderRadio(){
       var n = RADIO.filter(function(s){ return s.cc === cc; }).length;
       return radioCountryFolderHTML(cc, n);
     }).join('');
-    showFolders(html0, [['Radio', '']], '');
+    var localN = RADIO.filter(function(s){ return s.cc === 'PK' || s.cc === 'IN'; }).length;
+    var entryHtml = folderCardHTML('local', 'ic-f-pk', '', 'LOCAL RADIO — Pakistan & India', '', '', localN)
+      + folderCardHTML('intl', 'ic-globe2', '', 'INTERNATIONAL RADIO — AM / FM', '', '', RADIO.length);
+    showFolders(entryHtml + html0, [['Radio', '']], '');
+    return;
+  }
+  if(radioPath[0] === 'local' && radioPath.length === 1){
+    var htmlL = ['PK', 'IN'].map(function(cc){
+      var n = RADIO.filter(function(s){ return s.cc === cc; }).length;
+      return '<button type="button" class="fcard rfolder" data-rp="local/' + cc + '">'
+        + '<span class="rfolder-flag" aria-hidden="true">' + esc(countryFlag(cc) || '🌐') + '</span>'
+        + '<span class="ftitle" lang="en">' + esc(countryName(cc)) + '</span>'
+        + '<span class="fcount" lang="en">' + n + ' station' + (n === 1 ? '' : 's') + '</span></button>';
+    }).join('');
+    showFolders(htmlL, [['Radio', ''], ['Local Radio', 'local']], '');
+    return;
+  }
+  if(radioPath[0] === 'local' && radioPath.length === 2){
+    var ccL = radioPath[1];
+    var bandCards = [['am', 'AM Band'], ['fm', 'FM Band'], ['other', 'Other bands / Online']].map(function(bc){
+      var n = bandStationsFor(bc[0], ccL).length;
+      if(!n) return '';
+      return folderCardHTML('local/' + ccL + '/' + bc[0], bc[0] === 'other' ? 'ic-globe' : 'ic-music', '', bc[1], '', '', n);
+    }).join('');
+    showFolders(bandCards, [['Radio', ''], ['Local Radio', 'local'], [countryName(ccL), 'local/' + ccL]], '');
+    return;
+  }
+  if(radioPath[0] === 'intl' && radioPath.length === 1){
+    var bandCardsI = [['am', 'AM Band'], ['fm', 'FM Band'], ['other', 'Other bands / Online']].map(function(bc){
+      var n = bandStationsFor(bc[0], null).length;
+      if(!n) return '';
+      return folderCardHTML('intl/' + bc[0], bc[0] === 'other' ? 'ic-globe' : 'ic-music', '', bc[1], '', '', n);
+    }).join('');
+    showFolders(bandCardsI, [['Radio', ''], ['International Radio', 'intl']], '');
     return;
   }
   if(radioPath[0] === 'c' && radioPath.length === 2){
@@ -6615,6 +6648,83 @@ function radioBandInfo(st){
     return { band:'ONLINE', display:'ONLINE LIVE', num:null, unit:'', verified:false, parsed:null };
   }
   return { band:'ONLINE', display:'ONLINE LIVE', num:null, unit:'', verified:false, parsed:null };
+}
+/* ===== MUNA RADIO RESTRUCTURE (test branch) =====
+   Band membership is computed ONLY from the record's own freq text — the same
+   evidence rule as parseVerifiedFreq, extended with dual-band detection and the
+   reversed "FM 93.3" form. No record data is changed; views are filters over
+   the single RADIO array, so a station keeps one ID and one record. */
+function stationBandSet(st){
+  var out = [];
+  var raw = String((st && st.freq) || '').trim();
+  if(!raw || raw === 'N/A — Online' || raw === 'N/A - Online' || raw === 'لائیو' || raw === 'AM/FM' || raw === 'اردو بھی') return out;
+  var s = raw.replace(/,/g, ' ');
+  var fm = false, m;
+  m = s.match(/(\d+(?:\.\d+)?)\s*(?:MHz|FM)/i);
+  if(m){ var v = parseFloat(m[1]); if(v >= 87 && v <= 108.5) fm = true; }
+  if(!fm){ m = s.match(/\bFM\s*(\d+(?:\.\d+)?)/i); if(m){ var v2 = parseFloat(m[1]); if(v2 >= 87 && v2 <= 108.5) fm = true; } }
+  if(fm) out.push('FM');
+  var am = false, sw = false, re = /(\d+(?:\.\d+)?)\s*(?:kHz|KHZ)/gi, km;
+  while((km = re.exec(s)) !== null){ var kv = parseFloat(km[1]); if(kv >= 500 && kv <= 1700) am = true; else if(kv > 1700) sw = true; }
+  if(!am){ m = s.match(/(\d{3,4})\s*AM\b/i); if(m){ var av = parseFloat(m[1]); if(av >= 500 && av <= 1700) am = true; } }
+  if(am) out.push('AM');
+  if(sw) out.push('SW');
+  if(!out.length && /DAB\+?/i.test(s)) out.push('DAB');
+  return out;
+}
+function bandStationsFor(bandKey, ccOnly){
+  return RADIO.filter(function(s){
+    if(ccOnly && s.cc !== ccOnly) return false;
+    var bs = stationBandSet(s);
+    if(bandKey === 'am') return bs.indexOf('AM') > -1;
+    if(bandKey === 'fm') return bs.indexOf('FM') > -1;
+    return bs.indexOf('AM') < 0 && bs.indexOf('FM') < 0;
+  });
+}
+var LANG_ORDER_MAIN = ['Urdu', 'Sindhi', 'Hindi', 'Punjabi', 'Bengali', 'Pashto', 'English'];
+function stationLangGroup(st){
+  var raw = String((st && st.lang) || '').trim();
+  if(!raw || /^(multilingual|community)/i.test(raw)) return { key:'mixed', rank:8, label:'Mixed / Multilingual' };
+  var p = rdPrimaryLang(st);
+  p = p.split(/[+\u2014&]/)[0].trim();
+  for(var i = 0; i < LANG_ORDER_MAIN.length; i++){
+    if(p.toLowerCase() === LANG_ORDER_MAIN[i].toLowerCase()) return { key:LANG_ORDER_MAIN[i].toLowerCase(), rank:i, label:LANG_ORDER_MAIN[i] };
+  }
+  if(p && p !== 'Live') return { key:'other:' + p.toLowerCase(), rank:7, label:p };
+  return { key:'mixed', rank:8, label:'Mixed / Multilingual' };
+}
+function bandListHTML(list, groupByCountry){
+  function langBuckets(sts){
+    var map = {}, order = [];
+    sts.forEach(function(s){
+      var g = stationLangGroup(s);
+      if(!map[g.key]){ map[g.key] = { g:g, items:[] }; order.push(g.key); }
+      map[g.key].items.push(s);
+    });
+    order.sort(function(a, b){
+      var ga = map[a].g, gb = map[b].g;
+      if(ga.rank !== gb.rank) return ga.rank - gb.rank;
+      return ga.label.localeCompare(gb.label);
+    });
+    return order.map(function(k){
+      var b = map[k];
+      b.items.sort(function(a, b2){ return (a.en || '').localeCompare(b2.en || ''); });
+      return '<h3 class="band-lang-h" lang="en">' + esc(b.g.label) + ' <span class="band-n">' + b.items.length + '</span></h3>'
+        + '<div class="rgrid">' + b.items.map(radioCardHTML).join('') + '</div>';
+    }).join('');
+  }
+  if(!groupByCountry) return langBuckets(list);
+  var ccs = [], byCc = {};
+  list.forEach(function(s){ if(!byCc[s.cc]){ byCc[s.cc] = []; ccs.push(s.cc); } byCc[s.cc].push(s); });
+  ccs.sort(function(a, b){
+    var pa = COUNTRY_PRIORITY.indexOf(a), pb = COUNTRY_PRIORITY.indexOf(b);
+    if(pa < 0) pa = 99; if(pb < 0) pb = 99;
+    if(pa !== pb) return pa - pb;
+    return countryName(a).localeCompare(countryName(b));
+  });
+  return ccs.map(function(cc){
+    return '<h3 class="band-cc-h" lang="en">' + esc(countryFlag(cc) || '🌐') + ' ' + esc(countryName(cc)) + ' <span class="band-n">' + byCc[cc].length + '</span></h3>' + langBuckets(byCc[cc]);
+  }).join('');
 }
 function rdCityLabel(st){
   /* city / place derived dynamically from the existing record only */
@@ -9088,6 +9198,7 @@ function route(){
     var band = parts[2].toLowerCase();
     if(band === 'am' || band === 'fm'){ radioBandFilter = band; }
     else { radioBandFilter = 'all'; }
+    radioPath = [];
     showView('radio'); if(typeof renderRadio === 'function') renderRadio(); return;
   }
   if(name === 'radio'){ radioBandFilter = 'all'; }
