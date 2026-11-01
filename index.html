@@ -1096,6 +1096,32 @@ input.search{border-radius:999px;min-height:52px;padding:0 18px}
 .md-pstopped .md-pgo{font-size:15px;padding:10px 22px;cursor:pointer}
 .md-np-badge{display:none;margin-inline-start:8px;background:#ffd34d;color:#231a00;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:800;vertical-align:middle}
 .md-profile.md-nowplaying .md-np-badge{display:inline-block}
+/* ---------- Research catalogue shelf + copy-link button (2026-11-01) ---------- */
+#researchShelf{margin-top:26px}
+.rc-intro{font-size:13.5px;color:var(--mut);line-height:1.9;margin:0 0 10px}
+.rc-group{font-size:18px;margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.rc-counts{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.rc-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:600;color:var(--mut)}
+.rc-pill b{color:#4cc3ff;font-family:var(--font-en);font-size:15px}
+.rc-status{display:inline-block;font-size:12px;font-weight:800;padding:3px 11px;border-radius:999px;border:1px solid var(--line);line-height:1.6}
+.rc-status.ok{background:#14532d;color:#bbf7d0;border-color:#166534}
+.rc-status.play{background:rgba(56,189,248,.14);color:var(--txt);border-color:var(--acc)}
+.rc-status.doubt{background:#451a03;color:#fed7aa;border-color:#9a3412}
+.rc-status.unclear{background:var(--card2);color:var(--mut)}
+.rc-status.sample{background:#3f2d04;color:#fde68a;border-color:#854d0e}
+.rc-licline{font-size:12.5px;color:var(--mut);line-height:1.7;margin:6px 0 0;overflow-wrap:anywhere}
+.rc-licline a{color:var(--acc)}
+.rc-note{font-size:12.5px;color:#fde68a;line-height:1.8;margin:6px 0 0}
+.rc-noembed{border:1px dashed var(--line);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--mut);line-height:1.85;margin:12px 0 4px;background:var(--card2)}
+.rc-listline{font-size:13px;color:var(--mut);line-height:1.85;margin:8px 0 0}
+.rc-dlrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
+.rc-ncnote{font-size:12.5px;color:var(--mut);line-height:1.7}
+.rc-dl-box{border:1px solid var(--acc);border-radius:18px;padding:16px 18px;margin:0 0 16px;background:var(--card)}
+.rc-dl-box h3{margin:0 0 6px;font-size:18px}
+.rc-dl-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.rc-dl-form input{flex:1 1 260px;min-height:44px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:14px}
+.md-copybtn{flex:none;margin-inline-start:auto;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:12.5px;font-weight:700;cursor:pointer;line-height:1.4;font-family:var(--font-urdu)}
+.md-copybtn:hover{border-color:var(--acc);color:var(--acc)}
 /* ---------- Platform selector (Chosic-style) + compact library stats + song menu ---------- */
 .md-libstats{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 2px;margin:0 0 10px;font-size:14px;color:var(--mut)}
 .md-libstats .md-stat-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600}
@@ -4440,6 +4466,7 @@ section[data-radio-section] {
     </div>
 
     </div>
+    <div id="researchShelf"></div>
   </section>
 </div>
 
@@ -8394,7 +8421,13 @@ function mdLoadDir(){
       p.onload = function(){
         var q = document.createElement('script');
         q.src = 'assets/jalal-full-catalogue-2026-11-01.js'; q.async = true;
-        q.onload = function(){ res(); };
+        q.onload = function(){
+          var r = document.createElement('script');
+          r.src = 'assets/research-catalogue-2026-11-01.js'; r.async = true;
+          r.onload = function(){ res(); };
+          r.onerror = function(){ if(r.parentNode) r.parentNode.removeChild(r); res(); };
+          document.head.appendChild(r);
+        };
         q.onerror = function(){ if(q.parentNode) q.parentNode.removeChild(q); res(); };
         document.head.appendChild(q);
       };
@@ -9065,6 +9098,10 @@ function mdSongCard(s, qi){
     + '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>';
   h += '<div class="md-song-main"><h3 class="md-song-title" title="' + esc(s.title) + '">' + esc(s.title) + '</h3>'
     + '<p class="md-song-sub">' + esc(s.artist || '') + '</p></div>';
+  // Copy-link button (owner order 2026-11-01): ONE renderer change — the
+  // delegated [data-mdcopy] handler on #mdBody and mdCopySongLink already
+  // resolve the song by id and copy mdSongLink(s). No data-file change.
+  h += '<button type="button" class="md-copybtn" data-mdcopy="' + esc(s.id) + '" title="لنک کاپی کریں" aria-label="Copy link — ' + esc(s.title) + '">🔗 لنک کاپی کریں</button>';
   h += '</article>';
   return h;
 }
