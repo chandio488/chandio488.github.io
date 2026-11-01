@@ -3385,8 +3385,8 @@ section[data-radio-section] {
           <span class="cbody-min"><h3 lang="en">NDTV Profit 🇮🇳</h3><p class="ch-meta" lang="en">Business · English</p></span>
           <div class="ch-actions"><button type="button" class="ds-btn ds-btn-copy" data-copy-url="https://www.ndtvprofit.com/live-tv" title="Copy link" aria-label="Copy link">📋</button>
             <button type="button" class="ds-btn" data-sv="https://www.ndtvprofit.com/live-tv" data-svtitle="NDTV Profit 🇮🇳">🌐 Official Website</button>
-            <button type="button" class="ds-btn" data-sv="https://www.youtube.com/@NDTVProfit" data-svtitle="NDTV Profit 🇮🇳">▶️ Official YouTube</button>
-            <button type="button" class="ds-btn" data-sv="https://www.youtube.com/@NDTVProfit" data-svtitle="NDTV Profit 🇮🇳">📺 Watch on YouTube</button>
+            <button type="button" class="ds-btn" data-yt-notice data-ch="NDTV Profit 🇮🇳">▶️ Official YouTube</button>
+            <button type="button" class="ds-btn" data-yt-notice data-ch="NDTV Profit 🇮🇳">📺 Watch on YouTube</button>
           </div>
           <div class="yt-embed-wrap" hidden></div>
         </article>
@@ -3396,8 +3396,8 @@ section[data-radio-section] {
           <span class="cbody-min"><h3 lang="en">CNBC TV18 🇮🇳</h3><p class="ch-meta" lang="en">Business · English</p></span>
           <div class="ch-actions"><button type="button" class="ds-btn ds-btn-copy" data-copy-url="https://www.cnbctv18.com/live-tv/" title="Copy link" aria-label="Copy link">📋</button>
             <button type="button" class="ds-btn" data-sv="https://www.cnbctv18.com/live-tv/" data-svtitle="CNBC TV18 🇮🇳">🌐 Official Website</button>
-            <button type="button" class="ds-btn" data-sv="https://www.youtube.com/@CNBCTV18News" data-svtitle="CNBC TV18 🇮🇳">▶️ Official YouTube</button>
-            <button type="button" class="ds-btn" data-sv="https://www.youtube.com/@CNBCTV18News" data-svtitle="CNBC TV18 🇮🇳">📺 Watch on YouTube</button>
+            <button type="button" class="ds-btn" data-yt-notice data-ch="CNBC TV18 🇮🇳">▶️ Official YouTube</button>
+            <button type="button" class="ds-btn" data-yt-notice data-ch="CNBC TV18 🇮🇳">📺 Watch on YouTube</button>
           </div>
           <div class="yt-embed-wrap" hidden></div>
         </article>
@@ -3643,15 +3643,17 @@ section[data-radio-section] {
           <span class="clogo dark"><span class="mono">DK</span></span>
           <span class="cbody-min"><h3 lang="en">Discovery Kids India 🇮🇳</h3><p class="ch-meta" lang="en">Kids · Hindi</p></span>
           <div class="ch-actions"><button type="button" class="ds-btn ds-btn-copy" data-copy-url="https://www.youtube.com/@DiscoveryKidsIndia" title="Copy link" aria-label="Copy link">📋</button>
-            <button type="button" class="ds-btn" data-sv="https://www.youtube.com/@DiscoveryKidsIndia" data-svtitle="Discovery Kids India 🇮🇳">▶️ Official YouTube</button>
+            <button type="button" class="ds-btn" data-yt-notice data-ch="Discovery Kids India 🇮🇳">▶️ Official YouTube</button>
           </div>
+          <div class="yt-embed-wrap" hidden></div>
         </article>
         <article class="chcard" tabindex="0">
           <span class="clogo dark"><span class="mono">Nick</span></span>
           <span class="cbody-min"><h3 lang="en">Nickelodeon India 🇮🇳</h3><p class="ch-meta" lang="en">Kids · Hindi</p></span>
           <div class="ch-actions"><button type="button" class="ds-btn ds-btn-copy" data-copy-url="https://www.youtube.com/@NickIndia" title="Copy link" aria-label="Copy link">📋</button>
-            <button type="button" class="ds-btn" data-sv="https://www.youtube.com/@NickIndia" data-svtitle="Nickelodeon India 🇮🇳">▶️ Official YouTube</button>
+            <button type="button" class="ds-btn" data-yt-notice data-ch="Nickelodeon India 🇮🇳">▶️ Official YouTube</button>
           </div>
+          <div class="yt-embed-wrap" hidden></div>
         </article>
       </div>
     </div>
@@ -4623,7 +4625,6 @@ section[data-radio-section] {
     </button>
     <input type="range" id="mpVol" class="mp-vol" min="0" max="100" value="100" aria-label="Volume">
     <button class="mp-stop" id="mpStop" aria-label="Stop"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg></button>
-    <a id="mpSite" class="mp-site" target="_blank" rel="noopener" style="display:none">Official Site ↗</a>
     <button class="mp-close" id="mpClose" aria-label="Close player">✕</button>
   </div>
 </div>
@@ -6742,9 +6743,12 @@ function stopRadio(){
   try { if(typeof window.__rhdSetStatus === 'function') window.__rhdSetStatus('Tuning...', false); } catch(e){}
   try { if(typeof window.__rhdSyncPlayBtn === 'function') window.__rhdSyncPlayBtn(); } catch(e){}
 }
-var mpSite = document.getElementById('mpSite');
-function hideMpSite(){ mpSite.style.display = 'none'; }
-function showMpSite(st){ hideMpSite(); }
+/* In-site playback lock (2026-11-01): the mini-player's old #mpSite
+   "Official Site ↗" anchor was removed from the page. It was a hide-only
+   stub that could never appear; these no-op functions remain so the
+   existing callers keep working with zero visible change. */
+function hideMpSite(){}
+function showMpSite(st){}
 function streamFailed(st){
   /* SMART FALLBACK: only an authorized backup stream already present in the
      station's own record may be tried — never an invented or third-party URL.
@@ -7455,8 +7459,10 @@ function renderListen(id){
   }
   var srcRows = '';
   if(st.stream) srcRows += '<div class="src-row"><span class="tag" lang="en">STREAM</span><b lang="en">' + (st.httpOnly ? 'Official stream (HTTP only)' : 'Official stream (plays here)') + '</b><span style="color:var(--mut)" lang="en">' + esc(st.stream) + '</span></div>';
-  if(st.site) srcRows += '<div class="src-row"><span class="tag" lang="en">SITE</span><b lang="en">Official broadcaster site</b><span style="color:var(--mut)" lang="en">' + esc(st.site) + '</span><a class="btn sm" lang="en" style="margin-inline-start:auto" target="_blank" rel="noopener" href="' + esc(st.site) + '">Open ↗</a></div>';
-  if(st.ssrc) srcRows += '<div class="src-row"><span class="tag" lang="en">SCHEDULE</span><b lang="en">Schedule source</b><span style="color:var(--mut)" lang="en">' + esc(st.ssrc) + '</span><a class="btn sm" lang="en" style="margin-inline-start:auto" target="_blank" rel="noopener" href="' + esc(st.ssrc) + '">Open ↗</a></div>';
+  // In-site playback lock (2026-11-01): the SITE / SCHEDULE source rows
+  // that carried "Open ↗" external buttons were deleted here. They were
+  // built then discarded below, and must never be rebuilt as visible
+  // external links.
   // User order 2026-10-17: hide sources section on simplified page
   document.getElementById('listenSources').innerHTML = '';
   if(hasPlayer){
@@ -9158,12 +9164,14 @@ function mdProfileDlHTML(p){
   // never derives a download URL from the embed, the page, or the stream.
   return '<div class="md-dlbox">'
     + '<span class="md-dl-status locked">🔒 Streaming Only</span>'
-    + '<p class="md-dl-msg" lang="en">Download Unavailable for this profile. ' + (p.embed_url ? 'You can listen using the official ' + esc(p.platform) + ' player above — playback stays inside this page, nothing is re-hosted.' : 'Listen on the official ' + esc(p.platform) + ' page linked above — nothing is re-hosted here.') + '</p>'
+    + '<p class="md-dl-msg" lang="en">Download Unavailable for this profile. ' + (p.embed_url ? 'You can listen using the official ' + esc(p.platform) + ' player above — playback stays inside this page, nothing is re-hosted.' : 'No official ' + esc(p.platform) + ' player can be embedded for this profile yet, so playback is not available inside this page — nothing is re-hosted here.') + '</p>'
     + '</div>';
 }
 function mdProfileCard(p, artist){
   var an = artist ? artist.name : '';
-  var officialLink = p.profile_url ? '<p class="md-src">Official destination: <a href="' + esc(p.profile_url) + '" target="_blank" rel="noopener" style="color:var(--acc);font-weight:700">Open on ' + esc(p.platform) + ' ↗</a></p>' : '';
+  // In-site playback lock (2026-11-01): the former "Open on <platform> ↗"
+  // external side-link was removed from every profile card. Playback stays
+  // in the official in-page widget; no card sends the visitor outside.
   if(!p.embed_url){
     // No playable official embed exists for this artist on this platform
     // (verified against the platform catalog) — official link only, never a fake player.
@@ -9171,7 +9179,6 @@ function mdProfileCard(p, artist){
       + '<div><span class="md-verified">✓ ' + esc(p.badge) + ' · verified ' + esc(p.verification_date) + '</span></div>'
       + '<h3>' + esc(an) + ' — ' + esc(p.badge) + ' profile</h3>'
       + '<p class="md-meta">' + esc(p.catalog_note) + '</p>'
-      + officialLink
       + mdProfileDlHTML(p)
       + '</article>';
   }
@@ -9180,7 +9187,6 @@ function mdProfileCard(p, artist){
     + '<h3>' + esc(an) + ' — ' + esc(p.badge) + ' player</h3>'
     + '<div class="md-pframe"><iframe class="md-pembed" src="' + esc(p.embed_url) + '" height="' + (p.embed_height || 352) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="' + esc(p.badge) + ' player — ' + esc(an) + '"></iframe><div class="md-pveil"><span>Loading official ' + esc(p.platform) + ' player…</span><button type="button" class="btn sm md-preload">↻ Reload player</button></div><button type="button" class="md-preload md-preload-corner" title="Reload player" aria-label="Reload ' + esc(p.platform) + ' player">↻</button></div>'
     + '<p class="md-meta">' + esc(p.catalog_note) + '</p>'
-    + officialLink
     + mdProfileDlHTML(p)
     + '</article>';
 }
@@ -13378,8 +13384,8 @@ if(!location.hash){
     <div class="sv-fallback" id="svFallback" hidden>
       <div>
         <div class="big" lang="en">This official site blocks in-page viewing</div>
-        <p lang="en">The broadcaster does not allow their website inside other pages. Use the button below to open their official site.</p>
-        <a class="sv-btn pri" id="svOpenOut" href="#" target="_blank" rel="noopener" lang="en">Open official site ↗</a>
+        <p lang="en">The broadcaster does not allow their website inside other pages, and this website never sends you outside. Try again below, or close this viewer and pick another card — the 📋 Copy Link button above copies the address without leaving this site.</p>
+        <button type="button" class="sv-btn pri" id="svRetry" lang="en">↻ Try again here</button>
       </div>
     </div>
   </div>
@@ -13435,7 +13441,8 @@ if(!location.hash){
   var svTitle = document.getElementById('svTitle');
   var svLoading = document.getElementById('svLoading');
   var svFallback = document.getElementById('svFallback');
-  var svOpenOut = document.getElementById('svOpenOut');
+  var svRetry = document.getElementById('svRetry');
+  var svLastUrl = '', svLastTitle = '';
   var svTimer = null;
   var svBlocked = false;
 
@@ -13445,13 +13452,13 @@ if(!location.hash){
     if(svLoading) svLoading.style.display = 'none';
     if(svFallback){
       svFallback.hidden = false;
-      if(svOpenOut) svOpenOut.href = url;
     }
   }
 
   window.openSiteViewer = function(url, title){
     if(!svModal || !svFrame) return;
     svBlocked = false;
+    svLastUrl = url; svLastTitle = title || '';
     if(svTitle) svTitle.textContent = title || 'Official site';
     if(svFallback) svFallback.hidden = true;
     if(svLoading) svLoading.style.display = 'grid';
@@ -13488,6 +13495,7 @@ if(!location.hash){
   };
 
   document.getElementById('svClose').addEventListener('click', window.closeSiteViewer);
+  if(svRetry) svRetry.addEventListener('click', function(){ if(svLastUrl) window.openSiteViewer(svLastUrl, svLastTitle); });
   document.getElementById('svCopy').addEventListener('click', function(){
     if(svFrame && svFrame.src && svFrame.src !== 'about:blank') window.spCopyText(svFrame.src, this);
   });
@@ -13522,6 +13530,31 @@ if(!location.hash){
         + '<div class="yt-embed-bar"><button type="button" class="ds-btn ds-btn-copy" data-copy-url="https://www.youtube.com/channel/' + chId + '/live" title="Copy link">\U0001F4CB Copy Link</button></div>';
       wrap.hidden = false;
       btn.innerHTML = '\u23f9\ufe0f Close Player';
+    });
+  });
+
+  /* ---------- YouTube channel-page buttons (data-yt-notice) ----------
+     These cards previously sent the Site Viewer to a youtube.com/@handle
+     page. YouTube refuses framing of its pages, so those buttons always
+     ended at the (now removed) external fallback. They now open an honest
+     in-site notice in the card's embed area instead; the visitor is never
+     sent outside. A real live embed needs the channel's UC ID, which is
+     not present in this build for these channels — switch a button to
+     data-yt-live only once its ID is verified, never guessed. */
+  document.querySelectorAll('[data-yt-notice]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = btn.closest('.chcard');
+      var wrap = card ? card.querySelector('.yt-embed-wrap') : null;
+      if(!wrap) return;
+      if(!wrap.hidden){
+        wrap.hidden = true; wrap.innerHTML = '';
+        btn.innerHTML = btn.getAttribute('data-orig-label') || '\u25b6\ufe0f Official YouTube';
+        return;
+      }
+      if(!btn.getAttribute('data-orig-label')) btn.setAttribute('data-orig-label', btn.innerHTML);
+      wrap.innerHTML = '<p lang="en" style="padding:10px 12px;color:#9fb3d1;font-size:.9rem">This channel\u2019s live stream cannot be played inside this website yet \u2014 YouTube blocks its channel pages from opening inside other sites. You have not been sent outside this website.</p>';
+      wrap.hidden = false;
+      btn.innerHTML = '\u23f9\ufe0f Close';
     });
   });
 
@@ -13891,13 +13924,12 @@ function ltvFail(){
     setTimeout(function(){ if(!LTV.settled && LTV.id && LTV.src) ltvStartNative(LTV.src.url, LTV.src.type === 'hls', true); }, 1200 * LTV.attempts);
   } else {
     LTV.settled = true; ltvClearWatchdog(); ltvDestroyHls();
-    var ch = findTv(LTV.id);
-    var off = ch ? officialUrlFor(ch) : '';
+    // In-site playback lock (2026-11-01): the failure overlay no longer
+    // offers an "Official Site ↗" escape; Retry + Player Page stay in-site.
     ltvShowOverlay('<div><div lang="en">This channel could not play here.</div>'
       + '<div class="ltv-ov-btns">'
       + '<button type="button" class="ltv-btn" id="ltvRetryBtn">↻ Retry</button>'
       + '<button type="button" class="ltv-btn" id="ltvPageBtn2">Player Page</button>'
-      + (off ? '<a class="ltv-btn" href="' + esc(off) + '" target="_blank" rel="noopener">Official Site ↗</a>' : '')
       + '</div></div>');
     var rb = ltvEl('ltvRetryBtn'); if(rb) rb.addEventListener('click', function(){ ltvPlay(LTV.id); });
     var pb = ltvEl('ltvPageBtn2'); if(pb) pb.addEventListener('click', function(){ location.hash = '#watch/' + LTV.id; });
