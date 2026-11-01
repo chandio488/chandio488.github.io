@@ -1089,6 +1089,13 @@ input.search{border-radius:999px;min-height:52px;padding:0 18px}
 .md-pveil.off{opacity:0;pointer-events:none}
 .md-preload-corner{position:absolute;top:8px;inset-inline-end:8px;z-index:3;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(3,10,20,.72);color:#e6eefc;font-size:16px;line-height:1;display:grid;place-items:center;cursor:pointer}
 .md-preload-corner:hover{border-color:var(--acc);color:var(--acc)}
+/* ---------- Single-play coordinator: widget stopped cover + now-playing mark (2026-11-01) ---------- */
+.md-profile.md-nowplaying{border-color:#ffd34d;box-shadow:0 0 0 1px #ffd34d}
+.md-profile .md-pframe.md-active{outline:2px solid #ffd34d;outline-offset:-2px}
+.md-pstopped{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;background:rgba(4,10,20,.93);color:#cfe3ff;font-size:13px;font-weight:700;text-align:center;padding:16px;min-height:180px}
+.md-pstopped .md-pgo{font-size:15px;padding:10px 22px;cursor:pointer}
+.md-np-badge{display:none;margin-inline-start:8px;background:#ffd34d;color:#231a00;border-radius:999px;padding:1px 10px;font-size:12px;font-weight:800;vertical-align:middle}
+.md-profile.md-nowplaying .md-np-badge{display:inline-block}
 /* ---------- Platform selector (Chosic-style) + compact library stats + song menu ---------- */
 .md-libstats{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 2px;margin:0 0 10px;font-size:14px;color:var(--mut)}
 .md-libstats .md-stat-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:600}
@@ -8384,7 +8391,13 @@ function mdLoadDir(){
     s.onload = function(){
       var p = document.createElement('script');
       p.src = 'assets/jalal-restore-2026-11-01.js'; p.async = true;
-      p.onload = function(){ res(); };
+      p.onload = function(){
+        var q = document.createElement('script');
+        q.src = 'assets/jalal-full-catalogue-2026-11-01.js'; q.async = true;
+        q.onload = function(){ res(); };
+        q.onerror = function(){ if(q.parentNode) q.parentNode.removeChild(q); res(); };
+        document.head.appendChild(q);
+      };
       p.onerror = function(){ if(p.parentNode) p.parentNode.removeChild(p); res(); };
       document.head.appendChild(p);
     };
@@ -9167,7 +9180,7 @@ function mdProfileCard(p, artist){
       + '</article>';
   }
   return '<article class="md-profile">'
-    + '<div><span class="md-verified">✓ ' + esc(p.badge) + ' · verified ' + esc(p.verification_date) + '</span></div>'
+    + '<div><span class="md-verified">✓ ' + esc(p.badge) + ' · verified ' + esc(p.verification_date) + '</span><span class="md-np-badge">🔊 Now playing</span></div>'
     + '<h3>' + esc(an) + ' — ' + esc(p.badge) + ' player</h3>'
     + '<div class="md-pframe"><iframe class="md-pembed" src="' + esc(p.embed_url) + '" height="' + (p.embed_height || 352) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="' + esc(p.badge) + ' player — ' + esc(an) + '"></iframe><div class="md-pveil"><span>Loading official ' + esc(p.platform) + ' player…</span><button type="button" class="btn sm md-preload">↻ Reload player</button></div><button type="button" class="md-preload md-preload-corner" title="Reload player" aria-label="Reload ' + esc(p.platform) + ' player">↻</button></div>'
     + '<p class="md-meta">' + esc(p.catalog_note) + '</p>'
@@ -9372,6 +9385,18 @@ function mdPlayIndex(i){
     if(MD.yt && MD.yt.destroy){ try{ MD.yt.destroy(); }catch(err){} }
     MD.yt = null;
     frame.innerHTML = '<iframe src="' + esc(s.embed_url) + (s.embed_url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Official Dailymotion player — ' + esc(s.title) + '"></iframe>';
+    document.getElementById('mdPlayPause').textContent = '⏸ Pause';
+    mdRenderDlBar();
+    document.getElementById('mdPlayer').scrollIntoView({ behavior:'smooth', block:'start' });
+    return;
+  }
+  if(s.embed_url && !s.video_id && (s.source_id === 'deezer' || s.source_id === 'apple-music' || s.source_id === 'audiomack' || s.source_id === 'spotify' || s.source_id === 'soundcloud')){
+    // Official per-song embed (Deezer track widget / Apple Music song embed /
+    // Audiomack song embed): plays inside the same page player — no video id,
+    // no stream is touched or converted (full-catalogue patch 2026-11-01).
+    if(MD.yt && MD.yt.destroy){ try{ MD.yt.destroy(); }catch(err){} }
+    MD.yt = null; MD.dmPaused = false;
+    frame.innerHTML = '<iframe class="md-songembed" src="' + esc(s.embed_url) + '" style="width:100%;height:100%;min-height:152px;border:0;background:#0b1526" referrerpolicy="no-referrer-when-downgrade" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="Official ' + esc(s.source_name) + ' player — ' + esc(s.title) + '"></iframe>';
     document.getElementById('mdPlayPause').textContent = '⏸ Pause';
     mdRenderDlBar();
     document.getElementById('mdPlayer').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -12371,6 +12396,149 @@ if(window.speechSynthesis&&speechSynthesis.onvoiceschanged!==undefined){ speechS
     };
   }
   window.SadaPlayer = { attach: attach, stopOthers: stopOthers, state: SAP };
+})();
+</script>
+<script>
+/* ================= Single-play coordinator — profile widgets (2026-11-01) =================
+   The unified Sada Player above already stops songs / radio / Quran / TTS / TV
+   when a QUEUED song starts — but the artist-folder profile widgets (Deezer /
+   Apple / Spotify / Audiomack iframes, .md-pembed inside .md-pframe) lived
+   outside that system: a widget the visitor started kept sounding when a song
+   or a second widget started, and starting a widget never stopped a song.
+   This block closes the gap with one rule for the music sections: only ONE
+   thing sounds at a time.
+   - Any queued song start (directory or archive) unloads every profile
+     widget; a stopped widget shows a "▶ Play this player" cover instead of a
+     dead frame, and tapping it rebuilds that widget — alone.
+   - A widget tap-in is detected via focus entering its iframe (window blur +
+     activeElement / focusin — cross-origin iframes expose no play event);
+     it stops every other widget, the queued players (via SadaPlayer), the
+     radio/Quran/TTS/TV families, and marks the widget's card "Now playing".
+   - Radio / TV / Quran / TTS starts also unload the widgets.
+   TV and radio players themselves are never touched beyond the stops the
+   Sada Player already performs. */
+(function(){
+  function widgetFrames(){
+    return Array.prototype.slice.call(document.querySelectorAll('iframe.md-pembed'));
+  }
+  function stopWidget(fr){
+    var box = fr.closest ? fr.closest('.md-pframe') : null;
+    if(!box) return;
+    if(!box.getAttribute('data-sada-src')) box.setAttribute('data-sada-src', fr.getAttribute('src') || '');
+    if(!box.getAttribute('data-sada-h')) box.setAttribute('data-sada-h', fr.getAttribute('height') || '352');
+    if(fr.parentNode) fr.parentNode.removeChild(fr);
+    box.classList.add('md-stopped'); box.classList.remove('md-active');
+    var card = box.closest ? box.closest('.md-profile') : null;
+    if(card) card.classList.remove('md-nowplaying');
+    if(!box.querySelector('.md-pstopped')){
+      var cover = document.createElement('div');
+      cover.className = 'md-pstopped';
+      cover.innerHTML = '<button type="button" class="btn md-pgo">▶ Play this player</button><span>Stopped — only one song plays at a time</span>';
+      box.appendChild(cover);
+    }
+  }
+  window.mdStopWidgets = function(except){
+    widgetFrames().forEach(function(fr){ if(fr !== except) stopWidget(fr); });
+  };
+  function activateWidget(fr){
+    if(!fr) return;
+    window.mdStopWidgets(fr);
+    if(window.SadaPlayer && SadaPlayer.stopOthers){ try{ SadaPlayer.stopOthers('widget'); }catch(e){} }
+    /* stopOthers pauses the directory YouTube/audio players; a free-running
+       embed iframe left in #mdFrame (a Dailymotion song, a per-song embed, or
+       a profile embed loaded into the main player) has no pause API — stop it
+       the same way mdDmPause does, by clearing the frame. A live YouTube
+       player object is only paused, never cleared. */
+    var mf = document.getElementById('mdFrame');
+    if(mf && mf.querySelector('iframe') && !(typeof MD !== 'undefined' && MD.yt)){
+      var cur = (typeof MD !== 'undefined' && MD.queue) ? MD.queue[MD.idx] : null;
+      if(cur && typeof mdIsDM === 'function' && mdIsDM(cur) && typeof mdDmPause === 'function'){ try{ mdDmPause(); }catch(e){ mf.innerHTML = ''; } }
+      else mf.innerHTML = '';
+    }
+    document.querySelectorAll('.md-song-row.playing').forEach(function(r){ r.classList.remove('playing'); });
+    var pp = document.getElementById('mdPlayPause'); if(pp) pp.textContent = '▶ Play';
+    var box = fr.closest ? fr.closest('.md-pframe') : null;
+    if(box) box.classList.add('md-active');
+    var card = fr.closest ? fr.closest('.md-profile') : null;
+    if(card) card.classList.add('md-nowplaying');
+  }
+  window.mdActivateWidget = activateWidget;
+
+  /* ---- widget tap-in detection ---- */
+  window.addEventListener('blur', function(){
+    setTimeout(function(){
+      var a = document.activeElement;
+      if(a && a.tagName === 'IFRAME' && a.classList && a.classList.contains('md-pembed')) activateWidget(a);
+    }, 0);
+  }, true);
+  document.addEventListener('focusin', function(e){
+    var t = e.target;
+    if(t && t.tagName === 'IFRAME' && t.classList && t.classList.contains('md-pembed')) activateWidget(t);
+  });
+
+  /* ---- cover button: rebuild the stopped widget, solo ---- */
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('.md-pgo') : null;
+    if(!b) return;
+    var box = b.closest('.md-pframe'); if(!box) return;
+    var src = box.getAttribute('data-sada-src'); if(!src) return;
+    var cover = box.querySelector('.md-pstopped'); if(cover) cover.parentNode.removeChild(cover);
+    box.classList.remove('md-stopped');
+    var veil = box.querySelector('.md-pveil'); if(veil) veil.classList.remove('off');
+    var fr = document.createElement('iframe');
+    fr.className = 'md-pembed'; fr.setAttribute('src', src);
+    fr.setAttribute('height', box.getAttribute('data-sada-h') || '352');
+    fr.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    fr.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+    fr.setAttribute('allowfullscreen', '');
+    fr.setAttribute('title', 'Official player');
+    box.insertBefore(fr, box.firstChild);
+    activateWidget(fr);
+  });
+
+  /* ---- any song start unloads the widgets (wraps run after the Sada
+         Player's own wrappers, so the chain stays: widgets off -> stop
+         others -> play) ---- */
+  function wrap(name, pre){
+    var orig = window[name];
+    if(typeof orig !== 'function' || orig._sadaWidgetWrapped) return;
+    var w = function(){ if(pre) pre(); window.mdStopWidgets(null); return orig.apply(this, arguments); };
+    w._sadaWidgetWrapped = true;
+    window[name] = w;
+  }
+  wrap('mdPlayIndex');
+  wrap('muPlayIndex');
+  wrap('mdPlayPlatform');
+  wrap('playStation');
+  wrap('renderWatch');
+  wrap('qaPlayAt');
+  wrap('ttsStart');
+
+  /* ---- resumes that bypass mdPlayIndex must also silence widgets ---- */
+  var sapPlayBtn = document.getElementById('sapPlay');
+  if(sapPlayBtn) sapPlayBtn.addEventListener('click', function(){
+    if(window.SadaPlayer && SadaPlayer.state && !SadaPlayer.state.playing) window.mdStopWidgets(null);
+  }, true);
+  ['sapPrev', 'sapNext'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('click', function(){ window.mdStopWidgets(null); }, true);
+  });
+  var sapQueueEl = document.getElementById('sapQueue');
+  if(sapQueueEl) sapQueueEl.addEventListener('click', function(){ window.mdStopWidgets(null); }, true);
+  var mdPP = document.getElementById('mdPlayPause');
+  if(mdPP) mdPP.addEventListener('click', function(){
+    try{
+      if(typeof MD === 'undefined') return;
+      if(MD.audio && MD.audio.paused){ window.mdStopWidgets(null); return; }
+      if(MD.yt && MD.yt.getPlayerState && MD.yt.getPlayerState() !== 1) window.mdStopWidgets(null);
+    }catch(e){}
+  }, true);
+  /* Any stray audio/video element starting (folk MP3s, previews) also
+     silences the widgets — queued song starts are already covered above. */
+  document.addEventListener('play', function(ev){
+    var t = ev.target;
+    if(t && (t.tagName === 'AUDIO' || t.tagName === 'VIDEO')) window.mdStopWidgets(null);
+  }, true);
 })();
 </script>
 <script>
