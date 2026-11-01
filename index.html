@@ -2770,6 +2770,7 @@ section[data-radio-section] {
       <a lang="en" href="#quranlib" data-nav="quranlib" data-i18n="nav_quran">QURAN</a>
       <a lang="en" href="#library" data-nav="library" data-i18n="nav_hadith">HADITH</a>
       <a lang="en" href="#books" data-nav="books" data-i18n="nav_books">BOOKS</a>
+      <a lang="en" href="#history" data-nav="history" data-i18n="nav_history">HISTORY</a>
       <a lang="en" href="#downloadcenter" data-nav="downloadcenter" data-i18n="nav_download">DOWNLOADS</a>
       <a lang="en" href="#search" data-nav="search" data-i18n="nav_search">SEARCH</a>
     </nav>
@@ -2808,6 +2809,7 @@ section[data-radio-section] {
     <a lang="en" href="#quranlib" data-nav="quranlib" data-i18n="nav_quran">QURAN</a>
     <a lang="en" href="#library" data-nav="library" data-i18n="nav_hadith">HADITH</a>
     <a lang="en" href="#books" data-nav="books" data-i18n="nav_books">BOOKS</a>
+    <a lang="en" href="#history" data-nav="history" data-i18n="nav_history">HISTORY</a>
     <a lang="en" href="#downloadcenter" data-nav="downloadcenter" data-i18n="nav_download">DOWNLOADS</a>
     <a lang="en" href="#search" data-nav="search" data-i18n="nav_search">SEARCH</a>
   </div>
@@ -4565,6 +4567,7 @@ section[data-radio-section] {
   <button data-goto="quranlib"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-quran"></use></svg><span lang="en" data-i18n="nav_quran">QURAN</span></button>
   <button data-goto="library"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-hadith"></use></svg><span lang="en" data-i18n="nav_hadith">HADITH</span></button>
   <button data-goto="books"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-books"></use></svg><span lang="en" data-i18n="nav_books">BOOKS</span></button>
+  <button data-goto="history"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#ic-history"></use></svg><span lang="en" data-i18n="nav_history">HISTORY</span></button>
   <button data-goto="downloadcenter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10"/><path d="M8 9.5l4 4 4-4"/><path d="M4 17v2.5A1.5 1.5 0 005.5 21h13a1.5 1.5 0 001.5-1.5V17"/></svg><span lang="en" data-i18n="nav_download">DOWNLOADS</span></button>
   <button data-goto="search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span lang="en" data-i18n="nav_search">SEARCH</span></button>
 </nav>
@@ -4720,7 +4723,7 @@ function channelHealthState(ch){
 <script>
 /* ================= i18n ================= */
 var I18N = {
-en:{nav_home:"HOME",nav_music:"MUSIC",nav_radio:"RADIO",nav_tv:"TV",nav_quran:"QURAN",nav_hadith:"HADITH",nav_books:"BOOKS",nav_search:"SEARCH",nav_download:"DOWNLOADS",nav_countries:"COUNTRIES",nav_categories:"CATEGORIES",nav_about:"ABOUT",
+en:{nav_home:"HOME",nav_music:"MUSIC",nav_radio:"RADIO",nav_tv:"TV",nav_quran:"QURAN",nav_hadith:"HADITH",nav_books:"BOOKS",nav_history:"HISTORY",nav_search:"SEARCH",nav_download:"DOWNLOADS",nav_countries:"COUNTRIES",nav_categories:"CATEGORIES",nav_about:"ABOUT",
 hero_title:"GLOBAL LIVE TV & RADIO",hero_sub:"Official Free Live Television & Radio From Around The World",
 watch_tv_btn:"WATCH LIVE TV",listen_radio_btn:"LISTEN TO LIVE RADIO",
 stat_countries:"Countries",stat_tv:"TV Channels",stat_radio:"Radio Stations",stat_live:"Live on this page",
@@ -4751,7 +4754,7 @@ about_founder:"Founder, Sada Portal",
 about_text:"Sada Portal brings together official, free live television and radio from around the world in one place. Every channel listed here links to the broadcaster's own official website, official player, or official YouTube live stream — nothing is copied, re-hosted, or taken from unofficial sources.",
 about_text2:"Alongside live TV and radio, the portal includes the Quran with Urdu translation, hadith books, the latest Urdu headlines, and links to useful official services.",
 select_station:"Select a station",volume:"Volume"},
-ur:{nav_home:"ہوم",nav_music:"موسیقی",nav_radio:"ریڈیو",nav_tv:"ٹی وی",nav_quran:"قرآن",nav_hadith:"حدیث",nav_books:"کتابیں",nav_search:"تلاش",nav_download:"ڈاؤن لوڈ",nav_countries:"ممالک",nav_categories:"زمرے",nav_about:"ہمارے بارے میں",
+ur:{nav_home:"ہوم",nav_music:"موسیقی",nav_radio:"ریڈیو",nav_tv:"ٹی وی",nav_quran:"قرآن",nav_hadith:"حدیث",nav_books:"کتابیں",nav_history:"تاریخ",nav_search:"تلاش",nav_download:"ڈاؤن لوڈ",nav_countries:"ممالک",nav_categories:"زمرے",nav_about:"ہمارے بارے میں",
 hero_title:"عالمی لائیو ٹی وی اور ریڈیو",hero_sub:"دنیا بھر سے آفیشل مفت لائیو ٹیلی ویژن اور ریڈیو",
 watch_tv_btn:"لائیو ٹی وی دیکھیں",listen_radio_btn:"لائیو ریڈیو سنیں",
 stat_countries:"ممالک",stat_tv:"ٹی وی چینلز",stat_radio:"ریڈیو اسٹیشنز",stat_live:"اسی صفحے پر لائیو",
@@ -4782,7 +4785,7 @@ about_founder:"بانی، صدا پورٹل",
 about_text:"صدا پورٹل دنیا بھر کے آفیشل، مفت لائیو ٹیلی ویژن اور ریڈیو کو ایک جگہ جمع کرتا ہے۔ یہاں درج ہر چینل براڈکاسٹر کی اپنی آفیشل ویب سائٹ، آفیشل پلیئر یا آفیشل یوٹیوب لائیو سٹریم سے جڑا ہے — کچھ بھی نقل، دوبارہ ہوسٹ یا غیر آفیشل ذریعے سے نہیں لیا گیا۔",
 about_text2:"لائیو ٹی وی اور ریڈیو کے ساتھ ساتھ پورٹل میں اردو ترجمے کے ساتھ قرآن، حدیث کی کتابیں، تازہ اردو سرخیاں اور مفید آفیشل سروسز کے لنکس شامل ہیں۔",
 select_station:"اسٹیشن منتخب کریں",volume:"آواز"},
-hi:{nav_home:"होम",nav_music:"संगीत",nav_radio:"रेडियो",nav_tv:"टीवी",nav_quran:"क़ुरआन",nav_hadith:"हदीस",nav_books:"किताबें",nav_search:"खोजें",nav_download:"डाउनलोड",nav_countries:"देश",nav_categories:"श्रेणियाँ",nav_about:"हमारे बारे में",
+hi:{nav_home:"होम",nav_music:"संगीत",nav_radio:"रेडियो",nav_tv:"टीवी",nav_quran:"क़ुरआन",nav_hadith:"हदीस",nav_books:"किताबें",nav_history:"इतिहास",nav_search:"खोजें",nav_download:"डाउनलोड",nav_countries:"देश",nav_categories:"श्रेणियाँ",nav_about:"हमारे बारे में",
 hero_title:"ग्लोबल लाइव टीवी और रेडियो",hero_sub:"दुनिया भर से आधिकारिक मुफ़्त लाइव टेलीविज़न और रेडियो",
 watch_tv_btn:"लाइव टीवी देखें",listen_radio_btn:"लाइव रेडियो सुनें",
 stat_countries:"देश",stat_tv:"टीवी चैनल",stat_radio:"रेडियो स्टेशन",stat_live:"इस पेज पर लाइव",
@@ -4813,7 +4816,7 @@ about_founder:"संस्थापक, सदा पोर्टल",
 about_text:"सदा पोर्टल दुनिया भर के आधिकारिक, मुफ़्त लाइव टेलीविज़न और रेडियो को एक ही जगह लाता है। यहाँ सूचीबद्ध हर चैनल प्रसारक की अपनी आधिकारिक वेबसाइट, आधिकारिक प्लेयर या आधिकारिक YouTube लाइव स्ट्रीम से जुड़ा है — कुछ भी कॉपी, री-होस्ट या अनाधिकारिक स्रोतों से नहीं लिया गया है।",
 about_text2:"लाइव टीवी और रेडियो के साथ-साथ पोर्टल में उर्दू अनुवाद सहित क़ुरआन, हदीस की किताबें, ताज़ा उर्दू सुर्खियाँ और उपयोगी आधिकारिक सेवाओं के लिंक शामिल हैं।",
 select_station:"स्टेशन चुनें",volume:"आवाज़"},
-sd:{nav_home:"گهر",nav_music:"موسيقي",nav_radio:"ريڊيو",nav_tv:"ٽي وي",nav_quran:"قرآن",nav_hadith:"حديث",nav_books:"ڪتاب",nav_search:"ڳولا",nav_download:"ڊائون لوڊ",nav_countries:"ملڪ",nav_categories:"زمرو",nav_about:"اسان بابت",
+sd:{nav_home:"گهر",nav_music:"موسيقي",nav_radio:"ريڊيو",nav_tv:"ٽي وي",nav_quran:"قرآن",nav_hadith:"حديث",nav_books:"ڪتاب",nav_history:"تاريخ",nav_search:"ڳولا",nav_download:"ڊائون لوڊ",nav_countries:"ملڪ",nav_categories:"زمرو",nav_about:"اسان بابت",
 hero_title:"عالمي لائيو ٽي وي ۽ ريڊيو",hero_sub:"سڄي دنيا مان سرڪاري مفت لائيو ٽيليويزن ۽ ريڊيو",
 watch_tv_btn:"لائيو ٽي وي ڏسو",listen_radio_btn:"لائيو ريڊيو ٻڌو",
 stat_countries:"ملڪ",stat_tv:"ٽي وي چينل",stat_radio:"ريڊيو اسٽيشن",stat_live:"هن صفحي تي لائيو",
@@ -4844,7 +4847,7 @@ about_founder:"باني، صدا پورٽل",
 about_text:"صدا پورٽل سڄي دنيا جي سرڪاري، مفت لائيو ٽيليويزن ۽ ريڊيو کي هڪ جاءِ تي گڏ ڪري ٿو۔ هتي ڏنل هر چينل نشرياتي اداري جي پنهنجي سرڪاري ويب سائيٽ، سرڪاري پليئر يا سرڪاري يوٽيوب لائيو اسٽريم سان ڳنڍيل آهي — ڪجهه به نقل، ٻيهر هوسٽ يا غير سرڪاري ذريعن کان نه ورتو ويو آهي۔",
 about_text2:"لائيو ٽي وي ۽ ريڊيو سان گڏ پورٽل ۾ اردو ترجمي سان قرآن، حديث جون ڪتابون، تازيون اردو سرخيون ۽ مفيد سرڪاري خدمتن جون لنڪون شامل آهن۔",
 select_station:"اسٽيشن چونڊيو",volume:"آواز"},
-pa:{nav_home:"ہوم",nav_music:"موسیقی",nav_radio:"ریڈیو",nav_tv:"ٹی وی",nav_quran:"قرآن",nav_hadith:"حدیث",nav_books:"کتاباں",nav_search:"لبھو",nav_download:"ڈاؤن لوڈ",nav_countries:"دیس",nav_categories:"زمرے",nav_about:"ساڈے بارے",
+pa:{nav_home:"ہوم",nav_music:"موسیقی",nav_radio:"ریڈیو",nav_tv:"ٹی وی",nav_quran:"قرآن",nav_hadith:"حدیث",nav_books:"کتاباں",nav_history:"تریخ",nav_search:"لبھو",nav_download:"ڈاؤن لوڈ",nav_countries:"دیس",nav_categories:"زمرے",nav_about:"ساڈے بارے",
 hero_title:"دنیا بھر دا لائیو ٹی وی تے ریڈیو",hero_sub:"دنیا بھر توں سرکاری مفت لائیو ٹیلی ویژن تے ریڈیو",
 watch_tv_btn:"لائیو ٹی وی ویکھو",listen_radio_btn:"لائیو ریڈیو سنو",
 stat_countries:"دیس",stat_tv:"ٹی وی چینل",stat_radio:"ریڈیو سٹیشن",stat_live:"ایسے صفحے تے لائیو",
@@ -4875,7 +4878,7 @@ about_founder:"بانی، صدا پورٹل",
 about_text:"صدا پورٹل دنیا بھر دے سرکاری، مفت لائیو ٹیلی ویژن تے ریڈیو نوں اک تھاں کٹھا کردا اے۔ ایتھے دتا ہر چینل براڈکاسٹر دی اپنی سرکاری ویب سائٹ، سرکاری پلیئر یا سرکاری یوٹیوب لائیو سٹریم نال جڑیا اے — کجھ وی نقل، دوبارہ ہوسٹ یا غیر سرکاری ذریعے توں نئیں لیا گیا۔",
 about_text2:"لائیو ٹی وی تے ریڈیو دے نال نال پورٹل وچ اردو ترجمے نال قرآن، حدیث دیاں کتاباں، تازہ اردو سرخیاں تے مفید سرکاری خدمتاں دے لنک شامل نیں۔",
 select_station:"سٹیشن چنو",volume:"آواز"},
-ar:{nav_home:"الرئيسية",nav_music:"الموسيقى",nav_radio:"الراديو",nav_tv:"التلفزيون",nav_quran:"القرآن",nav_hadith:"الحديث",nav_books:"الكتب",nav_search:"بحث",nav_download:"التنزيلات",nav_countries:"الدول",nav_categories:"الفئات",nav_about:"حول",
+ar:{nav_home:"الرئيسية",nav_music:"الموسيقى",nav_radio:"الراديو",nav_tv:"التلفزيون",nav_quran:"القرآن",nav_hadith:"الحديث",nav_books:"الكتب",nav_history:"التاريخ",nav_search:"بحث",nav_download:"التنزيلات",nav_countries:"الدول",nav_categories:"الفئات",nav_about:"حول",
 hero_title:"بث تلفزيوني وإذاعي عالمي مباشر",hero_sub:"تلفزيون وراديو مباشر رسمي مجاني من جميع أنحاء العالم",
 watch_tv_btn:"شاهد البث المباشر",listen_radio_btn:"استمع إلى الراديو المباشر",
 stat_countries:"الدول",stat_tv:"قنوات تلفزيونية",stat_radio:"محطات إذاعية",stat_live:"مباشر على هذه الصفحة",
