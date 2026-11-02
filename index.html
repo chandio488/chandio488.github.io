@@ -8413,26 +8413,31 @@ function mdNorm(s){
 function mdLoadDir(){
   return new Promise(function(res, rej){
     if(window.MUSIC_DIRECTORY){ res(); return; }
+    /* 2026-11-02 chain hardening (JALAL-VISIBILITY-AUDIT): every patch is
+       attempted independently — previously one patch's load error resolved
+       the promise as "success" and silently skipped every later patch, so
+       the Jalal full catalogue could vanish with no error shown. The ?v=
+       tokens bypass stale client-side copies of the chain files. */
+    function loadSeq(urls, done){
+      var i = 0;
+      function next(){
+        if(i >= urls.length){ done(); return; }
+        var t = document.createElement('script');
+        t.src = urls[i++]; t.async = true;
+        t.onload = function(){ next(); };
+        t.onerror = function(){ if(t.parentNode) t.parentNode.removeChild(t); next(); };
+        document.head.appendChild(t);
+      }
+      next();
+    }
     var s = document.createElement('script');
-    s.src = 'assets/music-directory.js'; s.async = true;
+    s.src = 'assets/music-directory.js?v=20261102a'; s.async = true;
     s.onload = function(){
-      var p = document.createElement('script');
-      p.src = 'assets/jalal-restore-2026-11-01.js'; p.async = true;
-      p.onload = function(){
-        var q = document.createElement('script');
-        q.src = 'assets/jalal-full-catalogue-2026-11-01.js'; q.async = true;
-        q.onload = function(){
-          var r = document.createElement('script');
-          r.src = 'assets/research-catalogue-2026-11-01.js'; r.async = true;
-          r.onload = function(){ res(); };
-          r.onerror = function(){ if(r.parentNode) r.parentNode.removeChild(r); res(); };
-          document.head.appendChild(r);
-        };
-        q.onerror = function(){ if(q.parentNode) q.parentNode.removeChild(q); res(); };
-        document.head.appendChild(q);
-      };
-      p.onerror = function(){ if(p.parentNode) p.parentNode.removeChild(p); res(); };
-      document.head.appendChild(p);
+      loadSeq([
+        'assets/jalal-restore-2026-11-01.js?v=20261102a',
+        'assets/jalal-full-catalogue-2026-11-01.js?v=20261102a',
+        'assets/research-catalogue-2026-11-01.js?v=20261102a'
+      ], res);
     };
     s.onerror = function(){ if(s.parentNode) s.parentNode.removeChild(s); rej(new Error('directory load failed')); };
     document.head.appendChild(s);
