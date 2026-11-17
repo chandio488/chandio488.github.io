@@ -6511,7 +6511,7 @@ function renderWatch(id){
       destroyNativePlayerSoft(video);
       armWatchdog();
       if(isHlsStream && window.Hls && Hls.isSupported()){
-        currentHls = new Hls({ enableWorker:true, lowLatencyMode:false, maxBufferLength:18, maxMaxBufferLength:30, backBufferLength:10 }); /* Ultra-aligned player settings, owner order 2026-11-17 */
+        currentHls = new Hls({ enableWorker:true, startLevel:0, lowLatencyMode:false, maxBufferLength:18, maxMaxBufferLength:30, backBufferLength:10 }); /* Ultra-aligned player settings + Auto starts at lowest quality (startLevel:0), owner orders 2026-11-17 */
         currentHls.loadSource(url);
         currentHls.attachMedia(video);
         currentHls.on(Hls.Events.MANIFEST_PARSED, function(_, data){
@@ -14177,7 +14177,7 @@ function ltvStartNative(src, isHls, isRetry){
   ltvDestroyHls();
   ltvClearWatchdog(); ltvArmWatchdog();
   if(isHls && window.Hls && Hls.isSupported()){
-    LTV.hls = new Hls({ enableWorker: true, lowLatencyMode: false, maxBufferLength: 18, maxMaxBufferLength: 30, backBufferLength: 10 }); /* Ultra-aligned player settings, owner order 2026-11-17 */
+    LTV.hls = new Hls({ enableWorker: true, startLevel: 0, lowLatencyMode: false, maxBufferLength: 18, maxMaxBufferLength: 30, backBufferLength: 10 }); /* Ultra-aligned player settings + Auto starts at lowest quality (startLevel: 0), owner orders 2026-11-17 */
     LTV.hls.loadSource(src);
     LTV.hls.attachMedia(v);
     LTV.hls.on(Hls.Events.ERROR, function(_, data){ if(data && data.fatal && !LTV.settled) ltvFail(); });
