@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Amiri+Quran&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15/dist/hls.min.js"></script>
 <title>Sada Portal — Global Live TV &amp; Radio</title>
 <style>
 :root{
@@ -6376,10 +6376,11 @@ function renderWatch(id){
     var qPending;
     var qAudioOnly = false;
     var qSelected = -1;
+    var qPickFrac = null; // Ultra-aligned (2026-11-17): session quality choice as rank fraction, re-applied per channel
     function qLabelFor(idx){ if(idx === -1) return 'Auto'; if(qLevels){ for(var k=0;k<qLevels.length;k++){ if(qLevels[k].idx === idx) return qLevels[k].label; } } return 'Auto'; }
     function qCurSel(){ if(qAudioOnly) return 'none'; return qSelected; }
     function qBtnLabel(){ if(!qBtn) return; var c = qCurSel(); qBtn.textContent = '\u2699 Quality: ' + (c === 'none' ? 'None' : qLabelFor(c)); }
-    function qSet(idx){ qSelected = idx; if(currentHls) currentHls.currentLevel = idx; if(qualitySel) qualitySel.value = String(idx); qBtnLabel(); }
+    function qSet(idx){ qSelected = idx; if(idx === -1){ qPickFrac = null; } else if(qLevels && qLevels.length){ for(var k=0;k<qLevels.length;k++){ if(qLevels[k].idx === idx){ qPickFrac = qLevels.length > 1 ? k / (qLevels.length - 1) : 0; break; } } } if(currentHls) currentHls.currentLevel = idx; if(qualitySel) qualitySel.value = String(idx); qBtnLabel(); }
     function qRowHtml(val, label, isBox, on){
       var col = on ? '#f6a21e' : '#9a9a9a';
       var ind = isBox
@@ -6429,6 +6430,15 @@ function renderWatch(id){
       paint(bA, !qAudioOnly && qSelected === -1, true);
       paint(bL, multi && !qAudioOnly && qSelected === qLevels[0].idx, multi);
       paint(bH, multi && !qAudioOnly && qSelected === qLevels[qLevels.length - 1].idx, multi);
+    }
+    function qReapply(){
+      // Ultra-aligned (owner order 2026-11-17): the session quality choice is
+      // re-applied to every new channel, like Ultra's persistent quality select.
+      if(!qLevels || !qLevels.length) return;
+      if(qAudioOnly){ qSet(qLevels[0].idx); video.style.visibility = 'hidden'; return; }
+      if(qPickFrac == null) return;
+      var t = qLevels[Math.round(qPickFrac * (qLevels.length - 1))];
+      if(t) qSet(t.idx);
     }
     function qPreset(kind){
       if(kind === 'auto'){ qAudioOnly = false; video.style.visibility = ''; qSet(-1); }
@@ -6501,7 +6511,7 @@ function renderWatch(id){
       destroyNativePlayerSoft(video);
       armWatchdog();
       if(isHlsStream && window.Hls && Hls.isSupported()){
-        currentHls = new Hls({ enableWorker:true, lowLatencyMode:true });
+        currentHls = new Hls({ enableWorker:true, lowLatencyMode:false, maxBufferLength:18, maxMaxBufferLength:30, backBufferLength:10 }); /* Ultra-aligned player settings, owner order 2026-11-17 */
         currentHls.loadSource(url);
         currentHls.attachMedia(video);
         currentHls.on(Hls.Events.MANIFEST_PARSED, function(_, data){
@@ -6515,7 +6525,7 @@ function renderWatch(id){
           if(data && data.levels){
             if(data.levels.length > 1){
               qLevels = data.levels.map(function(lv, i){ var lbl = lv.height ? lv.height + 'p' : Math.round(lv.bitrate/1000) + 'k'; var dup = lv.height && data.levels.some(function(o, j){ return j !== i && o.height === lv.height; }); if(dup) lbl += ' \u00b7 ' + (Math.round(lv.bitrate/100000)/10) + 'M'; return { idx: i, label: lbl, br: lv.bitrate, w: lv.width || 0, h: lv.height || 0 }; }).sort(function(a, b){ return a.br - b.br; });
-            } else { qLevels = []; } qSyncPresets();
+            } else { qLevels = []; } qSyncPresets(); qReapply();
           }
           var p = video.play(); if(p && p.catch) p.catch(function(){});
         });
@@ -6541,6 +6551,13 @@ function renderWatch(id){
       if(currentHls){ try{ currentHls.destroy(); }catch(e){} currentHls = null; }
       try{ v.pause(); v.removeAttribute('src'); v.load(); }catch(e){}
     }
+    // Wake lock (Ultra-aligned, owner order 2026-11-17): screen stays on while playing.
+    var sadaWakeLock = null;
+    function sadaKeepScreenOn(){ try{ if('wakeLock' in navigator && !sadaWakeLock){ navigator.wakeLock.request('screen').then(function(lock){ sadaWakeLock = lock; lock.addEventListener('release', function(){ sadaWakeLock = null; }); }).catch(function(){}); } }catch(e){} }
+    function sadaReleaseScreenLock(){ try{ if(sadaWakeLock){ sadaWakeLock.release(); sadaWakeLock = null; } }catch(e){} }
+    video.addEventListener('playing', sadaKeepScreenOn);
+    video.addEventListener('pause', sadaReleaseScreenLock);
+    document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && !video.paused) sadaKeepScreenOn(); });
     video.addEventListener('waiting', function(){ if(!settledNative){ showOverlay('Connecting…', true); if(!hasPlayed) armWatchdog(); } });
     video.addEventListener('loadeddata', function(){ onVideoDataReady(); });
     video.addEventListener('canplay', function(){ onVideoDataReady(); });
@@ -6584,7 +6601,7 @@ function renderWatch(id){
       else if(window.spToast) window.spToast('No link available', true);
     });
     if(qualitySel) qualitySel.addEventListener('change', function(){
-      var qi = parseInt(qualitySel.value, 10); qSelected = qi; qAudioOnly = false; video.style.visibility = ''; if(currentHls) currentHls.currentLevel = qi; if(qBtn) qBtn.textContent = '\u2699 Quality: ' + qLabelFor(qi); qSyncPresets();
+      var qi = parseInt(qualitySel.value, 10); qAudioOnly = false; video.style.visibility = ''; qSet(qi); qSyncPresets();
     });
     start();
   }
@@ -14096,6 +14113,10 @@ function ltvHideOverlay(){ var o = ltvEl('ltvOverlay'); if(o){ o.hidden = true; 
 function ltvSpinner(msg){ ltvShowOverlay('<div><div class="spin" aria-hidden="true"></div><div lang="en">' + esc(msg) + '</div></div>'); }
 function ltvArmWatchdog(){ ltvClearWatchdog(); LTV.watchdog = setTimeout(function(){ ltvFail(); }, 15000); }
 function ltvClearWatchdog(){ if(LTV.watchdog){ clearTimeout(LTV.watchdog); LTV.watchdog = null; } }
+var ltvWakeLock = null;
+function ltvKeepScreenOn(){ try{ if('wakeLock' in navigator && !ltvWakeLock){ navigator.wakeLock.request('screen').then(function(lock){ ltvWakeLock = lock; lock.addEventListener('release', function(){ ltvWakeLock = null; }); }).catch(function(){}); } }catch(e){} }
+function ltvReleaseScreenLock(){ try{ if(ltvWakeLock){ ltvWakeLock.release(); ltvWakeLock = null; } }catch(e){} }
+document.addEventListener('visibilitychange', function(){ if(document.visibilityState === 'visible' && LTV.video && !LTV.video.paused) ltvKeepScreenOn(); });
 function ltvVideo(){
   if(LTV.video) return LTV.video;
   var v = document.createElement('video');
@@ -14103,6 +14124,8 @@ function ltvVideo(){
   v.preload = 'auto'; v.style.width = '100%'; v.style.height = '100%';
   v.addEventListener('loadeddata', ltvOnData);
   v.addEventListener('playing', ltvOnData);
+  v.addEventListener('playing', ltvKeepScreenOn);
+  v.addEventListener('pause', ltvReleaseScreenLock);
   v.addEventListener('error', function(){ if(LTV.mode === 'native' && LTV.id && !LTV.settled) ltvFail(); });
   v.addEventListener('enterpictureinpicture', function(){ LTV.inPip = true; var b = ltvEl('ltvPipBtn'); if(b) b.textContent = '⧉ Exit Picture-in-Picture'; var st = ltvEl('ltvStage'); if(st) st.classList.add('pipmode'); ltvSetSub('Playing in Picture-in-Picture'); });
   v.addEventListener('leavepictureinpicture', function(){ LTV.inPip = false; var b = ltvEl('ltvPipBtn'); if(b) b.textContent = '⧉ Picture-in-Picture'; var st = ltvEl('ltvStage'); if(st) st.classList.remove('pipmode'); ltvSyncDock(); });
@@ -14154,7 +14177,7 @@ function ltvStartNative(src, isHls, isRetry){
   ltvDestroyHls();
   ltvClearWatchdog(); ltvArmWatchdog();
   if(isHls && window.Hls && Hls.isSupported()){
-    LTV.hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+    LTV.hls = new Hls({ enableWorker: true, lowLatencyMode: false, maxBufferLength: 18, maxMaxBufferLength: 30, backBufferLength: 10 }); /* Ultra-aligned player settings, owner order 2026-11-17 */
     LTV.hls.loadSource(src);
     LTV.hls.attachMedia(v);
     LTV.hls.on(Hls.Events.ERROR, function(_, data){ if(data && data.fatal && !LTV.settled) ltvFail(); });
