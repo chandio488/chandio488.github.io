@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:,">
+<title>Raheem AI Video Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#F5B800; --gold2:#FFD34D; --cyan:#00CFFF; --blue:#006EFF;
+  --text:#EAF2FF; --muted:#9DB4D8; --ok:#2FE6A7;
+  --card:rgba(255,255,255,.045);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:linear-gradient(180deg,#0D2149 0%,#07142C 100%) fixed,#07142C;
+  color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:15px;line-height:1.5;min-height:100vh;
+}
+.ur{font-family:"Noto Nastaliq Urdu",serif;line-height:2.1}
+button,[role="button"],select,input:not([type="checkbox"],[type="radio"]){min-height:44px}
+button{font-family:inherit;font-weight:700;border:1px solid rgba(0,207,255,.45);background:rgba(0,110,255,.14);color:var(--text);border-radius:999px;padding:9px 18px;cursor:pointer;font-size:14px}
+button:hover{border-color:var(--cyan)}
+button.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#231a00;border-color:transparent;box-shadow:0 4px 16px rgba(245,184,0,.35)}
+button.small{padding:5px 13px;font-size:13px;min-height:38px}
+button:active{transform:translateY(1px)}
+button:disabled{opacity:.5;cursor:not-allowed}
+input[type="text"],textarea{width:100%;background:rgba(3,10,26,.7);color:var(--text);border:1px solid rgba(0,207,255,.3);border-radius:12px;padding:11px 13px;font-family:inherit;font-size:15px}
+textarea.ur{font-size:16px}
+input[type="file"]{width:100%;color:var(--text);font-size:14px}
+textarea{resize:vertical}
+input[type="range"]{width:100%;accent-color:var(--cyan)}
+label{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:block;margin:0 0 4px}
+.wrap{max-width:880px;margin:0 auto;padding:18px 14px 48px}
+h1{font-size:23px;margin:0 0 4px;color:#fff;letter-spacing:-.01em}
+h1 .gold{color:var(--gold)}
+.sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+.card{background:var(--card);border:1px solid rgba(0,207,255,.4);border-radius:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 28px rgba(0,0,0,.35),0 0 22px rgba(0,207,255,.07);padding:16px;margin-bottom:14px}
+.card.goldb{border-color:rgba(245,184,0,.5);box-shadow:0 8px 28px rgba(0,0,0,.35),0 0 22px rgba(245,184,0,.09)}
+.card h2{margin:0;font-size:21px;color:#fff;font-weight:700}
+.card h2 .en{display:block;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan);line-height:1.4;margin-top:1px}
+.card.goldb h2 .en{color:var(--gold)}
+.card h3{font-size:14.5px;margin:16px 0 7px;color:#fff}
+.hint{color:var(--muted);font-size:13px;margin:4px 0 10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{font-size:13px;padding:6px 14px;min-height:40px}
+#planLog{margin:12px 0 0;padding:0;list-style:none;display:none}
+#planLog li{padding:9px 12px;border:1px solid rgba(0,207,255,.3);border-radius:12px;margin-top:7px;font-size:13.5px;background:rgba(3,10,26,.55)}
+#planLog li b{color:var(--gold)}
+#planLog li .st-ok{color:var(--ok);font-weight:800}
+.stage{background:#000;border-radius:14px;overflow:hidden;position:relative;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,207,255,.3)}
+.stage video{width:100%;height:100%;object-fit:contain;background:#000}
+.stage .empty{color:#9db4d8;text-align:center;padding:22px;font-size:14.5px}
+.transport{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px;align-items:center}
+.transport .time{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);font-weight:700}
+.sliders{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+@media(max-width:560px){.sliders{grid-template-columns:1fr}}
+.sliders .val{float:right;color:var(--cyan);font-weight:800}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:transparent}
+.voicecards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.voicecards{grid-template-columns:1fr}}
+.voicecard{border:2px solid rgba(0,207,255,.35);border-radius:14px;padding:12px 14px;cursor:pointer;background:rgba(3,10,26,.5)}
+.voicecard[aria-pressed="true"]{border-color:var(--gold);background:rgba(245,184,0,.10)}
+.voicecard b{font-size:17px;color:#fff}
+.voicecard span{display:block;font-size:12.5px;color:var(--muted)}
+.scenes{display:grid;gap:10px;margin-top:10px}
+.scene{border:1px solid rgba(0,207,255,.3);border-radius:13px;padding:12px;background:rgba(3,10,26,.5)}
+.scene b{font-size:12.5px;color:var(--cyan);letter-spacing:.03em}
+.scene p{margin:5px 0 9px;font-size:13.5px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:14px}
+.kv b{font-variant-numeric:tabular-nums;color:#fff}
+a.btn{display:inline-flex;align-items:center;min-height:44px;padding:9px 18px;border-radius:999px;border:1px solid rgba(0,207,255,.45);background:rgba(0,110,255,.14);color:var(--text);font-weight:700;text-decoration:none;font-size:14px}
+a.btn.gold{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#231a00;border-color:transparent;box-shadow:0 4px 16px rgba(245,184,0,.35)}
+.hidden{display:none!important}
+progress{width:100%;height:10px;accent-color:var(--gold)}
+.fileitem{display:flex;justify-content:space-between;gap:8px;align-items:center;border:1px solid rgba(0,207,255,.3);border-radius:12px;padding:9px 12px;margin-top:8px;background:rgba(3,10,26,.5);font-size:13.5px}
+.fileitem b{color:#fff;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Raheem <span class="gold">AI Video</span> Studio</h1>
+  <p class="sub ur" lang="ur" dir="rtl" style="text-align:left">ویڈیو ایڈٹ کریں، اے آئی سے ویڈیو بنائیں اور وائس اوور تیار کریں — سب ایک ہی جگہ۔</p>
+
+  <!-- ONE COMMAND -->
+  <section class="card goldb" aria-label="One Command AI">
+    <h2 class="ur" lang="ur">ایک کمانڈ <span class="en">One Command AI</span></h2>
+    <div class="row" style="margin-top:10px">
+      <input type="text" id="cmdInput" class="ur" lang="ur" style="flex:1 1 260px" placeholder="مثال: اس ویڈیو کو صاف کرو، آواز بہتر کرو اور 720p بنا دو">
+      <button class="gold" id="cmdRun">Run ▶</button>
+    </div>
+    <div class="chips" id="cmdChips">
+      <button class="chip" data-cmd="full">✦ Clean + voice + 720p</button>
+      <button class="chip" data-cmd="enhance">Enhance video</button>
+      <button class="chip" data-cmd="voice">Clear voice</button>
+      <button class="chip" data-cmd="gen40">Make 40s video</button>
+      <button class="chip" data-cmd="undo">↩ Undo</button>
+    </div>
+    <ul id="planLog" aria-live="polite"></ul>
+  </section>
+
+  <!-- VIDEO EDITOR -->
+  <section class="card" aria-label="Video Editor">
+    <h2 class="ur" lang="ur">ویڈیو ایڈیٹر <span class="en">Video Editor</span></h2>
+    <div class="stage" id="stage" style="margin-top:12px">
+      <div class="empty ur" id="stageEmpty" lang="ur">ابھی کوئی ویڈیو نہیں<br>نیچے سے MP4 ،MOV یا WebM اپ لوڈ کریں</div>
+      <video id="vid" class="hidden" playsinline></video>
+    </div>
+    <div class="transport">
+      <button id="btnPlay" class="gold">▶ Play</button>
+      <button id="btnBack">−5s</button>
+      <button id="btnFwd">+5s</button>
+      <button id="btnUndo">↩ Undo</button>
+      <button id="btnOriginal">Original</button>
+      <span class="time" id="timeLabel">0:00 / 0:00</span>
+    </div>
+
+    <h3 class="ur" lang="ur" style="font-size:16px">ویڈیو اپ لوڈ کریں</h3>
+    <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm">
+    <div id="fileBox"></div>
+
+    <h3>Trim</h3>
+    <div class="sliders">
+      <div><label>Start (sec) <span class="val" id="trimStartVal">0</span></label><input type="range" id="trimStart" min="0" max="60" step="0.1" value="0"></div>
+      <div><label>End (sec) <span class="val" id="trimEndVal">—</span></label><input type="range" id="trimEnd" min="0" max="60" step="0.1" value="60"></div>
+    </div>
+
+    <h3 class="ur" lang="ur" style="font-size:16px">صاف کریں — Enhance</h3>
+    <div class="seg" style="margin-bottom:12px">
+      <button id="presetEnhance" class="gold">✦ Enhance</button>
+      <button id="presetWarm">Warm</button>
+      <button id="presetBW">B&amp;W</button>
+      <button id="presetReset">Reset</button>
+    </div>
+    <div class="sliders">
+      <div><label>Brightness <span class="val" id="v-bright">100%</span></label><input type="range" id="f-bright" min="50" max="160" value="100"></div>
+      <div><label>Contrast <span class="val" id="v-contrast">100%</span></label><input type="range" id="f-contrast" min="50" max="170" value="100"></div>
+      <div><label>Colour <span class="val" id="v-sat">100%</span></label><input type="range" id="f-sat" min="0" max="200" value="100"></div>
+      <div><label>Volume <span class="val" id="v-vol">100%</span></label><input type="range" id="f-vol" min="0" max="100" value="100"></div>
+      <div><label>Voice clarity <span class="val" id="v-eq">Off</span></label><input type="range" id="f-eq" min="0" max="10" value="0"></div>
+    </div>
+  </section>
+
+  <!-- AI VIDEO STUDIO -->
+  <section class="card goldb" id="genCard" aria-label="AI Video Studio">
+    <h2 class="ur" lang="ur">اے آئی ویڈیو اسٹوڈیو <span class="en">AI Video Studio · Google Flow</span></h2>
+    <label for="genPrompt" style="margin-top:12px">Story / Prompt</label>
+    <textarea id="genPrompt" class="ur" lang="ur" rows="4" placeholder="کہانی لکھیں… جیسے: گاؤں کا لڑکا سنہری شام کو دریا کی طرف جاتا ہے، دوست سے ملتا ہے، دونوں پتنگ اڑاتے ہیں…"></textarea>
+    <h3>Duration</h3>
+    <div class="seg" id="durSeg">
+      <button data-dur="40" aria-pressed="true">40 seconds · 5 clips</button>
+      <button data-dur="60">60 seconds · 8 clips</button>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="gold" id="btnPlan">🎬 Build scene plan</button>
+      <button id="btnCopyPrompts">Copy all prompts</button>
+      <a class="btn gold" href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener">Open Google Flow ↗</a>
+      <a class="btn" href="https://vids.google.com" target="_blank" rel="noopener">Google Vids ↗</a>
+    </div>
+    <p class="hint" id="planHint" style="margin-top:12px">Press “Build scene plan” — each scene becomes one Flow prompt, ready to paste.</p>
+    <div class="scenes" id="sceneList"></div>
+  </section>
+
+  <!-- VOICE STUDIO -->
+  <section class="card" id="voiceCard" aria-label="Voice Studio">
+    <h2 class="ur" lang="ur">وائس اسٹوڈیو <span class="en">Voice Studio</span></h2>
+    <div class="voicecards" style="margin-top:12px">
+      <div class="voicecard" id="vcFemale" aria-pressed="true" role="button" tabindex="0"><b class="ur" lang="ur">مریم فاطمہ</b><span>Maryam Fatima · Aoede · Female</span></div>
+      <div class="voicecard" id="vcMale" aria-pressed="false" role="button" tabindex="0"><b class="ur" lang="ur">حارث علی</b><span>Haris Ali · Charon · Male</span></div>
+    </div>
+    <label for="voText" style="margin-top:14px">Script — text to voice</label>
+    <textarea id="voText" class="ur" lang="ur" rows="6" placeholder="اردو وائس اوور یہاں لکھیں…"></textarea>
+    <div class="kv"><span>Words</span><b id="voWords">0</b></div>
+    <div class="kv"><span>Voice length (≈3 words/sec)</span><b id="voDur">0s</b></div>
+    <div class="row" style="margin-top:10px">
+      <button class="gold" id="btnSpeak">▶ Listen</button>
+      <button id="btnStopSpeak">⏹ Stop</button>
+    </div>
+  </section>
+
+  <!-- EXPORT -->
+  <section class="card goldb" id="exportCard" aria-label="Export">
+    <h2 class="ur" lang="ur">ایکسپورٹ <span class="en">Export</span></h2>
+    <h3 style="margin-top:12px">Quality</h3>
+    <div class="seg" id="resSeg">
+      <button data-res="426x240">240p</button>
+      <button data-res="640x360">360p</button>
+      <button data-res="1280x720" aria-pressed="true">720p</button>
+      <button data-res="1920x1080">1080p</button>
+    </div>
+    <div class="kv" style="margin-top:8px"><span>Video</span><b id="expSrc">—</b></div>
+    <div class="kv"><span>Length</span><b id="expLen">—</b></div>
+    <div class="kv"><span>File size (est.)</span><b id="expSize">—</b></div>
+    <div class="row" style="margin-top:10px">
+      <button class="gold" id="btnExport">⬇ Render &amp; download</button>
+      <button id="btnRetryExport" class="hidden">↻ Retry export</button>
+      <button id="btnCancelExport" class="hidden">Cancel</button>
+    </div>
+    <div style="margin-top:12px"><progress id="expProg" value="0" max="100" class="hidden"></progress><p class="hint" id="expStatus"></p></div>
+    <a id="dlVideo" class="btn gold hidden" download="raheem-studio-export.webm">⬇ Save your finished video</a>
+  </section>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var vid=$("vid");
+
+/* ---------- Segmented helpers ---------- */
+function segWire(id, attr, cb){
+  var seg=$(id); if(!seg) return;
+  seg.querySelectorAll("button").forEach(function(b){
+    b.addEventListener("click", function(){
+      seg.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true"); cb(b.getAttribute(attr));
+    });
+  });
+}
+function segSet(id, attr, val){
+  $(id).querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute(attr)===String(val)?"true":"false"); });
+}
+function scrollToId(id){ var el=$(id); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); }
+
+/* ---------- Undo stack ---------- */
+var undoStack=[];
+function snapshot(){
+  undoStack.push(JSON.stringify({F:F, ts:$("trimStart").value, te:$("trimEnd").value, eq:$("f-eq").value, vol:$("f-vol").value}));
+  if(undoStack.length>30) undoStack.shift();
+}
+function doUndo(){
+  var s=undoStack.pop();
+  if(!s){ logPlan("Nothing to undo — you are at the original settings."); return; }
+  var o=JSON.parse(s); F=o.F;
+  $("f-bright").value=F.bright; $("f-contrast").value=F.contrast; $("f-sat").value=F.sat;
+  $("trimStart").value=o.ts; $("trimEnd").value=o.te; $("trimStartVal").textContent=fmt(parseFloat(o.ts)); $("trimEndVal").textContent=fmt(parseFloat(o.te));
+  $("f-eq").value=o.eq; $("f-vol").value=o.vol; vid.volume=o.vol/100;
+  $("v-vol").textContent=o.vol+"%"; $("v-eq").textContent=o.eq>0?("On · +"+o.eq):"Off";
+  applyFilters(); refreshExportInfo();
+  logPlan("<span class='st-ok'>Undone ✓</span> Previous settings restored. Your original file was never touched.");
+}
+
+/* ---------- Video load ---------- */
+var fileName="", duration=0;
+$("fileInput").addEventListener("change", function(e){
+  var f=e.target.files[0]; if(!f) return;
+  fileName=f.name;
+  vid.src=URL.createObjectURL(f);
+  vid.classList.remove("hidden"); $("stageEmpty").classList.add("hidden");
+  $("fileBox").innerHTML="";
+  var d=document.createElement("div"); d.className="fileitem";
+  d.innerHTML="<span><b></b> · "+(f.size/1048576).toFixed(1)+" MB</span>";
+  d.querySelector("b").textContent=f.name;
+  var rm=document.createElement("button"); rm.className="small"; rm.textContent="Remove";
+  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("fileBox").innerHTML=""; fileName=""; duration=0; refreshExportInfo(); });
+  d.appendChild(rm); $("fileBox").appendChild(d);
+});
+vid.addEventListener("loadedmetadata", function(){
+  duration=vid.duration||0;
+  ["trimStart","trimEnd"].forEach(function(id){ $(id).max=duration; });
+  $("trimEnd").value=duration; $("trimEndVal").textContent=fmt(duration);
+  applyFilters(); refreshExportInfo();
+});
+function fmt(s){ if(!isFinite(s)) s=0; var m=Math.floor(s/60), r=Math.floor(s%60); return m+":"+(r<10?"0":"")+r; }
+vid.addEventListener("timeupdate", function(){
+  $("timeLabel").textContent=fmt(vid.currentTime)+" / "+fmt(duration);
+  var end=parseFloat($("trimEnd").value);
+  if(duration && vid.currentTime>=end && end<duration) vid.pause();
+});
+$("btnPlay").addEventListener("click", function(){
+  if(vid.paused){ var s=parseFloat($("trimStart").value); if(vid.currentTime<s||vid.currentTime>=parseFloat($("trimEnd").value)) vid.currentTime=s; vid.play(); $("btnPlay").textContent="⏸ Pause"; }
+  else { vid.pause(); $("btnPlay").textContent="▶ Play"; }
+});
+vid.addEventListener("pause", function(){ $("btnPlay").textContent="▶ Play"; });
+$("btnBack").addEventListener("click", function(){ vid.currentTime=Math.max(0,vid.currentTime-5); });
+$("btnFwd").addEventListener("click", function(){ vid.currentTime=Math.min(duration,vid.currentTime+5); });
+$("btnUndo").addEventListener("click", doUndo);
+var viewingOriginal=false;
+$("btnOriginal").addEventListener("click", function(){
+  viewingOriginal=!viewingOriginal;
+  vid.style.filter=viewingOriginal?"none":filterString();
+  this.textContent=viewingOriginal?"Edited":"Original";
+});
+$("trimStart").addEventListener("change", snapshot);
+$("trimEnd").addEventListener("change", snapshot);
+$("trimStart").addEventListener("input", function(){ $("trimStartVal").textContent=fmt(parseFloat(this.value)); vid.currentTime=parseFloat(this.value); refreshExportInfo(); });
+$("trimEnd").addEventListener("input", function(){ $("trimEndVal").textContent=fmt(parseFloat(this.value)); refreshExportInfo(); });
+
+/* ---------- Filters / Enhance ---------- */
+var F={bright:100,contrast:100,sat:100};
+function filterString(){ return "brightness("+F.bright+"%) contrast("+F.contrast+"%) saturate("+F.sat+"%)"; }
+function applyFilters(){
+  if(!viewingOriginal) vid.style.filter=filterString();
+  $("v-bright").textContent=F.bright+"%"; $("v-contrast").textContent=F.contrast+"%"; $("v-sat").textContent=F.sat+"%";
+}
+function bindFilter(id,key){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ F[key]=parseInt(this.value,10); applyFilters(); }); }
+bindFilter("f-bright","bright"); bindFilter("f-contrast","contrast"); bindFilter("f-sat","sat");
+$("f-vol").addEventListener("input", function(){ vid.volume=this.value/100; $("v-vol").textContent=this.value+"%"; });
+$("f-eq").addEventListener("input", function(){ $("v-eq").textContent=this.value>0?("On · +"+this.value):"Off"; });
+function setPreset(b,c,s){ snapshot(); F={bright:b,contrast:c,sat:s};
+  $("f-bright").value=b; $("f-contrast").value=c; $("f-sat").value=s; applyFilters(); }
+$("presetEnhance").addEventListener("click", function(){ setPreset(108,114,112); logPlan("<span class='st-ok'>Done ✓</span> Enhance applied — brightness, contrast and colour lifted. Undo is available."); });
+$("presetReset").addEventListener("click", function(){ setPreset(100,100,100); });
+$("presetWarm").addEventListener("click", function(){ setPreset(104,106,118); });
+$("presetBW").addEventListener("click", function(){ setPreset(102,110,0); });
+
+/* ---------- One Command AI ---------- */
+function logPlan(html){
+  var ul=$("planLog"); ul.style.display="block";
+  var li=document.createElement("li"); li.innerHTML=html; ul.prepend(li);
+}
+function runCommand(raw){
+  var c=(raw||"").toLowerCase(); if(!c) return;
+  var did=[];
+  if(/undo|واپس/.test(c)){ doUndo(); return; }
+  if(/enhance|clean|clear|improve|صاف|بہتر/.test(c) && !/voice|آواز/.test(c)){ setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Video cleaned &amp; enhanced"); }
+  if(/voice|noise|audio|sound|آواز/.test(c)){ snapshot(); $("f-eq").value=6; $("v-eq").textContent="On · +6"; if(!did.length) setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Voice clarity lifted"); }
+  var resMatch=c.match(/(240|360|720|1080)/);
+  if(resMatch){
+    var r=resMatch[1]==="720"?"1280x720":resMatch[1]==="1080"?"1920x1080":resMatch[1]==="360"?"640x360":"426x240";
+    resVal=r; segSet("resSeg","data-res",r); refreshExportInfo();
+    did.push("<span class='st-ok'>✓</span> Export set to "+resMatch[1]+"p — press the gold Render button below");
+  }
+  if(/40\s*(s|sec|second|سیکنڈ)/.test(c)){ segSet("durSeg","data-dur","40"); genDur=40; scrollToId("genCard"); logPlan("<b>One Command →</b> AI Video Studio: 40-second plan ready (5 Flow clips). Write the story and tap “Build scene plan”."); return; }
+  if(/60\s*(s|sec|second|سیکنڈ)/.test(c)){ segSet("durSeg","data-dur","60"); genDur=60; scrollToId("genCard"); logPlan("<b>One Command →</b> AI Video Studio: 60-second plan ready (8 Flow clips). Write the story and tap “Build scene plan”."); return; }
+  if(did.length){
+    logPlan("<b>One Command — done:</b><br>"+did.join("<br>"));
+    if(resMatch) scrollToId("exportCard");
+  } else {
+    logPlan("<b>Command noted:</b> “"+raw.replace(/</g,"&lt;")+"” — try words like <i>clean</i>, <i>voice</i>, <i>720p</i> or <i>40 seconds</i>.");
+  }
+}
+$("cmdRun").addEventListener("click", function(){ runCommand($("cmdInput").value.trim()); });
+$("cmdInput").addEventListener("keydown", function(e){ if(e.key==="Enter") runCommand(this.value.trim()); });
+$("cmdChips").querySelectorAll("button").forEach(function(b){
+  b.addEventListener("click", function(){
+    var k=b.getAttribute("data-cmd");
+    if(k==="full") runCommand("clean this video, improve the voice and make it 720p");
+    if(k==="enhance") runCommand("enhance this video");
+    if(k==="voice") runCommand("make the voice clearer");
+    if(k==="gen40") runCommand("make a 40 second video");
+    if(k==="undo") runCommand("undo");
+  });
+});
+
+/* ---------- AI Video Studio ---------- */
+var genDur=40;
+segWire("durSeg","data-dur", function(v){ genDur=parseInt(v,10); });
+var lastPrompts=[];
+$("btnPlan").addEventListener("click", function(){
+  var story=$("genPrompt").value.trim() || "A quiet village morning by the river";
+  var clips=genDur===40?5:8;
+  var beats=["Opening — set the place and mood","The main character appears","A small problem or wish begins","Friends / family join in","Action builds — the heart of the story","A warm turn — hope or humour","The plan comes together","Closing — a memorable final moment"];
+  var list=$("sceneList"); list.innerHTML=""; lastPrompts=[];
+  for(var i=0;i<clips;i++){
+    var per=(i===clips-1&&genDur===60)?4:8;
+    var p="Scene "+(i+1)+": "+beats[i]+". Story: "+story+". Same characters in every clip — consistent faces, clothes and style across all clips. Duration "+per+"s, 720p.";
+    lastPrompts.push(p);
+    var d=document.createElement("div"); d.className="scene";
+    d.innerHTML="<b>SCENE "+(i+1)+" · "+per+"s · FLOW CLIP</b><p></p>";
+    d.querySelector("p").textContent=p;
+    var cp=document.createElement("button"); cp.className="small"; cp.textContent="Copy this prompt";
+    (function(txt,btn){ btn.addEventListener("click", function(){ copyText(txt); btn.textContent="Copied ✓"; }); })(p,cp);
+    d.appendChild(cp); list.appendChild(d);
+  }
+  $("planHint").textContent=genDur+" seconds = "+clips+" clips. Paste each prompt into Google Flow, download the clips, add the voice-over, and export here. If one clip fails, retry only that scene.";
+});
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t); }
+  else { var ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} ta.remove(); }
+}
+$("btnCopyPrompts").addEventListener("click", function(){
+  if(!lastPrompts.length){ $("btnPlan").click(); }
+  copyText(lastPrompts.join("\n\n")); this.textContent="All prompts copied ✓";
+  var b=this; setTimeout(function(){ b.textContent="Copy all prompts"; },2200);
+});
+
+/* ---------- Voice Studio ---------- */
+var voiceGender="female";
+function pickVoice(g){
+  voiceGender=g;
+  $("vcFemale").setAttribute("aria-pressed", g==="female"?"true":"false");
+  $("vcMale").setAttribute("aria-pressed", g==="male"?"true":"false");
+}
+$("vcFemale").addEventListener("click", function(){ pickVoice("female"); });
+$("vcMale").addEventListener("click", function(){ pickVoice("male"); });
+function voStats(){
+  var words=$("voText").value.trim().split(/\s+/).filter(Boolean).length;
+  $("voWords").textContent=words;
+  $("voDur").textContent=Math.round(words/3)+"s";
+}
+$("voText").addEventListener("input", voStats);
+$("btnSpeak").addEventListener("click", function(){
+  var t=$("voText").value.trim(); if(!t) return;
+  if(!("speechSynthesis" in window)){ logPlan("This browser has no preview voice — the script is still ready to download."); return; }
+  speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(t);
+  var vs=speechSynthesis.getVoices();
+  var pick=vs.filter(function(v){ return /ur|hi/i.test(v.lang); })[0] ||
+           vs.filter(function(v){ return voiceGender==="female" ? /female|zira|samantha/i.test(v.name) : /male|david|daniel/i.test(v.name); })[0] || vs[0];
+  if(pick) u.voice=pick;
+  u.rate=0.95; speechSynthesis.speak(u);
+});
+$("btnStopSpeak").addEventListener("click", function(){ if("speechSynthesis" in window) speechSynthesis.cancel(); });
+function download(name, text, type){
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([text],{type:type||"text/plain"})); a.download=name; a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); },4000);
+}
+function scriptText(){ return ($("vcFemale").getAttribute("aria-pressed")==="true"?"Voice: Maryam Fatima (Aoede)\n\n":"Voice: Haris Ali (Charon)\n\n")+$("voText").value; }
+function srtText(){
+  var lines=$("voText").value.trim().split(/\n+/).filter(Boolean), out="", t=0;
+  if(!lines.length) lines=["(empty script)"];
+  lines.forEach(function(l,i){ var w=l.split(/\s+/).length, d=Math.max(2,Math.round(w/3));
+    function ts(s){ var h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60; return (h<10?"0":"")+h+":"+(m<10?"0":"")+m+":"+(ss<10?"0":"")+ss+",000"; }
+    out+=(i+1)+"\n"+ts(t)+" --> "+ts(t+d)+"\n"+l+"\n\n"; t+=d; });
+  return out;
+}
+
+
+/* ---------- Export ---------- */
+var resVal="1280x720";
+segWire("resSeg","data-res", function(v){ resVal=v; refreshExportInfo(); });
+function refreshExportInfo(){
+  var len=duration?Math.max(0, parseFloat($("trimEnd").value||0)-parseFloat($("trimStart").value||0)):0;
+  $("expSrc").textContent=fileName||"—";
+  $("expLen").textContent=duration?fmt(len):"—";
+  var parts=resVal.split("x"), px=parseInt(parts[0],10)*parseInt(parts[1],10);
+  var mbps=px>=2000000?12: px>=900000?5: px>=230000?1.6:0.7;
+  $("expSize").textContent=duration?("≈ "+(mbps*len/8).toFixed(1)+" MB · "+resVal.replace("x","×")):"—";
+}
+var recorder=null, recChunks=[], rafId=null, lastExportFailed=false;
+function startExport(){
+  if(!vid.src){ $("expStatus").textContent="Load a video in the Video Editor first."; window.scrollTo({top:0,behavior:"smooth"}); return; }
+  var srcW=vid.videoWidth||1280, srcH=vid.videoHeight||720;
+  var parts=resVal.split("x"), W=parseInt(parts[0],10);
+  var scale=Math.min(1, W/srcW);
+  var cw=Math.round(srcW*scale/2)*2, ch=Math.round(srcH*scale/2)*2;
+  var canvas=document.createElement("canvas"); canvas.width=cw; canvas.height=ch;
+  var ctx=canvas.getContext("2d");
+  var start=parseFloat($("trimStart").value), end=parseFloat($("trimEnd").value);
+  var len=Math.max(0.5,end-start);
+  recChunks=[];
+  var stream; try{ stream=canvas.captureStream(30); }catch(e){ failExport("This browser cannot render exports — try Chrome on your phone. Nothing was lost."); return; }
+  var mime=(window.MediaRecorder&&MediaRecorder.isTypeSupported("video/mp4"))?"video/mp4":"video/webm";
+  try{ recorder=new MediaRecorder(stream,{mimeType:mime, videoBitsPerSecond:5000000}); }
+  catch(e){ failExport("Recorder could not start — your edits are safe; press “Retry export”."); return; }
+  recorder.ondataavailable=function(e){ if(e.data.size) recChunks.push(e.data); };
+  recorder.onstop=function(){
+    cancelAnimationFrame(rafId); vid.pause();
+    if(lastExportFailed) return;
+    var blob=new Blob(recChunks,{type:mime});
+    var a=$("dlVideo"); a.href=URL.createObjectURL(blob);
+    a.download="raheem-studio-export."+(mime.indexOf("mp4")>-1?"mp4":"webm");
+    a.classList.remove("hidden");
+    $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
+    $("expStatus").textContent="Done ✓ Finished video ("+(blob.size/1048576).toFixed(1)+" MB) — tap “Save your finished video”.";
+  };
+  $("expProg").classList.remove("hidden"); $("expProg").value=0;
+  $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
+  $("expStatus").textContent="Rendering… keep this page open ("+fmt(len)+" of video).";
+  lastExportFailed=false;
+  vid.currentTime=start;
+  vid.play().then(function(){
+    recorder.start(250);
+    var t0=performance.now();
+    (function draw(){
+      ctx.filter=filterString();
+      ctx.drawImage(vid,0,0,cw,ch);
+      $("expProg").value=Math.min(100, ((performance.now()-t0)/1000/len)*100 );
+      if(vid.currentTime<end && recorder.state==="recording"){ rafId=requestAnimationFrame(draw); }
+      else if(recorder.state==="recording"){ recorder.stop(); }
+    })();
+  }).catch(function(){ failExport("Playback was blocked — tap Play once in the Video Editor, then retry. Only the export retries; your edits are kept."); });
+}
+function failExport(msg){
+  lastExportFailed=true;
+  if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
+  cancelAnimationFrame(rafId);
+  $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
+  $("btnRetryExport").classList.remove("hidden");
+  $("expStatus").textContent=msg;
+}
+$("btnExport").addEventListener("click", startExport);
+$("btnRetryExport").addEventListener("click", startExport);
+$("btnCancelExport").addEventListener("click", function(){
+  lastExportFailed=true;
+  if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
+  cancelAnimationFrame(rafId); vid.pause();
+  $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
+  $("btnRetryExport").classList.remove("hidden");
+  $("expStatus").textContent="Export cancelled — your edits and original file are untouched. Press “Retry export” any time.";
+});
+
+refreshExportInfo();
+})();
+</script>
+</body>
+</html>
