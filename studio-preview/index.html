@@ -53,7 +53,9 @@ h1 .gold{color:var(--gold)}
 #planLog li b{color:var(--gold)}
 #planLog li .st-ok{color:var(--ok);font-weight:800}
 .stage{background:#000;border-radius:14px;overflow:hidden;position:relative;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,207,255,.3)}
-.stage video{width:100%;height:100%;object-fit:contain;background:#000}
+.stage video{width:100%;height:100%;object-fit:contain;background:#000;position:relative;z-index:2}
+.stage video#vidBg{position:absolute;inset:0;z-index:1;object-fit:cover;filter:blur(16px) brightness(.7);background:#000}
+input[type="color"]{width:64px;height:44px;padding:2px;background:rgba(3,10,26,.7);border:1px solid rgba(0,207,255,.3);border-radius:10px}
 .stage .empty{color:#9db4d8;text-align:center;padding:22px;font-size:14.5px}
 .transport{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px;align-items:center}
 .transport .time{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);font-weight:700}
@@ -179,6 +181,7 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
     <h2>Video Editor</h2>
     <div class="stage" id="stage" style="margin-top:12px">
       <div class="empty" id="stageEmpty">No video yet<br>Upload an MP4, MOV or WebM below</div>
+      <video id="vidBg" class="hidden" playsinline muted loop aria-hidden="true"></video>
       <video id="vid" class="hidden" playsinline></video>
     </div>
     <div class="transport">
@@ -213,6 +216,55 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
       <div><label>Colour <span class="val" id="v-sat">100%</span></label><input type="range" id="f-sat" min="0" max="200" value="100"></div>
       <div><label>Volume <span class="val" id="v-vol">100%</span></label><input type="range" id="f-vol" min="0" max="100" value="100"></div>
       <div><label>Voice clarity <span class="val" id="v-eq">Off</span></label><input type="range" id="f-eq" min="0" max="10" value="0"></div>
+    </div>
+
+    <h3>Clean Voice (Noise Reduce)</h3>
+    <div class="seg" id="cleanSeg">
+      <button data-clean="0" aria-pressed="true">Off</button>
+      <button data-clean="1">Light</button>
+      <button data-clean="2">Medium</button>
+      <button data-clean="3">Strong</button>
+    </div>
+    <p class="hint" style="margin-top:8px">Reduces background noise in the voice. Your original file is never changed — cleaning is applied only to the exported copy. Noise is reduced, not removed completely. Pro Render (Export Studio) runs the full FFmpeg <b>afftdn</b> noise reduction; Fast Render cleans rumble and levels the voice live while it renders.</p>
+    <div class="row">
+      <button id="btnAB" class="small">A/B Preview: Cleaned</button>
+      <span class="hint" style="margin:0">Play the video, then tap A/B to compare cleaned vs original sound.</span>
+    </div>
+
+    <h3>Frame Size</h3>
+    <div class="seg" id="frameSeg">
+      <button data-frame="orig" aria-pressed="true">Original</button>
+      <button data-frame="16:9">16:9 · YouTube</button>
+      <button data-frame="9:16">9:16 · TikTok / Reels</button>
+      <button data-frame="1:1">1:1 · Square</button>
+      <button data-frame="4:5">4:5 · Facebook</button>
+    </div>
+    <h3>Fit Mode</h3>
+    <div class="seg" id="fitSeg">
+      <button data-fit="fit" aria-pressed="true">Fit (Pad)</button>
+      <button data-fit="fill">Fill (Crop)</button>
+      <button data-fit="blur">Blur Fill</button>
+    </div>
+    <p class="hint" style="margin-top:8px">The preview above shows the chosen frame before you export. Fit keeps the whole picture with plain padding, Fill crops to fill the frame, Blur Fill pads with a blurred copy of the video.</p>
+
+    <h3>Background</h3>
+    <div class="seg" id="bgSeg">
+      <button data-bg="none" aria-pressed="true">None</button>
+      <button data-bg="chroma">Chroma Key Replace</button>
+      <button data-bg="blur">Blur Background · Experimental</button>
+    </div>
+    <div id="chromaBox" class="hidden" style="margin-top:10px">
+      <div class="sliders">
+        <div><label>Background colour in your video</label><input type="color" id="keyColor" value="#00ff00"></div>
+        <div><label>Replacement colour</label><input type="color" id="bgColor" value="#2255cc"></div>
+        <div><label>Key strength <span class="val" id="v-keysim">18</span></label><input type="range" id="keySim" min="5" max="40" value="18"></div>
+        <div><label>Replacement image (optional)</label><input type="file" id="bgImgInput" accept="image/*"></div>
+      </div>
+      <div class="row" style="margin-top:6px"><button id="btnBgClear" class="small">Use colour only</button><span class="hint" style="margin:0" id="bgImgName">No replacement image — the colour above will be used.</span></div>
+      <p class="hint" style="margin-top:8px">Works on videos filmed against one solid colour (for example a green screen). Pick that colour, raise Key strength if edges remain, lower it if parts of the subject disappear.</p>
+    </div>
+    <div id="bgBlurBox" class="hidden" style="margin-top:10px">
+      <p class="hint">Experimental: Blur Background uses MediaPipe Selfie Segmentation, downloaded from the internet the first time you export with it (Fast Render only). If it cannot load — for example offline — the export stops with a clear message and nothing is lost; Chroma Key above works without it. It processes frame by frame, so short clips at 720p or lower work best on a phone.</p>
     </div>
   </section>
   </div><!-- /screen editor -->
@@ -296,8 +348,15 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
       <button data-res="1280x720" aria-pressed="true">720p</button>
       <button data-res="1920x1080">1080p</button>
     </div>
+    <h3>Render Engine</h3>
+    <div class="seg" id="renderSeg">
+      <button data-render="fast" aria-pressed="true">Fast Render · In-App</button>
+      <button data-render="pro">Pro Render · FFmpeg</button>
+    </div>
+    <p class="hint" style="margin-top:8px" id="proHint">Fast Render works fully inside the app, in real time, and includes your sound. Pro Render downloads the FFmpeg engine once (about 31 MB, internet needed) and then processes inside the app with the full afftdn noise reduction and exact MP4 output — slower than Fast Render, especially at 1080p. If the engine cannot load, you will get a clear message and Fast Render still works.</p>
     <div class="kv" style="margin-top:8px"><span>Video</span><b id="expSrc">—</b></div>
     <div class="kv"><span>Length</span><b id="expLen">—</b></div>
+    <div class="kv"><span>Frame</span><b id="expFrame">—</b></div>
     <div class="kv"><span>File size (est.)</span><b id="expSize">—</b></div>
     <div class="row" style="margin-top:10px">
       <button class="gold" id="btnExport">⬇ Render &amp; download</button>
@@ -349,7 +408,7 @@ document.querySelectorAll("[data-back]").forEach(function(b){
 /* ---------- Undo stack ---------- */
 var undoStack=[];
 function snapshot(){
-  undoStack.push(JSON.stringify({F:F, ts:$("trimStart").value, te:$("trimEnd").value, eq:$("f-eq").value, vol:$("f-vol").value}));
+  undoStack.push(JSON.stringify({F:F, ts:$("trimStart").value, te:$("trimEnd").value, eq:$("f-eq").value, vol:$("f-vol").value, fr:frameVal, ft:fitVal, cl:cleanVal, bg:bgMode}));
   if(undoStack.length>30) undoStack.shift();
 }
 function doUndo(){
@@ -358,32 +417,38 @@ function doUndo(){
   var o=JSON.parse(s); F=o.F;
   $("f-bright").value=F.bright; $("f-contrast").value=F.contrast; $("f-sat").value=F.sat;
   $("trimStart").value=o.ts; $("trimEnd").value=o.te; $("trimStartVal").textContent=fmt(parseFloat(o.ts)); $("trimEndVal").textContent=fmt(parseFloat(o.te));
-  $("f-eq").value=o.eq; $("f-vol").value=o.vol; vid.volume=o.vol/100;
+  $("f-eq").value=o.eq; $("f-vol").value=o.vol; vid.volume=o.vol/100; setVolGain();
   $("v-vol").textContent=o.vol+"%"; $("v-eq").textContent=o.eq>0?("On · +"+o.eq):"Off";
+  if(o.fr!==undefined){ frameVal=o.fr; fitVal=o.ft; cleanVal=o.cl; bgMode=o.bg;
+    segSet("frameSeg","data-frame",frameVal); segSet("fitSeg","data-fit",fitVal); segSet("cleanSeg","data-clean",String(cleanVal)); segSet("bgSeg","data-bg",bgMode);
+    $("chromaBox").classList.toggle("hidden", bgMode!=="chroma"); $("bgBlurBox").classList.toggle("hidden", bgMode!=="blur");
+    rebuildAudioChain(); applyPreview(); }
   applyFilters(); refreshExportInfo();
   logPlan("<span class='st-ok'>Undone ✓</span> Previous settings restored. Your original file was never touched.");
 }
 
 /* ---------- Video load ---------- */
-var fileName="", duration=0;
+var fileName="", duration=0, lastFile=null;
 $("fileInput").addEventListener("change", function(e){
   var f=e.target.files[0]; if(!f) return;
-  fileName=f.name;
-  vid.src=URL.createObjectURL(f);
+  fileName=f.name; lastFile=f;
+  var objUrl=URL.createObjectURL(f);
+  vid.src=objUrl;
+  $("vidBg").src=objUrl;
   vid.classList.remove("hidden"); $("stageEmpty").classList.add("hidden");
   $("fileBox").innerHTML="";
   var d=document.createElement("div"); d.className="fileitem";
   d.innerHTML="<span><b></b> · "+(f.size/1048576).toFixed(1)+" MB</span>";
   d.querySelector("b").textContent=f.name;
   var rm=document.createElement("button"); rm.className="small"; rm.textContent="Remove";
-  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("fileBox").innerHTML=""; fileName=""; duration=0; refreshExportInfo(); });
+  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); var vb=$("vidBg"); vb.removeAttribute("src"); vb.load(); vb.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("fileBox").innerHTML=""; fileName=""; lastFile=null; duration=0; refreshExportInfo(); });
   d.appendChild(rm); $("fileBox").appendChild(d);
 });
 vid.addEventListener("loadedmetadata", function(){
   duration=vid.duration||0;
   ["trimStart","trimEnd"].forEach(function(id){ $(id).max=duration; });
   $("trimEnd").value=duration; $("trimEndVal").textContent=fmt(duration);
-  applyFilters(); refreshExportInfo();
+  applyFilters(); applyPreview(); refreshExportInfo();
 });
 function fmt(s){ if(!isFinite(s)) s=0; var m=Math.floor(s/60), r=Math.floor(s%60); return m+":"+(r<10?"0":"")+r; }
 vid.addEventListener("timeupdate", function(){
@@ -396,6 +461,12 @@ $("btnPlay").addEventListener("click", function(){
   else { vid.pause(); $("btnPlay").textContent="▶ Play"; }
 });
 vid.addEventListener("pause", function(){ $("btnPlay").textContent="▶ Play"; });
+/* Backdrop video (Blur Fill preview) follows the main video */
+var vidBg=$("vidBg");
+vid.addEventListener("play", function(){ if(!vidBg.classList.contains("hidden")){ vidBg.play().catch(function(){}); } });
+vid.addEventListener("pause", function(){ vidBg.pause(); });
+vid.addEventListener("seeked", function(){ if(vidBg.readyState>=1) vidBg.currentTime=vid.currentTime; });
+vid.addEventListener("timeupdate", function(){ if(!vidBg.classList.contains("hidden") && vidBg.readyState>=2 && Math.abs(vidBg.currentTime-vid.currentTime)>0.35) vidBg.currentTime=vid.currentTime; });
 $("btnBack").addEventListener("click", function(){ vid.currentTime=Math.max(0,vid.currentTime-5); });
 $("btnFwd").addEventListener("click", function(){ vid.currentTime=Math.min(duration,vid.currentTime+5); });
 $("btnUndo").addEventListener("click", doUndo);
@@ -419,7 +490,7 @@ function applyFilters(){
 }
 function bindFilter(id,key){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ F[key]=parseInt(this.value,10); applyFilters(); }); }
 bindFilter("f-bright","bright"); bindFilter("f-contrast","contrast"); bindFilter("f-sat","sat");
-$("f-vol").addEventListener("input", function(){ vid.volume=this.value/100; $("v-vol").textContent=this.value+"%"; });
+$("f-vol").addEventListener("input", function(){ vid.volume=this.value/100; $("v-vol").textContent=this.value+"%"; setVolGain(); });
 $("f-eq").addEventListener("input", function(){ $("v-eq").textContent=this.value>0?("On · +"+this.value):"Off"; });
 function setPreset(b,c,s){ snapshot(); F={bright:b,contrast:c,sat:s};
   $("f-bright").value=b; $("f-contrast").value=c; $("f-sat").value=s; applyFilters(); }
@@ -574,7 +645,7 @@ function runCommand(raw){
   var wantsVideo = dur!==null || /\b(make|create|generate)\s+(a\s+)?video\b/.test(c) || (/ویڈیو/.test(raw) && /بنا/.test(raw));
   if(!wantsVideo){
     if(/enhance|clean|clear|improve|صاف|بہتر/.test(c) && !/voice|آواز/.test(c)){ setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Video cleaned &amp; enhanced"); }
-    if(/voice|noise|audio|sound|آواز/.test(c)){ snapshot(); $("f-eq").value=6; $("v-eq").textContent="On · +6"; if(!did.length) setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Voice clarity lifted"); }
+    if(/voice|noise|audio|sound|آواز/.test(c)){ snapshot(); $("f-eq").value=6; $("v-eq").textContent="On · +6"; cleanVal=2; segSet("cleanSeg","data-clean","2"); abClean=true; updateABBtn(); rebuildAudioChain(); if(!did.length) setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Voice clarity lifted + Clean Voice (Noise Reduce) set to Medium — it applies at Export"); }
     if(resMatch){
       var r0=resMatch[1]==="720"?"1280x720":resMatch[1]==="1080"?"1920x1080":resMatch[1]==="360"?"640x360":"426x240";
       resVal=r0; segSet("resSeg","data-res",r0); refreshExportInfo();
@@ -659,6 +730,135 @@ function srtText(){
 }
 
 
+/* ---------- Editor tools: Clean Voice · Frame · Background ---------- */
+var frameVal="orig", fitVal="fit", cleanVal=0, bgMode="none", renderVal="fast";
+var bgImgEl=null, bgImgFile=null;
+var NR_LEVELS=[0,8,18,30]; /* afftdn nr per level: Off / Light / Medium / Strong */
+segWire("cleanSeg","data-clean", function(v){ snapshot(); cleanVal=parseInt(v,10); abClean=cleanVal>0; updateABBtn(); rebuildAudioChain(); });
+segWire("frameSeg","data-frame", function(v){ snapshot(); frameVal=v; applyPreview(); refreshExportInfo(); });
+segWire("fitSeg","data-fit", function(v){ snapshot(); fitVal=v; applyPreview(); refreshExportInfo(); });
+segWire("bgSeg","data-bg", function(v){ snapshot(); bgMode=v;
+  $("chromaBox").classList.toggle("hidden", v!=="chroma");
+  $("bgBlurBox").classList.toggle("hidden", v!=="blur");
+  refreshExportInfo(); });
+segWire("renderSeg","data-render", function(v){ renderVal=v; });
+$("keySim").addEventListener("input", function(){ $("v-keysim").textContent=this.value; });
+$("bgImgInput").addEventListener("change", function(e){
+  var f=e.target.files[0]; if(!f) return;
+  bgImgFile=f;
+  var img=new Image();
+  img.onload=function(){ bgImgEl=img; $("bgImgName").textContent="Replacement image: "+f.name; };
+  img.src=URL.createObjectURL(f);
+});
+$("btnBgClear").addEventListener("click", function(){ bgImgEl=null; bgImgFile=null; $("bgImgInput").value=""; $("bgImgName").textContent="No replacement image — the colour above will be used."; });
+
+/* Frame geometry: returns [W,H] for the chosen quality + frame preset */
+function outDims(){
+  var parts=resVal.split("x"), rw=parseInt(parts[0],10), rh=parseInt(parts[1],10);
+  if(frameVal==="orig"){
+    var sw=vid.videoWidth||rw, sh=vid.videoHeight||rh;
+    var sc=Math.min(1, rw/sw);
+    return [Math.max(2,Math.round(sw*sc/2)*2), Math.max(2,Math.round(sh*sc/2)*2)];
+  }
+  var ab=frameVal.split(":"), a=parseInt(ab[0],10), b=parseInt(ab[1],10);
+  var S=Math.min(rw,rh), L=Math.max(rw,rh), W,H;
+  if(a>=b){ W=L; H=Math.round(L*b/a/2)*2; } else { W=S; H=Math.round(S*b/a/2)*2; }
+  return [W,H];
+}
+/* How the source picture sits inside the output frame */
+function fitRect(sw,sh,W,H){
+  if(fitVal==="fill"){ var s=Math.max(W/sw,H/sh); var w=sw*s,h=sh*s; return [(W-w)/2,(H-h)/2,w,h]; }
+  var s2=Math.min(W/sw,H/sh); var w2=sw*s2,h2=sh*s2; return [(W-w2)/2,(H-h2)/2,w2,h2];
+}
+function coverRect(sw,sh,W,H){ var s=Math.max(W/sw,H/sh); var w=sw*s,h=sh*s; return [(W-w)/2,(H-h)/2,w,h]; }
+
+/* Live preview of the chosen frame (backdrop video = blurred pad) */
+function applyPreview(){
+  var stage=$("stage");
+  if(frameVal==="orig"){ stage.style.aspectRatio="16/9"; }
+  else { var ab=frameVal.split(":"); stage.style.aspectRatio=ab[0]+"/"+ab[1]; }
+  var blurPad = frameVal!=="orig" && fitVal==="blur" && bgMode==="none";
+  vidBg.classList.toggle("hidden", !blurPad || !vid.src);
+  vid.style.objectFit = (frameVal!=="orig" && fitVal==="fill" && bgMode==="none") ? "cover" : "contain";
+  if(blurPad && vidBg.readyState>=1) vidBg.currentTime=vid.currentTime;
+  if(blurPad && !vid.paused) vidBg.play().catch(function(){});
+}
+
+/* ----- Clean Voice audio graph (preview A/B + Fast Render capture) -----
+   The video element is routed through Web Audio once, lazily, on first
+   use. Cleaned path: high-pass (rumble) -> compressor (levels + gentle
+   downward expansion) -> clarity presence EQ -> gain. A/B switches the
+   filters in/out live; the original file is never modified. */
+var AC=null, aSrc=null, aHP=null, aComp=null, aEQ=null, aGain=null, aDest=null, abClean=true;
+function ensureAudio(){
+  if(AC) { if(AC.resume) AC.resume(); return true; }
+  if(!vid.src) return false;
+  try{
+    var Ctx=window.AudioContext||window.webkitAudioContext; if(!Ctx) return false;
+    AC=new Ctx();
+    aSrc=AC.createMediaElementSource(vid);
+    aHP=AC.createBiquadFilter(); aHP.type="highpass";
+    aComp=AC.createDynamicsCompressor();
+    aEQ=AC.createBiquadFilter(); aEQ.type="peaking"; aEQ.frequency.value=2500; aEQ.Q.value=0.9;
+    aGain=AC.createGain();
+    aDest=AC.createMediaStreamDestination();
+    vid.volume=1; /* from now on the Volume slider drives the graph gain */
+    rebuildAudioChain(); setVolGain();
+    return true;
+  }catch(e){ AC=null; return false; }
+}
+function rebuildAudioChain(){
+  if(!AC) return;
+  try{ aSrc.disconnect(); aHP.disconnect(); aComp.disconnect(); aEQ.disconnect(); aGain.disconnect(); }catch(e){}
+  var useClean = cleanVal>0 && abClean;
+  if(useClean){
+    aHP.frequency.value = cleanVal===1?70 : cleanVal===2?90 : 120;
+    aComp.threshold.value = cleanVal===1?-42 : cleanVal===2?-36 : -30;
+    aComp.ratio.value = cleanVal===1?4 : cleanVal===2?8 : 12;
+    aComp.knee.value=18; aComp.attack.value=0.004; aComp.release.value=0.24;
+    aEQ.gain.value = 2+cleanVal*1.5 + parseInt($("f-eq").value,10)*0.6;
+    aSrc.connect(aHP); aHP.connect(aComp); aComp.connect(aEQ); aEQ.connect(aGain);
+  } else {
+    aEQ.gain.value = parseInt($("f-eq").value,10)*0.6;
+    if(parseInt($("f-eq").value,10)>0){ aSrc.connect(aEQ); aEQ.connect(aGain); }
+    else { aSrc.connect(aGain); }
+  }
+  aGain.connect(AC.destination); aGain.connect(aDest);
+}
+function setVolGain(){ if(AC&&aGain) aGain.gain.value=parseInt($("f-vol").value,10)/100; }
+function updateABBtn(){ $("btnAB").textContent = (cleanVal>0 && abClean) ? "A/B Preview: Cleaned" : "A/B Preview: Original"; }
+$("btnAB").addEventListener("click", function(){
+  if(!vid.src){ logPlan("Load a video first, then use A/B Preview."); return; }
+  if(!ensureAudio()){ logPlan("This browser could not open the audio preview path — Clean Voice still applies in Pro Render."); return; }
+  abClean=!abClean; updateABBtn(); rebuildAudioChain();
+});
+$("f-eq").addEventListener("input", function(){ if(AC) rebuildAudioChain(); });
+
+/* ----- MediaPipe Selfie Segmentation (Experimental background blur) ----- */
+var segModel=null, segMask=null, segFailed=false, segLoading=null;
+function loadSegmentation(){
+  if(segModel) return Promise.resolve(true);
+  if(segFailed) return Promise.resolve(false);
+  if(segLoading) return segLoading;
+  segLoading=new Promise(function(resolve){
+    function fail(){ segFailed=true; segLoading=null; resolve(false); }
+    var s=document.createElement("script");
+    s.src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/selfie_segmentation.js";
+    s.onload=function(){
+      try{
+        var m=new SelfieSegmentation({locateFile:function(f){ return "https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1.1675465747/"+f; }});
+        m.setOptions({modelSelection:0});
+        m.onResults(function(r){ if(r&&r.segmentationMask) segMask=r.segmentationMask; });
+        segModel=m; segLoading=null; resolve(true);
+      }catch(e){ fail(); }
+    };
+    s.onerror=fail;
+    document.head.appendChild(s);
+    setTimeout(function(){ if(!segModel && !segFailed) fail(); }, 25000);
+  });
+  return segLoading;
+}
+
 /* ---------- Export ---------- */
 var resVal="1280x720";
 segWire("resSeg","data-res", function(v){ resVal=v; refreshExportInfo(); });
@@ -666,56 +866,232 @@ function refreshExportInfo(){
   var len=duration?Math.max(0, parseFloat($("trimEnd").value||0)-parseFloat($("trimStart").value||0)):0;
   $("expSrc").textContent=fileName||"—";
   $("expLen").textContent=duration?fmt(len):"—";
-  var parts=resVal.split("x"), px=parseInt(parts[0],10)*parseInt(parts[1],10);
+  var d=outDims();
+  var fitName=fitVal==="fit"?"Fit (Pad)":fitVal==="fill"?"Fill (Crop)":"Blur Fill";
+  var bgName=bgMode==="chroma"?" · Chroma Key":bgMode==="blur"?" · Background Blur (Experimental)":"";
+  var cleanName=cleanVal>0?(" · Clean Voice "+["","Light","Medium","Strong"][cleanVal]):"";
+  $("expFrame").textContent=duration?((frameVal==="orig"?"Original frame":frameVal+" · "+fitName)+bgName+cleanName+" · "+d[0]+"×"+d[1]):"—";
+  var px=d[0]*d[1];
   var mbps=px>=2000000?12: px>=900000?5: px>=230000?1.6:0.7;
-  $("expSize").textContent=duration?("≈ "+(mbps*len/8).toFixed(1)+" MB · "+resVal.replace("x","×")):"—";
+  $("expSize").textContent=duration?("≈ "+(mbps*len/8).toFixed(1)+" MB · "+d[0]+"×"+d[1]):"—";
 }
-var recorder=null, recChunks=[], rafId=null, lastExportFailed=false;
+var recorder=null, recChunks=[], rafId=null, lastExportFailed=false, exporting=false;
 function startExport(){
+  if(renderVal==="pro"){ startProExport(); return; }
+  startFastExport();
+}
+function hexRGB(hex){ var n=parseInt(hex.slice(1),16); return [n>>16&255, n>>8&255, n&255]; }
+function startFastExport(){
   if(!vid.src){ $("expStatus").textContent="Load a video in the Video Editor first."; showScreen("editor"); return; }
+  if(exporting) return;
   var srcW=vid.videoWidth||1280, srcH=vid.videoHeight||720;
-  var parts=resVal.split("x"), W=parseInt(parts[0],10);
-  var scale=Math.min(1, W/srcW);
-  var cw=Math.round(srcW*scale/2)*2, ch=Math.round(srcH*scale/2)*2;
+  var dims=outDims(), cw=dims[0], ch=dims[1];
   var canvas=document.createElement("canvas"); canvas.width=cw; canvas.height=ch;
-  var ctx=canvas.getContext("2d");
+  var ctx=canvas.getContext("2d",{willReadFrequently: bgMode==="chroma"});
+  var fgC=document.createElement("canvas"); fgC.width=cw; fgC.height=ch;
+  var fgX=fgC.getContext("2d",{willReadFrequently:true});
   var start=parseFloat($("trimStart").value), end=parseFloat($("trimEnd").value);
   var len=Math.max(0.5,end-start);
   recChunks=[];
   var stream; try{ stream=canvas.captureStream(30); }catch(e){ failExport("This browser cannot render exports — try Chrome on your phone. Nothing was lost."); return; }
+  /* Real audio: route the video sound through the Clean Voice graph and
+     record it with the picture. If the browser blocks the audio path the
+     export honestly says so instead of silently dropping the sound. */
+  var audioNote="";
+  if(ensureAudio() && aDest){
+    try{ aDest.stream.getAudioTracks().forEach(function(t){ stream.addTrack(t); }); audioNote = cleanVal>0 ? " Sound included, voice cleaned ("+["","Light","Medium","Strong"][cleanVal]+")." : " Sound included."; }
+    catch(e){ audioNote=" Note: sound could not be captured in this browser."; }
+  } else { audioNote=" Note: sound could not be captured in this browser."; }
   var mime=(window.MediaRecorder&&MediaRecorder.isTypeSupported("video/mp4"))?"video/mp4":"video/webm";
   try{ recorder=new MediaRecorder(stream,{mimeType:mime, videoBitsPerSecond:5000000}); }
   catch(e){ failExport("Recorder could not start — your edits are safe; press “Retry export”."); return; }
+  exporting=true;
   recorder.ondataavailable=function(e){ if(e.data.size) recChunks.push(e.data); };
   recorder.onstop=function(){
-    cancelAnimationFrame(rafId); vid.pause();
+    cancelAnimationFrame(rafId); vid.pause(); exporting=false;
     if(lastExportFailed) return;
     var blob=new Blob(recChunks,{type:mime});
     var a=$("dlVideo"); a.href=URL.createObjectURL(blob);
     a.download="raheem-studio-export."+(mime.indexOf("mp4")>-1?"mp4":"webm");
     a.classList.remove("hidden");
     $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
-    $("expStatus").textContent="Done ✓ Finished video ("+(blob.size/1048576).toFixed(1)+" MB) — tap “Save your finished video”.";
+    $("expStatus").textContent="Done ✓ Finished video ("+(blob.size/1048576).toFixed(1)+" MB · "+cw+"×"+ch+") — tap “Save your finished video”."+audioNote;
   };
   $("expProg").classList.remove("hidden"); $("expProg").value=0;
   $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
-  $("expStatus").textContent="Rendering… keep this page open ("+fmt(len)+" of video).";
+  $("expStatus").textContent="Rendering… keep this page open ("+fmt(len)+" of video)."+audioNote;
   lastExportFailed=false;
-  vid.currentTime=start;
-  vid.play().then(function(){
-    recorder.start(250);
-    var t0=performance.now();
-    (function draw(){
-      ctx.filter=filterString();
-      ctx.drawImage(vid,0,0,cw,ch);
-      $("expProg").value=Math.min(100, ((performance.now()-t0)/1000/len)*100 );
-      if(vid.currentTime<end && recorder.state==="recording"){ rafId=requestAnimationFrame(draw); }
-      else if(recorder.state==="recording"){ recorder.stop(); }
-    })();
-  }).catch(function(){ failExport("Playback was blocked — tap Play once in the Video Editor, then retry. Only the export retries; your edits are kept."); });
+  var keyRGB=hexRGB($("keyColor").value), sim=parseInt($("keySim").value,10)/100;
+  function prepBg(){
+    if(bgMode==="chroma"){
+      if(bgImgEl){ var r=coverRect(bgImgEl.naturalWidth||bgImgEl.width, bgImgEl.naturalHeight||bgImgEl.height, cw, ch); ctx.filter="none"; ctx.drawImage(bgImgEl, r[0],r[1],r[2],r[3]); }
+      else { ctx.filter="none"; ctx.fillStyle=$("bgColor").value; ctx.fillRect(0,0,cw,ch); }
+    } else if(bgMode==="blur" || (frameVal!=="orig" && fitVal==="blur")){
+      var r2=coverRect(srcW,srcH,cw,ch);
+      ctx.filter="blur(24px) brightness(.72) saturate(1.15)";
+      ctx.drawImage(vid, r2[0],r2[1],r2[2],r2[3]);
+      ctx.filter="none";
+    } else {
+      ctx.filter="none"; ctx.fillStyle="#000"; ctx.fillRect(0,0,cw,ch);
+    }
+  }
+  function drawFg(){
+    var r=fitRect(srcW,srcH,cw,ch);
+    fgX.clearRect(0,0,cw,ch);
+    fgX.filter=filterString();
+    fgX.drawImage(vid, r[0],r[1],r[2],r[3]);
+    fgX.filter="none";
+    if(bgMode==="chroma"){
+      try{
+        var img=fgX.getImageData(0,0,cw,ch), d=img.data, thr=sim*441;
+        for(var i=0;i<d.length;i+=4){
+          var dr=d[i]-keyRGB[0], dg=d[i+1]-keyRGB[1], db=d[i+2]-keyRGB[2];
+          var dist=Math.sqrt(dr*dr+dg*dg+db*db);
+          if(dist<thr) d[i+3]=0;
+          else if(dist<thr*1.6) d[i+3]=Math.round(255*(dist-thr)/(thr*0.6));
+        }
+        fgX.putImageData(img,0,0);
+      }catch(e){}
+    }
+    if(bgMode==="blur" && segMask){
+      fgX.globalCompositeOperation="destination-in";
+      fgX.drawImage(segMask,0,0,cw,ch);
+      fgX.globalCompositeOperation="source-over";
+    }
+    ctx.drawImage(fgC,0,0);
+  }
+  function beginRender(){
+    vid.currentTime=start;
+    vid.play().then(function(){
+      recorder.start(250);
+      var t0=performance.now(), frameNo=0;
+      (function draw(){
+        prepBg(); drawFg();
+        if(bgMode==="blur" && segModel && frameNo%2===0){ try{ segModel.send({image:vid}); }catch(e){} }
+        frameNo++;
+        $("expProg").value=Math.min(100, ((performance.now()-t0)/1000/len)*100 );
+        if(vid.currentTime<end && recorder.state==="recording"){ rafId=requestAnimationFrame(draw); }
+        else if(recorder.state==="recording"){ recorder.stop(); }
+      })();
+    }).catch(function(){ failExport("Playback was blocked — tap Play once in the Video Editor, then retry. Only the export retries; your edits are kept."); });
+  }
+  if(bgMode==="blur"){
+    $("expStatus").textContent="Loading the background-blur model (internet needed this once)…";
+    loadSegmentation().then(function(ok){
+      if(lastExportFailed){ exporting=false; return; }
+      if(!ok){ exporting=false; failExport("Background Blur (Experimental) could not load — it needs internet the first time. Your edits are safe; use Chroma Key Replace, or connect to the internet and retry."); return; }
+      beginRender();
+    });
+  } else { beginRender(); }
+}
+
+/* ----- Pro Render: real FFmpeg (afftdn · scale/pad · chromakey) in-page -----
+   The FFmpeg engine (ffmpeg.wasm, single-thread) is downloaded once from
+   the jsDelivr CDN. Everything after that runs inside the app. If the
+   download fails the user gets a clear message — never a fake render. */
+var ffInst=null, ffLoading=null;
+function loadScriptOnce(src){
+  return new Promise(function(resolve,reject){
+    var s=document.createElement("script"); s.src=src;
+    s.onload=resolve; s.onerror=function(){ reject(new Error("load failed: "+src)); };
+    document.head.appendChild(s);
+  });
+}
+function loadFFmpeg(){
+  if(ffInst) return Promise.resolve(ffInst);
+  if(ffLoading) return ffLoading;
+  ffLoading=(async function(){
+    var base="https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
+    await loadScriptOnce("https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/umd/util.js");
+    await loadScriptOnce("https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js");
+    var ff=new FFmpegWASM.FFmpeg();
+    ff.on("progress", function(p){ if(p&&typeof p.progress==="number") $("expProg").value=Math.max(0,Math.min(100,Math.round(p.progress*100))); });
+    await ff.load({
+      coreURL: await FFmpegUtil.toBlobURL(base+"/ffmpeg-core.js","text/javascript"),
+      wasmURL: await FFmpegUtil.toBlobURL(base+"/ffmpeg-core.wasm","application/wasm")
+    });
+    ffInst=ff; return ff;
+  })();
+  ffLoading.catch(function(){ ffLoading=null; });
+  return ffLoading;
+}
+function eqChain(){
+  var parts=[];
+  if(F.bright!==100||F.contrast!==100||F.sat!==100)
+    parts.push("eq=brightness="+((F.bright-100)/200).toFixed(3)+":contrast="+(1+(F.contrast-100)/100).toFixed(3)+":saturation="+(F.sat/100).toFixed(2));
+  return parts;
+}
+async function startProExport(){
+  if(!vid.src || !lastFile){ $("expStatus").textContent="Load a video in the Video Editor first."; showScreen("editor"); return; }
+  if(exporting) return;
+  exporting=true; lastExportFailed=false;
+  $("expProg").classList.remove("hidden"); $("expProg").value=0;
+  $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
+  $("expStatus").textContent="Pro Render: loading the FFmpeg engine (first time needs internet, about 31 MB)…";
+  var ff;
+  try{ ff=await loadFFmpeg(); }
+  catch(e){ exporting=false; failExport("Pro Render could not load the FFmpeg engine — check the internet connection and retry. Nothing was lost; Fast Render works fully offline."); return; }
+  try{
+    var dims=outDims(), W=dims[0], H=dims[1];
+    var srcW=vid.videoWidth||W, srcH=vid.videoHeight||H;
+    var start=parseFloat($("trimStart").value), end=parseFloat($("trimEnd").value);
+    var len=Math.max(0.5,end-start);
+    var ext=(fileName.split(".").pop()||"mp4").toLowerCase().replace(/[^a-z0-9]/g,"")||"mp4";
+    var inName="in."+ext;
+    await ff.writeFile(inName, await FFmpegUtil.fetchFile(lastFile));
+    var args=["-ss", String(start), "-i", inName];
+    var vfParts=eqChain(), fc=null, vmap="0:v";
+    if(bgMode==="chroma"){
+      var keyHex=$("keyColor").value.replace("#","0x");
+      var sim=(parseInt($("keySim").value,10)/100).toFixed(2);
+      if(bgImgFile){
+        var bext=(bgImgFile.name.split(".").pop()||"png").toLowerCase().replace(/[^a-z0-9]/g,"")||"png";
+        await ff.writeFile("bg."+bext, await FFmpegUtil.fetchFile(bgImgFile));
+        args.push("-loop","1","-i","bg."+bext);
+      } else {
+        args.push("-f","lavfi","-i","color=c="+$("bgColor").value.replace("#","0x")+":s="+W+"x"+H+":r=30");
+      }
+      var pre=vfParts.length? vfParts.join(",")+"," : "";
+      fc="[0:v]"+pre+"format=rgba,chromakey="+keyHex+":"+sim+":0.08,scale="+W+":"+H+":force_original_aspect_ratio=decrease,pad="+W+":"+H+":(ow-iw)/2:(oh-ih)/2:color=black@0[keyed];[1:v]scale="+W+":"+H+":force_original_aspect_ratio=increase,crop="+W+":"+H+"[bgs];[bgs][keyed]overlay=0:0,format=yuv420p,setsar=1[vout]";
+      vmap="[vout]";
+    } else if(frameVal!=="orig" && fitVal==="fill"){
+      vfParts.push("scale="+W+":"+H+":force_original_aspect_ratio=increase,crop="+W+":"+H+",setsar=1");
+    } else if(frameVal!=="orig" && fitVal==="blur"){
+      var pre2=vfParts.length? vfParts.join(",")+"," : "";
+      fc="[0:v]"+pre2+"split=2[bgin][fgin];[bgin]scale="+W+":"+H+":force_original_aspect_ratio=increase,crop="+W+":"+H+",gblur=sigma=20[bgb];[fgin]scale="+W+":"+H+":force_original_aspect_ratio=decrease[fgs];[bgb][fgs]overlay=(W-w)/2:(H-h)/2,setsar=1,format=yuv420p[vout]";
+      vmap="[vout]";
+    } else if(frameVal!=="orig"){
+      vfParts.push("scale="+W+":"+H+":force_original_aspect_ratio=decrease,pad="+W+":"+H+":(ow-iw)/2:(oh-ih)/2:black,setsar=1");
+    } else {
+      vfParts.push("scale="+W+":"+H+",setsar=1");
+    }
+    if(fc){ args.push("-filter_complex", fc); }
+    else if(vfParts.length){ args.push("-vf", vfParts.join(",")); }
+    args.push("-map", vmap, "-map", "0:a?");
+    var af=[];
+    if(cleanVal>0){ af.push("afftdn=nr="+NR_LEVELS[cleanVal]+":nf=-25"); af.push("highpass=f=80"); }
+    var eqv=parseInt($("f-eq").value,10); if(eqv>0) af.push("equalizer=f=2500:width_type=o:width=2:g="+eqv);
+    var vol=parseInt($("f-vol").value,10); if(vol!==100) af.push("volume="+(vol/100).toFixed(2));
+    if(af.length) args.push("-af", af.join(","));
+    args.push("-t", String(len), "-c:v","libx264","-preset","veryfast","-crf","23","-pix_fmt","yuv420p","-c:a","aac","-b:a","128k","-movflags","+faststart","out.mp4");
+    $("expStatus").textContent="Pro Render: processing inside the app — "+W+"×"+H+(cleanVal>0?(", Clean Voice "+["","Light","Medium","Strong"][cleanVal]+" (afftdn)"):"")+"… long clips take a while; keep this page open.";
+    await ff.exec(args);
+    var data=await ff.readFile("out.mp4");
+    if(!data || !data.length) throw new Error("empty output");
+    var blob=new Blob([data.buffer], {type:"video/mp4"});
+    var a=$("dlVideo"); a.href=URL.createObjectURL(blob); a.download="raheem-studio-export.mp4";
+    a.classList.remove("hidden");
+    $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
+    $("expStatus").textContent="Done ✓ Pro Render finished ("+(blob.size/1048576).toFixed(1)+" MB · MP4 · "+W+"×"+H+") — tap “Save your finished video”. Your original file was not changed.";
+    try{ await ff.deleteFile(inName); await ff.deleteFile("out.mp4"); }catch(e){}
+  }catch(e){
+    failExport("Pro Render failed while processing — your edits and original file are safe. Try Fast Render, or a shorter clip / lower quality, then retry.");
+    try{ if(ffInst){ ffInst.terminate(); ffInst=null; ffLoading=null; } }catch(e2){}
+  }
+  exporting=false;
 }
 function failExport(msg){
-  lastExportFailed=true;
+  lastExportFailed=true; exporting=false;
   if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
   cancelAnimationFrame(rafId);
   $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
@@ -725,8 +1101,9 @@ function failExport(msg){
 $("btnExport").addEventListener("click", startExport);
 $("btnRetryExport").addEventListener("click", startExport);
 $("btnCancelExport").addEventListener("click", function(){
-  lastExportFailed=true;
+  lastExportFailed=true; exporting=false;
   if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
+  if(ffInst){ try{ ffInst.terminate(); }catch(e){} ffInst=null; ffLoading=null; }
   cancelAnimationFrame(rafId); vid.pause();
   $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
   $("btnRetryExport").classList.remove("hidden");
