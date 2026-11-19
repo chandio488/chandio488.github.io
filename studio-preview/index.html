@@ -91,6 +91,87 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
 .homecard.tile-ai{background:#55448A}
 .homecard.tile-voice{background:#17765C}
 .homecard.tile-export{background:#8A5A17}
+
+.homecard.tile-enhance{background:#1D7A4F}
+.homecard.tile-bg{background:#8A4B2A}
+.homecard.tile-audio{background:#55448A}
+.homecard.tile-cine{background:#0F6F6A}
+.homecard small{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.85);line-height:1.35}
+select{width:100%;background:rgba(3,10,26,.7);color:var(--text);border:1px solid rgba(0,207,255,.3);border-radius:12px;padding:10px 12px;font-family:inherit;font-size:15px;min-height:44px}
+input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-align:-4px}
+.checkrow{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:14.5px;color:#fff}
+.checkrow .ck{flex:0 0 auto;width:21px;height:21px;border-radius:50%;background:#1faa59;color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center}
+/* ----- Locked editor workspace (reference design 2026-11-19) ----- */
+.ws-outer{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;background:linear-gradient(180deg,#0a1830,#050d1d)}
+.ws-inner{width:1180px;transform-origin:top left;padding:10px 12px 12px;margin:0 auto}
+.ws-top{display:flex;align-items:center;gap:12px;padding:2px 2px 10px}
+.ws-top .burger{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:19px;min-height:40px;padding:0}
+.ws-top .crown{width:34px;height:34px;flex:0 0 auto}
+.ws-top h1{font-size:27px;margin:0}
+.ws-top .tag{color:var(--gold2);font-style:italic;font-weight:700;font-size:14.5px;margin-left:10px;white-space:nowrap}
+.ws-badge{margin-left:auto;border:2px solid var(--gold);color:var(--gold);border-radius:9px;padding:3px 10px;font-weight:900;line-height:1.15;text-align:center;font-size:16px;white-space:nowrap}
+.ws-badge small{display:block;font-size:9.5px;letter-spacing:.14em;color:#fff}
+.ws-main{display:flex;gap:12px;align-items:flex-start}
+.ws-rail{flex:0 0 196px;display:flex;flex-direction:column;gap:9px}
+.railbtn{display:flex;align-items:center;gap:10px;text-align:left;border:none;border-radius:13px;padding:11px 13px;color:#fff;cursor:pointer;min-height:64px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.railbtn svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.railbtn b{font-size:16.5px;line-height:1.2;display:block}
+.railbtn small{font-size:12px;color:rgba(255,255,255,.85);display:block}
+.railbtn[aria-pressed="true"]{outline:2.5px solid var(--gold);outline-offset:1.5px}
+.rail-video{background:#1565B4}.rail-enhance{background:#1D7A4F}.rail-audio{background:#55448A}
+.rail-bg{background:#8A4B2A}.rail-cine{background:#0F6F6A}.rail-export{background:#2E8B3A}
+.ws-centre{flex:1 1 auto;min-width:0}
+.ws-stage{position:relative;border-radius:14px;overflow:hidden;background:#000;border:1px solid rgba(0,207,255,.3);aspect-ratio:16/8.2}
+.ws-split{display:flex;width:100%;height:100%}
+.ws-half{width:50%;overflow:hidden;position:relative}
+.ws-half video{width:200%;height:100%;object-fit:cover;background:#000;display:block}
+.ws-half.after video{transform:translateX(-50%)}
+.ws-half .vlabel{position:absolute;top:9px;z-index:5;background:rgba(0,0,0,.72);color:#fff;font-weight:800;font-size:13.5px;padding:4px 10px;border-radius:8px}
+.ws-half.before .vlabel{left:9px}
+.ws-half.after .vlabel{right:9px;color:var(--gold2)}
+.ws-half.after{border-left:2.5px solid var(--gold)}
+.ws-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);color:#123;border:none;font-size:21px;min-height:56px;padding:0;box-shadow:0 8px 22px rgba(0,0,0,.5)}
+.ws-stage .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9db4d8;text-align:center;font-size:15px;z-index:4;background:#020610}
+.ws-stage img#photoImg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:3;background:#000}
+.ws-transport{display:flex;align-items:center;gap:9px;padding:9px 2px 4px}
+.ws-transport button{min-height:38px;padding:5px 13px;font-size:14px}
+.ws-transport .tc{margin:0 auto;font-variant-numeric:tabular-nums;font-size:16.5px;font-weight:700;color:#fff;letter-spacing:.03em}
+.ws-film{position:relative;height:56px;border-radius:10px;overflow:hidden;background:#0a1428;border:1px solid rgba(0,207,255,.22);display:flex}
+.ws-film canvas{flex:1 1 0;height:100%;min-width:0;object-fit:cover}
+.ws-film .playhead{position:absolute;top:0;bottom:0;width:2.5px;background:var(--cyan);box-shadow:0 0 8px var(--cyan);z-index:3;pointer-events:none}
+.ws-panel{flex:0 0 302px;background:rgba(10,32,74,.85);border:1.5px solid rgba(0,110,255,.55);border-radius:15px;padding:14px 15px;max-height:640px;overflow-y:auto}
+.ws-panel h2{font-size:19px;margin:0 0 8px;color:#fff}
+.ws-panel h2 .en{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan);margin-top:1px}
+.ws-panel h3{font-size:14px;margin:14px 0 6px;color:#fff}
+.ws-panel .hint{font-size:12.5px}
+.ws-panel .val{float:right;color:var(--cyan);font-weight:800}
+.ws-lower{display:flex;gap:12px;margin-top:11px;align-items:stretch}
+.ws-audio{flex:1 1 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:11px 14px}
+.ws-audio .arow{display:flex;align-items:center;gap:11px;padding:5.5px 0;font-size:14px}
+.ws-audio .arow .aname{flex:0 0 148px;color:#fff;font-weight:700}
+.ws-audio .arow .aname small{display:block;color:var(--muted);font-weight:400;font-size:11.5px}
+.ws-audio .arow input[type="range"]{flex:1}
+.ws-audio .arow .aval{flex:0 0 44px;text-align:right;color:var(--cyan);font-weight:800;font-variant-numeric:tabular-nums}
+.ws-audio .offbtn{flex:0 0 auto;background:#33415e;color:#fff;border:none;border-radius:999px;padding:4px 15px;min-height:32px;font-size:13px}
+.ws-audio .offbtn[aria-pressed="true"]{background:#c22f4d}
+.ws-zoom{flex:0 0 264px;position:relative;border:2px solid var(--gold);border-radius:13px;overflow:hidden;background:#000;min-height:150px}
+.ws-zoom canvas{width:100%;height:100%;display:block}
+.ws-zoom .ztag{position:absolute;left:9px;top:9px;background:var(--gold);color:#231a00;font-weight:900;font-size:13px;padding:3px 10px;border-radius:7px;z-index:2}
+.ws-bgeffects{flex:0 0 302px;background:rgba(85,68,138,.28);border:1px solid rgba(0,207,255,.3);border-radius:13px;padding:11px 12px}
+.ws-bgeffects h3{margin:0 0 9px;font-size:15.5px;color:#fff}
+.fxtiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fxtile{border:2px solid transparent;border-radius:10px;min-height:58px;color:#fff;font-size:11.5px;font-weight:800;padding:5px 3px;line-height:1.25;cursor:pointer}
+.fxtile[aria-pressed="true"]{border-color:var(--gold)}
+.ws-bottom{display:flex;gap:10px;margin-top:12px;align-items:stretch}
+.ws-tagline{flex:1.3 1 0;border:2px solid var(--gold);border-radius:12px;color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;padding:8px}
+.ws-bottom button{flex:1 1 0;border:none;border-radius:12px;color:#fff;font-size:15.5px;font-weight:800;min-height:56px;line-height:1.25}
+.ws-bottom button small{display:block;font-size:12px;font-weight:700}
+.btn-quick{background:linear-gradient(180deg,#ff9a3d,#f96d00)}
+.btn-1080{background:linear-gradient(180deg,#2f8fe8,#1663c7)}
+.btn-2k{background:linear-gradient(180deg,#43b34d,#2e8b3a)}
+.btn-4k{background:linear-gradient(180deg,#8e4ec6,#6a2fa0)}
+.btn-save{background:linear-gradient(180deg,#43b34d,#1d7a4f)}
+
 .screenbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .screenbar .stitle{font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 </style>
@@ -100,27 +181,39 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
 
   <!-- HOME SCREEN -->
   <div class="screen" data-screen="home" id="homeScreen">
-    <h1>RAHEEM <span class="gold">AI STUDIO</span></h1>
-    <p class="sub">Your complete video workspace</p>
+    <h1>RAHEEM AI <span class="gold">VIDEO EDITOR</span></h1>
+    <p class="sub">Pro Editing • AI Enhancement • Cinematic Studio</p>
     <div class="home-grid">
-      <button class="homecard tile-ai" data-goto="ai">
+      <button class="homecard tile-enhance" data-goto="editor" data-rail="enhance">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
-        <b>AI Video Studio</b>
+        <span><b>AI Enhance</b><small>Upscale, Denoise, Sharpen</small></span>
       </button>
-      <button class="homecard tile-editor" data-goto="editor">
+      <button class="homecard tile-editor" data-goto="editor" data-rail="video">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg>
-        <b>Video Editor</b>
+        <span><b>Video Editor</b><small>Timeline, Cut, Trim, Effects</small></span>
       </button>
-      <button class="homecard tile-export" data-goto="export">
+      <button class="homecard tile-bg" data-goto="editor" data-rail="background">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="m21 15-5-5L5 21"/></svg>
+        <span><b>Background AI</b><small>Remove, Replace, Blur</small></span>
+      </button>
+      <button class="homecard tile-audio" data-goto="editor" data-rail="audio">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4"/><path d="M8 7v10"/><path d="M12 4v16"/><path d="M16 7v10"/><path d="M20 10v4"/></svg>
+        <span><b>Audio Studio</b><small>Multi-track, Voice, Music</small></span>
+      </button>
+      <button class="homecard tile-export" data-goto="editor" data-rail="export">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 21h16"/></svg>
-        <b>Export Studio</b>
+        <span><b>Export Studio</b><small>1080p, 2K, 4K</small></span>
       </button>
-      <button class="homecard tile-voice" data-goto="voice">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg>
-        <b>Voice Studio</b>
+      <button class="homecard tile-cine" data-goto="editor" data-rail="cine">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        <span><b>Cinematic Studio</b><small>iPhone Pro, HDR, Film</small></span>
       </button>
     </div>
-    <p class="hint" style="margin-top:14px">Tap a card to open that studio.</p>
+    <div class="row" style="margin-top:14px">
+      <button data-goto="ai">AI Video Studio · One Command</button>
+      <button data-goto="voice">Voice Studio</button>
+    </div>
+    <p class="hint" style="margin-top:10px">Tap a card to open that studio. AI Video Studio prepares commands and prompts for the generation engines; Voice Studio holds your voice-over scripts.</p>
   </div>
 
   <!-- AI VIDEO STUDIO SCREEN · part 1: One Command -->
@@ -169,105 +262,299 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
   </section>
   </div><!-- /screen ai (part 1) -->
 
-  <!-- VIDEO EDITOR SCREEN -->
+  <!-- EDITOR WORKSPACE SCREEN (locked design, owner order 2026-11-19 22:08) -->
   <div class="screen hidden" data-screen="editor">
-    <div class="screenbar">
-      <button data-back>← Home</button>
-      <span class="stitle">Video Editor</span>
+  <div class="ws-outer"><div class="ws-inner" id="wsInner">
+
+    <div class="ws-top">
+      <button class="burger" id="btnWsHome" aria-label="Back to home">&#9776;</button>
+      <svg class="crown" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10.2H4.6L3 8z" fill="#F5B800" stroke="#c98f00" stroke-width="1" stroke-linejoin="round"/></svg>
+      <h1>Raheem <span class="gold">AI</span> Video Editor</h1>
+      <span class="tag">Pro Editing &#8226; 4K Enhancement &#8226; Cinematic Studio</span>
+      <div class="ws-badge">4K<small>ULTRA HD</small></div>
     </div>
 
-  <!-- VIDEO EDITOR -->
-  <section class="card" aria-label="Video Editor">
-    <h2>Video Editor</h2>
-    <div class="stage" id="stage" style="margin-top:12px">
-      <div class="empty" id="stageEmpty">No video yet<br>Upload an MP4, MOV or WebM below</div>
-      <video id="vidBg" class="hidden" playsinline muted loop aria-hidden="true"></video>
-      <video id="vid" class="hidden" playsinline></video>
-    </div>
-    <div class="transport">
-      <button id="btnPlay" class="gold">▶ Play</button>
-      <button id="btnBack">−5s</button>
-      <button id="btnFwd">+5s</button>
-      <button id="btnUndo">↩ Undo</button>
-      <button id="btnOriginal">Original</button>
-      <span class="time" id="timeLabel">0:00 / 0:00</span>
-    </div>
-
-    <h3>Upload Video</h3>
-    <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm">
-    <div id="fileBox"></div>
-
-    <h3>Trim</h3>
-    <div class="sliders">
-      <div><label>Start (sec) <span class="val" id="trimStartVal">0</span></label><input type="range" id="trimStart" min="0" max="60" step="0.1" value="0"></div>
-      <div><label>End (sec) <span class="val" id="trimEndVal">—</span></label><input type="range" id="trimEnd" min="0" max="60" step="0.1" value="60"></div>
-    </div>
-
-    <h3>Enhance</h3>
-    <div class="seg" style="margin-bottom:12px">
-      <button id="presetEnhance" class="gold">✦ Enhance</button>
-      <button id="presetWarm">Warm</button>
-      <button id="presetBW">B&amp;W</button>
-      <button id="presetReset">Reset</button>
-    </div>
-    <div class="sliders">
-      <div><label>Brightness <span class="val" id="v-bright">100%</span></label><input type="range" id="f-bright" min="50" max="160" value="100"></div>
-      <div><label>Contrast <span class="val" id="v-contrast">100%</span></label><input type="range" id="f-contrast" min="50" max="170" value="100"></div>
-      <div><label>Colour <span class="val" id="v-sat">100%</span></label><input type="range" id="f-sat" min="0" max="200" value="100"></div>
-      <div><label>Volume <span class="val" id="v-vol">100%</span></label><input type="range" id="f-vol" min="0" max="100" value="100"></div>
-      <div><label>Voice clarity <span class="val" id="v-eq">Off</span></label><input type="range" id="f-eq" min="0" max="10" value="0"></div>
-    </div>
-
-    <h3>Clean Voice (Noise Reduce)</h3>
-    <div class="seg" id="cleanSeg">
-      <button data-clean="0" aria-pressed="true">Off</button>
-      <button data-clean="1">Light</button>
-      <button data-clean="2">Medium</button>
-      <button data-clean="3">Strong</button>
-    </div>
-    <p class="hint" style="margin-top:8px">Reduces background noise in the voice. Your original file is never changed — cleaning is applied only to the exported copy. Noise is reduced, not removed completely. Pro Render (Export Studio) runs the full FFmpeg <b>afftdn</b> noise reduction; Fast Render cleans rumble and levels the voice live while it renders.</p>
-    <div class="row">
-      <button id="btnAB" class="small">A/B Preview: Cleaned</button>
-      <span class="hint" style="margin:0">Play the video, then tap A/B to compare cleaned vs original sound.</span>
-    </div>
-
-    <h3>Frame Size</h3>
-    <div class="seg" id="frameSeg">
-      <button data-frame="orig" aria-pressed="true">Original</button>
-      <button data-frame="16:9">16:9 · YouTube</button>
-      <button data-frame="9:16">9:16 · TikTok / Reels</button>
-      <button data-frame="1:1">1:1 · Square</button>
-      <button data-frame="4:5">4:5 · Facebook</button>
-    </div>
-    <h3>Fit Mode</h3>
-    <div class="seg" id="fitSeg">
-      <button data-fit="fit" aria-pressed="true">Fit (Pad)</button>
-      <button data-fit="fill">Fill (Crop)</button>
-      <button data-fit="blur">Blur Fill</button>
-    </div>
-    <p class="hint" style="margin-top:8px">The preview above shows the chosen frame before you export. Fit keeps the whole picture with plain padding, Fill crops to fill the frame, Blur Fill pads with a blurred copy of the video.</p>
-
-    <h3>Background</h3>
-    <div class="seg" id="bgSeg">
-      <button data-bg="none" aria-pressed="true">None</button>
-      <button data-bg="chroma">Chroma Key Replace</button>
-      <button data-bg="blur">Blur Background · Experimental</button>
-    </div>
-    <div id="chromaBox" class="hidden" style="margin-top:10px">
-      <div class="sliders">
-        <div><label>Background colour in your video</label><input type="color" id="keyColor" value="#00ff00"></div>
-        <div><label>Replacement colour</label><input type="color" id="bgColor" value="#2255cc"></div>
-        <div><label>Key strength <span class="val" id="v-keysim">18</span></label><input type="range" id="keySim" min="5" max="40" value="18"></div>
-        <div><label>Replacement image (optional)</label><input type="file" id="bgImgInput" accept="image/*"></div>
+    <div class="ws-main">
+      <div class="ws-rail">
+        <button class="railbtn rail-video" data-railbtn="video" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M8 5v14"/></svg>
+          <span><b>Video Editor</b><small>Cut &#8226; Trim &#8226; Merge</small></span>
+        </button>
+        <button class="railbtn rail-enhance" data-railbtn="enhance" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
+          <span><b>AI Enhance</b><small>4K &#8226; Clean &#8226; Sharpen</small></span>
+        </button>
+        <button class="railbtn rail-audio" data-railbtn="audio" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4"/><path d="M8 7v10"/><path d="M12 4v16"/><path d="M16 7v10"/><path d="M20 10v4"/></svg>
+          <span><b>Audio Studio</b><small>Voice &#8226; Music &#8226; Mix</small></span>
+        </button>
+        <button class="railbtn rail-bg" data-railbtn="background" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="m21 15-5-5L5 21"/></svg>
+          <span><b>Background AI</b><small>Remove &#8226; Replace</small></span>
+        </button>
+        <button class="railbtn rail-cine" data-railbtn="cine" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span><b>Cinematic Studio</b><small>iPhone Pro Look</small></span>
+        </button>
+        <button class="railbtn rail-export" data-railbtn="export" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2.2"/><circle cx="15" cy="12" r="2.2"/><circle cx="7" cy="17" r="2.2"/></svg>
+          <span><b>Export Studio</b><small>1080p &#8226; 2K &#8226; 4K</small></span>
+        </button>
       </div>
-      <div class="row" style="margin-top:6px"><button id="btnBgClear" class="small">Use colour only</button><span class="hint" style="margin:0" id="bgImgName">No replacement image — the colour above will be used.</span></div>
-      <p class="hint" style="margin-top:8px">Works on videos filmed against one solid colour (for example a green screen). Pick that colour, raise Key strength if edges remain, lower it if parts of the subject disappear.</p>
+
+      <div class="ws-centre">
+        <div class="ws-stage" id="stage">
+          <video id="vidBg" class="hidden" playsinline muted loop aria-hidden="true" style="display:none"></video>
+          <div class="ws-split">
+            <div class="ws-half before"><video id="vid" class="hidden" playsinline></video><span class="vlabel" id="lblBefore">Before</span></div>
+            <div class="ws-half after"><video id="vidAfter" playsinline muted loop></video><span class="vlabel" id="lblAfter">After</span></div>
+          </div>
+          <img id="photoImg" class="hidden" alt="Photo being enhanced">
+          <div class="empty" id="stageEmpty">No video yet<br>Upload an MP4, MOV or WebM in the Video Editor panel</div>
+          <button class="ws-play" id="btnSplitPlay" aria-label="Play or pause the preview">&#9654;</button>
+        </div>
+        <div class="ws-transport">
+          <button id="btnUndo" title="Undo">&#8630; Undo</button>
+          <button id="btnRedo" title="Redo">&#8631; Redo</button>
+          <button id="btnPlay" class="gold">&#9654; Play</button>
+          <button id="btnBack">&#8722;5s</button>
+          <button id="btnFwd">+5s</button>
+          <span class="tc" id="timeLabel">00:00:00.0 / 00:00:00.0</span>
+          <button id="btnOriginal">Original</button>
+          <button id="btnFs" title="Fullscreen">&#9974;</button>
+          <button id="btnMuteT" title="Mute preview sound">&#128266;</button>
+        </div>
+        <div class="ws-film" id="filmstrip"><div class="playhead" id="playhead" style="left:0%"></div></div>
+      </div>
+
+      <div class="ws-panel" id="wsPanel">
+
+        <div data-panel="video" class="hidden">
+          <h2>Video Editor <span class="en">Timeline &#8226; Cut &#8226; Trim &#8226; Effects</span></h2>
+          <h3 style="margin-top:2px">Upload Video</h3>
+          <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm">
+          <div id="fileBox"></div>
+          <h3>Trim</h3>
+          <div><label>Start (sec) <span class="val" id="trimStartVal">0</span></label><input type="range" id="trimStart" min="0" max="60" step="0.1" value="0"></div>
+          <div><label>End (sec) <span class="val" id="trimEndVal">&#8212;</span></label><input type="range" id="trimEnd" min="0" max="60" step="0.1" value="60"></div>
+          <h3>Enhance</h3>
+          <div class="seg" style="margin-bottom:10px">
+            <button id="presetEnhance" class="gold">&#10022; Enhance</button>
+            <button id="presetWarm">Warm</button>
+            <button id="presetBW">B&amp;W</button>
+            <button id="presetReset">Reset</button>
+          </div>
+          <div><label>Brightness <span class="val" id="v-bright">100%</span></label><input type="range" id="f-bright" min="50" max="160" value="100"></div>
+          <div><label>Contrast <span class="val" id="v-contrast">100%</span></label><input type="range" id="f-contrast" min="50" max="170" value="100"></div>
+          <div><label>Colour <span class="val" id="v-sat">100%</span></label><input type="range" id="f-sat" min="0" max="200" value="100"></div>
+          <div><label>Volume <span class="val" id="v-vol">100%</span></label><input type="range" id="f-vol" min="0" max="100" value="100"></div>
+          <div><label>Voice clarity <span class="val" id="v-eq">Off</span></label><input type="range" id="f-eq" min="0" max="10" value="0"></div>
+          <h3>Clean Voice (Noise Reduce)</h3>
+          <div class="seg" id="cleanSeg">
+            <button data-clean="0" aria-pressed="true">Off</button>
+            <button data-clean="1">Light</button>
+            <button data-clean="2">Medium</button>
+            <button data-clean="3">Strong</button>
+          </div>
+          <p class="hint" style="margin-top:8px">Reduces background noise in the voice. Your original file is never changed &#8212; cleaning is applied only to the exported copy. Noise is reduced, not removed completely. Pro Render (Export Studio) runs the full FFmpeg <b>afftdn</b> noise reduction; Fast Render cleans rumble and levels the voice live while it renders.</p>
+          <div class="row">
+            <button id="btnAB" class="small">A/B Preview: Cleaned</button>
+            <span class="hint" style="margin:0">Play the video, then tap A/B to compare cleaned vs original sound.</span>
+          </div>
+          <h3>Frame Size</h3>
+          <div class="seg" id="frameSeg">
+            <button data-frame="orig" aria-pressed="true">Original</button>
+            <button data-frame="16:9">16:9 &#8226; YouTube</button>
+            <button data-frame="9:16">9:16 &#8226; TikTok / Reels</button>
+            <button data-frame="1:1">1:1 &#8226; Square</button>
+            <button data-frame="4:5">4:5 &#8226; Facebook</button>
+          </div>
+          <h3>Fit Mode</h3>
+          <div class="seg" id="fitSeg">
+            <button data-fit="fit" aria-pressed="true">Fit (Pad)</button>
+            <button data-fit="fill">Fill (Crop)</button>
+            <button data-fit="blur">Blur Fill</button>
+          </div>
+          <p class="hint" style="margin-top:8px">The preview above shows the chosen frame before you export. Fit keeps the whole picture with plain padding, Fill crops to fill the frame, Blur Fill pads with a blurred copy of the video.</p>
+        </div>
+
+        <div data-panel="enhance">
+          <h2>AI Enhancement <span class="en">On-Device &#8226; FFmpeg Filters</span></h2>
+          <div class="checkrow"><span class="ck">&#10003;</span> Upscale &amp; Sharpen</div>
+          <div class="checkrow"><span class="ck">&#10003;</span> Noise Reduction</div>
+          <div class="checkrow"><span class="ck">&#10003;</span> Detail Sharpening</div>
+          <div class="checkrow"><span class="ck">&#10003;</span> Color Correction</div>
+          <div class="checkrow"><span class="ck">&#10003;</span> Brightness Balance</div>
+          <p class="hint">Real on-device enhancement &#8212; denoise, sharpen, colour and upscale, applied in Pro Render. It cannot restore detail that was never recorded, and there is no face-restoration step.</p>
+          <h3>DSLR-Like Clarity Settings</h3>
+          <div class="seg" id="dslrModeSeg">
+            <button data-mode="natural" aria-pressed="true">Natural</button>
+            <button data-mode="pro">Professional</button>
+          </div>
+          <div style="margin-top:10px"><label>Sharpness <span class="val" id="v-dslrSharp">90%</span></label><input type="range" id="dslrSharp" min="0" max="100" value="90"></div>
+          <div><label>Detail Boost <span class="val" id="v-dslrDetail">85%</span></label><input type="range" id="dslrDetail" min="0" max="100" value="85"></div>
+          <div><label>Noise Reduction <span class="val" id="v-dslrNoise">70%</span></label><input type="range" id="dslrNoise" min="0" max="100" value="70"></div>
+          <div><label>HDR Effect <span class="val" id="v-dslrHdr">60%</span></label><input type="range" id="dslrHdr" min="0" max="100" value="60"></div>
+          <label for="dslrLook" style="margin-top:10px">Select Look</label>
+          <select id="dslrLook">
+            <option>DSLR Natural</option>
+            <option>DSLR Portrait</option>
+            <option>Canon Cinema</option>
+            <option>Sony Professional</option>
+            <option>Nikon Natural</option>
+            <option>iPhone Pro Max</option>
+            <option>None</option>
+          </select>
+          <div class="seg" id="dslrOnSeg" style="margin-top:10px">
+            <button data-on="0" aria-pressed="true">DSLR Quality: Off</button>
+            <button data-on="1">DSLR Quality: On</button>
+          </div>
+          <button id="btnDslrApply" style="width:100%;margin-top:12px;background:linear-gradient(180deg,#2f8fe8,#1663c7);color:#fff;border:none;font-size:16px">&#10003; Apply Now</button>
+          <p class="hint" id="dslrStatus">Apply Now switches DSLR Quality on, opens Export Studio and starts a Pro Render with these settings.</p>
+          <h3>Photo Mode</h3>
+          <p class="hint">Enhance a still photo with the same DSLR settings and save it as a JPG. The photo appears in the centre stage; the zoom slider and the 400% Zoom box are previews only.</p>
+          <input type="file" id="photoInput" accept="image/*">
+          <div class="seg" id="photoSizeSeg" style="margin-top:8px">
+            <button data-psize="1280">HD</button>
+            <button data-psize="2560" aria-pressed="true">2K</button>
+            <button data-psize="3840">4K</button>
+          </div>
+          <div style="margin-top:8px"><label>Zoom preview <span class="val" id="v-photoZoom">100%</span></label><input type="range" id="photoZoom" min="100" max="400" value="100"></div>
+          <button id="btnPhotoSave" class="gold" style="width:100%;margin-top:8px">Enhance &amp; Save Photo</button>
+          <p class="hint" id="photoStatus">No photo chosen yet.</p>
+          <a id="dlPhoto" class="btn gold hidden" download="raheem-enhanced-photo.jpg">&#11015; Save enhanced photo</a>
+        </div>
+
+        <div data-panel="audio" class="hidden">
+          <h2>Audio Studio <span class="en">Multi-Track Mix &#8226; Pro Render</span></h2>
+          <p class="hint">Track volumes and the original-audio mute live in the audio rows under the preview. Here you add the track files, ducking and fades. Audio Studio applies in <b>Pro Render</b> &#8212; choose Pro Render in Export Studio. Fast Render keeps the Video Editor's single sound path.</p>
+          <div><label>Original audio volume <span class="val" id="v-auOrigVol">100%</span></label><input type="range" id="auOrigVol" min="0" max="100" value="100"></div>
+          <h3>Voice Over Track</h3>
+          <input type="file" id="auVoFile" accept="audio/*,.mp3,.m4a,.wav,.ogg">
+          <p class="hint" id="auVoName">No file &#8212; only the video's own sound will play.</p>
+          <h3>Background Music Track</h3>
+          <input type="file" id="auMusicFile" accept="audio/*,.mp3,.m4a,.wav,.ogg">
+          <p class="hint" id="auMusicName">No file.</p>
+          <h3>Sound Effects Track</h3>
+          <input type="file" id="auSfxFile" accept="audio/*,.mp3,.m4a,.wav,.ogg">
+          <p class="hint" id="auSfxName">No file.</p>
+          <label style="text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--text);margin-top:12px"><input type="checkbox" id="auDuck" checked> Music gets quieter under the Voice Over (auto-ducking)</label>
+          <div style="margin-top:10px"><label>Fade In (sec) <span class="val" id="v-auFadeIn">0s</span></label><input type="range" id="auFadeIn" min="0" max="10" step="0.5" value="0"></div>
+          <div><label>Fade Out (sec) <span class="val" id="v-auFadeOut">0s</span></label><input type="range" id="auFadeOut" min="0" max="10" step="0.5" value="0"></div>
+          <p class="hint">Tracks longer than the video are trimmed to its length; shorter tracks are padded with silence. Clean Voice (Video Editor) also cleans the Voice Over track in Pro Render.</p>
+        </div>
+
+        <div data-panel="background" class="hidden">
+          <h2>Background AI <span class="en">Remove &#8226; Replace &#8226; Blur</span></h2>
+          <div class="seg" id="bgSeg">
+            <button data-bg="none" aria-pressed="true">None</button>
+            <button data-bg="chroma">Chroma Key Replace</button>
+            <button data-bg="blur">Blur Background &#8226; Experimental</button>
+          </div>
+          <div id="chromaBox" class="hidden" style="margin-top:10px">
+            <div><label>Background colour in your video</label><input type="color" id="keyColor" value="#00ff00"></div>
+            <div><label>Replacement colour</label><input type="color" id="bgColor" value="#2255cc"></div>
+            <div><label>Key strength <span class="val" id="v-keysim">18</span></label><input type="range" id="keySim" min="5" max="40" value="18"></div>
+            <div><label>Replacement image (optional)</label><input type="file" id="bgImgInput" accept="image/*"></div>
+            <div class="row" style="margin-top:6px"><button id="btnBgClear" class="small">Use colour only</button><span class="hint" style="margin:0" id="bgImgName">No replacement image &#8212; the colour above will be used.</span></div>
+            <p class="hint" style="margin-top:8px">Works on videos filmed against one solid colour (for example a green screen). Pick that colour, raise Key strength if edges remain, lower it if parts of the subject disappear.</p>
+          </div>
+          <div id="bgBlurBox" class="hidden" style="margin-top:10px">
+            <p class="hint">Experimental: Blur Background uses MediaPipe Selfie Segmentation, downloaded from the internet the first time you export with it (Fast Render only). If it cannot load &#8212; for example offline &#8212; the export stops with a clear message and nothing is lost; Chroma Key above works without it. It processes frame by frame, so short clips at 720p or lower work best on a phone.</p>
+          </div>
+        </div>
+
+        <div data-panel="cine" class="hidden">
+          <h2>Cinematic Studio <span class="en">Premium Looks &#8226; Pro Render</span></h2>
+          <p class="hint">Looks apply in Pro Render. The After side of the preview shows a live approximation of the chosen look.</p>
+          <div class="seg" id="cineSeg">
+            <button data-cine="none" aria-pressed="true">None</button>
+            <button data-cine="iphone">iPhone Pro</button>
+            <button data-cine="cinepro">Cinematic Pro</button>
+            <button data-cine="hdr">HDR Look</button>
+            <button data-cine="portrait">Portrait Pro</button>
+            <button data-cine="natural4k">Natural 4K</button>
+            <button data-cine="night">Night Vision</button>
+            <button data-cine="film">Film Look</button>
+            <button data-cine="vintage">Vintage</button>
+          </div>
+          <div style="margin-top:12px"><label>Brightness <span class="val" id="v-cbright">100%</span></label><input type="range" id="c-bright" min="50" max="160" value="100"></div>
+          <div><label>Contrast <span class="val" id="v-ccontrast">100%</span></label><input type="range" id="c-contrast" min="50" max="170" value="100"></div>
+          <div><label>Saturation <span class="val" id="v-csat">100%</span></label><input type="range" id="c-sat" min="0" max="200" value="100"></div>
+          <div><label>Sharpness <span class="val" id="v-csharp">0%</span></label><input type="range" id="c-sharp" min="0" max="100" value="0"></div>
+          <div><label>Exposure <span class="val" id="v-cexpo">100%</span></label><input type="range" id="c-expo" min="50" max="160" value="100"></div>
+        </div>
+
+        <div data-panel="export" class="hidden">
+          <h2>Export Studio <span class="en">Render &#8226; Real Numbers</span></h2>
+          <h3 style="margin-top:2px">Quality</h3>
+          <div class="seg" id="resSeg">
+            <button data-res="426x240">240p</button>
+            <button data-res="640x360">360p</button>
+            <button data-res="1280x720" aria-pressed="true">720p</button>
+            <button data-res="1920x1080">1080p</button>
+            <button data-res="2560x1440">2K</button>
+            <button data-res="3840x2160">4K</button>
+          </div>
+          <h3>Render Engine</h3>
+          <div class="seg" id="renderSeg">
+            <button data-render="fast" aria-pressed="true">Fast Render &#8226; In-App</button>
+            <button data-render="pro">Pro Render &#8226; FFmpeg</button>
+          </div>
+          <p class="hint" style="margin-top:8px" id="proHint">Fast Render works fully inside the app, in real time, and includes your sound. Pro Render downloads the FFmpeg engine once (about 31 MB, internet needed) and then processes inside the app with the full afftdn noise reduction and exact MP4 output &#8212; slower than Fast Render, especially at 1080p and above. Audio Studio mixing, Cinematic looks and DSLR Quality apply in Pro Render only. If the engine cannot load, you will get a clear message and Fast Render still works.</p>
+          <div class="kv" style="margin-top:8px"><span>Video</span><b id="expSrc">&#8212;</b></div>
+          <div class="kv"><span>Length</span><b id="expLen">&#8212;</b></div>
+          <div class="kv"><span>Frame</span><b id="expFrame">&#8212;</b></div>
+          <div class="kv"><span>Resolution</span><b id="expRes">&#8212;</b></div>
+          <div class="kv"><span>Settings</span><b id="expSettings">Standard</b></div>
+          <div class="kv"><span>File size (est.)</span><b id="expSize">&#8212;</b></div>
+          <div class="row" style="margin-top:10px">
+            <button class="gold" id="btnExport">&#11015; Render &amp; download</button>
+            <button id="btnRetryExport" class="hidden">&#8635; Retry export</button>
+            <button id="btnCancelExport" class="hidden">Cancel</button>
+          </div>
+          <div style="margin-top:12px"><progress id="expProg" value="0" max="100" class="hidden"></progress><p class="hint" id="expStatus"></p></div>
+          <a id="dlVideo" class="btn gold hidden" download="raheem-studio-export.webm">&#11015; Save your finished video</a>
+        </div>
+
+      </div><!-- /ws-panel -->
+    </div><!-- /ws-main -->
+
+    <div class="ws-lower">
+      <div class="ws-audio">
+        <div class="arow"><span class="aname">Original Audio<small>Mute Video Audio</small></span><button class="offbtn" id="auMuteBtn" aria-pressed="false">Off</button></div>
+        <div class="arow"><span class="aname">Voice Over</span><input type="range" id="auVoVol" min="0" max="100" value="100"><span class="aval" id="v-auVoVol">100%</span></div>
+        <div class="arow"><span class="aname">Background Music</span><input type="range" id="auMusicVol" min="0" max="100" value="30"><span class="aval" id="v-auMusicVol">30%</span></div>
+        <div class="arow"><span class="aname">Sound Effects</span><input type="range" id="auSfxVol" min="0" max="100" value="50"><span class="aval" id="v-auSfxVol">50%</span></div>
+      </div>
+      <div class="ws-zoom"><span class="ztag">400% Zoom</span><canvas id="zoomCanvas" width="264" height="150"></canvas></div>
+      <div class="ws-bgeffects">
+        <h3>Background &amp; Effects</h3>
+        <div class="fxtiles" id="bgfxTiles">
+          <button class="fxtile" data-fx="blur" aria-pressed="false" style="background:linear-gradient(160deg,#3a6ea8,#223c5e)">Blur BG</button>
+          <button class="fxtile" data-fx="replace" aria-pressed="false" style="background:linear-gradient(160deg,#4a7a3a,#2c4a24)">Replace BG</button>
+          <button class="fxtile" data-fx="aistudio" aria-pressed="false" style="background:linear-gradient(160deg,#7a4a9e,#4a2c66)">AI BG Studio</button>
+          <button class="fxtile" data-fx="green" aria-pressed="false" style="background:linear-gradient(160deg,#1faa59,#0f6f3a)">Green Screen</button>
+          <button class="fxtile" data-fx="cinematic" aria-pressed="false" style="background:linear-gradient(160deg,#8a6a2a,#54401a)">Cinematic</button>
+          <button class="fxtile" data-fx="vintage" aria-pressed="false" style="background:linear-gradient(160deg,#9e6a3a,#66401f)">Vintage</button>
+          <button class="fxtile" data-fx="film" aria-pressed="false" style="background:linear-gradient(160deg,#3a3a44,#1d1d24)">Film Look</button>
+          <button class="fxtile" data-fx="night" aria-pressed="false" style="background:linear-gradient(160deg,#1d2c5e,#0d1430)">Night View</button>
+        </div>
+      </div>
     </div>
-    <div id="bgBlurBox" class="hidden" style="margin-top:10px">
-      <p class="hint">Experimental: Blur Background uses MediaPipe Selfie Segmentation, downloaded from the internet the first time you export with it (Fast Render only). If it cannot load — for example offline — the export stops with a clear message and nothing is lost; Chroma Key above works without it. It processes frame by frame, so short clips at 720p or lower work best on a phone.</p>
+
+    <div class="ws-bottom">
+      <div class="ws-tagline">&#1575;&#1576; &#1729;&#1585; &#1608;&#1740;&#1672;&#1740;&#1608; &#1576;&#1606;&#1746; &#1711;&#1740; &#1588;&#1575;&#1606;&#1583;&#1575;&#1585;!</div>
+      <button class="btn-quick" id="btnQuickExport">&#9889; Quick Export</button>
+      <button class="btn-1080" id="btnExp1080">1080p<small>Full HD</small></button>
+      <button class="btn-2k" id="btnExp2K">2K<small>QHD</small></button>
+      <button class="btn-4k" id="btnExp4K">4K<small>Ultra HD</small></button>
+      <button class="btn-save" id="btnSaveGallery">&#10003; Save to Gallery</button>
     </div>
-  </section>
+
+  </div></div>
   </div><!-- /screen editor -->
+
 
   <!-- AI VIDEO STUDIO SCREEN · part 2: scene plan -->
   <div class="screen hidden" data-screen="ai">
@@ -331,42 +618,7 @@ progress{width:100%;height:10px;accent-color:var(--gold)}
   </section>
   </div><!-- /screen voice -->
 
-  <!-- EXPORT STUDIO SCREEN -->
-  <div class="screen hidden" data-screen="export">
-    <div class="screenbar">
-      <button data-back>← Home</button>
-      <span class="stitle">Export Studio</span>
-    </div>
 
-  <!-- EXPORT -->
-  <section class="card goldb" id="exportCard" aria-label="Export">
-    <h2>Export</h2>
-    <h3 style="margin-top:12px">Quality</h3>
-    <div class="seg" id="resSeg">
-      <button data-res="426x240">240p</button>
-      <button data-res="640x360">360p</button>
-      <button data-res="1280x720" aria-pressed="true">720p</button>
-      <button data-res="1920x1080">1080p</button>
-    </div>
-    <h3>Render Engine</h3>
-    <div class="seg" id="renderSeg">
-      <button data-render="fast" aria-pressed="true">Fast Render · In-App</button>
-      <button data-render="pro">Pro Render · FFmpeg</button>
-    </div>
-    <p class="hint" style="margin-top:8px" id="proHint">Fast Render works fully inside the app, in real time, and includes your sound. Pro Render downloads the FFmpeg engine once (about 31 MB, internet needed) and then processes inside the app with the full afftdn noise reduction and exact MP4 output — slower than Fast Render, especially at 1080p. If the engine cannot load, you will get a clear message and Fast Render still works.</p>
-    <div class="kv" style="margin-top:8px"><span>Video</span><b id="expSrc">—</b></div>
-    <div class="kv"><span>Length</span><b id="expLen">—</b></div>
-    <div class="kv"><span>Frame</span><b id="expFrame">—</b></div>
-    <div class="kv"><span>File size (est.)</span><b id="expSize">—</b></div>
-    <div class="row" style="margin-top:10px">
-      <button class="gold" id="btnExport">⬇ Render &amp; download</button>
-      <button id="btnRetryExport" class="hidden">↻ Retry export</button>
-      <button id="btnCancelExport" class="hidden">Cancel</button>
-    </div>
-    <div style="margin-top:12px"><progress id="expProg" value="0" max="100" class="hidden"></progress><p class="hint" id="expStatus"></p></div>
-    <a id="dlVideo" class="btn gold hidden" download="raheem-studio-export.webm">⬇ Save your finished video</a>
-  </section>
-  </div><!-- /screen export -->
 
 </div>
 
@@ -391,40 +643,67 @@ function segSet(id, attr, val){
 }
 function scrollToId(id){ var el=$(id); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); }
 
-/* ---------- Screen navigation (home + 4 studios) ---------- */
+/* ---------- Screen navigation (home + studios + locked workspace) ---------- */
+var pendingRail="enhance";
 function showScreen(name){
+  if(name==="export"){ name="editor"; pendingRail="export"; }
   document.querySelectorAll(".screen").forEach(function(el){
     el.classList.toggle("hidden", el.getAttribute("data-screen")!==name);
   });
+  if(name==="editor"){ setRail(pendingRail||"enhance"); fitWorkspace(); }
   window.scrollTo(0,0);
 }
 document.querySelectorAll("[data-goto]").forEach(function(b){
-  b.addEventListener("click", function(){ showScreen(b.getAttribute("data-goto")); });
+  b.addEventListener("click", function(){
+    var r=b.getAttribute("data-rail"); if(r) pendingRail=r;
+    showScreen(b.getAttribute("data-goto"));
+  });
 });
 document.querySelectorAll("[data-back]").forEach(function(b){
   b.addEventListener("click", function(){ showScreen("home"); });
 });
 
 /* ---------- Undo stack ---------- */
-var undoStack=[];
-function snapshot(){
-  undoStack.push(JSON.stringify({F:F, ts:$("trimStart").value, te:$("trimEnd").value, eq:$("f-eq").value, vol:$("f-vol").value, fr:frameVal, ft:fitVal, cl:cleanVal, bg:bgMode}));
-  if(undoStack.length>30) undoStack.shift();
+var undoStack=[], redoStack=[];
+function stateJSON(){
+  return JSON.stringify({F:F, ts:$("trimStart").value, te:$("trimEnd").value, eq:$("f-eq").value, vol:$("f-vol").value, fr:frameVal, ft:fitVal, cl:cleanVal, bg:bgMode,
+    en:{sharp:ENH.sharp,detail:ENH.detail,noise:ENH.noise,hdr:ENH.hdr,mode:ENH.mode,look:ENH.look,on:ENH.on},
+    cn:{preset:CINE.preset,bright:CINE.bright,contrast:CINE.contrast,sat:CINE.sat,sharp:CINE.sharp,expo:CINE.expo},
+    au:{mute:AU.mute,origVol:AU.origVol,voVol:AU.voVol,muVol:AU.muVol,sfxVol:AU.sfxVol,duck:AU.duck,fadeIn:AU.fadeIn,fadeOut:AU.fadeOut}});
 }
-function doUndo(){
-  var s=undoStack.pop();
-  if(!s){ logPlan("Nothing to undo — you are at the original settings."); return; }
-  var o=JSON.parse(s); F=o.F;
+function snapshot(){
+  undoStack.push(stateJSON());
+  if(undoStack.length>30) undoStack.shift();
+  redoStack.length=0;
+}
+function applyState(o){
+  F=o.F;
   $("f-bright").value=F.bright; $("f-contrast").value=F.contrast; $("f-sat").value=F.sat;
   $("trimStart").value=o.ts; $("trimEnd").value=o.te; $("trimStartVal").textContent=fmt(parseFloat(o.ts)); $("trimEndVal").textContent=fmt(parseFloat(o.te));
   $("f-eq").value=o.eq; $("f-vol").value=o.vol; vid.volume=o.vol/100; setVolGain();
-  $("v-vol").textContent=o.vol+"%"; $("v-eq").textContent=o.eq>0?("On · +"+o.eq):"Off";
+  $("v-vol").textContent=o.vol+"%"; $("v-eq").textContent=o.eq>0?("On \u00b7 +"+o.eq):"Off";
   if(o.fr!==undefined){ frameVal=o.fr; fitVal=o.ft; cleanVal=o.cl; bgMode=o.bg;
     segSet("frameSeg","data-frame",frameVal); segSet("fitSeg","data-fit",fitVal); segSet("cleanSeg","data-clean",String(cleanVal)); segSet("bgSeg","data-bg",bgMode);
     $("chromaBox").classList.toggle("hidden", bgMode!=="chroma"); $("bgBlurBox").classList.toggle("hidden", bgMode!=="blur");
-    rebuildAudioChain(); applyPreview(); }
-  applyFilters(); refreshExportInfo();
-  logPlan("<span class='st-ok'>Undone ✓</span> Previous settings restored. Your original file was never touched.");
+    rebuildAudioChain(); }
+  if(o.en){ ENH.sharp=o.en.sharp; ENH.detail=o.en.detail; ENH.noise=o.en.noise; ENH.hdr=o.en.hdr; ENH.mode=o.en.mode; ENH.look=o.en.look; ENH.on=o.en.on; syncDslrUI(); }
+  if(o.cn){ CINE.preset=o.cn.preset; CINE.bright=o.cn.bright; CINE.contrast=o.cn.contrast; CINE.sat=o.cn.sat; CINE.sharp=o.cn.sharp; CINE.expo=o.cn.expo; syncCineUI(); }
+  if(o.au){ AU.mute=o.au.mute; AU.origVol=o.au.origVol; AU.voVol=o.au.voVol; AU.muVol=o.au.muVol; AU.sfxVol=o.au.sfxVol; AU.duck=o.au.duck; AU.fadeIn=o.au.fadeIn; AU.fadeOut=o.au.fadeOut; syncAudioUI(); }
+  applyFilters(); applyPreview(); applyAfterFilter(); refreshExportInfo(); syncFxTiles();
+}
+function doUndo(){
+  var s=undoStack.pop();
+  if(!s){ logPlan("Nothing to undo \u2014 you are at the original settings."); return; }
+  redoStack.push(stateJSON());
+  applyState(JSON.parse(s));
+  logPlan("<span class='st-ok'>Undone \u2713</span> Previous settings restored. Your original file was never touched.");
+}
+function doRedo(){
+  var s=redoStack.pop();
+  if(!s){ logPlan("Nothing to redo."); return; }
+  undoStack.push(stateJSON());
+  applyState(JSON.parse(s));
+  logPlan("<span class='st-ok'>Redone \u2713</span> Settings re-applied. Your original file was never touched.");
 }
 
 /* ---------- Video load ---------- */
@@ -435,24 +714,27 @@ $("fileInput").addEventListener("change", function(e){
   var objUrl=URL.createObjectURL(f);
   vid.src=objUrl;
   $("vidBg").src=objUrl;
+  var va=$("vidAfter"); va.src=objUrl;
+  $("photoImg").classList.add("hidden"); photoFile=null; buildFilmstrip(objUrl);
   vid.classList.remove("hidden"); $("stageEmpty").classList.add("hidden");
   $("fileBox").innerHTML="";
   var d=document.createElement("div"); d.className="fileitem";
   d.innerHTML="<span><b></b> · "+(f.size/1048576).toFixed(1)+" MB</span>";
   d.querySelector("b").textContent=f.name;
   var rm=document.createElement("button"); rm.className="small"; rm.textContent="Remove";
-  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); var vb=$("vidBg"); vb.removeAttribute("src"); vb.load(); vb.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("fileBox").innerHTML=""; fileName=""; lastFile=null; duration=0; refreshExportInfo(); });
+  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); var vb=$("vidBg"); vb.removeAttribute("src"); vb.load(); vb.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("fileBox").innerHTML=""; fileName=""; lastFile=null; duration=0; var va2=$("vidAfter"); va2.removeAttribute("src"); va2.load(); $("filmstrip").querySelectorAll("canvas").forEach(function(c){ c.remove(); }); refreshExportInfo(); });
   d.appendChild(rm); $("fileBox").appendChild(d);
 });
 vid.addEventListener("loadedmetadata", function(){
   duration=vid.duration||0;
   ["trimStart","trimEnd"].forEach(function(id){ $(id).max=duration; });
   $("trimEnd").value=duration; $("trimEndVal").textContent=fmt(duration);
-  applyFilters(); applyPreview(); refreshExportInfo();
+  applyFilters(); applyPreview(); refreshExportInfo(); updateLabels(); applyAfterFilter();
 });
 function fmt(s){ if(!isFinite(s)) s=0; var m=Math.floor(s/60), r=Math.floor(s%60); return m+":"+(r<10?"0":"")+r; }
 vid.addEventListener("timeupdate", function(){
-  $("timeLabel").textContent=fmt(vid.currentTime)+" / "+fmt(duration);
+  $("timeLabel").textContent=fmtTC(vid.currentTime)+" / "+fmtTC(duration);
+  if(duration) $("playhead").style.left=(vid.currentTime/duration*100)+"%";
   var end=parseFloat($("trimEnd").value);
   if(duration && vid.currentTime>=end && end<duration) vid.pause();
 });
@@ -473,7 +755,7 @@ $("btnUndo").addEventListener("click", doUndo);
 var viewingOriginal=false;
 $("btnOriginal").addEventListener("click", function(){
   viewingOriginal=!viewingOriginal;
-  vid.style.filter=viewingOriginal?"none":filterString();
+  if(viewingOriginal){ vidAfter.style.filter="none"; } else { applyAfterFilter(); }
   this.textContent=viewingOriginal?"Edited":"Original";
 });
 $("trimStart").addEventListener("change", snapshot);
@@ -485,7 +767,7 @@ $("trimEnd").addEventListener("input", function(){ $("trimEndVal").textContent=f
 var F={bright:100,contrast:100,sat:100};
 function filterString(){ return "brightness("+F.bright+"%) contrast("+F.contrast+"%) saturate("+F.sat+"%)"; }
 function applyFilters(){
-  if(!viewingOriginal) vid.style.filter=filterString();
+  applyAfterFilter();
   $("v-bright").textContent=F.bright+"%"; $("v-contrast").textContent=F.contrast+"%"; $("v-sat").textContent=F.sat+"%";
 }
 function bindFilter(id,key){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ F[key]=parseInt(this.value,10); applyFilters(); }); }
@@ -638,6 +920,8 @@ function parseDuration(low, raw){
 function runCommand(raw){
   raw=(raw||"").trim(); if(!raw) return;
   var c=raw.toLowerCase();
+  var resK=/\b4k\b/.test(c)?"3840x2160":(/\b2k\b/.test(c)?"2560x1440":null);
+  if(resK){ resVal=resK; segSet("resSeg","data-res",resK); refreshExportInfo(); }
   if(/undo|واپس/.test(c)){ doUndo(); return; }
   var did=[];
   var resMatch=c.match(/(240|360|720|1080)p/);
@@ -646,12 +930,13 @@ function runCommand(raw){
   if(!wantsVideo){
     if(/enhance|clean|clear|improve|صاف|بہتر/.test(c) && !/voice|آواز/.test(c)){ setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Video cleaned &amp; enhanced"); }
     if(/voice|noise|audio|sound|آواز/.test(c)){ snapshot(); $("f-eq").value=6; $("v-eq").textContent="On · +6"; cleanVal=2; segSet("cleanSeg","data-clean","2"); abClean=true; updateABBtn(); rebuildAudioChain(); if(!did.length) setPreset(108,114,112); did.push("<span class='st-ok'>✓</span> Voice clarity lifted + Clean Voice (Noise Reduce) set to Medium — it applies at Export"); }
+    if(resK){ did.push("<span class='st-ok'>\u2713</span> Export set to "+(resK==="3840x2160"?"4K":"2K")+" \u2014 press the gold Render button in Export Studio"); }
     if(resMatch){
       var r0=resMatch[1]==="720"?"1280x720":resMatch[1]==="1080"?"1920x1080":resMatch[1]==="360"?"640x360":"426x240";
       resVal=r0; segSet("resSeg","data-res",r0); refreshExportInfo();
       did.push("<span class='st-ok'>✓</span> Export set to "+resMatch[1]+"p — press the gold Render button below");
     }
-    if(did.length){ logPlan("<b>One Command — done:</b><br>"+did.join("<br>")); if(resMatch) showScreen("export"); }
+    if(did.length){ logPlan("<b>One Command — done:</b><br>"+did.join("<br>")); if(resMatch||resK) showScreen("export"); }
     else { logPlan("<b>Command noted:</b> “"+raw.replace(/</g,"&lt;")+"” — try: <i>10 second video lion and deer together</i>."); }
     return;
   }
@@ -740,7 +1025,7 @@ segWire("fitSeg","data-fit", function(v){ snapshot(); fitVal=v; applyPreview(); 
 segWire("bgSeg","data-bg", function(v){ snapshot(); bgMode=v;
   $("chromaBox").classList.toggle("hidden", v!=="chroma");
   $("bgBlurBox").classList.toggle("hidden", v!=="blur");
-  refreshExportInfo(); });
+  refreshExportInfo(); syncFxTiles(); });
 segWire("renderSeg","data-render", function(v){ renderVal=v; });
 $("keySim").addEventListener("input", function(){ $("v-keysim").textContent=this.value; });
 $("bgImgInput").addEventListener("change", function(e){
@@ -772,16 +1057,16 @@ function fitRect(sw,sh,W,H){
 }
 function coverRect(sw,sh,W,H){ var s=Math.max(W/sw,H/sh); var w=sw*s,h=sh*s; return [(W-w)/2,(H-h)/2,w,h]; }
 
-/* Live preview of the chosen frame (backdrop video = blurred pad) */
+/* Live preview of the chosen frame in the split stage. The Before half is
+   always the untouched original; the After half carries the live filters.
+   (The old blurred-pad backdrop is not used in the locked layout; Blur Fill
+   still applies in both render engines.) */
 function applyPreview(){
   var stage=$("stage");
-  if(frameVal==="orig"){ stage.style.aspectRatio="16/9"; }
+  if(frameVal==="orig"){ stage.style.aspectRatio="16/8.2"; }
   else { var ab=frameVal.split(":"); stage.style.aspectRatio=ab[0]+"/"+ab[1]; }
-  var blurPad = frameVal!=="orig" && fitVal==="blur" && bgMode==="none";
-  vidBg.classList.toggle("hidden", !blurPad || !vid.src);
-  vid.style.objectFit = (frameVal!=="orig" && fitVal==="fill" && bgMode==="none") ? "cover" : "contain";
-  if(blurPad && vidBg.readyState>=1) vidBg.currentTime=vid.currentTime;
-  if(blurPad && !vid.paused) vidBg.play().catch(function(){});
+  vid.style.objectFit="cover";
+  updateLabels();
 }
 
 /* ----- Clean Voice audio graph (preview A/B + Fast Render capture) -----
@@ -864,16 +1149,24 @@ var resVal="1280x720";
 segWire("resSeg","data-res", function(v){ resVal=v; refreshExportInfo(); });
 function refreshExportInfo(){
   var len=duration?Math.max(0, parseFloat($("trimEnd").value||0)-parseFloat($("trimStart").value||0)):0;
-  $("expSrc").textContent=fileName||"—";
-  $("expLen").textContent=duration?fmt(len):"—";
+  $("expSrc").textContent=fileName||"\u2014";
+  $("expLen").textContent=duration?fmt(len):"\u2014";
   var d=outDims();
   var fitName=fitVal==="fit"?"Fit (Pad)":fitVal==="fill"?"Fill (Crop)":"Blur Fill";
-  var bgName=bgMode==="chroma"?" · Chroma Key":bgMode==="blur"?" · Background Blur (Experimental)":"";
-  var cleanName=cleanVal>0?(" · Clean Voice "+["","Light","Medium","Strong"][cleanVal]):"";
-  $("expFrame").textContent=duration?((frameVal==="orig"?"Original frame":frameVal+" · "+fitName)+bgName+cleanName+" · "+d[0]+"×"+d[1]):"—";
+  var bgName=bgMode==="chroma"?" \u00b7 Chroma Key":bgMode==="blur"?" \u00b7 Background Blur (Experimental)":"";
+  var cleanName=cleanVal>0?(" \u00b7 Clean Voice "+["","Light","Medium","Strong"][cleanVal]):"";
+  $("expFrame").textContent=duration?((frameVal==="orig"?"Original frame":frameVal+" \u00b7 "+fitName)+bgName+cleanName+" \u00b7 "+d[0]+"\u00d7"+d[1]):"\u2014";
+  $("expRes").textContent=duration?(d[0]+"\u00d7"+d[1]+" px"):"\u2014";
+  var feats=[];
+  if(ENH.on) feats.push("DSLR Quality ("+(ENH.mode==="pro"?"Professional":"Natural")+" \u00b7 "+ENH.look+")");
+  if(CINE.preset!=="none") feats.push("Cinematic look");
+  if(auActive()) feats.push("Audio Studio mix");
+  if(renderVal==="pro") feats.push("Pro Render");
+  $("expSettings").textContent=feats.length?feats.join(" \u00b7 "):"Standard";
   var px=d[0]*d[1];
-  var mbps=px>=2000000?12: px>=900000?5: px>=230000?1.6:0.7;
-  $("expSize").textContent=duration?("≈ "+(mbps*len/8).toFixed(1)+" MB · "+d[0]+"×"+d[1]):"—";
+  var mbps=px>=8000000?20: px>=2000000?12: px>=900000?5: px>=230000?1.6:0.7;
+  $("expSize").textContent=duration?("\u2248 "+(mbps*len/8).toFixed(1)+" MB \u00b7 "+d[0]+"\u00d7"+d[1]):"\u2014";
+  updateLabels();
 }
 var recorder=null, recChunks=[], rafId=null, lastExportFailed=false, exporting=false;
 function startExport(){
@@ -1040,19 +1333,32 @@ async function startProExport(){
     var inName="in."+ext;
     await ff.writeFile(inName, await FFmpegUtil.fetchFile(lastFile));
     var args=["-ss", String(start), "-i", inName];
-    var vfParts=eqChain(), fc=null, vmap="0:v";
+    var nextIn=1, bgIn=-1, auIn={};
+    var auDefs=[["vo",AU.voFile],["mu",AU.muFile],["sfx",AU.sfxFile]];
+    for(var ai2=0; ai2<auDefs.length; ai2++){
+      if(auDefs[ai2][1]){
+        var aext2=(auDefs[ai2][1].name.split(".").pop()||"mp3").toLowerCase().replace(/[^a-z0-9]/g,"")||"mp3";
+        var aname2="au-"+auDefs[ai2][0]+"."+aext2;
+        await ff.writeFile(aname2, await FFmpegUtil.fetchFile(auDefs[ai2][1]));
+        args.push("-i", aname2); auIn[auDefs[ai2][0]]=nextIn++;
+      }
+    }
+    var audioStudioActive=auActive();
+    var silentIn=-1;
+    if(audioStudioActive){ args.push("-f","lavfi","-i","anullsrc=channel_layout=stereo:sample_rate=44100"); silentIn=nextIn++; }
+    var vfParts=gradeParts(), fc=null, vmap="0:v";
     if(bgMode==="chroma"){
       var keyHex=$("keyColor").value.replace("#","0x");
       var sim=(parseInt($("keySim").value,10)/100).toFixed(2);
       if(bgImgFile){
         var bext=(bgImgFile.name.split(".").pop()||"png").toLowerCase().replace(/[^a-z0-9]/g,"")||"png";
         await ff.writeFile("bg."+bext, await FFmpegUtil.fetchFile(bgImgFile));
-        args.push("-loop","1","-i","bg."+bext);
+        args.push("-loop","1","-i","bg."+bext); bgIn=nextIn++;
       } else {
-        args.push("-f","lavfi","-i","color=c="+$("bgColor").value.replace("#","0x")+":s="+W+"x"+H+":r=30");
+        args.push("-f","lavfi","-i","color=c="+$("bgColor").value.replace("#","0x")+":s="+W+"x"+H+":r=30"); bgIn=nextIn++;
       }
       var pre=vfParts.length? vfParts.join(",")+"," : "";
-      fc="[0:v]"+pre+"format=rgba,chromakey="+keyHex+":"+sim+":0.08,scale="+W+":"+H+":force_original_aspect_ratio=decrease,pad="+W+":"+H+":(ow-iw)/2:(oh-ih)/2:color=black@0[keyed];[1:v]scale="+W+":"+H+":force_original_aspect_ratio=increase,crop="+W+":"+H+"[bgs];[bgs][keyed]overlay=0:0,format=yuv420p,setsar=1[vout]";
+      fc="[0:v]"+pre+"format=rgba,chromakey="+keyHex+":"+sim+":0.08,scale="+W+":"+H+":force_original_aspect_ratio=decrease,pad="+W+":"+H+":(ow-iw)/2:(oh-ih)/2:color=black@0[keyed];["+bgIn+":v]scale="+W+":"+H+":force_original_aspect_ratio=increase,crop="+W+":"+H+"[bgs];[bgs][keyed]overlay=0:0,format=yuv420p,setsar=1[vout]";
       vmap="[vout]";
     } else if(frameVal!=="orig" && fitVal==="fill"){
       vfParts.push("scale="+W+":"+H+":force_original_aspect_ratio=increase,crop="+W+":"+H+",setsar=1");
@@ -1065,16 +1371,51 @@ async function startProExport(){
     } else {
       vfParts.push("scale="+W+":"+H+",setsar=1");
     }
-    if(fc){ args.push("-filter_complex", fc); }
-    else if(vfParts.length){ args.push("-vf", vfParts.join(",")); }
-    args.push("-map", vmap, "-map", "0:a?");
-    var af=[];
-    if(cleanVal>0){ af.push("afftdn=nr="+NR_LEVELS[cleanVal]+":nf=-25"); af.push("highpass=f=80"); }
-    var eqv=parseInt($("f-eq").value,10); if(eqv>0) af.push("equalizer=f=2500:width_type=o:width=2:g="+eqv);
-    var vol=parseInt($("f-vol").value,10); if(vol!==100) af.push("volume="+(vol/100).toFixed(2));
-    if(af.length) args.push("-af", af.join(","));
+    var cleanAf=[];
+    if(cleanVal>0){ cleanAf.push("afftdn=nr="+NR_LEVELS[cleanVal]+":nf=-25"); cleanAf.push("highpass=f=80"); }
+    var eqv=parseInt($("f-eq").value,10); if(eqv>0) cleanAf.push("equalizer=f=2500:width_type=o:width=2:g="+eqv);
+    if(!audioStudioActive){
+      if(fc){ args.push("-filter_complex", fc); }
+      else if(vfParts.length){ args.push("-vf", vfParts.join(",")); }
+      args.push("-map", vmap, "-map", "0:a?");
+      var af=cleanAf.slice();
+      var vol=parseInt($("f-vol").value,10); if(vol!==100) af.push("volume="+(vol/100).toFixed(2));
+      if(af.length) args.push("-af", af.join(","));
+    } else {
+      var hasAudio=true;
+      try{ var prc=await ff.exec(["-i", inName, "-map", "0:a:0", "-t", "0.1", "-f", "null", "probe.null"]); if(prc!==0) hasAudio=false; try{ await ff.deleteFile("probe.null"); }catch(e){} }catch(e){ hasAudio=false; }
+      var cleanPre=cleanAf.length? cleanAf.join(",")+"," : "";
+      var ac=[];
+      var origSrc=hasAudio? "[0:a]" : "["+silentIn+":a]";
+      ac.push(origSrc+cleanPre+"aresample=44100,volume="+(AU.mute?0:(AU.origVol/100)).toFixed(2)+",atrim=0:"+len+",apad=whole_dur="+len+"[aorig]");
+      var mixIns="[aorig]";
+      if(AU.voFile){
+        if(AU.muFile && AU.duck){
+          ac.push("["+auIn.vo+":a]"+cleanPre+"aresample=44100,volume="+(AU.voVol/100).toFixed(2)+",atrim=0:"+len+",asplit=2[avo][avoKey]");
+          ac.push("["+auIn.mu+":a]aresample=44100,volume="+(AU.muVol/100).toFixed(2)+",atrim=0:"+len+"[amuRaw]");
+          ac.push("[amuRaw][avoKey]sidechaincompress=threshold=0.03:ratio=4:attack=20:release=300[amu]");
+          mixIns+="[avo][amu]";
+        } else {
+          ac.push("["+auIn.vo+":a]"+cleanPre+"aresample=44100,volume="+(AU.voVol/100).toFixed(2)+",atrim=0:"+len+"[avo]");
+          mixIns+="[avo]";
+          if(AU.muFile){ ac.push("["+auIn.mu+":a]aresample=44100,volume="+(AU.muVol/100).toFixed(2)+",atrim=0:"+len+"[amu]"); mixIns+="[amu]"; }
+        }
+      } else if(AU.muFile){
+        ac.push("["+auIn.mu+":a]aresample=44100,volume="+(AU.muVol/100).toFixed(2)+",atrim=0:"+len+"[amu]");
+        mixIns+="[amu]";
+      }
+      if(AU.sfxFile){ ac.push("["+auIn.sfx+":a]aresample=44100,volume="+(AU.sfxVol/100).toFixed(2)+",atrim=0:"+len+"[asfx]"); mixIns+="[asfx]"; }
+      var nMix=mixIns.split("][").length;
+      var mix=mixIns+"amix=inputs="+nMix+":duration=first:normalize=0";
+      if(AU.fadeIn>0) mix+=",afade=t=in:st=0:d="+AU.fadeIn;
+      if(AU.fadeOut>0) mix+=",afade=t=out:st="+Math.max(0,len-AU.fadeOut).toFixed(2)+":d="+AU.fadeOut;
+      ac.push(mix+"[aout]");
+      var vfc=fc? fc : ("[0:v]"+(vfParts.length? vfParts.join(",") : "null")+"[vout]");
+      args.push("-filter_complex", vfc+";"+ac.join(";"));
+      args.push("-map", "[vout]", "-map", "[aout]");
+    }
     args.push("-t", String(len), "-c:v","libx264","-preset","veryfast","-crf","23","-pix_fmt","yuv420p","-c:a","aac","-b:a","128k","-movflags","+faststart","out.mp4");
-    $("expStatus").textContent="Pro Render: processing inside the app — "+W+"×"+H+(cleanVal>0?(", Clean Voice "+["","Light","Medium","Strong"][cleanVal]+" (afftdn)"):"")+"… long clips take a while; keep this page open.";
+    $("expStatus").textContent="Pro Render: processing inside the app — "+W+"×"+H+(cleanVal>0?(", Clean Voice "+["","Light","Medium","Strong"][cleanVal]+" (afftdn)"):"")+(ENH.on?", DSLR Quality":"")+(CINE.preset!=="none"?", Cinematic look":"")+(audioStudioActive?", Audio Studio mix":"")+"… long clips take a while; keep this page open.";
     await ff.exec(args);
     var data=await ff.readFile("out.mp4");
     if(!data || !data.length) throw new Error("empty output");
@@ -1108,6 +1449,302 @@ $("btnCancelExport").addEventListener("click", function(){
   $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
   $("btnRetryExport").classList.remove("hidden");
   $("expStatus").textContent="Export cancelled — your edits and original file are untouched. Press “Retry export” any time.";
+});
+
+
+/* ================= v1.2 — locked workspace + new systems =================
+   Systems: AI Enhance + DSLR Quality (System 5), Audio Studio, Cinematic
+   Studio, Photo Mode. All processing is on-device ffmpeg.wasm filters. */
+var ENH={sharp:90,detail:85,noise:70,hdr:60,mode:"natural",look:"DSLR Natural",on:false};
+var CINE={preset:"none",bright:100,contrast:100,sat:100,sharp:0,expo:100};
+var AU={mute:false,origVol:100,voVol:100,muVol:30,sfxVol:50,duck:true,fadeIn:0,fadeOut:0,voFile:null,muFile:null,sfxFile:null};
+var vidAfter=$("vidAfter");
+var photoFile=null, photoSize=2560;
+
+function fmtTC(s){ if(!isFinite(s)||s<0) s=0; var m=Math.floor(s/60), ss=Math.floor(s%60), t=Math.floor((s%1)*10); return "00:"+(m<10?"0":"")+m+":"+(ss<10?"0":"")+ss+"."+t; }
+function updateLabels(){
+  if(!$("lblBefore")) return;
+  var sh=vid.videoHeight||0;
+  var srcRes=sh? (sh>=2160?"4K":sh>=1440?"2K":sh>=1080?"1080p":sh>=720?"720p":sh+"p") : "";
+  $("lblBefore").textContent="Before"+(srcRes?" ("+srcRes+")":"");
+  var d=outDims(), th=d[1]||0;
+  var tgt=th>=2160?"4K":th>=1440?"2K":th>=1080?"1080p":th>=720?"720p":(th?th+"p":"");
+  $("lblAfter").textContent="After"+(tgt?" ("+tgt+")":"");
+}
+function applyAfterFilter(){
+  if(!vidAfter) return;
+  if(viewingOriginal){ vidAfter.style.filter="none"; return; }
+  vidAfter.style.filter=(filterString()+" "+cineCSS()).trim();
+}
+
+/* ---------- workspace rail + scaling ---------- */
+function setRail(name){
+  document.querySelectorAll("[data-panel]").forEach(function(p){ p.classList.toggle("hidden", p.getAttribute("data-panel")!==name); });
+  document.querySelectorAll("[data-railbtn]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-railbtn")===name?"true":"false"); });
+  if(name==="export") refreshExportInfo();
+}
+function fitWorkspace(){
+  var inner=$("wsInner"); if(!inner) return;
+  var wrap=inner.parentElement;
+  var w=wrap.clientWidth||window.innerWidth;
+  var s=Math.min(1, w/1180);
+  inner.style.transform="scale("+s+")";
+  wrap.style.height=(inner.offsetHeight*s)+"px";
+}
+window.addEventListener("resize", function(){
+  var ed=document.querySelector('[data-screen="editor"]');
+  if(ed && !ed.classList.contains("hidden")) fitWorkspace();
+});
+document.querySelectorAll("[data-railbtn]").forEach(function(b){
+  b.addEventListener("click", function(){ pendingRail=b.getAttribute("data-railbtn"); setRail(pendingRail); });
+});
+$("btnWsHome").addEventListener("click", function(){ showScreen("home"); });
+$("btnRedo").addEventListener("click", doRedo);
+$("btnSplitPlay").addEventListener("click", function(){ if(vid.src) $("btnPlay").click(); });
+$("btnFs").addEventListener("click", function(){
+  var st=$("stage");
+  if(document.fullscreenElement){ document.exitFullscreen(); }
+  else if(st.requestFullscreen){ st.requestFullscreen(); }
+});
+$("btnMuteT").addEventListener("click", function(){
+  vid.muted=!vid.muted;
+  this.innerHTML=vid.muted?"&#128263;":"&#128266;";
+});
+vid.addEventListener("play", function(){ $("btnSplitPlay").innerHTML="&#10073;&#10073;"; if(vidAfter.src) vidAfter.play().catch(function(){}); });
+vid.addEventListener("pause", function(){ $("btnSplitPlay").innerHTML="&#9654;"; vidAfter.pause(); });
+vid.addEventListener("seeked", function(){ if(vidAfter.readyState>=1 && Math.abs(vidAfter.currentTime-vid.currentTime)>0.3) vidAfter.currentTime=vid.currentTime; });
+vid.addEventListener("timeupdate", function(){ if(vidAfter.readyState>=2 && Math.abs(vidAfter.currentTime-vid.currentTime)>0.35) vidAfter.currentTime=vid.currentTime; });
+
+/* ---------- filmstrip (real frames from the loaded video) ---------- */
+function buildFilmstrip(url){
+  var strip=$("filmstrip"); if(!strip) return;
+  strip.querySelectorAll("canvas").forEach(function(c){ c.remove(); });
+  if(!duration) return;
+  var tv=document.createElement("video"); tv.muted=true; tv.playsInline=true; tv.preload="auto"; tv.src=url;
+  var n=10, i=0;
+  function next(){
+    if(i>=n) return;
+    tv.currentTime=Math.min(duration*(i+0.5)/n, Math.max(0, duration-0.1));
+    i++;
+  }
+  tv.addEventListener("seeked", function(){
+    var cv=document.createElement("canvas"); cv.width=96; cv.height=56;
+    try{ cv.getContext("2d").drawImage(tv,0,0,96,56); }catch(e){}
+    cv.style.cursor="pointer"; cv.title="Jump to this part";
+    var tt=Math.min(duration*((i-1)+0.5)/n, Math.max(0, duration-0.1));
+    cv.addEventListener("click", function(){ vid.currentTime=tt; });
+    strip.insertBefore(cv, $("playhead"));
+    next();
+  });
+  tv.addEventListener("loadedmetadata", next);
+}
+
+/* ---------- 400% Zoom inset (preview only — centre crop of the live frame) ---------- */
+setInterval(function(){
+  var ed=document.querySelector('[data-screen="editor"]');
+  if(!ed || ed.classList.contains("hidden")) return;
+  var c=$("zoomCanvas"); if(!c) return;
+  var ctx=c.getContext("2d");
+  try{
+    var pim=$("photoImg");
+    if(photoFile && pim && !pim.classList.contains("hidden") && pim.naturalWidth){
+      var sw=pim.naturalWidth/4, sh=pim.naturalHeight/4;
+      ctx.drawImage(pim,(pim.naturalWidth-sw)/2,(pim.naturalHeight-sh)/2,sw,sh,0,0,c.width,c.height);
+    } else if(vid.readyState>=2 && vid.videoWidth){
+      var sw2=vid.videoWidth/4, sh2=vid.videoHeight/4;
+      ctx.drawImage(vid,(vid.videoWidth-sw2)/2,(vid.videoHeight-sh2)/2,sw2,sh2,0,0,c.width,c.height);
+    }
+  }catch(e){}
+},140);
+
+/* ---------- DSLR Quality (System 5) + AI Enhance ---------- */
+var DSLR_LOOKS={
+ "DSLR Natural":["eq=saturation=1.05:contrast=1.04"],
+ "DSLR Portrait":["eq=saturation=1.08:contrast=1.03:brightness=0.02","colorbalance=rs=0.04:gs=0.01:bs=-0.02"],
+ "Canon Cinema":["eq=contrast=1.12:saturation=0.94","colorbalance=rs=0.03:rh=0.05:gh=0.01"],
+ "Sony Professional":["eq=contrast=1.10:saturation=1.00","colorbalance=bs=0.04:bh=0.03:gs=0.01"],
+ "Nikon Natural":["eq=saturation=1.12:contrast=1.06:gamma=1.03"],
+ "iPhone Pro Max":["eq=contrast=1.08:saturation=1.15:brightness=0.01","unsharp=5:5:0.30"]
+};
+function dslrChain(){
+  if(!ENH.on) return [];
+  var mul=ENH.mode==="pro"?1.5:1, out=[];
+  if(ENH.noise>0){ var n=ENH.noise/100*mul; out.push("hqdn3d="+(8*n).toFixed(2)+":"+(6*n).toFixed(2)+":"+(6*n).toFixed(2)+":"+(4*n).toFixed(2)); }
+  if(ENH.sharp>0) out.push("unsharp=5:5:"+Math.min(1.8,ENH.sharp/100*1.2*mul).toFixed(2));
+  if(ENH.detail>0) out.push("unsharp=3:3:"+Math.min(1.2,ENH.detail/100*0.8*mul).toFixed(2));
+  if(ENH.hdr>0){ var h=ENH.hdr/100; out.push("eq=contrast="+(1+h*0.25).toFixed(3)+":gamma="+(1+h*0.12).toFixed(3)+":saturation="+(1+h*0.18).toFixed(3)); }
+  var lk=DSLR_LOOKS[ENH.look]; if(lk) out=out.concat(lk);
+  return out;
+}
+function gradeParts(){ return eqChain().concat(dslrChain(), cineChain()); }
+function enhEngage(){ if(!ENH.on){ ENH.on=true; segSet("dslrOnSeg","data-on","1"); } applyPhotoPreview(); refreshExportInfo(); }
+segWire("dslrModeSeg","data-mode", function(v){ snapshot(); ENH.mode=v; enhEngage(); });
+segWire("dslrOnSeg","data-on", function(v){ snapshot(); ENH.on=v==="1"; applyPhotoPreview(); refreshExportInfo(); });
+function bindDslr(id,key){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ ENH[key]=parseInt(this.value,10); $("v-"+id).textContent=this.value+"%"; enhEngage(); }); }
+bindDslr("dslrSharp","sharp"); bindDslr("dslrDetail","detail"); bindDslr("dslrNoise","noise"); bindDslr("dslrHdr","hdr");
+$("dslrLook").addEventListener("change", function(){ snapshot(); ENH.look=this.value; enhEngage(); });
+$("btnDslrApply").addEventListener("click", function(){
+  if(!vid.src || !lastFile){ $("dslrStatus").textContent="Load a video first (Video Editor panel), then Apply Now renders it with DSLR Quality."; setRail("video"); return; }
+  ENH.on=true; segSet("dslrOnSeg","data-on","1");
+  renderVal="pro"; segSet("renderSeg","data-render","pro");
+  $("dslrStatus").textContent="DSLR Quality is on \u2014 rendering in Export Studio (Pro Render).";
+  setRail("export"); startExport();
+});
+function syncDslrUI(){
+  $("dslrSharp").value=ENH.sharp; $("dslrDetail").value=ENH.detail; $("dslrNoise").value=ENH.noise; $("dslrHdr").value=ENH.hdr;
+  $("v-dslrSharp").textContent=ENH.sharp+"%"; $("v-dslrDetail").textContent=ENH.detail+"%"; $("v-dslrNoise").textContent=ENH.noise+"%"; $("v-dslrHdr").textContent=ENH.hdr+"%";
+  segSet("dslrModeSeg","data-mode",ENH.mode); segSet("dslrOnSeg","data-on",ENH.on?"1":"0"); $("dslrLook").value=ENH.look;
+  applyPhotoPreview();
+}
+
+/* ---------- Photo Mode (same chains, still image, HD / 2K / 4K) ---------- */
+segWire("photoSizeSeg","data-psize", function(v){ photoSize=parseInt(v,10); });
+$("photoInput").addEventListener("change", function(e){
+  var f=e.target.files[0]; if(!f) return;
+  photoFile=f;
+  var im=$("photoImg"); im.src=URL.createObjectURL(f); im.classList.remove("hidden");
+  $("stageEmpty").classList.add("hidden");
+  applyPhotoPreview();
+  $("photoStatus").textContent="Photo loaded: "+f.name+" \u2014 the DSLR settings above apply. Pick HD / 2K / 4K, then Enhance & Save Photo.";
+});
+function applyPhotoPreview(){
+  var im=$("photoImg"); if(!im) return;
+  var mul=ENH.mode==="pro"?1.3:1.0;
+  var h=ENH.hdr/100*mul;
+  var css="brightness("+(1+h*0.06).toFixed(3)+") contrast("+(1+h*0.18+(ENH.sharp/100)*0.02).toFixed(3)+") saturate("+(1+h*0.15).toFixed(3)+")";
+  var lk={"DSLR Portrait":" sepia(0.06)","Canon Cinema":" sepia(0.10) contrast(1.05)","Sony Professional":" hue-rotate(-6deg)","iPhone Pro Max":" saturate(1.08)"};
+  if(ENH.on && lk[ENH.look]) css+=lk[ENH.look];
+  im.style.filter=css;
+  im.style.transform="scale("+($("photoZoom").value/100)+")";
+}
+$("photoZoom").addEventListener("input", function(){ $("v-photoZoom").textContent=this.value+"%"; applyPhotoPreview(); });
+$("btnPhotoSave").addEventListener("click", async function(){
+  if(!photoFile){ $("photoStatus").textContent="Choose a photo first."; return; }
+  ENH.on=true; segSet("dslrOnSeg","data-on","1");
+  var btn=this; btn.disabled=true;
+  $("photoStatus").textContent="Enhancing the photo inside the app (FFmpeg engine \u2014 the first load needs internet)\u2026";
+  try{
+    var ff=await loadFFmpeg();
+    var ext=(photoFile.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
+    await ff.writeFile("photo."+ext, await FFmpegUtil.fetchFile(photoFile));
+    var chain=gradeParts();
+    chain.push("scale=w='if(gt(iw,ih),"+photoSize+",-2)':h='if(gt(iw,ih),-2,"+photoSize+")':flags=lanczos");
+    await ff.exec(["-i","photo."+ext,"-vf",chain.join(","),"-frames:v","1","photo-out.jpg"]);
+    var data=await ff.readFile("photo-out.jpg");
+    if(!data||!data.length) throw new Error("empty output");
+    var blob=new Blob([data.buffer],{type:"image/jpeg"});
+    var a=$("dlPhoto"); a.href=URL.createObjectURL(blob); a.download="raheem-enhanced-photo.jpg"; a.classList.remove("hidden");
+    $("photoStatus").textContent="Done \u2713 Enhanced photo ready ("+(blob.size/1024).toFixed(0)+" KB \u00b7 longest side "+photoSize+"px) \u2014 tap \u201cSave enhanced photo\u201d. On-device enhancement: denoise, sharpen, colour and upscale \u2014 detail that was never recorded cannot be restored.";
+    try{ await ff.deleteFile("photo."+ext); await ff.deleteFile("photo-out.jpg"); }catch(e){}
+  }catch(e){
+    $("photoStatus").textContent="Photo enhance failed \u2014 the FFmpeg engine may still be loading, or the photo format is unsupported. Your original photo is untouched; try again with a JPG or PNG.";
+  }
+  btn.disabled=false;
+});
+
+/* ---------- Cinematic Studio ---------- */
+var CINE_PRESETS={
+ iphone:{css:"brightness(1.01) contrast(1.08) saturate(1.15)", ff:["eq=contrast=1.08:saturation=1.15:brightness=0.01","unsharp=5:5:0.40"]},
+ cinepro:{css:"contrast(1.15) saturate(0.92) sepia(0.18) hue-rotate(-8deg)", ff:["eq=contrast=1.15:saturation=0.92","colorbalance=bs=0.05:gs=0.02:rh=0.04"]},
+ hdr:{css:"contrast(1.20) saturate(1.15)", ff:["eq=contrast=1.20:saturation=1.15:gamma=1.05","unsharp=5:5:0.50"]},
+ portrait:{css:"brightness(1.03) contrast(1.05) saturate(1.08)", ff:["eq=brightness=0.03:contrast=1.05:saturation=1.08","unsharp=5:5:0.35"]},
+ natural4k:{css:"contrast(1.03) saturate(1.03)", ff:["eq=contrast=1.03:saturation=1.03","unsharp=5:5:0.50"]},
+ night:{css:"brightness(1.15) contrast(0.95) saturate(0.85)", ff:["eq=brightness=0.12:gamma=1.25:contrast=0.95:saturation=0.85","unsharp=5:5:0.40"]},
+ film:{css:"contrast(1.10) saturate(0.80) sepia(0.32)", ff:["eq=contrast=1.10:saturation=0.80","colorbalance=rs=0.08:gs=0.03:bh=-0.03","vignette=angle=PI/5"]},
+ vintage:{css:"contrast(1.05) saturate(0.72) sepia(0.48) brightness(1.04)", ff:["eq=contrast=1.05:saturation=0.72:brightness=0.03","colorbalance=rs=0.10:gs=0.05:bs=-0.06","vignette=angle=PI/4"]}
+};
+function cineCSS(){
+  var b=(CINE.bright/100)*(CINE.expo/100), c=CINE.contrast/100, s=CINE.sat/100;
+  var str="brightness("+b.toFixed(3)+") contrast("+c.toFixed(3)+") saturate("+s.toFixed(3)+")";
+  var p=CINE_PRESETS[CINE.preset]; if(p) str+=" "+p.css;
+  return str;
+}
+function cineChain(){
+  var out=[];
+  if(CINE.bright!==100||CINE.contrast!==100||CINE.sat!==100||CINE.expo!==100)
+    out.push("eq=brightness="+(((CINE.bright-100)+(CINE.expo-100))/200).toFixed(3)+":contrast="+(1+(CINE.contrast-100)/100).toFixed(3)+":saturation="+(CINE.sat/100).toFixed(2));
+  if(CINE.sharp>0) out.push("unsharp=5:5:"+(CINE.sharp/100*0.9).toFixed(2));
+  var p=CINE_PRESETS[CINE.preset]; if(p) out=out.concat(p.ff);
+  return out;
+}
+segWire("cineSeg","data-cine", function(v){ snapshot(); CINE.preset=v; applyAfterFilter(); refreshExportInfo(); syncFxTiles(); });
+function bindCine(id,key,span){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ CINE[key]=parseInt(this.value,10); $(span).textContent=this.value+"%"; applyAfterFilter(); refreshExportInfo(); }); }
+bindCine("c-bright","bright","v-cbright"); bindCine("c-contrast","contrast","v-ccontrast"); bindCine("c-sat","sat","v-csat"); bindCine("c-sharp","sharp","v-csharp"); bindCine("c-expo","expo","v-cexpo");
+function syncCineUI(){
+  $("c-bright").value=CINE.bright; $("c-contrast").value=CINE.contrast; $("c-sat").value=CINE.sat; $("c-sharp").value=CINE.sharp; $("c-expo").value=CINE.expo;
+  $("v-cbright").textContent=CINE.bright+"%"; $("v-ccontrast").textContent=CINE.contrast+"%"; $("v-csat").textContent=CINE.sat+"%"; $("v-csharp").textContent=CINE.sharp+"%"; $("v-cexpo").textContent=CINE.expo+"%";
+  segSet("cineSeg","data-cine",CINE.preset); applyAfterFilter();
+}
+
+/* ---------- Audio Studio ---------- */
+function auActive(){ return AU.mute||AU.origVol!==100||!!AU.voFile||!!AU.muFile||!!AU.sfxFile||AU.fadeIn>0||AU.fadeOut>0; }
+$("auMuteBtn").addEventListener("click", function(){ snapshot(); AU.mute=!AU.mute; syncAudioUI(); refreshExportInfo(); });
+function bindAu(id,key,span){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ AU[key]=parseInt(this.value,10); $(span).textContent=this.value+"%"; refreshExportInfo(); }); }
+bindAu("auVoVol","voVol","v-auVoVol"); bindAu("auMusicVol","muVol","v-auMusicVol"); bindAu("auSfxVol","sfxVol","v-auSfxVol"); bindAu("auOrigVol","origVol","v-auOrigVol");
+function bindAuFade(id,key,span){ $(id).addEventListener("change", snapshot); $(id).addEventListener("input", function(){ AU[key]=parseFloat(this.value); $(span).textContent=this.value+"s"; refreshExportInfo(); }); }
+bindAuFade("auFadeIn","fadeIn","v-auFadeIn"); bindAuFade("auFadeOut","fadeOut","v-auFadeOut");
+$("auDuck").addEventListener("change", function(){ snapshot(); AU.duck=this.checked; });
+function bindAuFile(id,key,nameId){ $(id).addEventListener("change", function(e){ var f=e.target.files[0]; AU[key]=f||null; $(nameId).textContent=f?("Added: "+f.name):"No file."; refreshExportInfo(); }); }
+bindAuFile("auVoFile","voFile","auVoName"); bindAuFile("auMusicFile","muFile","auMusicName"); bindAuFile("auSfxFile","sfxFile","auSfxName");
+function syncAudioUI(){
+  $("auMuteBtn").setAttribute("aria-pressed", AU.mute?"true":"false"); $("auMuteBtn").textContent=AU.mute?"Muted":"Off";
+  $("auVoVol").value=AU.voVol; $("v-auVoVol").textContent=AU.voVol+"%";
+  $("auMusicVol").value=AU.muVol; $("v-auMusicVol").textContent=AU.muVol+"%";
+  $("auSfxVol").value=AU.sfxVol; $("v-auSfxVol").textContent=AU.sfxVol+"%";
+  $("auOrigVol").value=AU.origVol; $("v-auOrigVol").textContent=AU.origVol+"%";
+  $("auFadeIn").value=AU.fadeIn; $("v-auFadeIn").textContent=AU.fadeIn+"s";
+  $("auFadeOut").value=AU.fadeOut; $("v-auFadeOut").textContent=AU.fadeOut+"s";
+  $("auDuck").checked=AU.duck;
+}
+
+/* ---------- Background & Effects tiles ---------- */
+function syncFxTiles(){
+  document.querySelectorAll("#bgfxTiles .fxtile").forEach(function(t){
+    var k=t.getAttribute("data-fx"), on=false;
+    if(k==="blur") on=bgMode==="blur";
+    if(k==="replace"||k==="green") on=bgMode==="chroma";
+    if(k==="cinematic") on=CINE.preset==="cinepro";
+    if(k==="vintage") on=CINE.preset==="vintage";
+    if(k==="film") on=CINE.preset==="film";
+    if(k==="night") on=CINE.preset==="night";
+    t.setAttribute("aria-pressed", on?"true":"false");
+  });
+}
+$("bgfxTiles").querySelectorAll(".fxtile").forEach(function(t){
+  t.addEventListener("click", function(){
+    var k=t.getAttribute("data-fx");
+    if(k==="aistudio"){ setRail("background"); return; }
+    snapshot();
+    if(k==="blur"){ bgMode=bgMode==="blur"?"none":"blur"; }
+    if(k==="replace"){ bgMode="chroma"; segSet("bgSeg","data-bg","chroma"); $("chromaBox").classList.remove("hidden"); $("bgBlurBox").classList.add("hidden"); setRail("background"); $("bgImgInput").click(); syncFxTiles(); refreshExportInfo(); return; }
+    if(k==="green"){ bgMode=bgMode==="chroma"?"none":"chroma"; }
+    if(k==="cinematic"){ CINE.preset=CINE.preset==="cinepro"?"none":"cinepro"; segSet("cineSeg","data-cine",CINE.preset); applyAfterFilter(); }
+    if(k==="vintage"){ CINE.preset=CINE.preset==="vintage"?"none":"vintage"; segSet("cineSeg","data-cine",CINE.preset); applyAfterFilter(); }
+    if(k==="film"){ CINE.preset=CINE.preset==="film"?"none":"film"; segSet("cineSeg","data-cine",CINE.preset); applyAfterFilter(); }
+    if(k==="night"){ CINE.preset=CINE.preset==="night"?"none":"night"; segSet("cineSeg","data-cine",CINE.preset); applyAfterFilter(); }
+    segSet("bgSeg","data-bg",bgMode);
+    $("chromaBox").classList.toggle("hidden", bgMode!=="chroma");
+    $("bgBlurBox").classList.toggle("hidden", bgMode!=="blur");
+    syncFxTiles(); refreshExportInfo();
+  });
+});
+
+/* ---------- bottom export row ---------- */
+function quickExport(res, pro){
+  if(res){ resVal=res; segSet("resSeg","data-res",res); }
+  renderVal=pro?"pro":"fast"; segSet("renderSeg","data-render",renderVal);
+  setRail("export"); refreshExportInfo(); startExport();
+}
+$("btnQuickExport").addEventListener("click", function(){ quickExport(null,false); });
+$("btnExp1080").addEventListener("click", function(){ quickExport("1920x1080",true); });
+$("btnExp2K").addEventListener("click", function(){ quickExport("2560x1440",true); });
+$("btnExp4K").addEventListener("click", function(){ quickExport("3840x2160",true); });
+$("btnSaveGallery").addEventListener("click", function(){
+  var a=$("dlVideo");
+  if(!a.classList.contains("hidden")){ a.click(); return; }
+  setRail("export");
+  $("expStatus").textContent="Nothing rendered yet \u2014 rendering now with the current settings; tap Save to Gallery again when it finishes.";
+  startExport();
 });
 
 refreshExportInfo();
