@@ -102,8 +102,8 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
 .checkrow{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:14.5px;color:#fff}
 .checkrow .ck{flex:0 0 auto;width:21px;height:21px;border-radius:50%;background:#1faa59;color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center}
 /* ----- Locked editor workspace (reference design 2026-11-19) ----- */
-.ws-outer{width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;background:linear-gradient(180deg,#0a1830,#050d1d)}
-.ws-inner{width:1180px;transform-origin:top left;padding:10px 12px 12px;margin:0 auto}
+.ws-outer{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;overflow:hidden;background:linear-gradient(180deg,#0a1830,#050d1d);z-index:60}
+.ws-inner{position:absolute;left:0;top:0;width:1180px;transform-origin:top left;padding:10px 12px 12px}
 .ws-top{display:flex;align-items:center;gap:12px;padding:2px 2px 10px}
 .ws-top .burger{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:19px;min-height:40px;padding:0}
 .ws-top .crown{width:34px;height:34px;flex:0 0 auto}
@@ -131,7 +131,10 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
 .ws-half.after .vlabel{right:9px;color:var(--gold2)}
 .ws-half.after{border-left:2.5px solid var(--gold)}
 .ws-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);color:#123;border:none;font-size:21px;min-height:56px;padding:0;box-shadow:0 8px 22px rgba(0,0,0,.5)}
-.ws-stage .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9db4d8;text-align:center;font-size:15px;z-index:4;background:#020610}
+.ws-stage .empty{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;color:#9db4d8;text-align:center;font-size:15px;z-index:4;background:#020610}
+.ws-addvideo{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#231a00;border:none;border-radius:14px;font-size:23px;font-weight:900;padding:16px 34px;min-height:66px;box-shadow:0 10px 26px rgba(245,184,0,.45);cursor:pointer;letter-spacing:.01em}
+.ws-addvideo:active{transform:translateY(1px)}
+.ws-stage .empty .fmt{font-size:13.5px;color:#9db4d8;letter-spacing:.06em}
 .ws-stage img#photoImg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:3;background:#000}
 .ws-transport{display:flex;align-items:center;gap:9px;padding:9px 2px 4px}
 .ws-transport button{min-height:38px;padding:5px 13px;font-size:14px}
@@ -163,7 +166,7 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
 .fxtile{border:2px solid transparent;border-radius:10px;min-height:58px;color:#fff;font-size:11.5px;font-weight:800;padding:5px 3px;line-height:1.25;cursor:pointer}
 .fxtile[aria-pressed="true"]{border-color:var(--gold)}
 .ws-bottom{display:flex;gap:10px;margin-top:12px;align-items:stretch}
-.ws-tagline{flex:1.3 1 0;border:2px solid var(--gold);border-radius:12px;color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;padding:8px}
+.ws-tagline{flex:1.5 1 0;border:2px solid var(--gold);border-radius:12px;color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:16.5px;font-weight:800;padding:8px 10px;white-space:nowrap;overflow:hidden;line-height:1.2}
 .ws-bottom button{flex:1 1 0;border:none;border-radius:12px;color:#fff;font-size:15.5px;font-weight:800;min-height:56px;line-height:1.25}
 .ws-bottom button small{display:block;font-size:12px;font-weight:700}
 .btn-quick{background:linear-gradient(180deg,#ff9a3d,#f96d00)}
@@ -310,8 +313,8 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
             <div class="ws-half after"><video id="vidAfter" playsinline muted loop></video><span class="vlabel" id="lblAfter">After</span></div>
           </div>
           <img id="photoImg" class="hidden" alt="Photo being enhanced">
-          <div class="empty" id="stageEmpty">No video yet<br>Upload an MP4, MOV or WebM in the Video Editor panel</div>
-          <button class="ws-play" id="btnSplitPlay" aria-label="Play or pause the preview">&#9654;</button>
+          <div class="empty" id="stageEmpty"><button class="ws-addvideo" id="btnAddVideo">&#10133; Add Video</button><span class="fmt">MP4 &#8226; MOV &#8226; WebM</span></div>
+          <button class="ws-play hidden" id="btnSplitPlay" aria-label="Play or pause the preview">&#9654;</button>
         </div>
         <div class="ws-transport">
           <button id="btnUndo" title="Undo">&#8630; Undo</button>
@@ -331,8 +334,8 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
 
         <div data-panel="video" class="hidden">
           <h2>Video Editor <span class="en">Timeline &#8226; Cut &#8226; Trim &#8226; Effects</span></h2>
-          <h3 style="margin-top:2px">Upload Video</h3>
-          <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm">
+          <button id="btnImportVideo" class="gold" style="width:100%;margin-top:2px;font-size:16.5px;min-height:52px">&#10133; Import Video</button>
+          <input type="file" id="fileInput" class="hidden" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm">
           <div id="fileBox"></div>
           <h3>Trim</h3>
           <div><label>Start (sec) <span class="val" id="trimStartVal">0</span></label><input type="range" id="trimStart" min="0" max="60" step="0.1" value="0"></div>
@@ -356,10 +359,8 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
             <button data-clean="2">Medium</button>
             <button data-clean="3">Strong</button>
           </div>
-          <p class="hint" style="margin-top:8px">Reduces background noise in the voice. Your original file is never changed &#8212; cleaning is applied only to the exported copy. Noise is reduced, not removed completely. Pro Render (Export Studio) runs the full FFmpeg <b>afftdn</b> noise reduction; Fast Render cleans rumble and levels the voice live while it renders.</p>
-          <div class="row">
+          <div class="row" style="margin-top:8px">
             <button id="btnAB" class="small">A/B Preview: Cleaned</button>
-            <span class="hint" style="margin:0">Play the video, then tap A/B to compare cleaned vs original sound.</span>
           </div>
           <h3>Frame Size</h3>
           <div class="seg" id="frameSeg">
@@ -375,7 +376,6 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
             <button data-fit="fill">Fill (Crop)</button>
             <button data-fit="blur">Blur Fill</button>
           </div>
-          <p class="hint" style="margin-top:8px">The preview above shows the chosen frame before you export. Fit keeps the whole picture with plain padding, Fill crops to fill the frame, Blur Fill pads with a blurred copy of the video.</p>
         </div>
 
         <div data-panel="enhance">
@@ -410,9 +410,8 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
             <button data-on="1">DSLR Quality: On</button>
           </div>
           <button id="btnDslrApply" style="width:100%;margin-top:12px;background:linear-gradient(180deg,#2f8fe8,#1663c7);color:#fff;border:none;font-size:16px">&#10003; Apply Now</button>
-          <p class="hint" id="dslrStatus">Apply Now switches DSLR Quality on, opens Export Studio and starts a Pro Render with these settings.</p>
+          <p class="hint" id="dslrStatus">Ready.</p>
           <h3>Photo Mode</h3>
-          <p class="hint">Enhance a still photo with the same DSLR settings and save it as a JPG. The photo appears in the centre stage; the zoom slider and the 400% Zoom box are previews only.</p>
           <input type="file" id="photoInput" accept="image/*">
           <div class="seg" id="photoSizeSeg" style="margin-top:8px">
             <button data-psize="1280">HD</button>
@@ -427,7 +426,6 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
 
         <div data-panel="audio" class="hidden">
           <h2>Audio Studio <span class="en">Multi-Track Mix &#8226; Pro Render</span></h2>
-          <p class="hint">Track volumes and the original-audio mute live in the audio rows under the preview. Here you add the track files, ducking and fades. Audio Studio applies in <b>Pro Render</b> &#8212; choose Pro Render in Export Studio. Fast Render keeps the Video Editor's single sound path.</p>
           <div><label>Original audio volume <span class="val" id="v-auOrigVol">100%</span></label><input type="range" id="auOrigVol" min="0" max="100" value="100"></div>
           <h3>Voice Over Track</h3>
           <input type="file" id="auVoFile" accept="audio/*,.mp3,.m4a,.wav,.ogg">
@@ -441,7 +439,6 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
           <label style="text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--text);margin-top:12px"><input type="checkbox" id="auDuck" checked> Music gets quieter under the Voice Over (auto-ducking)</label>
           <div style="margin-top:10px"><label>Fade In (sec) <span class="val" id="v-auFadeIn">0s</span></label><input type="range" id="auFadeIn" min="0" max="10" step="0.5" value="0"></div>
           <div><label>Fade Out (sec) <span class="val" id="v-auFadeOut">0s</span></label><input type="range" id="auFadeOut" min="0" max="10" step="0.5" value="0"></div>
-          <p class="hint">Tracks longer than the video are trimmed to its length; shorter tracks are padded with silence. Clean Voice (Video Editor) also cleans the Voice Over track in Pro Render.</p>
         </div>
 
         <div data-panel="background" class="hidden">
@@ -457,16 +454,14 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
             <div><label>Key strength <span class="val" id="v-keysim">18</span></label><input type="range" id="keySim" min="5" max="40" value="18"></div>
             <div><label>Replacement image (optional)</label><input type="file" id="bgImgInput" accept="image/*"></div>
             <div class="row" style="margin-top:6px"><button id="btnBgClear" class="small">Use colour only</button><span class="hint" style="margin:0" id="bgImgName">No replacement image &#8212; the colour above will be used.</span></div>
-            <p class="hint" style="margin-top:8px">Works on videos filmed against one solid colour (for example a green screen). Pick that colour, raise Key strength if edges remain, lower it if parts of the subject disappear.</p>
           </div>
           <div id="bgBlurBox" class="hidden" style="margin-top:10px">
-            <p class="hint">Experimental: Blur Background uses MediaPipe Selfie Segmentation, downloaded from the internet the first time you export with it (Fast Render only). If it cannot load &#8212; for example offline &#8212; the export stops with a clear message and nothing is lost; Chroma Key above works without it. It processes frame by frame, so short clips at 720p or lower work best on a phone.</p>
+            <p class="hint">Experimental &#8212; MediaPipe &#8226; Fast Render only &#8226; needs internet the first time.</p>
           </div>
         </div>
 
         <div data-panel="cine" class="hidden">
           <h2>Cinematic Studio <span class="en">Premium Looks &#8226; Pro Render</span></h2>
-          <p class="hint">Looks apply in Pro Render. The After side of the preview shows a live approximation of the chosen look.</p>
           <div class="seg" id="cineSeg">
             <button data-cine="none" aria-pressed="true">None</button>
             <button data-cine="iphone">iPhone Pro</button>
@@ -501,7 +496,6 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
             <button data-render="fast" aria-pressed="true">Fast Render &#8226; In-App</button>
             <button data-render="pro">Pro Render &#8226; FFmpeg</button>
           </div>
-          <p class="hint" style="margin-top:8px" id="proHint">Fast Render works fully inside the app, in real time, and includes your sound. Pro Render downloads the FFmpeg engine once (about 31 MB, internet needed) and then processes inside the app with the full afftdn noise reduction and exact MP4 output &#8212; slower than Fast Render, especially at 1080p and above. Audio Studio mixing, Cinematic looks and DSLR Quality apply in Pro Render only. If the engine cannot load, you will get a clear message and Fast Render still works.</p>
           <div class="kv" style="margin-top:8px"><span>Video</span><b id="expSrc">&#8212;</b></div>
           <div class="kv"><span>Length</span><b id="expLen">&#8212;</b></div>
           <div class="kv"><span>Frame</span><b id="expFrame">&#8212;</b></div>
@@ -650,7 +644,7 @@ function showScreen(name){
   document.querySelectorAll(".screen").forEach(function(el){
     el.classList.toggle("hidden", el.getAttribute("data-screen")!==name);
   });
-  if(name==="editor"){ setRail(pendingRail||"enhance"); fitWorkspace(); }
+  if(name==="editor"){ setRail(pendingRail||"enhance"); fitWorkspace(); requestAnimationFrame(fitWorkspace); }
   window.scrollTo(0,0);
 }
 document.querySelectorAll("[data-goto]").forEach(function(b){
@@ -708,6 +702,8 @@ function doRedo(){
 
 /* ---------- Video load ---------- */
 var fileName="", duration=0, lastFile=null;
+$("btnAddVideo").addEventListener("click", function(){ $("fileInput").click(); });
+$("btnImportVideo").addEventListener("click", function(){ $("fileInput").click(); });
 $("fileInput").addEventListener("change", function(e){
   var f=e.target.files[0]; if(!f) return;
   fileName=f.name; lastFile=f;
@@ -716,13 +712,13 @@ $("fileInput").addEventListener("change", function(e){
   $("vidBg").src=objUrl;
   var va=$("vidAfter"); va.src=objUrl;
   $("photoImg").classList.add("hidden"); photoFile=null; buildFilmstrip(objUrl);
-  vid.classList.remove("hidden"); $("stageEmpty").classList.add("hidden");
+  vid.classList.remove("hidden"); $("stageEmpty").classList.add("hidden"); $("btnSplitPlay").classList.remove("hidden"); $("btnImportVideo").innerHTML="&#8635; Add / Change Video";
   $("fileBox").innerHTML="";
   var d=document.createElement("div"); d.className="fileitem";
   d.innerHTML="<span><b></b> · "+(f.size/1048576).toFixed(1)+" MB</span>";
   d.querySelector("b").textContent=f.name;
   var rm=document.createElement("button"); rm.className="small"; rm.textContent="Remove";
-  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); var vb=$("vidBg"); vb.removeAttribute("src"); vb.load(); vb.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("fileBox").innerHTML=""; fileName=""; lastFile=null; duration=0; var va2=$("vidAfter"); va2.removeAttribute("src"); va2.load(); $("filmstrip").querySelectorAll("canvas").forEach(function(c){ c.remove(); }); refreshExportInfo(); });
+  rm.addEventListener("click", function(){ vid.removeAttribute("src"); vid.load(); vid.classList.add("hidden"); var vb=$("vidBg"); vb.removeAttribute("src"); vb.load(); vb.classList.add("hidden"); $("stageEmpty").classList.remove("hidden"); $("btnSplitPlay").classList.add("hidden"); $("btnImportVideo").innerHTML="&#10133; Import Video"; $("fileBox").innerHTML=""; fileName=""; lastFile=null; duration=0; var va2=$("vidAfter"); va2.removeAttribute("src"); va2.load(); $("filmstrip").querySelectorAll("canvas").forEach(function(c){ c.remove(); }); refreshExportInfo(); });
   d.appendChild(rm); $("fileBox").appendChild(d);
 });
 vid.addEventListener("loadedmetadata", function(){
@@ -1482,19 +1478,23 @@ function setRail(name){
   document.querySelectorAll("[data-panel]").forEach(function(p){ p.classList.toggle("hidden", p.getAttribute("data-panel")!==name); });
   document.querySelectorAll("[data-railbtn]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-railbtn")===name?"true":"false"); });
   if(name==="export") refreshExportInfo();
+  fitWorkspace();
 }
 function fitWorkspace(){
   var inner=$("wsInner"); if(!inner) return;
-  var wrap=inner.parentElement;
-  var w=wrap.clientWidth||window.innerWidth;
-  var s=Math.min(1, w/1180);
-  inner.style.transform="scale("+s+")";
-  wrap.style.height=(inner.offsetHeight*s)+"px";
+  var iw=inner.offsetWidth, ih=inner.offsetHeight;
+  if(!iw||!ih) return;
+  var w=window.innerWidth, h=window.innerHeight;
+  var s=Math.min(w/iw, h/ih);
+  var x=(w-iw*s)/2, y=(h-ih*s)/2;
+  inner.style.transform="translate("+x.toFixed(1)+"px,"+y.toFixed(1)+"px) scale("+s+")";
 }
-window.addEventListener("resize", function(){
+function refitIfEditor(){
   var ed=document.querySelector('[data-screen="editor"]');
   if(ed && !ed.classList.contains("hidden")) fitWorkspace();
-});
+}
+window.addEventListener("resize", refitIfEditor);
+window.addEventListener("orientationchange", function(){ refitIfEditor(); setTimeout(refitIfEditor, 250); });
 document.querySelectorAll("[data-railbtn]").forEach(function(b){
   b.addEventListener("click", function(){ pendingRail=b.getAttribute("data-railbtn"); setRail(pendingRail); });
 });
@@ -1604,6 +1604,7 @@ $("photoInput").addEventListener("change", function(e){
   photoFile=f;
   var im=$("photoImg"); im.src=URL.createObjectURL(f); im.classList.remove("hidden");
   $("stageEmpty").classList.add("hidden");
+  $("btnSplitPlay").classList.add("hidden");
   applyPhotoPreview();
   $("photoStatus").textContent="Photo loaded: "+f.name+" \u2014 the DSLR settings above apply. Pick HD / 2K / 4K, then Enhance & Save Photo.";
 });
