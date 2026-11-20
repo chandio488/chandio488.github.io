@@ -1259,6 +1259,65 @@ function refreshExportInfo(){
   $("expSize").textContent=duration?("\u2248 "+(mbps*len/8).toFixed(1)+" MB \u00b7 "+d[0]+"\u00d7"+d[1]):"\u2014";
   updateLabels();
 }
+/* ---------- Save bridge (v1.5) ----------
+   Inside the Android app the WebView silently drops blob: downloads,
+   so a finished file can never reach the Gallery through the hidden
+   download anchors alone. The page therefore hands the rendered blob
+   to the native RaheemSaver bridge (MainActivity), which writes it
+   into the Gallery via MediaStore and reports back through
+   window.__onSaveResult. In a plain browser there is no bridge and
+   the download anchors keep working exactly as before. */
+var lastVideoBlob=null, lastVideoName="raheem-studio-export.webm";
+var lastPhotoBlob=null, lastPhotoName="raheem-enhanced-photo.jpg";
+var pendingGallerySave=false, pendingSaveKind="";
+function saverAvailable(){
+  try{ return !!(window.RaheemSaver && typeof window.RaheemSaver.saveFile==="function"); }
+  catch(e){ return false; }
+}
+function setSaveStatus(kind, text){
+  var el=$(kind==="photo" ? "photoStatus" : "expStatus");
+  if(el) el.textContent=text;
+}
+function deliverBlob(blob, filename, kind){
+  if(!blob || !saverAvailable()) return false;
+  try{
+    pendingSaveKind=kind||"video";
+    setSaveStatus(pendingSaveKind, "Saving to Gallery\u2026");
+    var reader=new FileReader();
+    reader.onload=function(){
+      try{
+        var url=String(reader.result||"");
+        var b64=url.slice(url.indexOf(",")+1);
+        window.RaheemSaver.saveFile(b64, filename, blob.type||"application/octet-stream");
+      }catch(e){ setSaveStatus(pendingSaveKind, "Save failed \u2014 please try again"); }
+    };
+    reader.onerror=function(){ setSaveStatus(pendingSaveKind, "Save failed \u2014 please try again"); };
+    reader.readAsDataURL(blob);
+    return true;
+  }catch(e){ return false; }
+}
+window.__onSaveResult=function(ok, name){
+  var kind=pendingSaveKind||"video"; pendingSaveKind="";
+  setSaveStatus(kind, ok ? ("\u2713 Saved to Gallery: "+name) : "Save failed \u2014 please try again");
+  ["btnExport","btnSaveGallery","btnPhotoSave","btnQuickExport"].forEach(function(id){
+    var b=$(id); if(b) b.disabled=false;
+  });
+};
+$("dlVideo").addEventListener("click", function(ev){
+  if(lastVideoBlob && saverAvailable()){ ev.preventDefault(); deliverBlob(lastVideoBlob, lastVideoName, "video"); }
+});
+$("dlPhoto").addEventListener("click", function(ev){
+  if(lastPhotoBlob && saverAvailable()){ ev.preventDefault(); deliverBlob(lastPhotoBlob, lastPhotoName, "photo"); }
+});
+function finishVideoExport(blob, fname, doneText){
+  lastVideoBlob=blob; lastVideoName=fname;
+  var a=$("dlVideo"); a.href=URL.createObjectURL(blob); a.download=fname; a.classList.remove("hidden");
+  $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
+  var wantSave=pendingGallerySave; pendingGallerySave=false;
+  if(deliverBlob(blob, fname, "video")) return;
+  if(wantSave){ $("expStatus").textContent=doneText; a.click(); return; }
+  $("expStatus").textContent=doneText+" \u2014 tap \u201cSave your finished video\u201d.";
+}
 var recorder=null, recChunks=[], rafId=null, lastExportFailed=false, exporting=false;
 function startExport(){
   if(renderVal==="pro"){ startProExport(); return; }
@@ -1295,11 +1354,8 @@ function startFastExport(){
     cancelAnimationFrame(rafId); vid.pause(); exporting=false;
     if(lastExportFailed) return;
     var blob=new Blob(recChunks,{type:mime});
-    var a=$("dlVideo"); a.href=URL.createObjectURL(blob);
-    a.download="raheem-studio-export."+(mime.indexOf("mp4")>-1?"mp4":"webm");
-    a.classList.remove("hidden");
-    $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
-    $("expStatus").textContent="Done ✓ Finished video ("+(blob.size/1048576).toFixed(1)+" MB · "+cw+"×"+ch+") — tap “Save your finished video”."+audioNote;
+    var fname="raheem-studio-export."+(mime.indexOf("mp4")>-1?"mp4":"webm");
+    finishVideoExport(blob, fname, "Done ✓ Finished video ("+(blob.size/1048576).toFixed(1)+" MB · "+cw+"×"+ch+")."+audioNote);
   };
   $("expProg").classList.remove("hidden"); $("expProg").value=0;
   $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
@@ -1370,9 +1426,14 @@ function startFastExport(){
 }
 
 /* ----- Pro Render: real FFmpeg (afftdn · scale/pad · chromakey) in-page -----
-   The FFmpeg engine (ffmpeg.wasm, single-thread) is downloaded once from
-   the jsDelivr CDN. Everything after that runs inside the app. If the
-   download fails the user gets a clear message — never a fake render. */
+   The FFmpeg engine (ffmpeg.wasm, single-thread) is BUNDLED with the
+   app since v1.5: util.js, ffmpeg.js, its worker chunk 814.ffmpeg.js
+   and the core (ffmpeg-core.js + ffmpeg-core.wasm) all sit in the
+   local ffmpeg/ folder next to this page, so Pro Render and Photo
+   Mode work fully offline. ffmpeg.js spawns its worker from the
+   sibling 814.ffmpeg.js chunk, resolved against the folder ffmpeg.js
+   itself was loaded from — no worker URL has to be passed. If a file
+   is missing the user gets a clear message — never a fake render. */
 var ffInst=null, ffLoading=null;
 function loadScriptOnce(src){
   return new Promise(function(resolve,reject){
@@ -1385,9 +1446,9 @@ function loadFFmpeg(){
   if(ffInst) return Promise.resolve(ffInst);
   if(ffLoading) return ffLoading;
   ffLoading=(async function(){
-    var base="https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
-    await loadScriptOnce("https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/umd/util.js");
-    await loadScriptOnce("https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js");
+    var base="ffmpeg";
+    await loadScriptOnce(base+"/util.js");
+    await loadScriptOnce(base+"/ffmpeg.js");
     var ff=new FFmpegWASM.FFmpeg();
     ff.on("progress", function(p){ if(p&&typeof p.progress==="number") $("expProg").value=Math.max(0,Math.min(100,Math.round(p.progress*100))); });
     await ff.load({
@@ -1411,10 +1472,10 @@ async function startProExport(){
   exporting=true; lastExportFailed=false;
   $("expProg").classList.remove("hidden"); $("expProg").value=0;
   $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
-  $("expStatus").textContent="Pro Render: loading the FFmpeg engine (first time needs internet, about 31 MB)…";
+  $("expStatus").textContent="Pro Render: loading the built-in FFmpeg engine…";
   var ff;
   try{ ff=await loadFFmpeg(); }
-  catch(e){ exporting=false; failExport("Pro Render could not load the FFmpeg engine — check the internet connection and retry. Nothing was lost; Fast Render works fully offline."); return; }
+  catch(e){ exporting=false; failExport("Pro Render could not load the built-in FFmpeg engine — please retry. Nothing was lost; Fast Render works fully offline."); return; }
   try{
     var dims=outDims(), W=dims[0], H=dims[1];
     var srcW=vid.videoWidth||W, srcH=vid.videoHeight||H;
@@ -1511,10 +1572,7 @@ async function startProExport(){
     var data=await ff.readFile("out.mp4");
     if(!data || !data.length) throw new Error("empty output");
     var blob=new Blob([data.buffer], {type:"video/mp4"});
-    var a=$("dlVideo"); a.href=URL.createObjectURL(blob); a.download="raheem-studio-export.mp4";
-    a.classList.remove("hidden");
-    $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
-    $("expStatus").textContent="Done ✓ Pro Render finished ("+(blob.size/1048576).toFixed(1)+" MB · MP4 · "+W+"×"+H+") — tap “Save your finished video”. Your original file was not changed.";
+    finishVideoExport(blob, "raheem-studio-export.mp4", "Done ✓ Pro Render finished ("+(blob.size/1048576).toFixed(1)+" MB · MP4 · "+W+"×"+H+"). Your original file was not changed.");
     try{ await ff.deleteFile(inName); await ff.deleteFile("out.mp4"); }catch(e){}
   }catch(e){
     failExport("Pro Render failed while processing — your edits and original file are safe. Try Fast Render, or a shorter clip / lower quality, then retry.");
@@ -1523,7 +1581,7 @@ async function startProExport(){
   exporting=false;
 }
 function failExport(msg){
-  lastExportFailed=true; exporting=false;
+  lastExportFailed=true; exporting=false; pendingGallerySave=false;
   if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
   cancelAnimationFrame(rafId);
   $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
@@ -1533,7 +1591,7 @@ function failExport(msg){
 $("btnExport").addEventListener("click", startExport);
 $("btnRetryExport").addEventListener("click", startExport);
 $("btnCancelExport").addEventListener("click", function(){
-  lastExportFailed=true; exporting=false;
+  lastExportFailed=true; exporting=false; pendingGallerySave=false;
   if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
   if(ffInst){ try{ ffInst.terminate(); }catch(e){} ffInst=null; ffLoading=null; }
   cancelAnimationFrame(rafId); vid.pause();
@@ -1704,7 +1762,7 @@ $("btnPhotoSave").addEventListener("click", async function(){
   if(!photoFile){ $("photoStatus").textContent="Choose a photo first."; return; }
   ENH.on=true; segSet("dslrOnSeg","data-on","1");
   var btn=this; btn.disabled=true;
-  $("photoStatus").textContent="Enhancing the photo inside the app (FFmpeg engine \u2014 the first load needs internet)\u2026";
+  $("photoStatus").textContent="Enhancing the photo inside the app (built-in FFmpeg engine)\u2026";
   try{
     var ff=await loadFFmpeg();
     var ext=(photoFile.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
@@ -1715,8 +1773,11 @@ $("btnPhotoSave").addEventListener("click", async function(){
     var data=await ff.readFile("photo-out.jpg");
     if(!data||!data.length) throw new Error("empty output");
     var blob=new Blob([data.buffer],{type:"image/jpeg"});
-    var a=$("dlPhoto"); a.href=URL.createObjectURL(blob); a.download="raheem-enhanced-photo.jpg"; a.classList.remove("hidden");
-    $("photoStatus").textContent="Done \u2713 Enhanced photo ready ("+(blob.size/1024).toFixed(0)+" KB \u00b7 longest side "+photoSize+"px) \u2014 tap \u201cSave enhanced photo\u201d. On-device enhancement: denoise, sharpen, colour and upscale \u2014 detail that was never recorded cannot be restored.";
+    lastPhotoBlob=blob; lastPhotoName="raheem-enhanced-photo.jpg";
+    var a=$("dlPhoto"); a.href=URL.createObjectURL(blob); a.download=lastPhotoName; a.classList.remove("hidden");
+    if(!deliverBlob(blob, lastPhotoName, "photo")){
+      $("photoStatus").textContent="Done \u2713 Enhanced photo ready ("+(blob.size/1024).toFixed(0)+" KB \u00b7 longest side "+photoSize+"px) \u2014 tap \u201cSave enhanced photo\u201d. On-device enhancement: denoise, sharpen, colour and upscale \u2014 detail that was never recorded cannot be restored.";
+    }
     try{ await ff.deleteFile("photo."+ext); await ff.deleteFile("photo-out.jpg"); }catch(e){}
   }catch(e){
     $("photoStatus").textContent="Photo enhance failed \u2014 the FFmpeg engine may still be loading, or the photo format is unsupported. Your original photo is untouched; try again with a JPG or PNG.";
@@ -1822,10 +1883,13 @@ $("btnExp1080").addEventListener("click", function(){ quickExport("1920x1080",tr
 $("btnExp2K").addEventListener("click", function(){ quickExport("2560x1440",true); });
 $("btnExp4K").addEventListener("click", function(){ quickExport("3840x2160",true); });
 $("btnSaveGallery").addEventListener("click", function(){
-  var a=$("dlVideo");
-  if(!a.classList.contains("hidden")){ a.click(); return; }
+  if(lastVideoBlob){
+    if(!deliverBlob(lastVideoBlob, lastVideoName, "video")){ $("dlVideo").click(); }
+    return;
+  }
   setRail("export");
-  $("expStatus").textContent="Nothing rendered yet \u2014 rendering now with the current settings; tap Save to Gallery again when it finishes.";
+  pendingGallerySave=true;
+  $("expStatus").textContent="Nothing rendered yet \u2014 rendering now with the current settings; it will be saved automatically when the render finishes.";
   startExport();
 });
 
