@@ -1311,6 +1311,10 @@ function progRender(){
   var eta=(frac>0.02)?(el/frac-el):null;
   $("progTime").textContent=fmtClock(el)+" elapsed"+(eta!=null?(" \u00b7 ~"+fmtClock(eta)+" left"):"");
   var total=progState.total||0, written=progState.written||0, mark=progState.exact?"":"\u2248 ";
+  /* Live byte provider (set by Fast Render): re-read the recorder's
+     real accumulated bytes on every refresh, so the size line moves
+     with the actual file even between data events. */
+  if(progState.writtenFn){ var lw=progState.writtenFn()||0; if(lw>written) written=lw; }
   if(total>0){
     $("progSize").textContent=mark+fmtMB(written)+" of "+mark+fmtMB(total)+" \u00b7 "+fmtMB(Math.max(0,total-written))+" left";
   } else {
@@ -1517,7 +1521,7 @@ function startFastExport(){
   try{ recorder=new MediaRecorder(stream,{mimeType:mime, videoBitsPerSecond:5000000}); }
   catch(e){ failExport("Recorder could not start — your edits are safe; press “Retry export”."); return; }
   exporting=true;
-  recorder.ondataavailable=function(e){ if(e.data.size){ recChunks.push(e.data); recBytes+=e.data.size; } };
+  recorder.ondataavailable=function(e){ if(e.data.size){ recChunks.push(e.data); recBytes+=e.data.size; progSet(null, recBytes); } };
   recorder.onstop=function(){
     cancelAnimationFrame(rafId); vid.pause(); exporting=false;
     if(lastExportFailed) return;
@@ -1529,6 +1533,7 @@ function startFastExport(){
   $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
   $("expStatus").textContent="Rendering… keep this page open ("+fmt(len)+" of video)."+audioNote;
   progBegin("Rendering · Fast Render", estOutBytes([cw,ch], len), false);
+  if(progState) progState.writtenFn=function(){ return recBytes; };
   lastExportFailed=false;
   var keyRGB=hexRGB($("keyColor").value), sim=parseInt($("keySim").value,10)/100;
   function prepBg(){
@@ -1573,11 +1578,19 @@ function startFastExport(){
     vid.currentTime=start;
     vid.play().then(function(){
       recorder.start(250);
-      var t0=performance.now(), frameNo=0;
+      var t0=performance.now(), frameNo=0, lastFlush=0;
       (function draw(){
         prepBg(); drawFg();
         if(bgMode==="blur" && segModel && frameNo%2===0){ try{ segModel.send({image:vid}); }catch(e){} }
         frameNo++;
+        /* Some recorders (the MP4 muxer) hold their data back until
+           stop(); requestData() forces delivery of the bytes encoded
+           so far, so recBytes — and with it the size line — keep
+           moving during the render instead of staying at 0. */
+        if(recorder.state==="recording" && performance.now()-lastFlush>=500){
+          lastFlush=performance.now();
+          try{ recorder.requestData(); }catch(e){}
+        }
         progSet(((performance.now()-t0)/1000/len), recBytes);
         if(vid.currentTime<end && recorder.state==="recording"){ rafId=requestAnimationFrame(draw); }
         else if(recorder.state==="recording"){ recorder.stop(); }
