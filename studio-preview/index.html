@@ -1333,7 +1333,7 @@ function progBegin(phase, totalBytes, exact){
 function progSet(frac, writtenBytes){
   if(!progState) return;
   if(typeof frac==="number"&&isFinite(frac)) progState.frac=Math.max(progState.frac||0, Math.max(0, Math.min(1, frac)));
-  if(typeof writtenBytes==="number"&&isFinite(writtenBytes)) progState.written=Math.max(0, writtenBytes);
+  if(typeof writtenBytes==="number"&&isFinite(writtenBytes)) progState.written=Math.max(progState.written||0, Math.max(0, writtenBytes));
   progRender();
 }
 function progEnd(){
@@ -1532,7 +1532,8 @@ function startFastExport(){
   $("expProg").classList.remove("hidden"); $("expProg").value=0;
   $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
   $("expStatus").textContent="Rendering… keep this page open ("+fmt(len)+" of video)."+audioNote;
-  progBegin("Rendering · Fast Render", estOutBytes([cw,ch], len), false);
+  var fastEstTotal=estOutBytes([cw,ch], len);
+  progBegin("Rendering · Fast Render", fastEstTotal, false);
   if(progState) progState.writtenFn=function(){ return recBytes; };
   lastExportFailed=false;
   var keyRGB=hexRGB($("keyColor").value), sim=parseInt($("keySim").value,10)/100;
@@ -1591,7 +1592,8 @@ function startFastExport(){
           lastFlush=performance.now();
           try{ recorder.requestData(); }catch(e){}
         }
-        progSet(((performance.now()-t0)/1000/len), recBytes);
+        var frNow=((performance.now()-t0)/1000/len);
+        progSet(frNow, Math.max(recBytes, Math.round(frNow*fastEstTotal)));
         if(vid.currentTime<end && recorder.state==="recording"){ rafId=requestAnimationFrame(draw); }
         else if(recorder.state==="recording"){ recorder.stop(); }
       })();
