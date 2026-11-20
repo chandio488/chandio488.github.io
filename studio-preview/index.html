@@ -541,15 +541,22 @@ input[type="range"]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;b
           <div class="kv" style="margin-top:8px"><span>Video</span><b id="expSrc">&#8212;</b></div>
           <div class="kv"><span>Length</span><b id="expLen">&#8212;</b></div>
           <div class="kv"><span>Frame</span><b id="expFrame">&#8212;</b></div>
-          <div class="kv"><span>Resolution</span><b id="expRes">&#8212;</b></div>
+          <div class="kv"><span>Source</span><b id="expSource">&#8212;</b></div>
+          <div class="kv"><span>Output</span><b id="expRes">&#8212;</b></div>
           <div class="kv"><span>Settings</span><b id="expSettings">Standard</b></div>
           <div class="kv"><span>File size (est.)</span><b id="expSize">&#8212;</b></div>
+          <div class="kv hidden" id="expDoneRow"><span>Finished file</span><b id="expDone">&#8212;</b></div>
           <div class="row" style="margin-top:10px">
             <button class="gold" id="btnExport">&#11015; Render &amp; download</button>
             <button id="btnRetryExport" class="hidden">&#8635; Retry export</button>
             <button id="btnCancelExport" class="hidden">Cancel</button>
           </div>
           <div style="margin-top:12px"><progress id="expProg" value="0" max="100" class="hidden"></progress><p class="hint" id="expStatus"></p></div>
+          <div id="progDetail" class="hidden" style="margin-top:2px">
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span id="progPct" style="font-size:30px;font-weight:900;color:var(--gold2);font-variant-numeric:tabular-nums">0%</span><span id="progPhase" style="font-size:14.5px;font-weight:800;color:#fff">Rendering</span></div>
+            <div class="kv"><span>Time</span><b id="progTime">&#8212;</b></div>
+            <div class="kv"><span>Size</span><b id="progSize">&#8212;</b></div>
+          </div>
           <a id="dlVideo" class="btn gold hidden" download="raheem-studio-export.webm">&#11015; Save your finished video</a>
         </div>
 
@@ -1128,13 +1135,21 @@ $("bgImgInput").addEventListener("change", function(e){
 });
 $("btnBgClear").addEventListener("click", function(){ bgImgEl=null; bgImgFile=null; $("bgImgInput").value=""; $("bgImgName").textContent="No replacement image — the colour above will be used."; });
 
-/* Frame geometry: returns [W,H] for the chosen quality + frame preset */
+/* Frame geometry: returns [W,H] for the chosen quality + frame preset.
+   v1.6 FIX 1 (Farhan jawab 71): in "orig" frame mode the chosen quality
+   sets the output size along the source's LONG side and the other side
+   follows the source aspect ratio — upscaling included. v1.5 capped the
+   scale at Math.min(1, rw/sw), so a 576x1024 clip stayed 576x1024 even
+   with 2K/4K selected. Now a 576x1024 source gives 720x1280 (720p),
+   1080x1920 (1080p), 1440x2560 (2K), 2160x3840 (4K); landscape sources
+   get the transposed equivalents. Always even numbers. */
 function outDims(){
   var parts=resVal.split("x"), rw=parseInt(parts[0],10), rh=parseInt(parts[1],10);
   if(frameVal==="orig"){
-    var sw=vid.videoWidth||rw, sh=vid.videoHeight||rh;
-    var sc=Math.min(1, rw/sw);
-    return [Math.max(2,Math.round(sw*sc/2)*2), Math.max(2,Math.round(sh*sc/2)*2)];
+    var sw=vid.videoWidth||0, sh=vid.videoHeight||0;
+    if(!sw||!sh) return [rw,rh];
+    if(sw>=sh){ return [rw, Math.max(2,Math.round(rw*sh/sw/2)*2)]; }
+    return [Math.max(2,Math.round(rw*sw/sh/2)*2), rw];
   }
   var ab=frameVal.split(":"), a=parseInt(ab[0],10), b=parseInt(ab[1],10);
   var S=Math.min(rw,rh), L=Math.max(rw,rh), W,H;
@@ -1238,6 +1253,14 @@ function loadSegmentation(){
 /* ---------- Export ---------- */
 var resVal="1280x720";
 segWire("resSeg","data-res", function(v){ resVal=v; refreshExportInfo(); });
+/* Rough output-size estimate from the output pixel count (same table the
+   "File size (est.)" row has always used); also feeds the live progress
+   size readout during renders. */
+function estOutBytes(d, len){
+  var px=d[0]*d[1];
+  var mbps=px>=8000000?20: px>=2000000?12: px>=900000?5: px>=230000?1.6:0.7;
+  return Math.round(mbps*Math.max(0,len)/8*1048576);
+}
 function refreshExportInfo(){
   var len=duration?Math.max(0, parseFloat($("trimEnd").value||0)-parseFloat($("trimStart").value||0)):0;
   $("expSrc").textContent=fileName||"\u2014";
@@ -1247,6 +1270,10 @@ function refreshExportInfo(){
   var bgName=bgMode==="chroma"?" \u00b7 Chroma Key":bgMode==="blur"?" \u00b7 Background Blur (Experimental)":"";
   var cleanName=cleanVal>0?(" \u00b7 Clean Voice "+["","Light","Medium","Strong"][cleanVal]):"";
   $("expFrame").textContent=duration?((frameVal==="orig"?"Original frame":frameVal+" \u00b7 "+fitName)+bgName+cleanName+" \u00b7 "+d[0]+"\u00d7"+d[1]):"\u2014";
+  /* v1.6 FIX 4: Source and Output are separate, always-visible rows.
+     Output follows outDims(), so it updates the instant the quality
+     selection changes (in v1.5 the capped outDims meant it never did). */
+  $("expSource").textContent=(vid.videoWidth&&vid.videoHeight)?(vid.videoWidth+"\u00d7"+vid.videoHeight+" px"):"\u2014";
   $("expRes").textContent=duration?(d[0]+"\u00d7"+d[1]+" px"):"\u2014";
   var feats=[];
   if(ENH.on) feats.push("DSLR Quality ("+(ENH.mode==="pro"?"Professional":"Natural")+" \u00b7 "+ENH.look+")");
@@ -1254,11 +1281,63 @@ function refreshExportInfo(){
   if(auActive()) feats.push("Audio Studio mix");
   if(renderVal==="pro") feats.push("Pro Render");
   $("expSettings").textContent=feats.length?feats.join(" \u00b7 "):"Standard";
-  var px=d[0]*d[1];
-  var mbps=px>=8000000?20: px>=2000000?12: px>=900000?5: px>=230000?1.6:0.7;
-  $("expSize").textContent=duration?("\u2248 "+(mbps*len/8).toFixed(1)+" MB \u00b7 "+d[0]+"\u00d7"+d[1]):"\u2014";
+  $("expSize").textContent=duration?("\u2248 "+(estOutBytes(d,len)/1048576).toFixed(1)+" MB \u00b7 "+d[0]+"\u00d7"+d[1]):"\u2014";
   updateLabels();
 }
+/* ---------- Live progress (v1.6 FIX 5, owner order 2026-11-20) ----------
+   One always-visible progress readout for rendering AND for saving:
+   a big percentage, elapsed time + estimated time left, and the size
+   written so far vs the total (with the size left). Signals are real:
+   FFmpeg progress events (time processed vs clip length) for Pro
+   Render, the recorder's own clock and chunk bytes for Fast Render,
+   and counted chunks for the native save. Render sizes come from the
+   same estimate table as "File size (est.)" and are marked \u2248;
+   save sizes are the file's exact bytes. */
+var progState=null, progTimer=null;
+function fmtClock(s){
+  if(!isFinite(s)||s<0) s=0;
+  s=Math.round(s);
+  var m=Math.floor(s/60), ss=s%60;
+  return m+":"+(ss<10?"0":"")+ss;
+}
+function fmtMB(b){ return (Math.max(0,b)/1048576).toFixed(1)+" MB"; }
+function progRender(){
+  if(!progState) return;
+  var el=(performance.now()-progState.t0)/1000;
+  var frac=progState.frac||0;
+  var pct=Math.max(0,Math.min(100,Math.round(frac*100)));
+  $("progPct").textContent=pct+"%";
+  $("expProg").value=pct;
+  var eta=(frac>0.02)?(el/frac-el):null;
+  $("progTime").textContent=fmtClock(el)+" elapsed"+(eta!=null?(" \u00b7 ~"+fmtClock(eta)+" left"):"");
+  var total=progState.total||0, written=progState.written||0, mark=progState.exact?"":"\u2248 ";
+  if(total>0){
+    $("progSize").textContent=mark+fmtMB(written)+" of "+mark+fmtMB(total)+" \u00b7 "+fmtMB(Math.max(0,total-written))+" left";
+  } else {
+    $("progSize").textContent=fmtMB(written)+" written";
+  }
+}
+function progBegin(phase, totalBytes, exact){
+  progEnd();
+  progState={t0:performance.now(), frac:0, written:0, total:totalBytes||0, exact:!!exact};
+  $("progPhase").textContent=phase;
+  $("progDetail").classList.remove("hidden");
+  $("expProg").classList.remove("hidden"); $("expProg").value=0;
+  progRender();
+  progTimer=setInterval(progRender, 250);
+}
+function progSet(frac, writtenBytes){
+  if(!progState) return;
+  if(typeof frac==="number"&&isFinite(frac)) progState.frac=Math.max(progState.frac||0, Math.max(0, Math.min(1, frac)));
+  if(typeof writtenBytes==="number"&&isFinite(writtenBytes)) progState.written=Math.max(0, writtenBytes);
+  progRender();
+}
+function progEnd(){
+  if(progTimer){ clearInterval(progTimer); progTimer=null; }
+  progState=null;
+  var pd=$("progDetail"); if(pd) pd.classList.add("hidden");
+}
+
 /* ---------- Save bridge (v1.5) ----------
    Inside the Android app the WebView silently drops blob: downloads,
    so a finished file can never reach the Gallery through the hidden
@@ -1278,11 +1357,82 @@ function setSaveStatus(kind, text){
   var el=$(kind==="photo" ? "photoStatus" : "expStatus");
   if(el) el.textContent=text;
 }
+/* v1.6 FIX 5 (save half): when the native bridge offers the chunked
+   API, the file crosses in ~256 KB pieces and every piece the phone
+   confirms is counted, so saving shows a real percentage and MB
+   written / left. The v1.5 single-shot saveFile stays as fallback. */
+var saveChunkWaiter=null;
+window.__onSaveChunk=function(saveId){
+  if(saveChunkWaiter && saveChunkWaiter.id===saveId){
+    var w=saveChunkWaiter; saveChunkWaiter=null; w.done(true);
+  }
+};
+function saverChunked(){
+  try{
+    return !!(window.RaheemSaver
+      && typeof window.RaheemSaver.saveFileBegin==="function"
+      && typeof window.RaheemSaver.saveFileChunk==="function"
+      && typeof window.RaheemSaver.saveFileFinish==="function");
+  }catch(e){ return false; }
+}
+function blobSliceB64(blob, start, end){
+  return new Promise(function(resolve, reject){
+    var r=new FileReader();
+    r.onload=function(){
+      var url=String(r.result||"");
+      resolve(url.slice(url.indexOf(",")+1));
+    };
+    r.onerror=function(){ reject(new Error("read failed")); };
+    r.readAsDataURL(blob.slice(start, end));
+  });
+}
+function waitChunkAck(saveId){
+  return new Promise(function(resolve){
+    var to=setTimeout(function(){ saveChunkWaiter=null; resolve(false); }, 20000);
+    saveChunkWaiter={id:saveId, done:function(ok){ clearTimeout(to); resolve(ok); }};
+  });
+}
+async function deliverBlobChunked(blob, filename, kind){
+  var saveId="s"+Date.now().toString(36)+Math.floor(Math.random()*1e6).toString(36);
+  var CH=256*1024, total=blob.size, sent=0;
+  try{
+    window.RaheemSaver.saveFileBegin(saveId, filename, blob.type||"application/octet-stream");
+    while(sent<total){
+      var end=Math.min(total, sent+CH);
+      var b64=await blobSliceB64(blob, sent, end);
+      var ackP=waitChunkAck(saveId);
+      window.RaheemSaver.saveFileChunk(saveId, b64);
+      var ok=await ackP;
+      if(!ok) throw new Error("chunk not confirmed");
+      sent=end;
+      if(kind==="photo"){
+        setSaveStatus("photo", "Saving to Gallery\u2026 "+Math.round(sent/total*100)+"% \u00b7 "+fmtMB(sent)+" of "+fmtMB(total));
+      } else {
+        progSet(sent/total, sent);
+        setSaveStatus("video", "Saving to Gallery\u2026 "+Math.round(sent/total*100)+"%");
+      }
+    }
+    window.RaheemSaver.saveFileFinish(saveId);
+    return true;
+  }catch(e){
+    try{ window.RaheemSaver.saveFileAbort(saveId); }catch(e2){}
+    if(kind!=="photo") progEnd();
+    setSaveStatus(kind, "Save failed \u2014 please try again");
+    return true; /* handled here: the failure is reported, no anchor fallback */
+  }
+}
 function deliverBlob(blob, filename, kind){
   if(!blob || !saverAvailable()) return false;
+  kind=kind||"video";
+  pendingSaveKind=kind;
+  if(saverChunked()){
+    setSaveStatus(kind, "Saving to Gallery\u2026");
+    if(kind!=="photo") progBegin("Saving to Gallery", blob.size, true);
+    deliverBlobChunked(blob, filename, kind);
+    return true;
+  }
   try{
-    pendingSaveKind=kind||"video";
-    setSaveStatus(pendingSaveKind, "Saving to Gallery\u2026");
+    setSaveStatus(kind, "Saving to Gallery\u2026");
     var reader=new FileReader();
     reader.onload=function(){
       try{
@@ -1297,6 +1447,7 @@ function deliverBlob(blob, filename, kind){
   }catch(e){ return false; }
 }
 window.__onSaveResult=function(ok, name){
+  progEnd();
   var kind=pendingSaveKind||"video"; pendingSaveKind="";
   setSaveStatus(kind, ok ? ("\u2713 Saved to Gallery: "+name) : "Save failed \u2014 please try again");
   ["btnExport","btnSaveGallery","btnPhotoSave","btnQuickExport"].forEach(function(id){
@@ -1311,8 +1462,24 @@ $("dlPhoto").addEventListener("click", function(ev){
 });
 function finishVideoExport(blob, fname, doneText){
   lastVideoBlob=blob; lastVideoName=fname;
+  progEnd(); window.__onFFProg=null;
   var a=$("dlVideo"); a.href=URL.createObjectURL(blob); a.download=fname; a.classList.remove("hidden");
   $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden"); $("btnRetryExport").classList.add("hidden");
+  /* v1.6 FIX 4: prove the finished file — load it back and read the
+     dimensions the file itself carries, shown in the Finished file row. */
+  $("expDoneRow").classList.remove("hidden");
+  $("expDone").textContent=fmtMB(blob.size)+" \u00b7 checking\u2026";
+  try{
+    var tv=document.createElement("video");
+    tv.preload="metadata"; tv.muted=true;
+    tv.onloadedmetadata=function(){
+      if(tv.videoWidth&&tv.videoHeight){
+        $("expDone").textContent=tv.videoWidth+"\u00d7"+tv.videoHeight+" px \u00b7 "+fmtMB(blob.size)+" \u00b7 \u2713 checked";
+        $("expRes").textContent=tv.videoWidth+"\u00d7"+tv.videoHeight+" px";
+      }
+    };
+    tv.src=a.href;
+  }catch(e){}
   var wantSave=pendingGallerySave; pendingGallerySave=false;
   if(deliverBlob(blob, fname, "video")) return;
   if(wantSave){ $("expStatus").textContent=doneText; a.click(); return; }
@@ -1336,6 +1503,7 @@ function startFastExport(){
   var start=parseFloat($("trimStart").value), end=parseFloat($("trimEnd").value);
   var len=Math.max(0.5,end-start);
   recChunks=[];
+  var recBytes=0;
   var stream; try{ stream=canvas.captureStream(30); }catch(e){ failExport("This browser cannot render exports — try Chrome on your phone. Nothing was lost."); return; }
   /* Real audio: route the video sound through the Clean Voice graph and
      record it with the picture. If the browser blocks the audio path the
@@ -1349,7 +1517,7 @@ function startFastExport(){
   try{ recorder=new MediaRecorder(stream,{mimeType:mime, videoBitsPerSecond:5000000}); }
   catch(e){ failExport("Recorder could not start — your edits are safe; press “Retry export”."); return; }
   exporting=true;
-  recorder.ondataavailable=function(e){ if(e.data.size) recChunks.push(e.data); };
+  recorder.ondataavailable=function(e){ if(e.data.size){ recChunks.push(e.data); recBytes+=e.data.size; } };
   recorder.onstop=function(){
     cancelAnimationFrame(rafId); vid.pause(); exporting=false;
     if(lastExportFailed) return;
@@ -1360,6 +1528,7 @@ function startFastExport(){
   $("expProg").classList.remove("hidden"); $("expProg").value=0;
   $("btnCancelExport").classList.remove("hidden"); $("btnRetryExport").classList.add("hidden"); $("dlVideo").classList.add("hidden");
   $("expStatus").textContent="Rendering… keep this page open ("+fmt(len)+" of video)."+audioNote;
+  progBegin("Rendering · Fast Render", estOutBytes([cw,ch], len), false);
   lastExportFailed=false;
   var keyRGB=hexRGB($("keyColor").value), sim=parseInt($("keySim").value,10)/100;
   function prepBg(){
@@ -1409,7 +1578,7 @@ function startFastExport(){
         prepBg(); drawFg();
         if(bgMode==="blur" && segModel && frameNo%2===0){ try{ segModel.send({image:vid}); }catch(e){} }
         frameNo++;
-        $("expProg").value=Math.min(100, ((performance.now()-t0)/1000/len)*100 );
+        progSet(((performance.now()-t0)/1000/len), recBytes);
         if(vid.currentTime<end && recorder.state==="recording"){ rafId=requestAnimationFrame(draw); }
         else if(recorder.state==="recording"){ recorder.stop(); }
       })();
@@ -1433,7 +1602,13 @@ function startFastExport(){
    Mode work fully offline. ffmpeg.js spawns its worker from the
    sibling 814.ffmpeg.js chunk, resolved against the folder ffmpeg.js
    itself was loaded from — no worker URL has to be passed. If a file
-   is missing the user gets a clear message — never a fake render. */
+   is missing the user gets a clear message — never a fake render.
+   v1.6 FIX 2: inside the app the page is now served over
+   https://appassets.local/ (MainActivity intercepts and serves the
+   bundled assets), so the worker and the .wasm load from a real https
+   origin — from file:///android_asset the WebView would not spawn
+   the worker at all, which is why the bundled engine still failed
+   on the phone in v1.5. And the load now FAILS FAST (15 s). */
 var ffInst=null, ffLoading=null;
 function loadScriptOnce(src){
   return new Promise(function(resolve,reject){
@@ -1442,21 +1617,29 @@ function loadScriptOnce(src){
     document.head.appendChild(s);
   });
 }
+function withTimeout(p, ms, label){
+  return Promise.race([p, new Promise(function(_, reject){
+    setTimeout(function(){ reject(new Error(label||"timeout")); }, ms);
+  })]);
+}
 function loadFFmpeg(){
   if(ffInst) return Promise.resolve(ffInst);
   if(ffLoading) return ffLoading;
-  ffLoading=(async function(){
+  var job=(async function(){
     var base="ffmpeg";
     await loadScriptOnce(base+"/util.js");
     await loadScriptOnce(base+"/ffmpeg.js");
     var ff=new FFmpegWASM.FFmpeg();
-    ff.on("progress", function(p){ if(p&&typeof p.progress==="number") $("expProg").value=Math.max(0,Math.min(100,Math.round(p.progress*100))); });
+    /* Progress events feed the live readout (FIX 5): __onFFProg is set
+       by whichever render is currently running. */
+    ff.on("progress", function(p){ if(window.__onFFProg) window.__onFFProg(p); });
     await ff.load({
       coreURL: await FFmpegUtil.toBlobURL(base+"/ffmpeg-core.js","text/javascript"),
       wasmURL: await FFmpegUtil.toBlobURL(base+"/ffmpeg-core.wasm","application/wasm")
     });
     ffInst=ff; return ff;
   })();
+  ffLoading=withTimeout(job, 15000, "ffmpeg load timeout");
   ffLoading.catch(function(){ ffLoading=null; });
   return ffLoading;
 }
@@ -1481,6 +1664,16 @@ async function startProExport(){
     var srcW=vid.videoWidth||W, srcH=vid.videoHeight||H;
     var start=parseFloat($("trimStart").value), end=parseFloat($("trimEnd").value);
     var len=Math.max(0.5,end-start);
+    /* v1.6 FIX 5: live progress from the engine's own progress events
+       (time processed vs clip length); size from the estimate table. */
+    var estTotal=estOutBytes([W,H], len);
+    progBegin("Rendering \u00b7 Pro Render", estTotal, false);
+    window.__onFFProg=function(p){
+      if(p&&typeof p.progress==="number"){
+        var f=Math.max(0,Math.min(1,p.progress));
+        progSet(f, Math.round(f*estTotal));
+      }
+    };
     var ext=(fileName.split(".").pop()||"mp4").toLowerCase().replace(/[^a-z0-9]/g,"")||"mp4";
     var inName="in."+ext;
     await ff.writeFile(inName, await FFmpegUtil.fetchFile(lastFile));
@@ -1582,6 +1775,7 @@ async function startProExport(){
 }
 function failExport(msg){
   lastExportFailed=true; exporting=false; pendingGallerySave=false;
+  progEnd(); window.__onFFProg=null;
   if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
   cancelAnimationFrame(rafId);
   $("expProg").classList.add("hidden"); $("btnCancelExport").classList.add("hidden");
@@ -1592,6 +1786,7 @@ $("btnExport").addEventListener("click", startExport);
 $("btnRetryExport").addEventListener("click", startExport);
 $("btnCancelExport").addEventListener("click", function(){
   lastExportFailed=true; exporting=false; pendingGallerySave=false;
+  progEnd(); window.__onFFProg=null;
   if(recorder&&recorder.state==="recording"){ try{recorder.stop();}catch(e){} }
   if(ffInst){ try{ ffInst.terminate(); }catch(e){} ffInst=null; ffLoading=null; }
   cancelAnimationFrame(rafId); vid.pause();
@@ -1616,8 +1811,11 @@ function updateLabels(){
   var sh=vid.videoHeight||0;
   var srcRes=sh? (sh>=2160?"4K":sh>=1440?"2K":sh>=1080?"1080p":sh>=720?"720p":sh+"p") : "";
   $("lblBefore").textContent="Before"+(srcRes?" ("+srcRes+")":"");
-  var d=outDims(), th=d[1]||0;
-  var tgt=th>=2160?"4K":th>=1440?"2K":th>=1080?"1080p":th>=720?"720p":(th?th+"p":"");
+  /* v1.6 FIX 4: the After label names the SELECTED quality, so it
+     changes the moment the selection does (v1.5 derived it from the
+     capped output height, so it sat on the old value). */
+  var QUALNAMES={"426x240":"240p","640x360":"360p","1280x720":"720p","1920x1080":"1080p","2560x1440":"2K","3840x2160":"4K"};
+  var tgt=QUALNAMES[resVal]||"";
   $("lblAfter").textContent="After"+(tgt?" ("+tgt+")":"");
 }
 function applyAfterFilter(){
@@ -1767,12 +1965,16 @@ $("btnPhotoSave").addEventListener("click", async function(){
     var ff=await loadFFmpeg();
     var ext=(photoFile.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"")||"jpg";
     await ff.writeFile("photo."+ext, await FFmpegUtil.fetchFile(photoFile));
+    window.__onFFProg=function(p){
+      if(p&&typeof p.progress==="number") $("photoStatus").textContent="Enhancing the photo inside the app \u00b7 "+Math.round(Math.max(0,Math.min(1,p.progress))*100)+"%";
+    };
     var chain=gradeParts();
     chain.push("scale=w='if(gt(iw,ih),"+photoSize+",-2)':h='if(gt(iw,ih),-2,"+photoSize+")':flags=lanczos");
     await ff.exec(["-i","photo."+ext,"-vf",chain.join(","),"-frames:v","1","photo-out.jpg"]);
     var data=await ff.readFile("photo-out.jpg");
     if(!data||!data.length) throw new Error("empty output");
     var blob=new Blob([data.buffer],{type:"image/jpeg"});
+    window.__onFFProg=null;
     lastPhotoBlob=blob; lastPhotoName="raheem-enhanced-photo.jpg";
     var a=$("dlPhoto"); a.href=URL.createObjectURL(blob); a.download=lastPhotoName; a.classList.remove("hidden");
     if(!deliverBlob(blob, lastPhotoName, "photo")){
@@ -1780,6 +1982,7 @@ $("btnPhotoSave").addEventListener("click", async function(){
     }
     try{ await ff.deleteFile("photo."+ext); await ff.deleteFile("photo-out.jpg"); }catch(e){}
   }catch(e){
+    window.__onFFProg=null;
     $("photoStatus").textContent="Photo enhance failed \u2014 the FFmpeg engine may still be loading, or the photo format is unsupported. Your original photo is untouched; try again with a JPG or PNG.";
   }
   btn.disabled=false;
@@ -1884,6 +2087,7 @@ $("btnExp2K").addEventListener("click", function(){ quickExport("2560x1440",true
 $("btnExp4K").addEventListener("click", function(){ quickExport("3840x2160",true); });
 $("btnSaveGallery").addEventListener("click", function(){
   if(lastVideoBlob){
+    setRail("export"); /* the save progress readout lives in this panel */
     if(!deliverBlob(lastVideoBlob, lastVideoName, "video")){ $("dlVideo").click(); }
     return;
   }
