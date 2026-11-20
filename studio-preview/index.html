@@ -101,22 +101,26 @@ select{width:100%;background:rgba(3,10,26,.7);color:var(--text);border:1px solid
 input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-align:-4px}
 .checkrow{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:14.5px;color:#fff}
 .checkrow .ck{flex:0 0 auto;width:21px;height:21px;border-radius:50%;background:#1faa59;color:#fff;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center}
-/* ----- Locked editor workspace (reference design 2026-11-19) ----- */
-.ws-outer{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;overflow:hidden;background:linear-gradient(180deg,#0a1830,#050d1d);z-index:60}
-.ws-inner{position:absolute;left:0;top:0;width:1180px;transform-origin:top left;padding:10px 12px 12px}
-.ws-top{display:flex;align-items:center;gap:12px;padding:2px 2px 10px}
-.ws-top .burger{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:19px;min-height:40px;padding:0}
-.ws-top .crown{width:34px;height:34px;flex:0 0 auto}
-.ws-top h1{font-size:27px;margin:0}
-.ws-top .tag{color:var(--gold2);font-style:italic;font-weight:700;font-size:14.5px;margin-left:10px;white-space:nowrap}
+/* ----- Editor workspace — phone-first responsive (v1.4, owner order 2026-11-20) ----- */
+/* NO whole-UI scaling: fluid CSS that adapts to the real phone screen —
+   portrait first, single column; landscape and wide screens included. */
+.ws-outer{position:relative;width:100%;min-height:100vh;min-height:100dvh;background:linear-gradient(180deg,#0a1830,#050d1d);margin:-18px -14px -48px;padding:12px 12px 22px}
+.ws-inner{width:100%;max-width:1440px;margin:0 auto}
+.ws-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:2px 0 12px}
+.ws-backbtn{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#231a00;border:none;border-radius:999px;font-size:16.5px;font-weight:900;min-height:48px;padding:10px 20px;box-shadow:0 4px 16px rgba(245,184,0,.35);cursor:pointer}
+.ws-top .crown{width:32px;height:32px;flex:0 0 auto}
+.ws-top h1{font-size:22px;margin:0;line-height:1.15}
+.ws-top .tag{color:var(--gold2);font-style:italic;font-weight:700;font-size:13.5px;flex:1 1 100%;order:5}
 .ws-badge{margin-left:auto;border:2px solid var(--gold);color:var(--gold);border-radius:9px;padding:3px 10px;font-weight:900;line-height:1.15;text-align:center;font-size:16px;white-space:nowrap}
 .ws-badge small{display:block;font-size:9.5px;letter-spacing:.14em;color:#fff}
-.ws-main{display:flex;gap:12px;align-items:flex-start}
-.ws-rail{flex:0 0 196px;display:flex;flex-direction:column;gap:9px}
-.railbtn{display:flex;align-items:center;gap:10px;text-align:left;border:none;border-radius:13px;padding:11px 13px;color:#fff;cursor:pointer;min-height:64px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
-.railbtn svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
-.railbtn b{font-size:16.5px;line-height:1.2;display:block}
-.railbtn small{font-size:12px;color:rgba(255,255,255,.85);display:block}
+.ws-screenbtn{min-height:48px;font-size:14.5px;padding:9px 16px}
+.ws-main{display:flex;flex-direction:column;gap:14px}
+.ws-centre{order:1;min-width:0}
+.ws-rail{order:2;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.railbtn{display:flex;align-items:center;gap:10px;text-align:left;border:none;border-radius:13px;padding:12px 13px;color:#fff;cursor:pointer;min-height:62px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.railbtn svg{width:25px;height:25px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.railbtn b{font-size:16px;line-height:1.2;display:block}
+.railbtn small{font-size:12.5px;color:rgba(255,255,255,.85);display:block}
 .railbtn[aria-pressed="true"]{outline:2.5px solid var(--gold);outline-offset:1.5px}
 .rail-video{background:#1565B4}.rail-enhance{background:#1D7A4F}.rail-audio{background:#55448A}
 .rail-bg{background:#8A4B2A}.rail-cine{background:#0F6F6A}.rail-export{background:#2E8B3A}
@@ -136,44 +140,74 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
 .ws-addvideo:active{transform:translateY(1px)}
 .ws-stage .empty .fmt{font-size:13.5px;color:#9db4d8;letter-spacing:.06em}
 .ws-stage img#photoImg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:3;background:#000}
-.ws-transport{display:flex;align-items:center;gap:9px;padding:9px 2px 4px}
-.ws-transport button{min-height:38px;padding:5px 13px;font-size:14px}
-.ws-transport .tc{margin:0 auto;font-variant-numeric:tabular-nums;font-size:16.5px;font-weight:700;color:#fff;letter-spacing:.03em}
-.ws-film{position:relative;height:56px;border-radius:10px;overflow:hidden;background:#0a1428;border:1px solid rgba(0,207,255,.22);display:flex}
+.ws-transport{display:flex;align-items:center;gap:8px;padding:10px 0 4px;flex-wrap:wrap}
+.ws-transport button{min-height:48px;padding:8px 15px;font-size:15px}
+.ws-transport .tc{margin:0 auto;font-variant-numeric:tabular-nums;font-size:15.5px;font-weight:700;color:#fff;letter-spacing:.02em}
+.ws-film{position:relative;height:60px;border-radius:10px;overflow:hidden;background:#0a1428;border:1px solid rgba(0,207,255,.22);display:flex}
 .ws-film canvas{flex:1 1 0;height:100%;min-width:0;object-fit:cover}
 .ws-film .playhead{position:absolute;top:0;bottom:0;width:2.5px;background:var(--cyan);box-shadow:0 0 8px var(--cyan);z-index:3;pointer-events:none}
-.ws-panel{flex:0 0 302px;background:rgba(10,32,74,.85);border:1.5px solid rgba(0,110,255,.55);border-radius:15px;padding:14px 15px;max-height:640px;overflow-y:auto}
-.ws-panel h2{font-size:19px;margin:0 0 8px;color:#fff}
+.ws-panel{order:3;background:rgba(10,32,74,.85);border:1.5px solid rgba(0,110,255,.55);border-radius:15px;padding:16px}
+.ws-panel h2{font-size:21px;margin:0 0 10px;color:#fff}
 .ws-panel h2 .en{display:block;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--cyan);margin-top:1px}
-.ws-panel h3{font-size:14px;margin:14px 0 6px;color:#fff}
-.ws-panel .hint{font-size:12.5px}
+.ws-panel h3{font-size:16px;margin:16px 0 8px;color:#fff}
+.ws-panel .hint{font-size:13.5px}
 .ws-panel .val{float:right;color:var(--cyan);font-weight:800}
-.ws-lower{display:flex;gap:12px;margin-top:11px;align-items:stretch}
-.ws-audio{flex:1 1 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:11px 14px}
-.ws-audio .arow{display:flex;align-items:center;gap:11px;padding:5.5px 0;font-size:14px}
-.ws-audio .arow .aname{flex:0 0 148px;color:#fff;font-weight:700}
-.ws-audio .arow .aname small{display:block;color:var(--muted);font-weight:400;font-size:11.5px}
-.ws-audio .arow input[type="range"]{flex:1}
-.ws-audio .arow .aval{flex:0 0 44px;text-align:right;color:var(--cyan);font-weight:800;font-variant-numeric:tabular-nums}
-.ws-audio .offbtn{flex:0 0 auto;background:#33415e;color:#fff;border:none;border-radius:999px;padding:4px 15px;min-height:32px;font-size:13px}
+.ws-panel label{font-size:14px}
+.ws-panel .seg button{min-height:48px;font-size:14.5px}
+.ws-lower{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.ws-audio{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:12px 14px}
+.ws-audio .arow{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:15px}
+.ws-audio .arow .aname{flex:0 0 118px;color:#fff;font-weight:700}
+.ws-audio .arow .aname small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.ws-audio .arow input[type="range"]{flex:1;min-width:0}
+.ws-audio .arow .aval{flex:0 0 46px;text-align:right;color:var(--cyan);font-weight:800;font-variant-numeric:tabular-nums}
+.ws-audio .offbtn{flex:0 0 auto;background:#33415e;color:#fff;border:none;border-radius:999px;padding:6px 16px;min-height:40px;font-size:14px}
 .ws-audio .offbtn[aria-pressed="true"]{background:#c22f4d}
-.ws-zoom{flex:0 0 264px;position:relative;border:2px solid var(--gold);border-radius:13px;overflow:hidden;background:#000;min-height:150px}
+.ws-zoom{position:relative;border:2px solid var(--gold);border-radius:13px;overflow:hidden;background:#000;height:190px}
 .ws-zoom canvas{width:100%;height:100%;display:block}
 .ws-zoom .ztag{position:absolute;left:9px;top:9px;background:var(--gold);color:#231a00;font-weight:900;font-size:13px;padding:3px 10px;border-radius:7px;z-index:2}
-.ws-bgeffects{flex:0 0 302px;background:rgba(85,68,138,.28);border:1px solid rgba(0,207,255,.3);border-radius:13px;padding:11px 12px}
-.ws-bgeffects h3{margin:0 0 9px;font-size:15.5px;color:#fff}
+.ws-bgeffects{background:rgba(85,68,138,.28);border:1px solid rgba(0,207,255,.3);border-radius:13px;padding:12px}
+.ws-bgeffects h3{margin:0 0 10px;font-size:16.5px;color:#fff}
 .fxtiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.fxtile{border:2px solid transparent;border-radius:10px;min-height:58px;color:#fff;font-size:11.5px;font-weight:800;padding:5px 3px;line-height:1.25;cursor:pointer}
+.fxtile{border:2px solid transparent;border-radius:10px;min-height:64px;color:#fff;font-size:12.5px;font-weight:800;padding:6px 3px;line-height:1.25;cursor:pointer}
 .fxtile[aria-pressed="true"]{border-color:var(--gold)}
-.ws-bottom{display:flex;gap:10px;margin-top:12px;align-items:stretch}
-.ws-tagline{flex:1.5 1 0;border:2px solid var(--gold);border-radius:12px;color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:16.5px;font-weight:800;padding:8px 10px;white-space:nowrap;overflow:hidden;line-height:1.2}
-.ws-bottom button{flex:1 1 0;border:none;border-radius:12px;color:#fff;font-size:15.5px;font-weight:800;min-height:56px;line-height:1.25}
+.ws-bottom{display:flex;gap:10px;margin-top:14px;align-items:stretch;flex-wrap:wrap}
+.ws-tagline{flex:1 1 100%;border:2px solid var(--gold);border-radius:12px;color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;padding:10px;white-space:nowrap;overflow:hidden;line-height:1.2}
+.ws-bottom button{flex:1 1 30%;border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:800;min-height:56px;line-height:1.25}
 .ws-bottom button small{display:block;font-size:12px;font-weight:700}
 .btn-quick{background:linear-gradient(180deg,#ff9a3d,#f96d00)}
 .btn-1080{background:linear-gradient(180deg,#2f8fe8,#1663c7)}
 .btn-2k{background:linear-gradient(180deg,#43b34d,#2e8b3a)}
 .btn-4k{background:linear-gradient(180deg,#8e4ec6,#6a2fa0)}
 .btn-save{background:linear-gradient(180deg,#43b34d,#1d7a4f)}
+
+/* Big, easy-to-grab slider thumbs (v1.4) */
+input[type="range"]{-webkit-appearance:none;appearance:none;height:32px;background:transparent;cursor:pointer}
+input[type="range"]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:rgba(0,207,255,.35)}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:var(--cyan);border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.55)}
+input[type="range"]::-moz-range-track{height:6px;border-radius:3px;background:rgba(0,207,255,.35)}
+input[type="range"]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--cyan);border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.55)}
+/* Home: List / Grid view toggle (v1.4) */
+.homebar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.homebar .seg button{min-height:48px;font-size:15px}
+.homebar .screenbtn{margin-left:auto;min-height:48px;font-size:15px}
+.home-grid.list{grid-template-columns:1fr}
+.home-grid.list .homecard{flex-direction:row;align-items:center;min-height:88px;padding:16px 18px}
+.home-grid.list .homecard svg{align-self:center;margin:0}
+/* Wide screens (tablet / desktop): reference-style three-column workspace */
+@media(min-width:1024px){
+  .ws-top .tag{flex:0 1 auto;order:0}
+  .ws-main{flex-direction:row;align-items:flex-start}
+  .ws-rail{order:1;flex:0 0 208px;display:flex;flex-direction:column}
+  .ws-centre{order:2;flex:1 1 auto}
+  .ws-panel{order:3;flex:0 0 330px;max-height:80vh;overflow-y:auto}
+  .ws-lower{flex-direction:row;align-items:stretch}
+  .ws-audio{flex:1 1 auto}
+  .ws-zoom{flex:0 0 264px;height:auto;min-height:170px}
+  .ws-bgeffects{flex:0 0 320px}
+  .ws-tagline{flex:1.5 1 0}
+  .ws-bottom button{flex:1 1 0}
+}
 
 .screenbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .screenbar .stitle{font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
@@ -186,7 +220,14 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
   <div class="screen" data-screen="home" id="homeScreen">
     <h1>RAHEEM AI <span class="gold">VIDEO EDITOR</span></h1>
     <p class="sub">Pro Editing • AI Enhancement • Cinematic Studio</p>
-    <div class="home-grid">
+    <div class="homebar">
+      <div class="seg" id="homeViewSeg">
+        <button data-hview="grid" aria-pressed="true">&#9783; Grid</button>
+        <button data-hview="list" aria-pressed="false">&#9776; List</button>
+      </div>
+      <button class="screenbtn" id="btnScreenHome">&#9974; Screen: Normal</button>
+    </div>
+    <div class="home-grid" id="homeGrid">
       <button class="homecard tile-enhance" data-goto="editor" data-rail="enhance">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
         <span><b>AI Enhance</b><small>Upscale, Denoise, Sharpen</small></span>
@@ -270,11 +311,12 @@ input[type="checkbox"]{width:20px;height:20px;accent-color:var(--cyan);vertical-
   <div class="ws-outer"><div class="ws-inner" id="wsInner">
 
     <div class="ws-top">
-      <button class="burger" id="btnWsHome" aria-label="Back to home">&#9776;</button>
+      <button class="ws-backbtn" id="btnWsBack" aria-label="Back to home">&#8592; Back</button>
       <svg class="crown" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-1.6 10.2H4.6L3 8z" fill="#F5B800" stroke="#c98f00" stroke-width="1" stroke-linejoin="round"/></svg>
       <h1>Raheem <span class="gold">AI</span> Video Editor</h1>
       <span class="tag">Pro Editing &#8226; 4K Enhancement &#8226; Cinematic Studio</span>
       <div class="ws-badge">4K<small>ULTRA HD</small></div>
+      <button class="ws-screenbtn" id="btnScreenWs">&#9974; Screen: Normal</button>
     </div>
 
     <div class="ws-main">
@@ -644,7 +686,7 @@ function showScreen(name){
   document.querySelectorAll(".screen").forEach(function(el){
     el.classList.toggle("hidden", el.getAttribute("data-screen")!==name);
   });
-  if(name==="editor"){ setRail(pendingRail||"enhance"); fitWorkspace(); requestAnimationFrame(fitWorkspace); }
+  if(name==="editor"){ setRail(pendingRail||"enhance"); }
   window.scrollTo(0,0);
 }
 document.querySelectorAll("[data-goto]").forEach(function(b){
@@ -656,6 +698,59 @@ document.querySelectorAll("[data-goto]").forEach(function(b){
 document.querySelectorAll("[data-back]").forEach(function(b){
   b.addEventListener("click", function(){ showScreen("home"); });
 });
+
+/* ---------- Home: List / Grid view (owner order 2026-11-20) ---------- */
+function setHomeView(v){
+  var g=$("homeGrid"); if(!g) return;
+  g.classList.toggle("list", v==="list");
+  document.querySelectorAll("#homeViewSeg button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-hview")===v?"true":"false"); });
+  try{ localStorage.setItem("raheem_home_view", v); }catch(e){}
+}
+document.querySelectorAll("#homeViewSeg button").forEach(function(b){
+  b.addEventListener("click", function(){ setHomeView(b.getAttribute("data-hview")); });
+});
+(function(){ var v="grid"; try{ v=localStorage.getItem("raheem_home_view")||"grid"; }catch(e){} setHomeView(v==="list"?"list":"grid"); })();
+
+/* ---------- Screen: Normal / Full Screen (owner order 2026-11-20) ---------- */
+function syncScreenBtns(){
+  var t=document.fullscreenElement?"&#9974; Screen: Full":"&#9974; Screen: Normal";
+  ["btnScreenHome","btnScreenWs"].forEach(function(id){ var b=$(id); if(b) b.innerHTML=t; });
+}
+function toggleScreen(){
+  try{
+    if(document.fullscreenElement){ document.exitFullscreen(); return; }
+    if(document.documentElement.requestFullscreen){
+      var p=document.documentElement.requestFullscreen();
+      if(p&&p.catch) p.catch(function(){});
+      try{
+        if(window.screen&&screen.orientation&&screen.orientation.lock){
+          var lp=screen.orientation.lock("landscape");
+          if(lp&&lp.catch) lp.catch(function(){});
+        }
+      }catch(e){}
+    }
+  }catch(e){}
+}
+["btnScreenHome","btnScreenWs"].forEach(function(id){ var b=$(id); if(b) b.addEventListener("click", toggleScreen); });
+document.addEventListener("fullscreenchange", function(){
+  if(!document.fullscreenElement){
+    try{ if(window.screen&&screen.orientation&&screen.orientation.unlock) screen.orientation.unlock(); }catch(e){}
+  }
+  syncScreenBtns();
+});
+syncScreenBtns();
+
+/* ---------- Android back hook (called by MainActivity.onBackPressed) ---------- */
+/* Returns true when the press was handled inside the page: any studio
+   screen steps back to Home. Screens are only hidden, never unloaded —
+   the loaded video, its object URL and every panel setting stay alive,
+   and returning to the workspace restores everything exactly. */
+window.__raheemBack=function(){
+  var vis=null;
+  document.querySelectorAll(".screen").forEach(function(el){ if(!el.classList.contains("hidden")) vis=el.getAttribute("data-screen"); });
+  if(vis && vis!=="home"){ showScreen("home"); return true; }
+  return false;
+};
 
 /* ---------- Undo stack ---------- */
 var undoStack=[], redoStack=[];
@@ -1473,32 +1568,18 @@ function applyAfterFilter(){
   vidAfter.style.filter=(filterString()+" "+cineCSS()).trim();
 }
 
-/* ---------- workspace rail + scaling ---------- */
+/* ---------- workspace rail (responsive layout — no scaling, v1.4) ---------- */
 function setRail(name){
   document.querySelectorAll("[data-panel]").forEach(function(p){ p.classList.toggle("hidden", p.getAttribute("data-panel")!==name); });
   document.querySelectorAll("[data-railbtn]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-railbtn")===name?"true":"false"); });
   if(name==="export") refreshExportInfo();
-  fitWorkspace();
 }
-function fitWorkspace(){
-  var inner=$("wsInner"); if(!inner) return;
-  var iw=inner.offsetWidth, ih=inner.offsetHeight;
-  if(!iw||!ih) return;
-  var w=window.innerWidth, h=window.innerHeight;
-  var s=Math.min(w/iw, h/ih);
-  var x=(w-iw*s)/2, y=(h-ih*s)/2;
-  inner.style.transform="translate("+x.toFixed(1)+"px,"+y.toFixed(1)+"px) scale("+s+")";
-}
-function refitIfEditor(){
-  var ed=document.querySelector('[data-screen="editor"]');
-  if(ed && !ed.classList.contains("hidden")) fitWorkspace();
-}
-window.addEventListener("resize", refitIfEditor);
-window.addEventListener("orientationchange", function(){ refitIfEditor(); setTimeout(refitIfEditor, 250); });
 document.querySelectorAll("[data-railbtn]").forEach(function(b){
   b.addEventListener("click", function(){ pendingRail=b.getAttribute("data-railbtn"); setRail(pendingRail); });
 });
-$("btnWsHome").addEventListener("click", function(){ showScreen("home"); });
+/* Back returns to Home WITHOUT unloading anything: the workspace screen
+   is only hidden, so the video, object URL and all edits stay alive. */
+$("btnWsBack").addEventListener("click", function(){ showScreen("home"); });
 $("btnRedo").addEventListener("click", doRedo);
 $("btnSplitPlay").addEventListener("click", function(){ if(vid.src) $("btnPlay").click(); });
 $("btnFs").addEventListener("click", function(){
