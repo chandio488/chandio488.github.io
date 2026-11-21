@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raheem Sindhi Sound — The World of Sindhi Music</title>
+<meta name="description" content="Raheem Sindhi Sound — a complete A-Z catalogue of Sindhi singers, albums and songs, restored from the historic IndusSound archive (2011-2016) with official playback.">
+<style>
+:root{--navy:#06132D;--royal:#092D69;--electric:#006EFF;--cyan:#00CFFF;--gold:#F5B800;--warm:#FFD45A;--soft:#D9E8FF;--card:rgba(9,45,105,.45);--line:rgba(0,207,255,.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(180deg,#0a1e42 0%,var(--navy) 40%,#040b1c 100%);color:var(--soft);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+a{color:var(--cyan);text-decoration:none}
+header{position:sticky;top:0;z-index:50;background:rgba(6,19,45,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hwrap{max-width:1080px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px}
+.mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--warm));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;color:#06132D;box-shadow:0 0 14px rgba(245,184,0,.45)}
+.logo h1{font-size:19px;color:#fff;letter-spacing:.3px}
+.logo h1 span{color:var(--gold)}
+.logo small{display:block;color:var(--cyan);font-size:11px;letter-spacing:1.2px;text-transform:uppercase}
+nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:transparent;border:1px solid var(--line);color:var(--soft);padding:8px 13px;border-radius:999px;font-size:13px;cursor:pointer}
+nav button.on{background:linear-gradient(135deg,var(--gold),var(--warm));color:#06132D;font-weight:700;border-color:transparent}
+main{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+.hero{text-align:center;padding:30px 14px 8px}
+.hero h2{font-size:27px;color:#fff;line-height:1.35}
+.hero h2 span{color:var(--gold)}
+.hero p{margin-top:10px;font-size:14.5px;line-height:1.7;color:#aec6ea;max-width:640px;margin-left:auto;margin-right:auto}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 4px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 18px;text-align:center;min-width:100px}
+.stat b{display:block;font-size:21px;color:var(--warm)}
+.stat span{font-size:11.5px;color:#9db9dd;text-transform:uppercase;letter-spacing:.6px}
+.search{margin:18px auto 4px;max-width:560px}
+.search input{width:100%;padding:13px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(9,45,105,.55);color:#fff;font-size:15px;outline:none}
+.search input:focus{border-color:var(--gold)}
+h3.sec{color:var(--warm);font-size:17px;margin:26px 0 12px;text-transform:uppercase;letter-spacing:.8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 12px;cursor:pointer;transition:.15s;text-align:center}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card .nm{color:#fff;font-size:14.5px;font-weight:600;line-height:1.4}
+.card .mt{font-size:11.5px;color:#9db9dd;margin-top:5px}
+.letters{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px 0}
+.letters button{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--soft);font-weight:700;cursor:pointer;font-size:14px}
+.letters button.on{background:linear-gradient(135deg,var(--gold),var(--warm));color:#06132D;border-color:transparent}
+.letters button small{display:block;font-size:8.5px;font-weight:400}
+.pill{display:inline-block;padding:9px 20px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--warm));color:#06132D;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;border:none;cursor:pointer}
+.pill.ghost{background:transparent;border:1px solid var(--cyan);color:var(--cyan)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:16px}
+.panel h4{color:#fff;font-size:19px}
+.panel .sub{color:#9db9dd;font-size:13px;margin-top:4px}
+.album{margin-top:16px}
+.album h5{color:var(--warm);font-size:15px;margin-bottom:8px}
+.track{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 12px;border:1px solid rgba(0,207,255,.18);border-radius:12px;margin-bottom:6px;background:rgba(6,19,45,.5)}
+.track span{color:#eaf2ff;font-size:14px}
+.track .st{font-size:11px;color:#8fb0d8;white-space:nowrap}
+iframe.sp{width:100%;border:0;border-radius:12px;margin-top:8px}
+.note{font-size:13px;color:#9db9dd;line-height:1.7;margin-top:10px}
+.list p{padding:10px 4px;border-bottom:1px solid rgba(0,207,255,.14);font-size:14.5px;color:#eaf2ff}
+.list p b{color:var(--warm)}
+footer{border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:#8fb0d8;font-size:13px;line-height:1.9}
+footer b{color:var(--warm)}
+.back{display:inline-block;margin-bottom:6px;color:var(--cyan);font-size:13.5px;cursor:pointer}
+.hide{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="logo"><div class="mark">R</div><div><h1>RAHEEM <span>SINDHI SOUND</span></h1><small>The World of Sindhi Music</small></div></div>
+    <nav>
+      <button data-v="home" class="on">Home</button>
+      <button data-v="songs">Songs</button>
+      <button data-v="islamic">Islamic</button>
+      <button data-v="poetry">Poetry</button>
+      <button data-v="fm">FM Radios</button>
+      <button data-v="contact">Contact</button>
+    </nav>
+  </div>
+</header>
+<main>
+  <!-- HOME -->
+  <section id="v-home">
+    <div class="hero">
+      <h2>Sindhi Music, <span>Preserved Forever</span></h2>
+      <p>The complete A–Z catalogue of Sindhi singers, albums and songs — restored from the historic IndusSound archive (2011–2016) and rebuilt with official playback, so this heritage never disappears again.</p>
+      <div class="stats">
+        <div class="stat"><b id="st-artists">330</b><span>Artists A–Z</span></div>
+        <div class="stat"><b>26</b><span>Index Letters</span></div>
+        <div class="stat"><b>5</b><span>Sections</span></div>
+      </div>
+      <div class="search"><input id="q" type="text" placeholder="Search any singer… e.g. Jalal Chandio, Sanam Marvi"></div>
+    </div>
+    <h3 class="sec">Featured Artists</h3>
+    <div class="grid" id="featured"></div>
+    <h3 class="sec">Latest Albums (from the original archive)</h3>
+    <div class="grid" id="latest"></div>
+  </section>
+
+  <!-- SONGS -->
+  <section id="v-songs" class="hide">
+    <h3 class="sec">Sindhi Singers — A to Z</h3>
+    <div class="letters" id="letters"></div>
+    <div class="grid" id="artists"></div>
+  </section>
+
+  <!-- ARTIST -->
+  <section id="v-artist" class="hide">
+    <span class="back" id="backBtn">← Back to A–Z list</span>
+    <div class="panel" id="artistPanel"></div>
+  </section>
+
+  <!-- ISLAMIC -->
+  <section id="v-islamic" class="hide">
+    <h3 class="sec">Islamic Section</h3>
+    <div class="panel"><h4>Sindhi &amp; Urdu Islamic Collection</h4>
+      <div class="list">
+        <p><b>Sindhi Islamic</b> — naats, hamd and Islamic songs in Sindhi</p>
+        <p><b>Urdu Islamic</b> — naats and Islamic content in Urdu</p>
+        <p><b>Islamic Days</b> — special days and occasions</p>
+        <p><b>Islamic Wallpapers</b> — the original wallpaper gallery</p>
+      </div>
+      <p class="note">This section is being restored from the archive. Content will be added with verified official sources, one collection at a time.</p>
+    </div>
+  </section>
+
+  <!-- POETRY -->
+  <section id="v-poetry" class="hide">
+    <h3 class="sec">Poetry Section</h3>
+    <div class="panel"><h4>Sindhi &amp; Urdu Poetry — Audio and Video</h4>
+      <div class="list">
+        <p><b>Ameer Bukhari</b> — Sindhi poetry</p>
+        <p><b>Nisar Ahmed Naaz</b> — Sindhi poetry</p>
+        <p><b>Mehboob Ali Kalhoro</b> — Sindhi poetry</p>
+        <p><b>Sindhi Mushairo</b> — recorded mushaira gatherings</p>
+        <p><b>Urdu Poetry</b> — Urdu poetry audio and MP3 collection</p>
+      </div>
+      <p class="note">Poetry audio and video are being matched from official sources. Each poet's page will play inside this website.</p>
+    </div>
+  </section>
+
+  <!-- FM -->
+  <section id="v-fm" class="hide">
+    <h3 class="sec">FM Radio Channels</h3>
+    <div class="panel"><h4>Sindhi FM Stations</h4>
+      <div class="list">
+        <p><b>Ghotki FM 91</b> — Ghotki</p>
+        <p><b>Umarkot FM 95.4</b> — Umarkot</p>
+        <p><b>Tando Muhammad Khan FM 100.2</b> — Tando Muhammad Khan</p>
+        <p><b>Popular Program MP3</b> — recorded radio programs</p>
+        <p><b>Radio Workers &amp; RJs Profiles</b> — the voices behind the stations</p>
+      </div>
+      <p class="note">Live streams will be added only from official station sources.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="v-contact" class="hide">
+    <h3 class="sec">Contact</h3>
+    <div class="panel" style="text-align:center">
+      <h4>Muhammad Raheem Chandio</h4>
+      <p class="sub">Owner — Raheem Sindhi Sound</p>
+      <p style="margin-top:16px;font-size:16px;color:#fff">WhatsApp: <b style="color:var(--warm)">0303 2330013</b></p>
+      <p style="margin-top:6px;font-size:16px;color:#fff">Email: <b style="color:var(--warm)">chandiohamza73@gmail.com</b></p>
+      <p class="note" style="max-width:520px;margin-left:auto;margin-right:auto">For song requests, artist additions or corrections to the catalogue, message on WhatsApp or email. Every verified request is added to the archive.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <b>Raheem Sindhi Sound</b> — The World of Sindhi Music<br>
+  Catalogue restored from the historic IndusSound archive (2011–2016) · Playback via official YouTube &amp; Spotify embeds only<br>
+  © 2026 Raheem Sindhi Sound — All Rights Reserved
+</footer>
+<script>
+const CATALOG = {"detail":{"Manzoor Sakhirani":{"albums":[{"name":"Suhna Suhna Album","tracks":[]}],"spotify_artist":"https://open.spotify.com/artist/0ONz38XAgX73PEgIBIkW4Z","spotify_tracks":[]},"Shaman Ali Merali":{"albums":[{"name":"Ziddi Album","tracks":[]},{"name":"Awaaz Album","tracks":[]},{"name":"Zidee Album","tracks":["Bya Main Jani Bya","Bya Shala Bya","Chamra Chori","Dholan Dholan","Kahein Je Na Kahein","Khat Bhej","Marri","Mola Ali","Rula","Tuhinji Banh","Tuhinji Chhanw","Waada","Yaara","Zidee Zidee"]}],"spotify_artist":"https://open.spotify.com/artist/4wMlcDovcPZYs9GBLfsnY5","spotify_tracks":[{"id":"4UUZFftg7SzYOhUoVDD7li","title":"Dukhan Ja Pahar"},{"id":"3ew9mFE1ukHmIxxDKAO0tb","title":"Khuda Tokhe Bakhshay"},{"id":"4XjOE7Ro0iVk5QbvlWW1sj","title":"Tunjhi Sik Te Lagi"}]}},"letters":{"A":["Aamir Saleem","Abbas","Abbas Chandio","Abdul Ghaffar Tabasum","Abdul Hameed Chandio","Abdul Karim Faqeer","Abdul Majeed Jatoi","Abdul Rahim","Abdul Rasheed","Abida Parveen","Adeeb Asghar","Aftab Ahmed","Afzal Nohrio","Ahmed Khan","Ahmed Mughal","Ajmal Ali","Akhtar Chandio","Akhtar Sarki","Al-Amin","Alam Khan","Ali Baba","Ali Ghulam","Ali Nawaz","Ali Raza","Ameer","Ameer Ali","Amir Ali","Amir Jatoi","Amir Khaskheli","Amjad","Amjad Ali","Anjum Baloch","Anmol","Asad","Asad Ali","Ashfaque Ahmed","Ashiq","Aslam","Ata Muhammad","Atta Muhammad Chandio","Azhar","Aziz","Aziz Jan","Aziz Memon","Aziz Uddin","Azra Malik","Azmat","Azmat Ali"],"B":["Babar Ali Mughal","Babi Shabana","Bali Sound Tracks","Barkat Ali","Barkat Faqeer","Beedal Masroor","Bashir Solangi","Babar Meer","Bakshal Merali","Balik Sindhi","Barkat Ali Shar","Bhagat Kanwar Ram","Bhagwanti Nawaani"],"C":["Children Songs"],"D":["Darshan Phull","Deeba Sehar","Dhol Faqeer","Do Gana","Dr. Moti Parkash","Deeba Kanwal","Deedar Hussain Samo","Deedar Soomro","Dilsher Tewno","Dr. Habib Sagar"],"E":["Eid Special Sindhi Songs","Eid Release Albums"],"F":["Fahmeeda Sehar","Farooq Meer","Faqeer Muzafar Ali","Farah Junejo","Fayaz Meerani","Feroz Gul Qamar Soomro","Fozia Kanwal","Fakhir Ali","Faqeer Abdul Ghafoor","Faqeer Sodho Khan Laghari","Farzana Parveen","Fayaz Rind","Fida Khokhar","Fozia Soomro"],"G":["Ghafoor Gul","Ghajan Faqeer Odh","Ghazals","Gul Hassan Gul","Ghulam Ali Samo","Ghulam Hussain Umrani","Ghulam Shabir Samo","Gulab Rai","Gulshan Ali Zangajo","Ghafoor Gul & Kanwal Abro","Ghafoor Soomro","Ghulam Rasool Maitlo","Gul Hassan Gul Lakhan","Ghulam Ali Sandilo","Ghulam Shabir Shahani","Ghulam Yaseen","Gulbano","Gulshan Khemani"],"H":["Hafeez Lashari & Shabana","Hassan Pahyar","Hussain Bux Khadim","Hub E Ali","Humera Sarang","Hyder Rind","Hanif Lashari","Hayat Gadani","Ho Jamalo","Humera Channa","Hyder Ali"],"I":["Ilyas Sangi","Imran Jamali","Inayat Mangi","Iqrar Waheed","Irshad Ali","Imdad Lashari","Inam Samo","Irshad Ali Samo (Poet)","Irfan Ali Solangi"],"J":["Jalal Chandio","Javed Jakhrani","Jeal Sundrani","Jalal Jogi","Jawad Ali","Jeewni Bai"],"K":["Kamal Samo","Kashif Agani","Kalu Faqeer","Khadim Hussain Gabol","Khalique Bhatti","Khursheed Ali Khan","Kausar Marvi","Kashif Sarhadi","Kanwal Nizamani","Khadim Hussain Sakhirani","Khuram Shehzad","Kumar Sono"],"L":["Laila Latifi","Latif Anwar","Louck Geet","Lakhano Baloch","Liaquat Samo","Lubna Mahek"],"M":["Mai Bhagi","Mahmood Ruk","Malka Rani","Maqbool Arfani","Maria Baloch","Mashooq Khokhar","Master Dileep","Master Manzoor","Master Shareef","Mehbooba Top 10","Misri Faqeer","Mohammad Hassan","Mohan Bhagat","Mohd Sideeq Barejo","Mora","Mouj Ali Saabqi","Mukhtiyar Ali Gabol","Mumtaz Kanwal","Muneer Abbasi","Mureed Abbas Katpar","Musician Altaf Khichi","Mahboob Khaskheli","Makhno Pitafi","Manzoor Sakhirani","Maqbool Hassan","Marvi Sindhu","Master Chandar","Master Fateh Ali","Master Mureed Bughio","Mazhar Ali & Zulfiqar Ali","Mehr Seemi","Meer Farooq Talpur","Mohammad Rafi","Mohammad Qasim Otho","Mola Bux Mari","Moosa Hussain Samo","Mukhtiyar Ali Sheedi","Mukhtiar Mangi","Mumtaz Lashari","Mumtaz Molai","Muneer Memon","Mureed Malik"],"N":["Nabi Bux Narejo","Nadeem Soomro","Naghma Naz","Najaf Ali","Nasir Ali Abbasi","Nazeer Samo","New Year Songs","Nirma Kanwal","Noor Bano","Nadeem Meerani","Naheed Ali","Najab Ali Westro","Nak Ji Phulli Hits","Nasir Qureshi","Neelam Sehar","Nighat Naz","Nisar Chandio","Noor Jahan Sindhi"],"O":[],"P":["Pardesi Hits","Photo Zardari","Poet Sami Baloch","Positive Band","Parveen Baloch","Poet Bahadur Mahar","Poet Sheikh Aslam Azad","Poet Rasheed Kaleri"],"Q":["Qadir Kalhoro","Qamar Soomro"],"R":["Rabnawaz Mahesar","Rahman Mughal","Riaz Soomro","Raja Ghazanfar","Rajab Ali","Rasheed Ali Ghoto","Raza Soomro","Rehana Tabasum","Runa Laila","Rahim Shah Sindhi","Rahmat Merali","Raja Dilbhar Meerani","Raja Hameed Abbasi","Rajib Gulzar","Raza Hussain Wistro","Razaq Jameel","Rubina Qureshi","Rukhsana Soorath"],"S":["Sadiq Faqeer","Sagar Shah","Saifi","Sajjad Yousuf","Sajjan Sindhi","Saleem Urs Chandio","Samina Kanwal","Sanam Marvi","Sarwar Sakhirani","Seengar Ali Saleem","Shabana Parveen","Shafi Faqeer","Shaqat Ali","Shahneela Ali","Shehzad Jatoi","Shareef Abbasi","Shazia Baloch","Shazia Kausar","Sheeraz Abbasi","Sheral Bujle Baloch","Sikandar Sargani","Sindhi Filmi Songs","Sodhal Faqeer","Sonia Naheed","Sudka Saha Ja","Sohrab Faqeer","Suraiya Soomro","Syed Sakhawat Bukhari","Saeed Tunio","Sagar Sindhi","Saima Manzoor","Sajid Ali","Saleem Raza Kumbhar","Samina Gudi","Sanam Ji Pasand","Sangeet E Sangeet","Sarmad Sindhi","Sehra","Shafique Mangi","Shafi Mohammad","Shahban Chachar","Sheharyar Ali","Shaman Ali Merali","Shaukat Memon","Shazia Khushk","Shazia Tabasum","Shehla Gul","Sikandar Burdi","Sindh Ja Ustad","Sindhi Jhankar Geet","Sodhi Deewani","Soniya Kanwal","Sudka Samdra Ja","Suleman Shah","Syed Faqeer Wali Shah","Syed Wazir Ali Shah"],"T":["Tahir Abbas","Tahira Syed","Tameer Hussain","Teji Bhowani","Tufail Sanjrani","Tahir Mithu","Taj Mastani","Tehmina Sardar","Tofique Abbas"],"U":["Urooj Band","Ustad Anwar Sangi","Ustad Mohammad Yousuf","Ustad Muhammad Juman","Urs Chandio","Ustad Manzoor Ali Khan","Ustad Mohammad Ibrahim"],"V":["Vasdev Mohi & Ghansham"],"W":["Wahid Lashari","Waheed Gul Mashori","Waheed Nawaz Soomro","Waqar Soomro","Wazeer Ali Jamali","Waheed Ali","Waheed Hakro","Waheed Zaman Shah","Waseem Ghoto","Wazir"],"X":[],"Y":[],"Z":["Zafar Iqbal Zafri","Zamin Ali","Zeba Sehar","Zulf Ali","Zulfiqar Rahi","Zahid Gul","Zareena Baloch","Zeeshan Hyder Seelro","Zulfiqar Ali"]},"source":"IndusSound.net A-Z Sindhi Singers index, Wayback Machine snapshots 2-3 Apr 2015","total":330};
+const DETAIL = CATALOG.detail || {};
+const FEATURED = ["Jalal Chandio","Sanam Marvi","Abida Parveen","Shaman Ali Merali","Manzoor Sakhirani","Mai Bhagi","Sarmad Sindhi","Ustad Muhammad Juman"];
+const LATEST = [["Ziddi Album","Shaman Ali Mirali"],["Suhna Suhna Album","Manzoor Sakhirani"],["Sadaon Pyaar Joon Album","Marvi Sindhu"],["Shikari Nen Album","Nighat Naz"],["Bazi Khati Wenda Seen Album","Sagar Shah"]];
+let curLetter = "A";
+function $(id){return document.getElementById(id)}
+function show(v){["home","songs","islamic","poetry","fm","contact","artist"].forEach(x=>$("v-"+x).classList.toggle("hide",x!==v));document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));window.scrollTo(0,0)}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>show(b.dataset.v)));
+function artistCard(name){const d=DETAIL[name];const el=document.createElement("div");el.className="card";el.innerHTML='<div class="nm">'+name+'</div><div class="mt">'+(d?'Albums &amp; songs available':'Catalogue entry')+'</div>';el.addEventListener("click",()=>openArtist(name));return el}
+function renderFeatured(){const g=$("featured");g.innerHTML="";FEATURED.forEach(n=>g.appendChild(artistCard(n)));const l=$("latest");l.innerHTML="";LATEST.forEach(([a,s])=>{const el=document.createElement("div");el.className="card";el.innerHTML='<div class="nm">'+a+'</div><div class="mt">'+s+'</div>';el.addEventListener("click",()=>openArtist(s));l.appendChild(el)})}
+function renderLetters(){const w=$("letters");w.innerHTML="";Object.keys(CATALOG.letters).forEach(L=>{const b=document.createElement("button");b.innerHTML=L+"<small>"+CATALOG.letters[L].length+"</small>";if(L===curLetter)b.className="on";b.addEventListener("click",()=>{curLetter=L;renderLetters();renderArtists()});w.appendChild(b)})}
+function renderArtists(){const g=$("artists");g.innerHTML="";const list=CATALOG.letters[curLetter];if(!list.length){g.innerHTML='<p class="note">No entries were listed under this letter in the original archive.</p>';return}list.forEach(n=>g.appendChild(artistCard(n)))}
+function openArtist(name){
+  const d=DETAIL[name];const p=$("artistPanel");
+  let h='<h4>'+name+'</h4><div class="sub">Sindhi Singer · Raheem Sindhi Sound Catalogue</div>';
+  if(d){
+    if(d.spotify_artist){h+='<p style="margin-top:12px"><a class="pill" href="'+d.spotify_artist+'" target="_blank" rel="noopener">Open on Spotify</a></p>'}
+    (d.spotify_tracks||[]).forEach(t=>{h+='<div class="album"><h5>'+t.title+'</h5><iframe class="sp" src="https://open.spotify.com/embed/track/'+t.id+'" height="80" allow="encrypted-media" loading="lazy"></iframe></div>'});
+    (d.albums||[]).forEach(a=>{h+='<div class="album"><h5>'+a.name+'</h5>';if(a.tracks&&a.tracks.length){a.tracks.forEach(t=>{h+='<div class="track"><span>'+t+'</span><span class="st">Audio being matched</span></div>'})}else{h+='<p class="note">Track list is being restored from the archive.</p>'}h+='</div>'});
+  } else {
+    h+='<p class="note">This artist is in the restored A–Z catalogue. Their albums and songs are being restored from the archive and matched with official playback, step by step.</p>';
+    h+='<p style="margin-top:12px"><a class="pill ghost" href="https://open.spotify.com/search/'+encodeURIComponent(name)+'" target="_blank" rel="noopener">Search on Spotify</a> <a class="pill ghost" href="https://www.youtube.com/results?search_query='+encodeURIComponent(name+' sindhi songs')+'" target="_blank" rel="noopener">Search on YouTube</a></p>';
+  }
+  p.innerHTML=h;show("artist");
+}
+$("backBtn").addEventListener("click",()=>show("songs"));
+$("q").addEventListener("input",e=>{const q=e.target.value.trim().toLowerCase();if(q.length<2)return;for(const L of Object.keys(CATALOG.letters)){const hit=CATALOG.letters[L].find(n=>n.toLowerCase().includes(q));if(hit){curLetter=L;renderLetters();renderArtists();show("songs");return}}});
+$("st-artists").textContent=CATALOG.total;
+renderFeatured();renderLetters();renderArtists();
+</script>
+</body>
+</html>
