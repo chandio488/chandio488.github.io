@@ -2685,6 +2685,9 @@ section[data-radio-section] {
 .ltv-btn{background:#26262c;color:#f1f1f1;border:1px solid #3d3d45;border-radius:8px;padding:7px 11px;font-size:12.5px;font-weight:700;cursor:pointer}
 .ltv-btn.stop{color:#ff8a80}
 .ltv-btn[disabled]{opacity:.45;cursor:default}
+.ltv-btn.on{background:#43a047;border-color:#43a047;color:#fff}
+.ltv-servers{display:inline-flex;gap:6px;flex-wrap:wrap}
+.ltv-qsel{background:#26262c;color:#f1f1f1;border:1px solid #3d3d45;border-radius:8px;padding:7px 8px;font-size:12.5px;font-weight:700;cursor:pointer}
 .ltv-mini{position:fixed;right:10px;bottom:76px;z-index:900;width:198px;background:#101013;border:1.5px solid #d32f2f;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.65);display:flex;flex-direction:column}
 .ltv-mini[hidden]{display:none}
 .ltv-mini-slot{position:relative;aspect-ratio:16/9;background:#000}
@@ -3824,6 +3827,8 @@ section[data-radio-section] {
           <span id="ltvSub" class="ltv-sub" lang="en"></span>
         </div>
         <div class="ltv-btns">
+          <span id="ltvServers" class="ltv-servers"></span>
+          <select id="ltvQuality" class="ltv-qsel" aria-label="Stream quality" hidden><option value="-1">Auto</option></select>
           <button type="button" id="ltvPipBtn" class="ltv-btn">⧉ Picture-in-Picture</button>
           <button type="button" id="ltvPageBtn" class="ltv-btn">Player Page</button>
           <button type="button" id="ltvStopBtn" class="ltv-btn stop">✕ Stop</button>
@@ -6234,6 +6239,31 @@ function tvFolderCard(pathStr, icon, motif, title, urTitle, count){
     + (urTitle ? '<span class="fur" lang="ur" dir="rtl">' + esc(urTitle) + '</span>' : '')
     + '<span class="fcount" lang="en">' + count + ' channel' + (count === 1 ? '' : 's') + '</span></button>';
 }
+/* DOCUMENTARY view (2026-11-25, lnt-gaps-test): no record data is changed —
+   these channels keep their existing categories; DOCUMENTARY is a view over
+   them, exactly like the other category folders. The mapping is an explicit
+   id list of channels whose own brand/format is documentary / nature /
+   science programming: National Geographic, BBC Earth, Love Nature,
+   Curiosity, MagellanTV, WaterBear, WildEarth / Real Wild / INWILD,
+   PBS Nature, NatureTime, Samsung Wildlife, Wild Planet, Xplore.
+   Borderline brands (motoring, mystery, ambient, news "Explore") are
+   deliberately NOT included. */
+var TV_DOC_IDS = {
+  'rltv-2070': 1, 'rltv-2068': 1,
+  'walatv-bbc-earth': 1, 'rltv-839': 1, 'rltv-842': 1,
+  'love-nature': 1,
+  'curiosity-now-en': 1, 'rltv-1702': 1, 'rltv-1700': 1, 'rltv-865': 1,
+  'rltv-1762': 1, 'rltv-1763': 1,
+  'rltv-1891': 1, 'rltv-1892': 1,
+  'wildearth': 1, 'walatv-wild-earth': 1, 'walatv-wild-earth-alt2': 1,
+  'real-wild': 1, 'walatv-real-wild': 1,
+  'inwild': 1, 'rltv-871': 1, 'rltv-884': 1,
+  'samsung-wildlife': 1,
+  'pbs-nature': 1, 'rltv-854': 1, 'rltv-854-alt2': 1,
+  'naturetime': 1, 'naturetime-france': 1, 'rltv-875': 1, 'rltv-875-alt2': 1,
+  'rltv-142': 1, 'rltv-143': 1
+};
+function tvIsDoc(c){ return !!TV_DOC_IDS[c.id]; }
 /* PHASE 5 — TV category folders (views over the same channels; nothing moved or deleted) */
 var TV_CAT_DEFS = [
   { key:'ent', title:'ENTERTAINMENT', ur:'تفریح', icon:'ic-music', filter:function(c){ return c.cat === 'ent'; } },
@@ -6249,6 +6279,7 @@ var TV_CAT_DEFS = [
   { key:'outcountry', title:'OUT COUNTRY', ur:'آؤٹ کنٹری', icon:'ic-globe', filter:function(c){ return c.cat === 'outcountry'; } },
   { key:'faaetv', title:'FAAETV', ur:'فائی ٹی وی', icon:'ic-globe', filter:function(c){ return c.cat === 'faaetv'; } },
   { key:'tech', title:'TECH & SCIENCE', ur:'ٹیکنالوجی اور سائنس', icon:'ic-edu', filter:function(c){ return c.cat === 'tech'; } },
+  { key:'doc', title:'DOCUMENTARY', ur:'دستاویزی', icon:'ic-edu', filter:function(c){ return tvIsDoc(c); } },
   { key:'islamic', title:'ISLAMIC', ur:'اسلامی', icon:'ic-quran', filter:function(c){ return c.cat === 'islamic'; } }
 ];
 function tvCatDef(key){
@@ -6271,6 +6302,8 @@ var LNT_CATS = [
   ['news', 'NEWS', function(c){ return c.cat === 'news'; }],
   ['movies', 'MOVIES', function(c){ return c.cat === 'movies'; }],
   ['music', 'MUSIC', function(c){ return c.cat === 'music'; }],
+  ['kids', 'KIDS', function(c){ return c.cat === 'kids'; }],
+  ['doc', 'DOCUMENTARY', function(c){ return tvIsDoc(c); }],
   ['religious', 'RELIGIOUS', function(c){ return c.cat === 'religious'; }],
   ['regional', 'REGIONAL', function(c){ return c.cat === 'regional'; }],
   ['dd', 'DOORDARSHAN', function(c){ return c.cat === 'dd'; }],
@@ -6347,6 +6380,38 @@ function renderTv(){
   tabsEl.querySelectorAll('[data-ltab]').forEach(function(b){
     b.addEventListener('click', function(){ lntTab = b.getAttribute('data-ltab'); renderTv(); });
   });
+  // ---- recently watched row (same localStorage history as Home / Favorites;
+  //      ltvPlay records into it via addRecent). Shown on the section's home
+  //      view only: ALL tab, all countries, no active search. ----
+  var recEl = document.getElementById('ltvRecent');
+  if(!recEl){
+    recEl = document.createElement('div'); recEl.id = 'ltvRecent';
+    grid.parentNode.insertBefore(recEl, grid);
+    recEl.addEventListener('click', function(e){
+      var t = e.target;
+      if(!t || !t.closest) return;
+      if(t.closest('.favbtn')) return;
+      var card = t.closest('.lnt-card');
+      if(!card) return;
+      var rid = (card.getAttribute('data-href') || '').replace('#watch/', '');
+      if(!rid) return;
+      var rch = findTv(rid);
+      if(!rch) return;
+      if(getChannelSources(rch).length){ e.preventDefault(); e.stopPropagation(); ltvPlay(rid); }
+    }, true);
+  }
+  var recents = (!searching && lntTab === 'all' && ltvCountry === 'ALL' && !ltvProv)
+    ? recentList.map(itemByKey).filter(function(c){ return c && c.cat !== 'radio'; }).slice(0, 12)
+    : [];
+  if(recents.length){
+    recEl.innerHTML = '<div class="lnt-cc"><span>🕘 RECENTLY WATCHED</span><span class="lnt-n">' + recents.length + ' channel' + (recents.length === 1 ? '' : 's') + '</span></div>'
+      + '<div class="lnt-gridwrap">' + recents.map(lntCard).join('') + '</div>';
+    recEl.style.display = '';
+    bindCards(recEl);
+  } else {
+    recEl.innerHTML = '';
+    recEl.style.display = 'none';
+  }
   // ---- selection ----
   var list;
   var favMode = lntTab === 'fav' && !searching;
@@ -14862,7 +14927,8 @@ function rhdNeedlePos(freq){
 /* ===== LNT TV experience (TV section only): persistent in-page player,
    floating mini player, real browser Picture-in-Picture ===== */
 var LTV = { id: null, mode: null, src: null, hls: null, video: null, frame: null,
-            attempts: 0, settled: false, watchdog: null, inPip: false, docked: false };
+            attempts: 0, settled: false, watchdog: null, inPip: false, docked: false,
+            q: -1, levels: null };
 function ltvEl(id){ return document.getElementById(id); }
 function ltvSetSub(txt){ var el = ltvEl('ltvSub'); if(el) el.textContent = txt || ''; }
 function ltvShowOverlay(html){ var o = ltvEl('ltvOverlay'); if(o){ o.innerHTML = html; o.hidden = false; } }
@@ -14929,6 +14995,7 @@ function ltvStartNative(src, isHls, isRetry){
   if(v.parentNode !== slot) slot.appendChild(v);
   v.style.display = '';
   var lp = ltvEl('ltvLive'); if(lp) lp.style.display = 'none';
+  ltvResetQuality();
   ltvSpinner('Connecting…');
   ltvSetSub('Connecting…');
   ltvDestroyHls();
@@ -14937,6 +15004,7 @@ function ltvStartNative(src, isHls, isRetry){
     LTV.hls = new Hls({ enableWorker: true, startLevel: 0, lowLatencyMode: false, maxBufferLength: 18, maxMaxBufferLength: 30, backBufferLength: 10 }); /* Ultra-aligned player settings + Auto starts at lowest quality (startLevel: 0), owner orders 2026-11-17 */
     LTV.hls.loadSource(src);
     LTV.hls.attachMedia(v);
+    LTV.hls.on(Hls.Events.MANIFEST_PARSED, function(_, data){ ltvBuildQuality(data && data.levels); });
     LTV.hls.on(Hls.Events.ERROR, function(_, data){ if(data && data.fatal && !LTV.settled) ltvFail(); });
   } else {
     try{ v.src = src; }catch(e){}
@@ -14970,6 +15038,7 @@ function ltvStartFrame(src){
   LTV.frame = f;
   var lp = ltvEl('ltvLive'); if(lp) lp.style.display = 'none';
   ltvHideOverlay();
+  ltvResetQuality();
   ltvSetSub('Official embedded player — playback runs on the provider player');
   ltvUpdatePipBtn();
 }
@@ -14980,6 +15049,67 @@ function ltvMediaSession(ch){
     navigator.mediaSession.setActionHandler('play', function(){ if(LTV.video) LTV.video.play(); });
     navigator.mediaSession.setActionHandler('pause', function(){ if(LTV.video) LTV.video.pause(); });
   }catch(e){}
+}
+/* ---- backup-copy grouping ("(Server 2)" records) for the in-player
+   server switcher. Copies of one channel share the same base name (the
+   " (Server N)" suffix stripped) and the same country code; records whose
+   primary source URL is identical are the same server and collapse to one. */
+function ltvBaseName(en){ return String(en || '').replace(/\s*\(Server\s+\d+\)\s*$/i, '').trim().toLowerCase(); }
+function ltvSrvNum(c){ var m = /\(Server\s+(\d+)\)\s*$/i.exec(c.en || ''); return m ? parseInt(m[1], 10) : 1; }
+function ltvCopies(ch){
+  var base = ltvBaseName(ch.en), out = [], seenUrl = {};
+  var all = TV.concat(typeof TV_ALT !== 'undefined' ? TV_ALT : []);
+  for(var i = 0; i < all.length; i++){
+    var c = all[i];
+    if(!c || c.cat === 'radio') continue;
+    if(c.cc !== ch.cc) continue;
+    if(ltvBaseName(c.en) !== base) continue;
+    var srcs = getChannelSources(c);
+    if(!srcs.length) continue;
+    if(seenUrl[srcs[0].url]) continue;
+    seenUrl[srcs[0].url] = 1;
+    out.push(c);
+  }
+  out.sort(function(a, b){
+    var na = ltvSrvNum(a), nb = ltvSrvNum(b);
+    if(na !== nb) return na - nb;
+    return a.id < b.id ? -1 : 1;
+  });
+  return out;
+}
+function ltvPaintServers(ch){
+  var wrap = ltvEl('ltvServers'); if(!wrap) return;
+  var copies = ltvCopies(ch);
+  if(copies.length < 2){ wrap.innerHTML = ''; return; }
+  wrap.innerHTML = copies.map(function(c, i){
+    return '<button type="button" class="ltv-btn' + (c.id === LTV.id ? ' on' : '') + '" data-lsrv="' + esc(c.id) + '">Server ' + (i + 1) + '</button>';
+  }).join('');
+  wrap.querySelectorAll('[data-lsrv]').forEach(function(b){
+    b.addEventListener('click', function(){ ltvPlay(b.getAttribute('data-lsrv')); });
+  });
+}
+/* ---- quality selector for the in-section player (hls.js levels, same
+   labelling as the player page: Auto + height/bitrate options). ---- */
+function ltvResetQuality(){
+  LTV.levels = null;
+  var sel = ltvEl('ltvQuality');
+  if(sel){ sel.hidden = true; sel.innerHTML = '<option value="-1">Auto</option>'; sel.value = '-1'; }
+}
+function ltvBuildQuality(levels){
+  var sel = ltvEl('ltvQuality'); if(!sel) return;
+  LTV.levels = levels || null;
+  if(!levels || levels.length < 2){ ltvResetQuality(); return; }
+  var order = levels.map(function(_, i){ return i; }).sort(function(a, b){ return levels[a].bitrate - levels[b].bitrate; });
+  sel.innerHTML = '<option value="-1">Auto</option>' + order.map(function(i){
+    var lv = levels[i];
+    var lbl = lv.height ? lv.height + 'p' : Math.round(lv.bitrate / 1000) + 'k';
+    var dup = lv.height && levels.some(function(o, j){ return j !== i && o.height === lv.height; });
+    if(dup) lbl += ' · ' + (Math.round(lv.bitrate / 100000) / 10) + 'M';
+    return '<option value="' + i + '">' + lbl + '</option>';
+  }).join('');
+  sel.value = String(LTV.q);
+  if(LTV.q !== -1 && LTV.hls){ try{ LTV.hls.currentLevel = LTV.q; }catch(e){} }
+  sel.hidden = false;
 }
 function ltvPlay(id){
   var ch = findTv(id);
@@ -15006,12 +15136,18 @@ function ltvPlay(id){
   else if(directSrc) ltvStartNative(directSrc.url, false);
   else ltvStartFrame(frameSrc.url);
   ltvMediaSession(ch);
+  if(typeof addRecent === 'function'){ try{ addRecent(ch); }catch(e){} }
+  ltvPaintServers(ch);
+  if(typeof renderTv === 'function'){ try{ renderTv(); }catch(e){} }
   if(stage && stage.scrollIntoView){ try{ stage.scrollIntoView({ behavior: 'smooth', block: 'start' }); }catch(e){} }
 }
 function ltvStopPlayer(){
   ltvClearWatchdog(); ltvDestroyHls(); ltvClearFrame();
   if(LTV.video){ try{ LTV.video.pause(); LTV.video.removeAttribute('src'); LTV.video.load(); }catch(e){} LTV.video.style.display = 'none'; }
   LTV.id = null; LTV.mode = null; LTV.src = null; LTV.settled = false; LTV.docked = false;
+  LTV.q = -1;
+  ltvResetQuality();
+  var svw = ltvEl('ltvServers'); if(svw) svw.innerHTML = '';
   var stage = ltvEl('ltvStage'); if(stage) stage.hidden = true;
   var mini = ltvEl('ltvMini'); if(mini) mini.hidden = true;
   document.querySelectorAll('.lnt-card.playing').forEach(function(c){ c.classList.remove('playing'); });
@@ -15101,6 +15237,12 @@ function ltvUpdatePipBtn(){
   if(pageBtn) pageBtn.addEventListener('click', function(){ if(LTV.id) location.hash = '#watch/' + LTV.id; });
   var stopBtn = ltvEl('ltvStopBtn');
   if(stopBtn) stopBtn.addEventListener('click', function(){ ltvStopPlayer(); });
+  var qSel = ltvEl('ltvQuality');
+  if(qSel) qSel.addEventListener('change', function(){
+    var v = parseInt(qSel.value, 10);
+    LTV.q = isNaN(v) ? -1 : v;
+    if(LTV.hls){ try{ LTV.hls.currentLevel = LTV.q; }catch(e){} }
+  });
   var mo = ltvEl('ltvMiniOpen');
   if(mo) mo.addEventListener('click', function(){ location.hash = '#tv'; });
   var mc = ltvEl('ltvMiniClose');
